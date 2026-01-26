@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "traffic-simulation-idn"
+version = "1.0.0"
+description = "Indonesian Traffic Simulation System with Violation Detection"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Traffic Simulation Team"},
+]
+keywords = ["traffic", "simulation", "violation", "indonesia"]
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "Flask==2.3.3",
+    "FastAPI==0.103.0",
+    "uvicorn==0.23.2",
+    "SQLAlchemy==2.0.21",
+    "alembic==1.12.0",
+    "PyMySQL==1.1.0",
+    "redis==5.0.0",
+    "pandas==2.1.1",
+    "numpy==1.25.2",
+    "PyQt5==5.15.9",
+    "python-dotenv==1.0.0",
+    "pydantic==2.4.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.2",
+    "pytest-cov==4.1.0",
+    "black==23.10.0",
+    "flake8==6.1.0",
+    "isort==5.12.0",
+    "mypy==1.5.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/traffic-simulation-idn"
+Documentation = "https://github.com/yourusername/traffic-simulation-idn/docs"
+Repository = "https://github.com/yourusername/traffic-simulation-idn.git"
+
+[tool.black]
+line-length = 100
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=src --cov-report=html"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false

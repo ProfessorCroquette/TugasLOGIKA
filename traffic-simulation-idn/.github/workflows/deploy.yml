@@ -1,0 +1,45 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run tests
+      run: |
+        pip install pytest pytest-cov
+        pytest tests/ -v
+    
+    - name: Build Docker image
+      run: |
+        docker build -t traffic-simulation-idn:latest .
+    
+    - name: Push to registry
+      run: |
+        echo "Docker push step would go here"
+        # docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        # docker push traffic-simulation-idn:latest
+    
+    - name: Deploy to production
+      run: |
+        echo "Deployment step would go here"
+        # Add deployment commands here (e.g., docker-compose up, kubernetes apply)
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
