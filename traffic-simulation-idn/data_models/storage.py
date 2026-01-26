@@ -51,7 +51,16 @@ class DataStorage:
                     'timestamp': v.timestamp.isoformat(),
                     'location': v.location,
                     'ticket_issued': v.ticket_issued,
-                    'fine_amount': v.fine_amount
+                    'fine_amount': v.fine_amount,
+                    'owner': {
+                        'id': v.owner_id,
+                        'name': v.owner_name,
+                        'region': v.owner_region
+                    },
+                    'registration': {
+                        'stnk_status': v.stnk_status,
+                        'sim_status': v.sim_status
+                    }
                 }
                 vehicles_data.append(vehicle_dict)
             
@@ -82,10 +91,23 @@ class DataStorage:
                     'vehicle_type': t.vehicle_type,
                     'speed': t.speed,
                     'speed_limit': t.speed_limit,
-                    'fine_amount': t.fine_amount,
                     'timestamp': t.timestamp.isoformat(),
                     'location': t.location,
-                    'status': t.status
+                    'status': t.status,
+                    'owner': {
+                        'id': t.owner_id,
+                        'name': t.owner_name,
+                        'region': t.owner_region
+                    },
+                    'registration': {
+                        'stnk_status': t.stnk_status,
+                        'sim_status': t.sim_status
+                    },
+                    'fine': {
+                        'base_fine': t.base_fine,
+                        'penalty_multiplier': t.penalty_multiplier,
+                        'total_fine': t.fine_amount
+                    }
                 }
                 tickets_data.append(ticket_dict)
             

@@ -1,0 +1,200 @@
+✅ INDONESIAN TRAFFIC LAW COMPLIANCE UPDATE
+============================================
+
+LEGAL BASIS
+===========
+Pasal 287 ayat (5) Undang-Undang Nomor 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan
+
+Pelanggar batas kecepatan, baik terlalu tinggi maupun terlalu rendah, dikenakan:
+- Denda maksimal: Rp 500.000 
+- ATAU pidana kurungan paling lama 2 bulan
+- Berlaku untuk tilang manual dan tilang elektronik (ETLE)
+
+
+CHANGES IMPLEMENTED
+===================
+
+1. FILE: config/__init__.py (Configuration Package)
+
+   BEFORE (Non-Compliant):
+   ───────────────────────
+   FINES = {
+       "LEVEL_1": {"min": 76, "max": 90, "fine": 100},     # Rp 1,550,000 ❌
+       "LEVEL_2": {"min": 91, "max": 110, "fine": 200},    # Rp 3,100,000 ❌  
+       "LEVEL_3": {"min": 111, "max": 130, "fine": 500},   # Rp 7,750,000 ❌
+       "LEVEL_4": {"min": 131, "max": inf, "fine": 1000}   # Rp 15,500,000 ❌
+   }
+   
+   Problems:
+   ✗ Fines exceed legal maximum by 3-31x
+   ✗ No detection for driving too slowly
+   ✗ No USD to IDR conversion constant
+   ✗ No maximum fine cap enforcement
+
+
+   AFTER (Fully Compliant):
+   ────────────────────────
+   MIN_SPEED_LIMIT = 40  # New: Minimum safe speed
+   USD_TO_IDR = 15500    # New: Currency conversion
+   
+   FINES = {
+       "SPEED_LOW_SEVERE": {"min": 0, "max": 29, "fine": 20},     # Rp 310,000 ✅
+       "SPEED_LOW_MILD": {"min": 30, "max": 39, "fine": 10},      # Rp 155,000 ✅
+       "SPEED_HIGH_LEVEL_1": {"min": 76, "max": 90, "fine": 15},  # Rp 232,500 ✅
+       "SPEED_HIGH_LEVEL_2": {"min": 91, "max": 110, "fine": 25}, # Rp 387,500 ✅
+       "SPEED_HIGH_LEVEL_3": {"min": 111, "max": 130, "fine": 32} # Rp 496,000 ✅
+   }
+   
+   MAX_FINE_IDR = 500000  # New: Maximum per law  
+   MAX_FINE_USD = ~32.26  # New: Automatic cap enforcement
+
+
+2. FILE: utils/generators.py (Fine Calculation Logic)
+
+   BEFORE:
+   ──────
+   - Only calculated fines for speeding (speed > SPEED_LIMIT)
+   - Ignored violations for driving too slowly
+   - Could exceed legal maximum
+   - Returned: (base_fine, penalty_multiplier, total_fine)
+
+   AFTER:
+   ──────
+   - Detects BOTH speeding AND slow driving violations
+   - Applies correct fine based on severity
+   - Enforces maximum fine cap
+   - Returns: (base_fine, penalty_multiplier, total_fine)
+   
+   New Logic:
+   ✓ IF speed < 40 km/h → violation (too slow)
+   ✓ IF speed > 75 km/h → violation (speeding)  
+   ✓ IF 40 ≤ speed ≤ 75 → no violation
+   ✓ ALL fines ≤ Rp 500,000 (enforced)
+
+
+3. FILE: simulation/analyzer.py (Violation Detection)
+
+   BEFORE:
+   ──────
+   if vehicle.speed > 75:
+       issue_ticket()
+   
+   AFTER:
+   ──────
+   is_speeding = vehicle.speed > Config.SPEED_LIMIT
+   is_too_slow = vehicle.speed < Config.MIN_SPEED_LIMIT
+   
+   if is_speeding or is_too_slow:
+       if is_speeding:
+           violation_type = "SPEEDING"
+           speed_note = f"{speed} km/h (Limit: {SPEED_LIMIT} km/h)"
+       else:
+           violation_type = "DRIVING TOO SLOW"
+           speed_note = f"{speed} km/h (Minimum: {MIN_SPEED_LIMIT} km/h)"
+       issue_ticket()
+
+
+FINE STRUCTURE COMPLIANCE
+==========================
+
+All fines are now compliant with UU No. 22 Tahun 2009 Pasal 287(5):
+
+Speed Violation Type          | Fine (IDR) | Fine (USD) | Legal Limit
+─────────────────────────────┼────────────┼────────────┼─────────────
+Driving Too Slow - Critical   | Rp 310,000 | $20.00     | ✅ OK
+(<30 km/h)                    |            |            |
+─────────────────────────────┼────────────┼────────────┼─────────────
+Driving Too Slow - Mild       | Rp 155,000 | $10.00     | ✅ OK
+(30-39 km/h)                  |            |            |
+─────────────────────────────┼────────────┼────────────┼─────────────
+Speeding Level 1              | Rp 232,500 | $15.00     | ✅ OK
+(76-90 km/h)                  |            |            |
+─────────────────────────────┼────────────┼────────────┼─────────────
+Speeding Level 2              | Rp 387,500 | $25.00     | ✅ OK
+(91-110 km/h)                 |            |            |
+─────────────────────────────┼────────────┼────────────┼─────────────
+Speeding Level 3              | Rp 496,000 | $32.00     | ✅ OK
+(111-130+ km/h)               |            |            |
+─────────────────────────────┴────────────┴────────────┴─────────────
+
+Maximum Fine Per Law: Rp 500,000
+System Enforcement: ✅ ENFORCED
+
+
+PENALTY MULTIPLIER STILL APPLIES
+==================================
+
+The additional penalties for non-active STNK and expired SIM are CAPPED:
+
+Example - Severe Speeding + Both Violations:
+─────────────────────────────────────────────
+Base Fine: USD $32.00 (Rp 496,000)
+Penalty Multiplier: 1.4x (1.0 + 0.2 + 0.2)
+Calculated Total: $32 × 1.4 = $44.80
+System Applied: CAP AT $32.26 (Rp 500,000)
+Result: ✅ COMPLIANT
+
+
+VIOLATION DETECTION
+===================
+
+The system now detects violations in BOTH directions:
+
+1️⃣  DRIVING TOO SLOWLY (Speed < 40 km/h)
+    ├─ 0-29 km/h: SEVERE violation
+    │   └─ Fine: USD $20.00 / Rp 310,000
+    └─ 30-39 km/h: MILD violation
+        └─ Fine: USD $10.00 / Rp 155,000
+
+2️⃣  NORMAL SPEED (40-75 km/h)
+    └─ No violation
+
+3️⃣  SPEEDING (Speed > 75 km/h)
+    ├─ 76-90 km/h: LEVEL 1 speeding
+    │   └─ Fine: USD $15.00 / Rp 232,500
+    ├─ 91-110 km/h: LEVEL 2 speeding
+    │   └─ Fine: USD $25.00 / Rp 387,500
+    └─ 111+ km/h: LEVEL 3 speeding
+        └─ Fine: USD $32.00 / Rp 496,000
+
+
+TEST RESULTS
+============
+
+✅ Test: test_indonesian_law_compliance.py
+
+All 9 test scenarios PASSED:
+─────────────────────────────
+✓ Scenario 1: Driving too slow (critical) → Violation detected ✅
+✓ Scenario 2: Driving too slow (mild) → Violation detected ✅
+✓ Scenario 3: Normal speed → No violation ✅
+✓ Scenario 4: Mild speeding → Violation detected ✅
+✓ Scenario 5: Moderate speeding → Violation detected ✅
+✓ Scenario 6: Severe speeding → Violation detected ✅
+✓ Scenario 7: Speeding + Expired SIM → Multiplier 1.2x ✅
+✓ Scenario 8: Speeding + Non-Active STNK → Multiplier 1.2x ✅
+✓ Scenario 9: Speeding + Both → Capped at Rp 500,000 ✅
+
+Compliance Check:
+─────────────────
+✓ All fines ≤ Rp 500,000 ✅ COMPLIANT
+✓ Maximum fine cap enforced ✅ COMPLIANT  
+✓ Speeding detection enabled ✅ COMPLIANT
+✓ Low-speed detection enabled ✅ COMPLIANT
+
+
+LEGAL COMPLIANCE SUMMARY
+========================
+
+✅ FULLY COMPLIANT WITH:
+   └─ Pasal 287 ayat (5) UU No. 22 Tahun 2009 LLAJ
+
+Implementation Details:
+  ✓ Maximum fine capped at Rp 500,000
+  ✓ Applies to both speeding and slow driving
+  ✓ Works with manual and electronic tickets (ETLE)
+  ✓ Includes penalty multipliers for unregistered/unlicensed drivers
+  ✓ All violations logged with Indonesian descriptions
+  ✓ Currency conversion included (USD ↔ IDR)
+
+The system now accurately reflects Indonesian traffic law requirements.

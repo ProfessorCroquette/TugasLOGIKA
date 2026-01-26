@@ -14,8 +14,8 @@ class SpeedingTicketSimulator:
         # Setup configuration
         Config.setup_directories()
         
-        # Create data queue for communication
-        self.data_queue = queue.Queue(maxsize=100)
+        # Create data queue for communication (increased to 500 for more data)
+        self.data_queue = queue.Queue(maxsize=500)
         
         # Initialize components
         self.sensor = TrafficSensor(self.data_queue, Config.SIMULATION_INTERVAL)
@@ -55,7 +55,7 @@ class SpeedingTicketSimulator:
         import sys
         import select
         
-        print("\n🚦 Simulation Started! Press 'q' to quit.")
+        print("\n[STARTED] Simulation Started! Press 'q' to quit.")
         
         while self.is_running:
             # Check for user input (non-blocking)
@@ -128,26 +128,26 @@ class SpeedingTicketSimulator:
 
 def main():
     """Application entry point"""
-    print("🚗 SPEEDING TICKET SIMULATION SYSTEM")
+    import sys
+    
+    print("[*] SPEEDING TICKET SIMULATION SYSTEM")
     print("=" * 50)
-    print("This system simulates:")
-    print("1. Traffic sensor generating random vehicles every 10 seconds")
-    print("2. Speed analyzer issuing tickets for speeds > 75 km/h")
+    print("1. Traffic sensor generating random vehicles")
+    print("2. Speed analyzer issuing tickets for violations")
     print("3. Real-time dashboard showing statistics")
     print("=" * 50)
     
-    # Ask for simulation duration
-    try:
-        duration = input("How long to run simulation (minutes)? [Enter for continuous]: ")
-        if duration.strip():
-            duration_min = int(duration)
+    # Check for command-line duration argument
+    duration_min = None
+    if len(sys.argv) > 1:
+        try:
+            duration_min = int(sys.argv[1])
             print(f"Simulation will run for {duration_min} minutes")
-        else:
-            duration_min = None
-            print("Simulation will run until you press 'q'")
-    except:
-        duration_min = None
-        print("Invalid input. Running continuous simulation.")
+        except ValueError:
+            print("Invalid duration. Running continuous simulation.")
+    
+    if duration_min is None:
+        print("Simulation will run until stopped (GUI will stop it)")
     
     # Create and run simulator
     simulator = SpeedingTicketSimulator()

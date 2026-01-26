@@ -2,6 +2,7 @@ import threading
 import queue
 from datetime import datetime
 from typing import List
+from config import Config
 from data_models.models import Vehicle, Ticket, TrafficStats
 from utils.generators import DataGenerator
 from utils.logger import logger
@@ -80,26 +81,55 @@ class SpeedAnalyzer:
         tickets = []
         
         for vehicle in vehicles:
-            # Check if speeding
-            if vehicle.speed > 75:  # Your algorithm threshold
+            # Check if violating speed limits (both too fast and too slow)
+            is_speeding = vehicle.speed > Config.SPEED_LIMIT
+            is_too_slow = vehicle.speed < Config.MIN_SPEED_LIMIT
+            
+            if is_speeding or is_too_slow:
                 vehicle.ticket_issued = True
-                vehicle.fine_amount = DataGenerator.calculate_fine(vehicle.speed)
                 
-                # Create ticket
+                # Calculate fine with penalties based on STNK and SIM status
+                base_fine, penalty_multiplier, total_fine = DataGenerator.calculate_fine(
+                    vehicle.speed,
+                    stnk_status=vehicle.stnk_status,
+                    sim_status=vehicle.sim_status
+                )
+                vehicle.fine_amount = total_fine
+                
+                # Determine violation type
+                if is_speeding:
+                    violation_type = "SPEEDING"
+                    speed_note = f"{vehicle.speed:.1f} km/h (Batas: {Config.SPEED_LIMIT} km/h)"
+                else:
+                    violation_type = "DRIVING TOO SLOW"
+                    speed_note = f"{vehicle.speed:.1f} km/h (Minimum: {Config.MIN_SPEED_LIMIT} km/h)"
+                
+                # Create ticket with full owner and registration information
                 ticket = Ticket(
                     license_plate=vehicle.license_plate,
                     vehicle_type=vehicle.vehicle_type,
                     speed=vehicle.speed,
-                    fine_amount=vehicle.fine_amount,
-                    timestamp=vehicle.timestamp
+                    fine_amount=total_fine,
+                    timestamp=vehicle.timestamp,
+                    owner_id=vehicle.owner_id,
+                    owner_name=vehicle.owner_name,
+                    owner_region=vehicle.owner_region,
+                    stnk_status=vehicle.stnk_status,
+                    sim_status=vehicle.sim_status,
+                    base_fine=base_fine,
+                    penalty_multiplier=penalty_multiplier
                 )
                 tickets.append(ticket)
                 
-                # Log violation
+                # Log violation with owner info
+                penalty_note = ""
+                if penalty_multiplier > 1.0:
+                    penalty_note = f" [+{(penalty_multiplier-1)*100:.0f}% PENALTY: Non-Active STNK & Expired SIM]"
+                
                 logger.warning(
-                    f"SPEEDING VIOLATION: {vehicle.license_plate} "
-                    f"({vehicle.vehicle_type}) - {vehicle.speed} km/h "
-                    f"(Fine: ${vehicle.fine_amount})"
+                    f"{violation_type} VIOLATION: {vehicle.license_plate} "
+                    f"Owner: {vehicle.owner_name} "
+                    f"({speed_note}, Fine: ${total_fine:.2f}){penalty_note}"
                 )
         
         return tickets

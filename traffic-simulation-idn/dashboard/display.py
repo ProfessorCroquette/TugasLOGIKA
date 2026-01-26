@@ -25,7 +25,7 @@ class Dashboard:
     
     def display_sensor_stats(self, sensor_stats):
         """Display sensor statistics"""
-        print("\n📡 TRAFFIC SENSOR")
+        print("\n[SENSOR] TRAFFIC SENSOR")
         print(f"   Status: {'RUNNING' if sensor_stats['is_running'] else 'STOPPED'}")
         print(f"   Vehicles Generated: {sensor_stats['vehicles_generated']}")
         print(f"   Interval: {sensor_stats['interval']} seconds")
@@ -34,7 +34,7 @@ class Dashboard:
     def display_analyzer_stats(self, analyzer_stats):
         """Display analyzer statistics"""
         stats = analyzer_stats['current_stats']
-        print("\n⚡ SPEED ANALYZER")
+        print("\n[ANALYZER] SPEED ANALYZER")
         print(f"   Vehicles Processed: {analyzer_stats['total_processed']}")
         print(f"   Speeding Violations: {analyzer_stats['speeding_processed']}")
         print(f"   Total Fines: ${stats['total_fines']}")
@@ -44,7 +44,7 @@ class Dashboard:
     
     def display_speed_distribution(self, analyzer_stats):
         """Display simple speed distribution"""
-        print("\n📊 SPEED DISTRIBUTION (Last Batch)")
+        print("\n[DISTRIBUTION] SPEED DISTRIBUTION (Last Batch)")
         # This is a simplified version - in real implementation, 
         # you'd track actual distribution
         total = analyzer_stats['total_processed']
@@ -55,14 +55,14 @@ class Dashboard:
             print(f"   Speeding (>75 km/h): {speeding} ({speeding/total*100:.1f}%)")
             
             # Simple bar chart
-            compliant_bar = "█" * int(compliant/total * 20)
-            speeding_bar = "█" * int(speeding/total * 20)
+            compliant_bar = "#" * int(compliant/total * 20)
+            speeding_bar = "*" * int(speeding/total * 20)
             print(f"   [ {compliant_bar}{speeding_bar} ]")
         print("-" * 70)
     
     def display_recent_violations(self, limit=5):
         """Display recent violations"""
-        print("\n🚨 RECENT SPEEDING TICKETS")
+        print("\n[TICKETS] RECENT SPEEDING TICKETS")
         
         try:
             from data_models.storage import DataStorage
@@ -90,7 +90,7 @@ class Dashboard:
     
     def display_controls(self):
         """Display control instructions"""
-        print("\n🎮 CONTROLS")
+        print("\n[CONTROLS]")
         print("   Press 'q' to quit simulation")
         print("   Press 'p' to pause/resume sensor")
         print("   Press 'r' to reset statistics")

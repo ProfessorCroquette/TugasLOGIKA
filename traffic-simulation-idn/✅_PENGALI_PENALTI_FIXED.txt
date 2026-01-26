@@ -1,0 +1,160 @@
+✅ PENGALI PENALTI (PENALTY MULTIPLIER) FIX
+================================================
+
+ISSUES REPORTED
+================
+User reported that "pengali penalti tidak menampilkan data yang benar" 
+(Penalty multiplier is not displaying correct data):
+- SIM Mati (Expired) = Extra 20% (should be 1.2x)
+- STNK Mati (Non-Active) = Extra 20% (should be 1.2x)
+
+
+ROOT CAUSE ANALYSIS
+===================
+File: utils/generators.py (lines 140-147)
+
+OLD CODE:
+---------
+# Only applied penalty if BOTH conditions were true
+penalty_multiplier = 1.0
+if stnk_status == 'Non-Active' and sim_status == 'Expired':
+    penalty_multiplier = 1.2  # Only this case was penalized
+
+PROBLEM:
+- If only SIM was expired (1 condition), multiplier = 1.0 ❌ (should be 1.2)
+- If only STNK was non-active (1 condition), multiplier = 1.0 ❌ (should be 1.2)
+- If both were expired, multiplier = 1.2 ❌ (should be 1.4 for +20% + 20%)
+
+
+SOLUTION IMPLEMENTED
+====================
+File: utils/generators.py (lines 140-152)
+
+NEW CODE:
+---------
+# Each condition adds 20% independently
+penalty_multiplier = 1.0
+
+if stnk_status == 'Non-Active':
+    penalty_multiplier += 0.2  # +20% for non-active STNK
+if sim_status == 'Expired':
+    penalty_multiplier += 0.2  # +20% for expired SIM
+
+RESULT: ✅ ALL CASES NOW CORRECT
+- Only SIM expired: 1.0 + 0.2 = 1.2x ✅
+- Only STNK non-active: 1.0 + 0.2 = 1.2x ✅
+- Both expired: 1.0 + 0.2 + 0.2 = 1.4x ✅
+
+
+GUI DISPLAY IMPROVEMENTS
+=========================
+File: gui_traffic_simulation.py (lines 248-266)
+
+ENHANCEMENT:
+- Now shows which penalties are being applied
+- Displays "+20%" next to each condition
+
+EXAMPLE DISPLAYS:
+
+1. Both Active (no penalty):
+   Pengali Penalti: 1.0x
+
+2. SIM Expired:
+   Pengali Penalti: 1.2x (SIM Kadaluarsa +20%)
+
+3. STNK Non-Active:
+   Pengali Penalti: 1.2x (STNK Tidak Aktif +20%)
+
+4. Both Expired:
+   Pengali Penalti: 1.4x (STNK Tidak Aktif +20% | SIM Kadaluarsa +20%)
+
+
+CALCULATION EXAMPLES
+====================
+
+Scenario 1: Normal Driver (Both Active)
+─────────────────────────────────────
+Status STNK: Active
+Status SIM: Active
+Kecepatan: 85 km/h
+Pengali Penalti: 1.0x
+
+Denda Dasar: $100.00 / Rp 1,550,000
+Total Denda: $100 × 1.0 = $100.00 / Rp 1,550,000
+
+
+Scenario 2: Expired SIM Only
+─────────────────────────────
+Status STNK: Active
+Status SIM: Expired
+Kecepatan: 85 km/h
+Pengali Penalti: 1.2x (SIM Kadaluarsa +20%)
+
+Denda Dasar: $100.00 / Rp 1,550,000
+Total Denda: $100 × 1.2 = $120.00 / Rp 1,860,000 (+$20)
+
+
+Scenario 3: Non-Active STNK Only
+────────────────────────────────
+Status STNK: Non-Active
+Status SIM: Active
+Kecepatan: 85 km/h
+Pengali Penalti: 1.2x (STNK Tidak Aktif +20%)
+
+Denda Dasar: $100.00 / Rp 1,550,000
+Total Denda: $100 × 1.2 = $120.00 / Rp 1,860,000 (+$20)
+
+
+Scenario 4: Both Non-Active & Expired
+──────────────────────────────────────
+Status STNK: Non-Active
+Status SIM: Expired
+Kecepatan: 85 km/h
+Pengali Penalti: 1.4x (STNK Tidak Aktif +20% | SIM Kadaluarsa +20%)
+
+Denda Dasar: $100.00 / Rp 1,550,000
+Total Denda: $100 × 1.4 = $140.00 / Rp 2,170,000 (+$40)
+
+
+FILES MODIFIED
+==============
+1. utils/generators.py
+   - Lines 140-152: Fixed penalty multiplier calculation
+   
+2. gui_traffic_simulation.py
+   - Lines 248-266: Improved display with detailed reason breakdown
+
+
+TESTING
+=======
+✅ test_penalty_multiplier_fix.py
+   - Tests all 4 scenarios
+   - Verifies correct multiplier values
+   - All tests PASSED
+
+✅ test_all_multiplier_scenarios.py
+   - Comprehensive scenario testing
+   - Shows GUI display examples
+   - All calculations verified
+
+
+VERIFICATION RESULTS
+====================
+Test Case 1: Both Active → 1.0x ✅
+Test Case 2: SIM Expired → 1.2x ✅
+Test Case 3: STNK Non-Active → 1.2x ✅
+Test Case 4: Both Expired → 1.4x ✅
+
+All calculations correct ✅
+All displays properly formatted ✅
+
+
+NOTES FOR USER
+==============
+✓ Pengali Penalti now correctly reflects the status of both SIM and STNK
+✓ Each condition (SIM expired OR STNK non-active) adds +20%
+✓ Maximum penalty: 1.4x when both are expired/non-active
+✓ GUI displays the reason for each penalty in red, bold text
+✓ Change is backward compatible with existing violation data
+
+Ready to use! The GUI will now show correct penalty multipliers.

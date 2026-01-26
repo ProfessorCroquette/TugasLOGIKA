@@ -1,202 +1,169 @@
-# Traffic Simulation Indonesia (traffic-simulation-idn)
+# Indonesian Traffic Violation Simulation System
 
-A comprehensive traffic simulation system designed to model Indonesian traffic patterns, detect traffic violations, and generate penalty reports. Features both CLI and GUI interfaces.
+A clean, real-time traffic violation simulation system for Indonesian traffic law compliance. Generates realistic traffic violations, calculates fines, and provides a live dashboard GUI.
 
-## Features
+## Quick Start
 
-- **Traffic Simulation Engine**: Realistic simulation of vehicle movements and traffic patterns
-- **Violation Detection**: Automatic detection of speed violations and traffic rule breaches
-- **Penalty Calculation**: Indonesian-compliant penalty calculation system
-- **Data Management**: SQLAlchemy ORM with MySQL database
-- **REST API**: FastAPI/Flask web API for programmatic access
-- **GUI Interface**: PyQt5-based desktop application with real-time visualization
-- **Report Generation**: Export reports in CSV, PDF, and Excel formats
-- **Caching System**: Redis caching for improved performance
-- **Database Migrations**: Alembic for schema version management
+### Run the GUI Dashboard
+```bash
+cd traffic-simulation-idn
+python gui_traffic_simulation.py
+```
 
-## Project Structure
+Click "Mulai Simulasi" to start - violations appear in real-time!
+
+### Run Simulation Only
+```bash
+python main.py              # Run indefinitely
+python main.py 5            # Run for 5 minutes
+```
+
+## Key Features
+
+✅ **Real-Time Monitoring** - Violations appear instantly in GUI
+✅ **Indonesian Law Compliant** - Follows Pasal 287 ayat 5 UU No. 22/2009
+✅ **High Violation Rate** - 2-100 vehicles every 5 seconds
+✅ **Scalable** - Supports up to 100 records
+✅ **Accurate Data** - Indonesian NIK format, regional plates
+✅ **Live Dashboard** - 500ms refresh rate
+✅ **Penalty System** - 1.0x/1.2x/1.4x multipliers
+
+## Documentation
+
+**See [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md) for complete system documentation including:**
+
+- Detailed file descriptions and functions
+- Configuration options
+- Data structures
+- Usage examples
+- Performance notes
+- Troubleshooting guide
+
+## Core Files
+
+| File | Purpose |
+|------|---------|
+| `main.py` | Simulation engine (traffic generation & violation detection) |
+| `gui_traffic_simulation.py` | Real-time dashboard GUI (Qt5) |
+| `config/__init__.py` | System configuration (fines, speeds, limits) |
+| `PROJECT_DOCUMENTATION.md` | Complete system documentation |
+
+## System Architecture
 
 ```
-traffic-simulation-idn/
-├── src/                    # Main source code
-│   ├── core/              # Application core logic
-│   ├── models/            # Data models
-│   ├── database/          # Database layer
-│   ├── api/               # REST API and external clients
-│   ├── services/          # Business logic services
-│   ├── gui/               # PyQt5 GUI application
-│   ├── utils/             # Utility functions
-│   └── cli/               # CLI commands
-├── tests/                 # Test suite
-├── config/                # Configuration files
-├── docs/                  # Documentation
-├── data/                  # Static data and migrations
-├── scripts/               # Setup and deployment scripts
-├── deployment/            # Docker and Kubernetes configs
-└── outputs/               # Application outputs (logs, reports)
+┌─────────────────┐
+│  Sensor Layer   │  → Generates 2-100 vehicles every 5 seconds
+└────────┬────────┘
+         │
+┌────────▼────────────┐
+│  Analyzer Layer     │  → Detects violations & calculates fines
+└────────┬────────────┘
+         │
+┌────────▼────────────────┐
+│  Storage Layer          │  → Saves to JSON (tickets.json)
+└────────┬────────────────┘
+         │
+┌────────▼────────────────┐
+│  GUI Dashboard (Qt5)    │  → Displays in real-time
+└─────────────────────────┘
 ```
+
+## Configuration
+
+Edit `config/__init__.py` to customize:
+
+```python
+SIMULATION_INTERVAL = 5              # Seconds between batches
+MIN_VEHICLES_PER_BATCH = 2          # Min vehicles per batch
+MAX_VEHICLES_PER_BATCH = 100        # Max vehicles per batch
+SPEED_LIMIT = 75                    # Speed limit in km/h
+MIN_SPEED_LIMIT = 40                # Minimum safe speed
+USD_TO_IDR = 15500                  # Currency conversion
+MAX_FINE_IDR = 1250000              # Maximum fine
+```
+
+## Data Output
+
+Violations are saved to `data_files/tickets.json`:
+```json
+{
+  "license_plate": "B 1234 XY",
+  "owner_name": "Budi Santoso",
+  "owner_nik": "3606010195123456",
+  "speed": 95.5,
+  "fine_amount": 50.0,
+  "penalty_multiplier": 1.2,
+  "stnk_status": "Active",
+  "sim_status": "Expired",
+  "violation_type": "SPEEDING"
+}
+```
+
+## Indonesian Law Compliance
+
+**Source:** Pasal 287 ayat (5) UU No. 22 Tahun 2009 tentang Lalu Lintas dan Angkutan Jalan
+
+✅ Maximum fine: **Rp 1,250,000** (enforced)
+✅ Detects both speeding AND driving too slow
+✅ Realistic penalty multipliers
+✅ Indonesian NIK format (16-digit)
+✅ Regional license plates
+✅ Rupiah currency display
+
+## Fine Tiers
+
+| Violation | Speed Range | Fine USD | Fine IDR |
+|-----------|-------------|----------|----------|
+| Too Slow (Mild) | 30-39 km/h | $20 | Rp 310,000 |
+| Too Slow (Severe) | 0-29 km/h | $35 | Rp 542,500 |
+| Speeding Level 1 | 76-90 km/h | $30 | Rp 465,000 |
+| Speeding Level 2 | 91-110 km/h | $50 | Rp 775,000 |
+| Speeding Level 3 | 111-130 km/h | $75 | Rp 1,162,500 |
+
+## Penalty Multiplier
+
+- **1.0x** - Both STNK active & SIM valid
+- **1.2x** - STNK non-active OR SIM expired
+- **1.4x** - Both STNK non-active AND SIM expired
 
 ## Requirements
 
-- Python 3.9+
-- MySQL 8.0+
-- Redis 6.0+
+- Python 3.13
 - PyQt5 (for GUI)
+- Standard libraries: json, threading, subprocess, queue
 
 ## Installation
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/traffic-simulation-idn.git
-cd traffic-simulation-idn
-```
-
-### 2. Create virtual environment
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
+## Performance
 
-### 5. Initialize database
-```bash
-python scripts/setup/setup_database.sh
-alembic upgrade head
-```
+- **Simulation Speed**: 2-100 vehicles per 5 seconds
+- **GUI Refresh**: 500ms
+- **Queue Capacity**: 500 messages
+- **Max Violations**: Unlimited
+- **Max Vehicles**: Unlimited
 
-## Quick Start
+## Troubleshooting
 
-### CLI Mode
-```bash
-python src/main.py simulate --duration 3600 --vehicles 100
-```
+**Q: GUI shows no violations**
+A: Click "Mulai Simulasi" - simulation takes 5 seconds to generate first batch
 
-### GUI Mode
-```bash
-python src/main_gui.py
-```
+**Q: Violations not updating**
+A: Check `data_files/` directory exists and is writable
 
-### Web API
-```bash
-uvicorn src.api.web.app:app --reload
-```
+**Q: Fine amounts show $0**
+A: Ensure `USD_TO_IDR = 15500` in `config/__init__.py`
 
-Visit `http://localhost:8000/docs` for API documentation.
-
-## Configuration
-
-All configuration is managed through:
-- `.env` file for environment variables
-- `config/settings.py` for application settings
-- `config/database.py` for database configuration
-- `config/gui_config.py` for GUI settings
-
-## Database
-
-The system uses MySQL with the following main tables:
-- `vehicles`: Vehicle information
-- `owners`: Vehicle owners
-- `violations`: Traffic violations detected
-- `sensor_logs`: Sensor data logs
-- `locations`: Traffic monitoring locations
-
-Run migrations with:
-```bash
-alembic upgrade head
-```
-
-## API Endpoints
-
-### Vehicles
-- `GET /api/vehicles` - List all vehicles
-- `GET /api/vehicles/{id}` - Get vehicle details
-- `POST /api/vehicles` - Create new vehicle
-
-### Violations
-- `GET /api/violations` - List violations
-- `GET /api/violations/{id}` - Get violation details
-- `POST /api/violations` - Record new violation
-
-### Reports
-- `GET /api/reports/daily` - Daily report
-- `GET /api/reports/monthly` - Monthly report
-- `GET /api/reports/export` - Export data
-
-## Testing
-
-Run tests with pytest:
-```bash
-pytest                          # Run all tests
-pytest tests/test_models.py     # Run specific test file
-pytest --cov                    # Generate coverage report
-```
-
-## Documentation
-
-See the `docs/` directory for detailed documentation:
-- [API Documentation](docs/API_DOCUMENTATION.md)
-- [Database Schema](docs/DATABASE_SCHEMA.md)
-- [Setup Guide](docs/SETUP_GUIDE.md)
-- [User Manual](docs/USER_MANUAL.md)
-- [Architecture](docs/ARCHITECTURE.md)
-
-## Docker
-
-Build and run with Docker:
-```bash
-docker-compose up -d
-```
-
-The compose file includes:
-- Application container
-- MySQL database
-- Redis cache
-
-## Deployment
-
-### Production Deployment
-```bash
-./scripts/deployment/build.sh
-./scripts/deployment/deploy.sh
-```
-
-### Kubernetes
-```bash
-kubectl apply -f deployment/kubernetes/
-```
+**Q: GUI takes long to start**
+A: Normal - simulation is generating background data
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Indonesian Traffic Violation Simulation System - Educational Purpose
 
-## Contributing
+---
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## Support
-
-For issues and questions, please create an issue in the GitHub repository.
-
-## Authors
-
-- Traffic Simulation Team
-
-## Changelog
-
-### Version 1.0.0 (2024-01-26)
-- Initial release
-- Core simulation engine
-- Database layer implementation
-- REST API endpoints
-- PyQt5 GUI application
-- Report generation system
+For complete documentation, see **[PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)**

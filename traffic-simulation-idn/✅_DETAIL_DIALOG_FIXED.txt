@@ -1,0 +1,202 @@
+✅ VIOLATION DETAIL DISPLAY FIXED
+==============================================================================
+
+ISSUES REPORTED:
+1. "Denda tidak ditampilkan di detail pelanggaran" 
+   (Fine/Penalty not displayed in violation details)
+2. "Status SIM dan STNK tak di tampilkan"
+   (SIM and STNK status not displayed)
+
+ROOT CAUSE:
+The violation data in the JSON file uses a nested structure:
+  {
+    "owner": { "id": "...", "name": "...", "region": "..." },
+    "registration": { "stnk_status": "...", "sim_status": "..." },
+    "fine": { "base_fine": 100, "penalty_multiplier": 1.0, "total_fine": 100 }
+  }
+
+But the GUI dialog code expected a flat structure:
+  {
+    "owner_id": "...",
+    "owner_name": "...",
+    "owner_region": "...",
+    "stnk_status": "...",
+    "sim_status": "...",
+    "fine_amount": 100,
+    "penalty_multiplier": 1.0
+  }
+
+SOLUTION IMPLEMENTED:
+Added a `_flatten_violation()` method in the GUI to convert the nested
+structure to the flat structure that the dialog expects.
+
+==============================================================================
+CHANGES MADE:
+==============================================================================
+
+File: gui_traffic_simulation.py
+
+1. Added `_flatten_violation()` method (lines 450-468):
+   - Extracts owner.id → owner_id
+   - Extracts owner.name → owner_name
+   - Extracts owner.region → owner_region
+   - Extracts registration.stnk_status → stnk_status
+   - Extracts registration.sim_status → sim_status
+   - Extracts fine.total_fine → fine_amount
+   - Extracts fine.penalty_multiplier → penalty_multiplier
+   - Extracts fine.base_fine → base_fine
+
+2. Updated `load_violations()` method (lines 435-448):
+   - Calls _flatten_violation() on each violation from JSON
+   - Ensures all violations in self.violations have the flat structure
+
+3. Updated `on_violation_detected()` method (lines 523-529):
+   - Flattens new violations as they are detected during simulation
+   - Ensures real-time violation updates work correctly
+
+==============================================================================
+WHAT NOW DISPLAYS IN DETAIL DIALOG:
+==============================================================================
+
+✅ [Informasi Kendaraan] (Vehicle Information)
+   - Plat Nomor (License Plate)
+   - Tipe Kendaraan (Vehicle Type)
+   - Wilayah (Region)
+
+✅ [Data Pemilik] (Owner Information)
+   - Nama (Owner Name)
+   - NIK (Owner ID - 16 digits)
+   - Tempat Tinggal (Residence)
+
+✅ [Status Registrasi] (Registration Status)
+   - Status STNK (Vehicle Registration)
+   - Status SIM (Driver License Status)
+
+✅ [Detail Pelanggaran] (Violation Details)
+   - Kecepatan Terdeteksi (Detected Speed)
+   - Batas Kecepatan (Speed Limit)
+   - Kelebihan Kecepatan (Speed Excess)
+   - Waktu Terdeteksi (Detection Time)
+
+✅ [Perhitungan Denda] (Fine Calculation) - NOW FIXED!
+   - Denda Dasar (Base Fine in USD and Rp)
+   - Pengali Penalti (Penalty Multiplier)
+   - Reason if penalty applied (STNK/SIM status)
+   - Total Denda (Total Fine in USD and Rp) - NOW FIXED!
+
+==============================================================================
+VERIFICATION TEST RESULTS:
+==============================================================================
+
+✓ Owner Name: Wawan Hermansyah
+✓ Owner ID (NIK): 0857519332844595
+✓ Owner Region: Tangerang, Banten
+✓ Status STNK: Non-Active
+✓ Status SIM: Active
+✓ Base Fine: $100.00 / Rp 1,550,000
+✓ Total Fine: $100.00 / Rp 1,550,000
+✓ Penalty Multiplier: 1.0x
+
+All 8 required fields present and accessible ✓
+
+==============================================================================
+HOW TO TEST THE FIX:
+==============================================================================
+
+1. Run simulation to generate violations:
+   python main.py 3
+
+2. Test data flattening:
+   python test_violation_flattening.py
+
+3. Test detail dialog display:
+   python test_detail_dialog.py
+
+4. Run the GUI:
+   python gui_traffic_simulation.py
+
+5. In GUI:
+   - Click "Mulai Simulasi" (Start Simulation)
+   - Wait for violations to appear
+   - Click "Lihat" (View) button on any violation
+   - Verify detail dialog shows:
+     ✓ Denda Dasar (Base Fine)
+     ✓ Pengali Penalti (Penalty Multiplier)
+     ✓ Total Denda (Total Fine)
+     ✓ Status STNK (STNK Status)
+     ✓ Status SIM (SIM Status)
+
+==============================================================================
+DATA FLOW DIAGRAM:
+==============================================================================
+
+JSON File (tickets.json)
+    ↓
+    │ Contains nested structure:
+    │ - owner { id, name, region }
+    │ - registration { stnk_status, sim_status }
+    │ - fine { base_fine, penalty_multiplier, total_fine }
+    ↓
+GUI load_violations()
+    ↓
+    │ Calls _flatten_violation() on each violation
+    ↓
+Flattened structure:
+    ├─ owner_id
+    ├─ owner_name
+    ├─ owner_region
+    ├─ stnk_status ← NOW AVAILABLE
+    ├─ sim_status ← NOW AVAILABLE
+    ├─ fine_amount
+    ├─ penalty_multiplier
+    └─ base_fine
+    ↓
+ViolationDetailDialog
+    ↓
+    ├─ Displays all owner info
+    ├─ Displays SIM/STNK status ← NOW FIXED
+    ├─ Displays fine calculation ← NOW FIXED
+    └─ Shows all detail sections
+
+==============================================================================
+TECHNICAL DETAILS:
+==============================================================================
+
+Method: _flatten_violation(violation: Dict) -> Dict
+Location: gui_traffic_simulation.py, lines 450-468
+Purpose: Convert nested JSON structure to flat structure for GUI
+
+Key mappings:
+  violation['owner']['id'] → flattened['owner_id']
+  violation['owner']['name'] → flattened['owner_name']
+  violation['owner']['region'] → flattened['owner_region']
+  violation['registration']['stnk_status'] → flattened['stnk_status']
+  violation['registration']['sim_status'] → flattened['sim_status']
+  violation['fine']['total_fine'] → flattened['fine_amount']
+  violation['fine']['penalty_multiplier'] → flattened['penalty_multiplier']
+  violation['fine']['base_fine'] → flattened['base_fine']
+
+Compatibility:
+- Handles both new (nested) and old (flat) formats gracefully
+- Returns all original fields plus flattened versions
+- No data loss - all original fields preserved
+
+==============================================================================
+✅ BOTH ISSUES FIXED
+==============================================================================
+
+Issue 1: Denda tidak ditampilkan
+Status: ✅ FIXED
+- Fine amount now accessible via flattened structure
+- Base fine displays in both USD and Rupiah
+- Total fine displays in both USD and Rupiah
+- Penalty multiplier displays correctly
+
+Issue 2: Status SIM dan STNK tak ditampilkan  
+Status: ✅ FIXED
+- STNK status now accessible via flattened structure
+- SIM status now accessible via flattened structure
+- Both display with color coding (red if Non-Active/Expired)
+- Shows reason for penalty if applicable
+
+==============================================================================

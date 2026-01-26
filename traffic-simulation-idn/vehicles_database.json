@@ -1,0 +1,2739 @@
+{
+  "total_vehicles": 386,
+  "total_manufacturers": 29,
+  "manufacturers": [
+    "Acura",
+    "Audi",
+    "CUPRA",
+    "Chevrolet",
+    "Chrysler",
+    "Dodge",
+    "Ford",
+    "GMC",
+    "Genesis",
+    "Honda",
+    "Hyundai",
+    "Jeep",
+    "Kia",
+    "Lexus",
+    "Lincoln",
+    "MAN",
+    "Mazda",
+    "Nissan",
+    "Peugeot",
+    "Porsche",
+    "Ram",
+    "Rivian",
+    "SEAT",
+    "Subaru",
+    "Tesla",
+    "Toyota",
+    "Volkswagen",
+    "comma",
+    "Škoda"
+  ],
+  "vehicles": [
+    {
+      "make": "Acura",
+      "model": "ILX 2016-18",
+      "package": "Technology Plus Package or AcuraWatch Plus",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "ILX 2019",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "Integra 2023-25",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "MDX 2015-16",
+      "package": "Advance Package",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "MDX 2017-20",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "MDX 2022-24",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "MDX 2025-26",
+      "package": "All except Type S",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "RDX 2016-18",
+      "package": "AcuraWatch Plus or Advance Package",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "RDX 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "RDX 2022-25",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "RLX 2017",
+      "package": "Advance Package or Technology Package",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "TLX 2015-17",
+      "package": "Advance Package",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "TLX 2018-20",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "TLX 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "TLX 2022-23",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "TLX 2025",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Acura",
+      "model": "ZDX 2024",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "A3 2014-19",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Audi",
+      "model": "A3 Sportback e-tron 2017-18",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Audi",
+      "model": "A4 2016-24",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "car"
+    },
+    {
+      "make": "Audi",
+      "model": "A5 2016-24",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "Q2 2018",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "Q3 2019-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "Q5 2017-24",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "RS3 2018",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Audi",
+      "model": "S3 2015-17",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Bolt EUV 2022-23",
+      "package": "Premier or Premier Redline Trim, without Super Cruise Package",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Bolt EV 2022-23",
+      "package": "2LT Trim with Adaptive Cruise Control Package",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Equinox 2019-22",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Silverado 1500 2020-21",
+      "package": "Safety Package II",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Chevrolet",
+      "model": "Trailblazer 2021-22",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chrysler",
+      "model": "Pacifica 2017-18",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chrysler",
+      "model": "Pacifica 2019-20",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chrysler",
+      "model": "Pacifica 2021-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chrysler",
+      "model": "Pacifica Hybrid 2017-18",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Chrysler",
+      "model": "Pacifica Hybrid 2019-25",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "comma",
+      "model": "body",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "CUPRA",
+      "model": "Ateca 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Dodge",
+      "model": "Durango 2020-21",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Bronco Sport 2021-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape 2020-22",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape 2023-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape Hybrid 2020-22",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape Hybrid 2023-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape Plug-in Hybrid 2020-22",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Escape Plug-in Hybrid 2023-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Expedition 2022-24",
+      "package": "Co-Pilot360 Assist 2.0",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Ford",
+      "model": "Explorer 2020-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Ford",
+      "model": "Explorer Hybrid 2020-24",
+      "package": "Co-Pilot360 Assist+",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Ford",
+      "model": "F-150 2021-23",
+      "package": "Co-Pilot360 Assist 2.0",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Ford",
+      "model": "F-150 Hybrid 2021-23",
+      "package": "Co-Pilot360 Assist 2.0",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Ford",
+      "model": "Focus 2018",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Focus Hybrid 2018",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Kuga 2020-23",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Kuga Hybrid 2020-23",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Kuga Hybrid 2024",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Kuga Plug-in Hybrid 2020-23",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Kuga Plug-in Hybrid 2024",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Maverick 2022",
+      "package": "LARIAT Luxury",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Maverick 2023-24",
+      "package": "Co-Pilot360 Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Maverick Hybrid 2022",
+      "package": "LARIAT Luxury",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Maverick Hybrid 2023-24",
+      "package": "Co-Pilot360 Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Mustang Mach-E 2021-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ford",
+      "model": "Ranger 2024",
+      "package": "Adaptive Cruise Control with Lane Centering",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G70 2018",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G70 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G70 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G80 2017",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G80 2018-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G80 (2.5T Advanced Trim, with HDA II) 2024",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "G90 2017-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV60 (Advanced Trim) 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV60 (Performance Trim) 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV70 (2.5T Trim, without HDA II) 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV70 (3.5T Trim, without HDA II) 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV70 Electrified (Australia Only) 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV70 Electrified (with HDA II) 2023-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Genesis",
+      "model": "GV80 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "GMC",
+      "model": "Sierra 1500 2020-21",
+      "package": "Driver Alert Package II",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "GMC",
+      "model": "Yukon 2019-20",
+      "package": "Adaptive Cruise Control (ACC) & LKAS",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Accord 2016-17",
+      "package": "Honda Sensing",
+      "support_level": "Community",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Accord 2018-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Accord 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Accord Hybrid 2018-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Accord Hybrid 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "City (Brazil only) 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic 2016-18",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hatchback 2017-18",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hatchback 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hatchback 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hatchback Hybrid 2025-26",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hatchback Hybrid (Europe only) 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Civic Hybrid 2025-26",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Honda",
+      "model": "Clarity 2018-21",
+      "package": "All",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V 2015-16",
+      "package": "Touring Trim",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V 2017-22",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V 2023-26",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V Hybrid 2017-22",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "CR-V Hybrid 2023-26",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "e 2020",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Fit 2018-20",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Freed 2020",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V 2019-22",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "HR-V 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Insight 2019-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Inspire 2018",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "N-Box 2018",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Odyssey 2018-20",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Odyssey 2021-26",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Passport 2019-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Passport 2026",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Pilot 2016-22",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Pilot 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Prologue 2024-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Honda",
+      "model": "Ridgeline 2017-25",
+      "package": "Honda Sensing",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Azera 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Azera Hybrid 2019",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Azera Hybrid 2020",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Custin 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra 2017-18",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra 2021-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra GT 2017-20",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Elantra Hybrid 2021-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Genesis 2015-16",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "i30 2017-19",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq 5 (Southeast Asia and Europe only) 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq 5 (with HDA II) 2022-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq 5 (without HDA II) 2022-24",
+      "package": "Highway Driving Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq 6 (with HDA II) 2023-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Electric 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Electric 2020",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Hybrid 2017-19",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Hybrid 2020-22",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Plug-in Hybrid 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Ioniq Plug-in Hybrid 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona 2020",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona 2022-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona Electric 2018-21",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona Electric 2022-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona Electric (with HDA II, Korea only) 2023",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Kona Hybrid 2020",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Nexo 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Palisade 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Palisade 2023-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Cruz 2022-24",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe 2019-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe 2021-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe Hybrid 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Santa Fe Plug-in Hybrid 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Sonata 2018-19",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Sonata 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Sonata Hybrid 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Staria 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson 2021",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson 2022",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson 2023-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson Diesel 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson Hybrid 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Tucson Plug-in Hybrid 2024",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Hyundai",
+      "model": "Veloster 2019-20",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Jeep",
+      "model": "Grand Cherokee 2016-18",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Jeep",
+      "model": "Grand Cherokee 2019-21",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Carnival 2022-24",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Carnival (China only) 2023",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Ceed 2019-21",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "EV6 (Southeast Asia only) 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "EV6 (with HDA II) 2022-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "EV6 (without HDA II) 2022-24",
+      "package": "Highway Driving Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Forte 2019-21",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Forte 2022-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "K5 2021-24",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "K5 Hybrid 2020-22",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "K8 Hybrid (with HDA II) 2023",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV 2019",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV 2020",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV (with HDA II) 2025",
+      "package": "Highway Driving Assist II",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro EV (without HDA II) 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Hybrid 2018",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Hybrid 2021",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Hybrid 2022",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Hybrid 2023",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Plug-in Hybrid 2018-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Plug-in Hybrid 2020",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Plug-in Hybrid 2021",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Niro Plug-in Hybrid 2022",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Optima 2017",
+      "package": "Advanced Smart Cruise Control",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Optima 2019-20",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Optima Hybrid 2017",
+      "package": "Advanced Smart Cruise Control",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Optima Hybrid 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Seltos 2021",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento 2018",
+      "package": "Advanced Smart Cruise Control & LKAS",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento 2019",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento 2021-23",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento Hybrid 2021-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sorento Plug-in Hybrid 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sportage 2023-24",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Sportage Hybrid 2023",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Stinger 2018-20",
+      "package": "Smart Cruise Control (SCC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Stinger 2022-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Telluride 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Kia",
+      "model": "Telluride 2023-24",
+      "package": "Highway Driving Assist II",
+      "support_level": "Community",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "CT Hybrid 2017-18",
+      "package": "Lexus Safety System+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "ES 2017-18",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "ES 2019-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "ES Hybrid 2017-18",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "ES Hybrid 2019-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "GS F 2016",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "IS 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "IS 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "LC 2024-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "LS 2018",
+      "package": "All except Lexus Safety System+ A",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "NS 2022-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "NX 2018-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "NX 2020-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "NX Hybrid 2018-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "NX Hybrid 2020-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RC 2018-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RC 2023",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX 2016",
+      "package": "Lexus Safety System+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX Hybrid 2016",
+      "package": "Lexus Safety System+",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX Hybrid 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "RX Hybrid 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lexus",
+      "model": "UX Hybrid 2019-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lincoln",
+      "model": "Aviator 2020-24",
+      "package": "Co-Pilot360 Plus",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Lincoln",
+      "model": "Aviator Plug-in Hybrid 2020-24",
+      "package": "Co-Pilot360 Plus",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "MAN",
+      "model": "eTGE 2020-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "MAN",
+      "model": "TGE 2017-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "3 2017-18",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "6 2017-20",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "CX-5 2017-21",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "CX-5 2022-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "CX-9 2016-20",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Mazda",
+      "model": "CX-9 2021-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Nissan",
+      "model": "Altima 2019-20, 2024",
+      "package": "ProPILOT Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Nissan",
+      "model": "Leaf 2018-23",
+      "package": "ProPILOT Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Nissan",
+      "model": "Rogue 2018-20",
+      "package": "ProPILOT Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Nissan",
+      "model": "X-Trail 2017",
+      "package": "ProPILOT Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Peugeot",
+      "model": "208 2019-25",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Porsche",
+      "model": "Macan 2017-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Ram",
+      "model": "1500 2019-24",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Ram",
+      "model": "2500 2020-24",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Ram",
+      "model": "3500 2019-22",
+      "package": "Adaptive Cruise Control (ACC)",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Rivian",
+      "model": "R1S 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Rivian",
+      "model": "R1T 2022-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "SEAT",
+      "model": "Alhambra 2018-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "SEAT",
+      "model": "Ateca 2016-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "SEAT",
+      "model": "Leon 2014-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Ascent 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Ascent 2023",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Crosstrek 2018-19",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Crosstrek 2020-23",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Crosstrek Hybrid 2020",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Forester 2017-18",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Forester 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Forester 2022-24",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Forester Hybrid 2020",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Impreza 2017-19",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Impreza 2020-22",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Legacy 2015-18",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Legacy 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Outback 2015-17",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Outback 2018-19",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Outback 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Outback 2023",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "Solterra 2023-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "XV 2018-19",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Subaru",
+      "model": "XV 2020-21",
+      "package": "EyeSight Driver Assistance",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Fabia 2022-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Kamiq 2021-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Karoq 2019-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Kodiaq 2017-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Octavia 2015-19",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Octavia RS 2016",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Octavia Scout 2017-19",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Scala 2020-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Škoda",
+      "model": "Superb 2015-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Tesla",
+      "model": "Model 3 (with HW3) 2019-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Tesla",
+      "model": "Model 3 (with HW4) 2024-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Tesla",
+      "model": "Model X (with HW4) 2024",
+      "package": "All",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Tesla",
+      "model": "Model Y (with HW3) 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Tesla",
+      "model": "Model Y (with HW4) 2024-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Alphard 2019-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Alphard Hybrid 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon 2016",
+      "package": "Toyota Safety Sense P",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon 2017-18",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon Hybrid 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Avalon Hybrid 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "bZ4x 2023-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "C-HR 2017-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "C-HR 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "C-HR Hybrid 2017-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "C-HR Hybrid 2021-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry 2018-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry 2021-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry 2025",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry Hybrid 2018-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry Hybrid 2021-24",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Cross 2022-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Cross (Non-US only) 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Cross Hybrid (Non-US only) 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Hatchback 2019-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Hybrid 2020-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Corolla Hybrid (South America only) 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Highlander 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Highlander 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Highlander 2025",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Highlander Hybrid 2017-19",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Highlander Hybrid 2020-23",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Mirai 2021",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius 2016",
+      "package": "Toyota Safety Sense P",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius 2017-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius 2021-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius Prime 2017-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius Prime 2021-22",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "Prius v 2017",
+      "package": "Toyota Safety Sense P",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 2016",
+      "package": "Toyota Safety Sense P",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 2017-18",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Hybrid 2016",
+      "package": "Toyota Safety Sense P",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Hybrid 2017-18",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Hybrid 2019-21",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Hybrid 2022",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Hybrid 2023-25",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Prime 2021-23",
+      "package": "All",
+      "support_level": "Custom",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "RAV4 Prime 2024-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Sequoia 2023-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Sienna 2018-20",
+      "package": "All",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Sienna 2021-23",
+      "package": "All",
+      "support_level": "Custom",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Sienna 2024-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Tundra 2022-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "truck"
+    },
+    {
+      "make": "Toyota",
+      "model": "Venza 2021-25",
+      "package": "All",
+      "support_level": "Not compatible",
+      "weight": "suv"
+    },
+    {
+      "make": "Toyota",
+      "model": "Yaris (Non-US only) 2020, 2023",
+      "package": "All",
+      "support_level": "Custom",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Arteon 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Arteon eHybrid 2020-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Arteon R 2020-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Arteon Shooting Brake 2020-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Atlas 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Atlas Cross Sport 2020-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Caddy 2019",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Caddy Maxi 2019",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "California 2021-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Caravelle 2020",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "CC 2018-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Crafter 2017-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "e-Crafter 2018-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "e-Golf 2014-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf 2015-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf Alltrack 2015-19",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf GTD 2015-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf GTE 2015-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf GTI 2015-21",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf R 2015-19",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Golf SportsVan 2015-20",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Grand California 2019-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Jetta 2015-18",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Jetta 2019-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Jetta GLI 2021-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Passat 2015-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Passat Alltrack 2015-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Passat GTE 2015-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Passat NMS 2017-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "car"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Polo 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Polo GTI 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Sharan 2018-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Dashcam",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "T-Cross 2021",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "T-Roc 2018-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Taos 2022-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Teramont 2018-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Teramont Cross Sport 2021-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Teramont X 2021-22",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "truck"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Tiguan 2018-24",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Tiguan eHybrid 2021-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Touran 2016-23",
+      "package": "Adaptive Cruise Control (ACC) & Lane Assist",
+      "support_level": "Upstream",
+      "weight": "suv"
+    }
+  ]
+}
