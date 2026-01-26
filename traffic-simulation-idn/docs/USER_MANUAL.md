@@ -17,75 +17,51 @@
 
 ### First Run
 
-After installation, start the application:
+After installation, start the application from the project root directory:
 
 **GUI:**
 ```bash
-python src/main_gui.py
+python gui_traffic_simulation.py
 ```
 
 **CLI:**
 ```bash
-python src/main.py
+python main.py
 ```
 
 ## CLI Interface
 
 ### Help Command
 ```bash
-python src/main.py --help
+python main.py --help
 ```
+
+**Note:** The CLI provides access to core simulation functions. The main simulation runs through the GUI application or CLI script.
 
 ### Start Simulation
 ```bash
-python src/main.py simulate \
-  --duration 3600 \
-  --vehicles 100 \
-  --speed-variation 10 \
-  --violation-chance 0.05
+python main.py
 ```
 
-Parameters:
-- `--duration`: Simulation time in seconds
-- `--vehicles`: Number of vehicles to simulate
-- `--speed-variation`: Speed variation percentage
-- `--violation-chance`: Probability of violations (0-1)
+The main.py script runs the core traffic simulation engine that:
+- Generates synthetic vehicle data
+- Detects speed violations
+- Analyzes traffic patterns
+- Updates JSON data files (traffic_data.json, tickets.json)
 
-### Generate Report
-```bash
-python src/main.py report \
-  --type daily \
-  --format csv \
-  --date 2024-01-26
-```
+### Generate Reports
+Reports are generated through the GUI interface:
+1. Launch GUI: `python gui_traffic_simulation.py`
+2. Navigate to Reports tab
+3. Select date range and report type
+4. Export in desired format (CSV, JSON, etc.)
 
-### Manage Vehicles
-```bash
-# List vehicles
-python src/main.py vehicle list
-
-# Add vehicle
-python src/main.py vehicle add \
-  --plate "B1234ABC" \
-  --type "sedan" \
-  --owner "John Doe"
-
-# Update vehicle
-python src/main.py vehicle update 1 --status inactive
-```
-
-### Manage Violations
-```bash
-# List violations
-python src/main.py violation list
-
-# Record violation
-python src/main.py violation record \
-  --vehicle-id 1 \
-  --type speed \
-  --speed 75 \
-  --location "Jalan Sudirman"
-```
+### Managing Vehicles & Violations
+All vehicle and violation management is done through the GUI:
+1. Launch: `python gui_traffic_simulation.py`
+2. Use the Violations tab to view/add vehicles and violations
+3. View detailed information by clicking on table rows
+4. Right-click for additional options
 
 ## GUI Interface
 
@@ -200,6 +176,29 @@ The GUI consists of several tabs:
 3. Click "Preview"
 4. Click "Export"
 
+## Log Management
+
+### Automatic Log Cleanup
+The application automatically manages log files to prevent disk space issues:
+- **Max Log Files**: System keeps maximum 10 log files
+- **Cleanup Trigger**: Runs automatically on application startup
+- **Log Location**: `logs/` directory
+- **Log Format**: `simulation_YYYYMMDD_HHMMSS.log`
+
+When you start the application:
+- If log count exceeds 10, oldest logs are automatically deleted
+- Console output shows: `[LOG CLEANUP] Deleted old log: filename`
+- This prevents unlimited disk space usage from long-running simulations
+
+### Viewing Logs
+```bash
+# View latest log file (on Windows)
+tail -f logs/simulation_*.log
+
+# List all log files
+ls -lah logs/
+```
+
 ## Troubleshooting
 
 ### Application Won't Start
@@ -210,7 +209,7 @@ The GUI consists of several tabs:
 ### Database Connection Error
 - Verify MySQL is running
 - Check credentials in .env
-- Test connection: `python -c "from src.database import get_session"`
+- Verify config/database.py has correct settings
 
 ### GUI Looks Wrong
 - Check screen resolution (recommended 1920x1080+)
@@ -231,6 +230,6 @@ The GUI consists of several tabs:
 ## Getting Help
 
 - See [Setup Guide](SETUP_GUIDE.md) for installation help
-- Check [API Documentation](API_DOCUMENTATION.md) for REST API
 - Review [Architecture](ARCHITECTURE.md) for system design
-- Visit project GitHub for issue reporting
+- Check log files in `logs/` directory for debugging
+- Visit project GitHub at https://github.com/ProfessorCroquette/TugasLOGIKA for issue reporting

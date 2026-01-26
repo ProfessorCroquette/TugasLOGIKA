@@ -1,0 +1,62 @@
+# ✅ AUTO LOG DELETION - QUICK SUMMARY
+
+## What's New
+Automatic deletion of log files when count exceeds 10.
+
+## How It Works
+```
+Every time the app starts:
+  1. Count log files in logs/ directory
+  2. If count > 10:
+     - Delete oldest files
+     - Keep newest 10 files
+     - Log actions to console
+  3. Continue with normal operation
+```
+
+## Changes Made
+
+### File 1: utils/logger.py
+- Added `cleanup_old_logs(max_logs=10)` function
+- Automatically called before creating new log
+- Deletes `simulation_*.log` files when > 10
+
+### File 2: config/logging_config.py
+- Added `cleanup_old_logs(log_dir, max_logs=10)` function
+- Integrated into `setup_logging()`
+- Deletes `*.log*` files when > 10
+
+## Example Output
+```
+[LOG CLEANUP] Deleted old log: simulation_20260101_080000.log
+[LOG CLEANUP] Deleted old log: simulation_20260101_090000.log
+[LOG CLEANUP] Removed 2 old log file(s). Keeping latest 10.
+```
+
+## Status
+✅ **IMPLEMENTED**
+✅ **TESTED** (syntax verified)
+✅ **READY TO USE**
+
+## Customization
+To change the limit from 10 to a different number:
+
+```python
+# In utils/logger.py line ~31
+cleanup_old_logs(max_logs=15)  # Change 10 to your desired number
+
+# In config/logging_config.py line ~57
+cleanup_old_logs(log_dir=LOGS_DIR, max_logs=15)  # Same change
+```
+
+## No Configuration Needed
+- ✅ Works automatically
+- ✅ No manual setup required
+- ✅ Transparent to user
+- ✅ Safe error handling
+
+---
+
+**Date**: January 26, 2026
+**Files Modified**: 2
+**Status**: ✅ COMPLETE

@@ -7,6 +7,8 @@ import sys
 import json
 import subprocess
 import time
+import os
+import signal
 from pathlib import Path
 from typing import Dict
 
@@ -19,6 +21,7 @@ from PyQt5.QtCore import Qt, QThread, QObject, pyqtSignal, QTimer
 from PyQt5.QtGui import QFont, QColor, QBrush
 
 from config import Config
+from utils.logger import logger
 
 # Define currency conversion as a module-level variable
 USD_TO_IDR = 15500  # 1 USD = 15,500 IDR
@@ -52,9 +55,8 @@ class SimulationWorker(QThread):
             current_dir = os.path.dirname(os.path.abspath(__file__))
             self.process = subprocess.Popen(
                 [sys.executable, "main.py"],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
                 cwd=current_dir
             )
             
@@ -134,12 +136,39 @@ class SimulationWorker(QThread):
     def stop(self):
         """Stop the simulation"""
         self.running = False
+        
         if self.process:
             try:
-                self.process.terminate()
-                self.process.wait(timeout=2)
-            except:
-                pass
+                # Try graceful termination first
+                logger.info(f"Terminating subprocess (PID: {self.process.pid})")
+                
+                if os.name == 'nt':  # Windows
+                    # Use taskkill for more reliable Windows termination
+                    import subprocess as sp
+                    sp.Popen(['taskkill', '/PID', str(self.process.pid), '/T', '/F'],
+                            stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                    
+                    try:
+                        self.process.wait(timeout=2)
+                        logger.info("Process terminated on Windows")
+                    except subprocess.TimeoutExpired:
+                        logger.warning("Process didn't stop on Windows")
+                else:  # Linux/Mac
+                    self.process.terminate()
+                    try:
+                        self.process.wait(timeout=3)
+                        logger.info("Process terminated gracefully")
+                    except subprocess.TimeoutExpired:
+                        logger.warning("Process didn't stop gracefully, killing...")
+                        os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+                        try:
+                            self.process.wait(timeout=2)
+                        except subprocess.TimeoutExpired:
+                            logger.error("Process kill failed")
+                            
+            except Exception as e:
+                logger.error(f"Error stopping process: {e}")
+        
         self.emitter.simulation_finished.emit()
 
 
@@ -330,6 +359,25 @@ class TrafficSimulationGUI(QMainWindow):
         
         self.init_ui()
         self.load_violations()
+    
+    def closeEvent(self, event):
+        """Handle window close event - stop simulation and threads"""
+        self.cleanup()
+        event.accept()
+    
+    def cleanup(self):
+        """Clean up resources before closing"""
+        # Stop the refresh timer
+        self.refresh_timer.stop()
+        
+        # Stop the simulation if running
+        if self.simulation_worker:
+            self.simulation_worker.stop()
+            # Wait for worker thread to finish
+            if self.simulation_worker.isRunning():
+                self.simulation_worker.wait(5000)  # Wait up to 5 seconds
+        
+        logger.info("Application cleanup complete")
     
     def init_ui(self):
         """Initialize UI"""

@@ -36,8 +36,8 @@ brew install python@3.11 mysql redis
 
 ### 2. Clone Repository
 ```bash
-git clone https://github.com/yourusername/traffic-simulation-idn.git
-cd traffic-simulation-idn
+git clone https://github.com/ProfessorCroquette/TugasLOGIKA.git
+cd TugasLOGIKA/traffic-simulation-idn
 ```
 
 ### 3. Create Virtual Environment
@@ -98,34 +98,29 @@ python scripts/setup/setup_database.sh
 ### 7. Verify Installation
 
 ```bash
-# Check database connection
-python -c "from src.database.connection import get_engine; print('DB OK')"
+# Test GUI launch
+python gui_traffic_simulation.py
 
-# Check Redis connection
-python -c "import redis; r = redis.Redis(); print(r.ping())"
+# Test CLI (main simulation)
+python main.py &
 
-# Run tests
+# Run tests (if available)
 pytest tests/ -v
 ```
 
 ## Running the Application
 
-### CLI Mode
+### GUI Mode (Recommended)
 ```bash
-python src/main.py --help
-python src/main.py simulate --duration 3600 --vehicles 100
+python gui_traffic_simulation.py
 ```
+Launches the PyQt5 GUI application with real-time traffic simulation display.
 
-### GUI Mode
+### CLI Mode (Background Simulation)
 ```bash
-python src/main_gui.py
+python main.py
 ```
-
-### API Server
-```bash
-uvicorn src.api.web.app:app --reload
-# Visit http://localhost:8000/docs
-```
+Runs the core simulation engine in the background, continuously updating JSON data files (traffic_data.json, tickets.json).
 
 ## Docker Setup
 
@@ -136,12 +131,11 @@ docker-compose up -d
 
 This will start:
 - MySQL database (port 3306)
-- Redis cache (port 6379)
-- Application server (port 8000)
+- Application services (traffic simulation)
 
 Check logs:
 ```bash
-docker-compose logs -f app
+docker-compose logs -f
 ```
 
 ## Troubleshooting
@@ -172,9 +166,18 @@ find . -type d -name __pycache__ -exec rm -r {} +
 find . -type f -name "*.pyc" -delete
 ```
 
+## Log Cleanup
+
+The application automatically manages log files:
+- **Location**: `logs/` directory
+- **Cleanup Trigger**: Automatic on every application startup
+- **Max Files Kept**: 10 (oldest logs deleted when exceeded)
+- **Log Names**: `simulation_YYYYMMDD_HHMMSS.log`
+
+This prevents unlimited disk space usage during long-running simulations.
+
 ## Next Steps
 
 1. Read the [User Manual](USER_MANUAL.md)
-2. Check the [API Documentation](API_DOCUMENTATION.md)
-3. Review [Architecture](ARCHITECTURE.md)
-4. See [Database Schema](DATABASE_SCHEMA.md)
+2. Review [Architecture](ARCHITECTURE.md)
+3. See [Database Schema](DATABASE_SCHEMA.md)

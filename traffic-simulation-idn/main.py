@@ -1,6 +1,8 @@
 import queue
 import threading
 import time
+import signal
+import sys
 from simulation.sensor import TrafficSensor
 from simulation.analyzer import SpeedAnalyzer
 from dashboard.display import Dashboard
@@ -23,6 +25,21 @@ class SpeedingTicketSimulator:
         self.dashboard = Dashboard(self.sensor, self.analyzer)
         
         self.is_running = False
+        
+        # Register signal handlers for graceful shutdown
+        signal.signal(signal.SIGTERM, self._signal_handler)
+        signal.signal(signal.SIGINT, self._signal_handler)
+        
+        # On Windows, also register for other signals
+        if sys.platform == 'win32':
+            # Windows doesn't have SIGUSR1 or other Unix signals
+            signal.signal(signal.SIGBREAK, self._signal_handler)
+    
+    def _signal_handler(self, signum, frame):
+        """Handle termination signals"""
+        logger.info(f"Received signal {signum}, stopping gracefully...")
+        self.stop()
+        sys.exit(0)
     
     def start(self):
         """Start the simulation"""

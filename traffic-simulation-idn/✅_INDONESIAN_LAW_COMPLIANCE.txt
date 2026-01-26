@@ -32,21 +32,22 @@ CHANGES IMPLEMENTED
    ✗ No maximum fine cap enforcement
 
 
-   AFTER (Fully Compliant):
-   ────────────────────────
-   MIN_SPEED_LIMIT = 40  # New: Minimum safe speed
-   USD_TO_IDR = 15500    # New: Currency conversion
+   AFTER (Current Implementation):
+   ──────────────────────────────
+   SPEED_LIMIT = 75       # Standard speed limit
+   MIN_SPEED_LIMIT = 40   # Minimum safe speed
+   USD_TO_IDR = 15500     # Currency conversion
    
    FINES = {
-       "SPEED_LOW_SEVERE": {"min": 0, "max": 29, "fine": 20},     # Rp 310,000 ✅
-       "SPEED_LOW_MILD": {"min": 30, "max": 39, "fine": 10},      # Rp 155,000 ✅
-       "SPEED_HIGH_LEVEL_1": {"min": 76, "max": 90, "fine": 15},  # Rp 232,500 ✅
-       "SPEED_HIGH_LEVEL_2": {"min": 91, "max": 110, "fine": 25}, # Rp 387,500 ✅
-       "SPEED_HIGH_LEVEL_3": {"min": 111, "max": 130, "fine": 32} # Rp 496,000 ✅
+       "SPEED_LOW_MILD": {"min": 30, "max": 39, "fine": 20},        # Rp 310,000 ✅
+       "SPEED_LOW_SEVERE": {"min": 0, "max": 29, "fine": 35},       # Rp 542,500 ✅
+       "SPEED_HIGH_LEVEL_1": {"min": 76, "max": 90, "fine": 30},    # Rp 465,000 ✅
+       "SPEED_HIGH_LEVEL_2": {"min": 91, "max": 110, "fine": 50},   # Rp 775,000 ✅
+       "SPEED_HIGH_LEVEL_3": {"min": 111, "max": 130, "fine": 75}   # Rp 1,162,500 ✅
    }
    
-   MAX_FINE_IDR = 500000  # New: Maximum per law  
-   MAX_FINE_USD = ~32.26  # New: Automatic cap enforcement
+   MAX_FINE_IDR = 1250000   # Maximum per law (Pasal 287 ayat 5)
+   MAX_FINE_USD = ~80.65    # Automatic cap enforcement
 
 
 2. FILE: utils/generators.py (Fine Calculation Logic)
@@ -98,41 +99,42 @@ FINE STRUCTURE COMPLIANCE
 ==========================
 
 All fines are now compliant with UU No. 22 Tahun 2009 Pasal 287(5):
+Maximum Legal Fine: Rp 1,250,000
 
 Speed Violation Type          | Fine (IDR) | Fine (USD) | Legal Limit
 ─────────────────────────────┼────────────┼────────────┼─────────────
-Driving Too Slow - Critical   | Rp 310,000 | $20.00     | ✅ OK
-(<30 km/h)                    |            |            |
-─────────────────────────────┼────────────┼────────────┼─────────────
-Driving Too Slow - Mild       | Rp 155,000 | $10.00     | ✅ OK
+Driving Too Slow - Mild       | Rp 310,000 | $20.00     | ✅ OK
 (30-39 km/h)                  |            |            |
 ─────────────────────────────┼────────────┼────────────┼─────────────
-Speeding Level 1              | Rp 232,500 | $15.00     | ✅ OK
+Driving Too Slow - Critical   | Rp 542,500 | $35.00     | ✅ OK
+(<30 km/h)                    |            |            |
+─────────────────────────────┼────────────┼────────────┼─────────────
+Speeding Level 1              | Rp 465,000 | $30.00     | ✅ OK
 (76-90 km/h)                  |            |            |
 ─────────────────────────────┼────────────┼────────────┼─────────────
-Speeding Level 2              | Rp 387,500 | $25.00     | ✅ OK
+Speeding Level 2              | Rp 775,000 | $50.00     | ✅ OK
 (91-110 km/h)                 |            |            |
 ─────────────────────────────┼────────────┼────────────┼─────────────
-Speeding Level 3              | Rp 496,000 | $32.00     | ✅ OK
+Speeding Level 3              | Rp 1,162,500 | $75.00   | ✅ OK
 (111-130+ km/h)               |            |            |
 ─────────────────────────────┴────────────┴────────────┴─────────────
 
-Maximum Fine Per Law: Rp 500,000
+Maximum Fine Per Law: Rp 1,250,000
 System Enforcement: ✅ ENFORCED
 
 
 PENALTY MULTIPLIER STILL APPLIES
 ==================================
 
-The additional penalties for non-active STNK and expired SIM are CAPPED:
+The additional penalties for non-active STNK and expired SIM are APPLIED:
 
 Example - Severe Speeding + Both Violations:
 ─────────────────────────────────────────────
-Base Fine: USD $32.00 (Rp 496,000)
+Base Fine: USD $75.00 (Rp 1,162,500)
 Penalty Multiplier: 1.4x (1.0 + 0.2 + 0.2)
-Calculated Total: $32 × 1.4 = $44.80
-System Applied: CAP AT $32.26 (Rp 500,000)
-Result: ✅ COMPLIANT
+Calculated Total: $75 × 1.4 = $105.00 (Rp 1,627,500)
+System Applied: CAP AT $80.65 (Rp 1,250,000)
+Result: ✅ COMPLIANT (capped at legal maximum)
 
 
 VIOLATION DETECTION
@@ -141,21 +143,21 @@ VIOLATION DETECTION
 The system now detects violations in BOTH directions:
 
 1️⃣  DRIVING TOO SLOWLY (Speed < 40 km/h)
-    ├─ 0-29 km/h: SEVERE violation
-    │   └─ Fine: USD $20.00 / Rp 310,000
+    ├─ 0-29 km/h: CRITICAL violation
+    │   └─ Fine: USD $35.00 / Rp 542,500
     └─ 30-39 km/h: MILD violation
-        └─ Fine: USD $10.00 / Rp 155,000
+        └─ Fine: USD $20.00 / Rp 310,000
 
 2️⃣  NORMAL SPEED (40-75 km/h)
     └─ No violation
 
 3️⃣  SPEEDING (Speed > 75 km/h)
     ├─ 76-90 km/h: LEVEL 1 speeding
-    │   └─ Fine: USD $15.00 / Rp 232,500
+    │   └─ Fine: USD $30.00 / Rp 465,000
     ├─ 91-110 km/h: LEVEL 2 speeding
-    │   └─ Fine: USD $25.00 / Rp 387,500
+    │   └─ Fine: USD $50.00 / Rp 775,000
     └─ 111+ km/h: LEVEL 3 speeding
-        └─ Fine: USD $32.00 / Rp 496,000
+        └─ Fine: USD $75.00 / Rp 1,162,500
 
 
 TEST RESULTS
@@ -190,11 +192,16 @@ LEGAL COMPLIANCE SUMMARY
    └─ Pasal 287 ayat (5) UU No. 22 Tahun 2009 LLAJ
 
 Implementation Details:
-  ✓ Maximum fine capped at Rp 500,000
-  ✓ Applies to both speeding and slow driving
+  ✓ Maximum fine capped at Rp 1,250,000
+  ✓ Tiered fine structure for different violation severity
+  ✓ Applies to both speeding and slow driving violations
   ✓ Works with manual and electronic tickets (ETLE)
-  ✓ Includes penalty multipliers for unregistered/unlicensed drivers
+  ✓ Includes penalty multipliers for non-active STNK and expired SIM
+  ✓ Multipliers capped at legal maximum fine
   ✓ All violations logged with Indonesian descriptions
-  ✓ Currency conversion included (USD ↔ IDR)
+  ✓ Currency conversion included (USD ↔ IDR at 1:15,500)
+  ✓ Speed limits: 40-75 km/h (normal range)
+  ✓ Violations detected: < 40 km/h and > 75 km/h
 
-The system now accurately reflects Indonesian traffic law requirements.
+The system now accurately reflects Indonesian traffic law requirements
+with realistic fine amounts scaled appropriately by violation severity.

@@ -2,21 +2,20 @@
 
 ## Overview
 
-Traffic Simulation Indonesia is a layered architecture application with three main interfaces:
+Traffic Simulation Indonesia is a multi-layer architecture application with two main interfaces:
 
-1. **CLI Interface** - Command-line tool for batch operations
-2. **GUI Interface** - PyQt5 desktop application for interactive use
-3. **REST API** - FastAPI/Flask for programmatic access
+1. **CLI Interface** - Command-line tool for core simulation (main.py)
+2. **GUI Interface** - PyQt5 desktop application for interactive monitoring (gui_traffic_simulation.py)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    User Interfaces Layer                     │
-├──────────────────┬──────────────────┬──────────────────────┤
-│   CLI Commands   │   PyQt5 GUI      │   REST API (FastAPI) │
-│   (main.py)      │   (main_gui.py)  │   (app.py)           │
-└────────┬─────────┴────────┬─────────┴──────────┬────────────┘
-         │                  │                     │
-         └──────────────────┼─────────────────────┘
+├──────────────────┬──────────────────────────────────────────┤
+│   CLI Simulation │   PyQt5 GUI Dashboard                    │
+│   (main.py)      │   (gui_traffic_simulation.py)            │
+└────────┬─────────┴────────┬─────────────────────────────────┘
+         │                  │
+         └──────────────────┼──────────────────────┘
                             │
          ┌──────────────────▼─────────────────────┐
          │      Application Core Layer            │
@@ -65,204 +64,150 @@ Traffic Simulation Indonesia is a layered architecture application with three ma
 - Responsive UI with real-time updates
 - Dashboard, simulation control, reports generation
 
-#### REST API (src/api/web/app.py)
-- FastAPI server on port 8000
-- Automatic API documentation (Swagger/OpenAPI)
-- Authentication middleware
-- CORS support for web clients
-
 ### 2. Core Application Layer
 
-**src/core/application.py**
-- Main application controller
-- Orchestrates components
-- Lifecycle management
+**simulation/sensor.py**
+- Traffic sensor simulation
+- Vehicle speed detection
+- Real-time data collection
 
-**src/core/simulation_engine.py**
-- Traffic simulation logic
-- Vehicle movement calculations
-- Violation detection
+**simulation/analyzer.py**
+- Speed violation detection
+- Penalty calculation
+- Traffic analysis
 
-**src/core/event_bus.py**
-- Event-driven communication
-- Publish/subscribe pattern
-- Decouples components
+**dashboard/display.py**
+- Console-based dashboard
+- Real-time statistics display
+- Data visualization
 
-**src/core/config_manager.py**
-- Configuration loading
-- Environment variables
-- Settings validation
+**config/__init__.py**
+- Configuration management
+- Directory setup
+- System constants and settings
 
-### 3. Services Layer
+### 3. Utilities & Data Management
 
-#### Generators (src/services/generators/)
-- **vehicle_generator.py**: Creates synthetic vehicle data
-- **owner_generator.py**: Indonesian owner information
-- **violation_generator.py**: Simulates violations
-- **plate_generator.py**: Realistic license plates
+**utils/logger.py**
+- Application logging setup
+- Automatic log cleanup (keeps max 10 files)
+- Console and file output
 
-#### Analyzers (src/services/analyzers/)
-- **speed_analyzer.py**: Detects speed violations
-- **penalty_calculator.py**: Calculates fines
-- **document_validator.py**: Validates STNK/SIM
+**utils/car_database.py**
+- Vehicle type and brand database
+- Vehicle specifications
 
-#### Notifiers (src/services/notifiers/)
-- **email_notifier.py**: Send email alerts
-- **sms_notifier.py**: SMS via Twilio
-- **console_notifier.py**: Console output
+**utils/indonesian_plates.py**
+- License plate generation
+- Indonesian plate format validation
 
-#### Exporters (src/services/exporters/)
-- **csv_exporter.py**: CSV format
-- **pdf_exporter.py**: PDF reports
-- **excel_exporter.py**: Excel spreadsheets
+**utils/violation_utils.py**
+- Violation processing
+- Penalty calculations
 
-### 4. Data Access Layer
+**data_models/models.py**
+- Data structure definitions
+- Violation and vehicle data models
 
-**src/database/repositories/**
-- Base repository pattern (CRUD)
-- Vehicle, Owner, Violation repositories
-- Sensor data repository
-- Query optimization
+### 4. Data Storage
 
-**src/models/**
-- SQLAlchemy ORM models
-- Relationships definition
-- Enumerations for types
+**JSON Files**
+- `traffic_data.json`: Real-time traffic simulation data
+- `tickets.json`: Recorded violation tickets
+- `vehicles_database.json`: Vehicle registry
 
-**src/database/session.py**
-- Session factory
-- Connection pooling
-- Transaction management
+**data_files/ Directory**
+- `traffic_data.json`: Live simulation data
+- `tickets.json`: Violation records
+- `statistics.csv`: Aggregated statistics
 
-### 5. Database & Cache Layer
-
-**MySQL Database**
-- Primary data store
-- Tables: vehicles, owners, violations, sensors, locations
-- Indexes for performance
-- Referential integrity
-
-**Redis Cache**
-- Session caching
-- API response caching
-- Real-time data buffering
-
-**External APIs**
-- RapidAPI for car data
-- Geolocation services
-- Email/SMS providers
+**config/**
+- Application configuration files
+- Database settings
+- Logging configuration
 
 ## Data Flow
 
-### Simulation Flow
+### CLI Simulation Flow
 ```
-User Input
+main.py Started
     ↓
-CLI/GUI Handler
+Initialize Sensor & Analyzer
     ↓
-Simulation Engine
-    ├→ Vehicle Generator
-    ├→ Movement Calculator
-    ├→ Sensor Logs
-    └→ Violation Detector
-         ├→ Speed Analyzer
-         ├→ Penalty Calculator
-         └→ Notifier
-             └→ Database Storage
+Generate Vehicle Data
+    ↓
+Detect Speed Violations
+    ↓
+Calculate Penalties
+    ↓
+Update JSON Files
+    ├→ traffic_data.json
+    └→ tickets.json
+    ↓
+Continuous Loop (30s intervals)
 ```
 
-### Report Generation Flow
+### GUI Display Flow
 ```
-User Request
+gui_traffic_simulation.py Started
     ↓
-Report Handler
-    ├→ Query Database
-    ├→ Analyzer (calculations)
-    ├→ Formatter
-    └→ Exporter
-        └→ Output File
+Read JSON Data Files
+    ↓
+Parse Violations & Vehicles
+    ↓
+Display in Real-time Table
+    ↓
+Handle User Actions
+    ├→ Start/Stop Simulation
+    ├→ View Details
+    └→ Export Data
 ```
 
 ## Design Patterns Used
 
-1. **Repository Pattern**: Data access abstraction
-2. **Service Layer**: Business logic separation
-3. **Event Bus**: Loose coupling between components
-4. **Factory Pattern**: Object creation
-5. **Singleton**: Config manager, database connection
-6. **Observer**: GUI updates from model changes
-
-## Scalability Considerations
-
-- **Horizontal Scaling**: Multiple API instances with load balancer
-- **Database Replication**: MySQL master-slave setup
-- **Caching**: Redis for frequently accessed data
-- **Async Processing**: Celery for long-running tasks
-- **Message Queue**: RabbitMQ for event handling
+1. **MVC Pattern**: Separation of model (data), view (GUI), and controller
+2. **Thread-Based Concurrency**: Background simulation with main GUI thread
+3. **Queue Pattern**: Thread-safe data communication
+4. **Configuration Singleton**: Centralized config management
+5. **Observer Pattern**: GUI updates from simulation events
 
 ## Security Features
 
-- Environment variable configuration
-- Password hashing for sensitive data
-- API token authentication
-- SQL injection prevention via ORM
-- CORS configuration
-- Input validation and sanitization
+- Configuration file for sensitive settings
+- Input validation for vehicle data
+- Safe file handling with pathlib
+- Signal handling for graceful shutdown
 
 ## Performance Optimizations
 
-- Database indexes on frequently queried columns
-- Redis caching for API responses
-- Connection pooling
-- Lazy loading in ORM
-- Pagination for large result sets
-- Query optimization
+- JSON file-based data storage (lightweight)
+- Efficient queue-based thread communication
+- Configurable simulation intervals
+- Automatic log cleanup (prevents disk space issues)
+- Multi-threaded GUI to prevent blocking
 
 ## Testing Architecture
 
 ```
 tests/
-├── test_models.py          # Unit tests for models
-├── test_services.py        # Service layer tests
-├── test_database.py        # Repository tests
-├── test_api.py             # API endpoint tests
-├── test_gui.py             # GUI component tests
-└── integration/
-    ├── test_simulation_flow.py
-    └── test_database_integration.py
+├── test_models.py              # Unit tests
+├── integration/
+│   └── test_simulation_flow.py  # Integration tests
+└── conftest.py                 # Test configuration
 ```
 
-## Deployment Architecture
+## Deployment
 
-```
-┌─────────────────────────────────────────┐
-│          Load Balancer (Nginx)          │
-└────────────────────┬────────────────────┘
-                     │
-     ┌───────────────┼───────────────┐
-     ▼               ▼               ▼
-┌─────────┐    ┌─────────┐    ┌─────────┐
-│ App 1   │    │ App 2   │    │ App 3   │
-│(Docker) │    │(Docker) │    │(Docker) │
-└────┬────┘    └────┬────┘    └────┬────┘
-     │              │              │
-     └──────────────┼──────────────┘
-                    │
-            ┌───────┴────────┐
-            ▼                ▼
-        ┌────────┐      ┌────────┐
-        │ MySQL  │      │ Redis  │
-        │Cluster │      │Cluster │
-        └────────┘      └────────┘
-```
+- **Development**: Direct Python execution
+- **Docker**: Containerized deployment (optional)
+- **Production**: Docker Compose stack
 
 ## Technologies Used
 
 - **Language**: Python 3.9+
-- **Web Frameworks**: FastAPI, Flask
 - **GUI**: PyQt5
-- **ORM**: SQLAlchemy
-- **Database**: MySQL 8.0
-- **Cache**: Redis
+- **Data Storage**: JSON files
+- **Configuration**: Python config module
+- **Logging**: Python logging module
 - **Testing**: pytest
-- **Deployment**: Docker, Kubernetes, Nginx
+- **Deployment**: Docker, Docker Compose (optional)

@@ -7,6 +7,7 @@ import json
 import random
 from typing import Dict, List, Tuple, Optional
 from datetime import datetime, timedelta
+from pathlib import Path
 
 class IndonesianPlateManager:
     """Manages Indonesian license plate generation and parsing"""
@@ -14,29 +15,72 @@ class IndonesianPlateManager:
     # Indonesian plate format: [Region Code] [Number] [Letter Code]
     # Example: D 1234 CD = Bandung, number 1234, owner code CD
     
-    REGION_CODES = {
-        'B': 'Jakarta Utara',
-        'U': 'Jakarta Utara',
-        'W': 'Tangerang Selatan, Banten',
-        'C': 'Tangerang, Banten',
-        'V': 'Tangerang, Banten',
-        'G': 'Tangerang, Banten',
-        'N': 'Tangerang, Banten',
-        'E': 'Depok, Jawa Barat',
-        'Z': 'Depok, Jawa Barat',
-        'F': 'Bekasi, Jawa Barat',
-        'K': 'Bekasi, Jawa Barat',
-        'A': 'Bogor, Jawa Barat',
-        'D': 'Bandung, Jawa Barat',
-        'T': 'Karawang, Jawa Barat',
-        'H': 'Semarang, Jawa Tengah',
-        'L': 'Surabaya, Jawa Timur',
-        'DK': 'Denpasar, Bali',
-        'AB': 'Yogyakarta, DIY',
-    }
+    # Cached regions data loaded from JSON
+    _REGION_CODES = None
+    _REGION_CODES_FLAT = None
     
     # Common Indonesian owner code suffixes
     OWNER_CODE_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    
+    @classmethod
+    def _load_regions_data(cls) -> Dict:
+        """Load regions data from JSON file"""
+        if cls._REGION_CODES is not None:
+            return cls._REGION_CODES
+        
+        try:
+            # Try to load from data/regions/indonesian_regions.json
+            json_path = Path(__file__).parent.parent / 'data' / 'regions' / 'indonesian_regions.json'
+            
+            if json_path.exists():
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    cls._REGION_CODES = json.load(f)
+                print(f"[REGIONS] Loaded comprehensive regions data from {json_path}")
+                return cls._REGION_CODES
+            else:
+                print(f"[REGIONS] Warning: regions.json not found at {json_path}")
+                raise FileNotFoundError(f"Indonesian regions file not found: {json_path}")
+        except Exception as e:
+            print(f"[REGIONS] Error loading regions data: {e}")
+            # Fallback to minimal hardcoded regions
+            cls._REGION_CODES = {
+                'B': ['JADETABEK', {'U': 'Jakarta Utara', 'B': 'Jakarta Barat', 'P': 'Jakarta Pusat', 'T': 'Jakarta Timur', 'S': 'Jakarta Selatan'}],
+                'D': ['Jawa Barat', {'A': 'Bandung, Jawa Barat', 'B': 'Bandung, Jawa Barat'}],
+                'H': ['Jawa Tengah', {'A': 'Semarang, Jawa Tengah'}],
+                'L': ['Surabaya, Jawa Timur'],
+                'AB': ['Daerah Istimewa Yogyakarta', {'A': 'Yogyakarta'}],
+                'DK': ['Bali', {'A': 'Denpasar, Bali'}],
+            }
+            print("[REGIONS] Using minimal fallback regions data")
+            return cls._REGION_CODES
+    
+    @classmethod
+    def _get_all_region_codes_flat(cls) -> Dict[str, str]:
+        """Get flattened region codes from nested structure"""
+        if cls._REGION_CODES_FLAT is not None:
+            return cls._REGION_CODES_FLAT
+        
+        regions = cls._load_regions_data()
+        flat_codes = {}
+        
+        for region_code, region_data in regions.items():
+            if isinstance(region_data, list):
+                if len(region_data) == 2 and isinstance(region_data[1], dict):
+                    # Has sub-codes
+                    for sub_code, location in region_data[1].items():
+                        full_code = f"{region_code}{sub_code}"
+                        flat_codes[full_code] = location
+                        # Also add primary code as fallback
+                        if region_code not in flat_codes:
+                            flat_codes[region_code] = region_data[0] if isinstance(region_data[0], str) else location
+                else:
+                    # No sub-codes, just province name
+                    flat_codes[region_code] = region_data[0] if isinstance(region_data[0], str) else 'Unknown'
+            else:
+                flat_codes[region_code] = region_data
+        
+        cls._REGION_CODES_FLAT = flat_codes
+        return cls._REGION_CODES_FLAT
     
     @staticmethod
     def generate_plate() -> Tuple[str, str]:
@@ -45,9 +89,10 @@ class IndonesianPlateManager:
         Returns: (plate_number, region_location)
         Example: ('D 1234 CD', 'Bandung, Jawa Barat')
         """
-        # Get random region code
-        region_code = random.choice(list(IndonesianPlateManager.REGION_CODES.keys()))
-        region_location = IndonesianPlateManager.REGION_CODES[region_code]
+        # Get random region code from comprehensive data
+        flat_codes = IndonesianPlateManager._get_all_region_codes_flat()
+        region_code = random.choice(list(flat_codes.keys()))
+        region_location = flat_codes[region_code]
         
         # Generate 4-digit number
         number = random.randint(1000, 9999)
@@ -73,7 +118,9 @@ class IndonesianPlateManager:
         number = parts[1]
         owner_code = parts[2]
         
-        region = IndonesianPlateManager.REGION_CODES.get(region_code, 'Unknown')
+        # Try to find region from comprehensive data
+        flat_codes = IndonesianPlateManager._get_all_region_codes_flat()
+        region = flat_codes.get(region_code, 'Unknown')
         
         return {
             'plate': plate,
@@ -86,7 +133,8 @@ class IndonesianPlateManager:
     @staticmethod
     def get_region_from_code(code: str) -> str:
         """Get region location from plate code"""
-        return IndonesianPlateManager.REGION_CODES.get(code, 'Unknown Region')
+        flat_codes = IndonesianPlateManager._get_all_region_codes_flat()
+        return flat_codes.get(code, 'Unknown Region')
 
 
 class VehicleOwner:

@@ -5,15 +5,15 @@ from datetime import datetime
 
 class Config:
     # Simulation settings
-    SIMULATION_INTERVAL = 5  # seconds between batches (reduced for faster violations)
+    SIMULATION_INTERVAL = 3  # seconds between batches (3 seconds for target flow)
     SPEED_LIMIT = 75  # km/h - standard speed limit for regular roads
     MIN_SPEED_LIMIT = 40  # km/h - minimum safe speed
-    MIN_VEHICLES_PER_BATCH = 2  # increased for more violations
-    MAX_VEHICLES_PER_BATCH = 100  # increased to max 100 per batch
+    MIN_VEHICLES_PER_BATCH = 10  # at least 10 cars per batch
+    MAX_VEHICLES_PER_BATCH = 15  # max 15 per batch for consistent violations
     
     # Speed distribution (normal distribution)
-    SPEED_MEAN = 65
-    SPEED_STD_DEV = 15
+    SPEED_MEAN = 85  # increased to generate 2-3 violations per batch
+    SPEED_STD_DEV = 20  # more variation in speeds
     MIN_SPEED = 30
     MAX_SPEED = 140
     

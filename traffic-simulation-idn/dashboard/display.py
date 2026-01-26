@@ -51,7 +51,7 @@ class Dashboard:
         speeding = analyzer_stats['speeding_processed']
         if total > 0:
             compliant = total - speeding
-            print(f"   Within Limit (≤75 km/h): {compliant} ({compliant/total*100:.1f}%)")
+            print(f"   Within Limit (<=75 km/h): {compliant} ({compliant/total*100:.1f}%)")
             print(f"   Speeding (>75 km/h): {speeding} ({speeding/total*100:.1f}%)")
             
             # Simple bar chart
