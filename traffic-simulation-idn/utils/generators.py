@@ -4,13 +4,15 @@ from datetime import datetime
 from config import Config
 from data_models.models import Vehicle
 from .car_database import CarDatabase
+from .motorcycle_database import MotorcycleDatabase
 from .indonesian_plates import IndonesianPlateManager, owner_db, VehicleOwner
 
 class DataGenerator:
-    """Generates random vehicle data using real car database"""
+    """Generates random vehicle data using real car and motorcycle databases"""
     
-    # Load car database once
+    # Load databases once
     car_db = CarDatabase("CARS.md")
+    motorcycle_db = MotorcycleDatabase("model.csv")
     
     @staticmethod
     def generate_license_plate():
@@ -43,6 +45,18 @@ class DataGenerator:
         }
     
     @staticmethod
+    def generate_motorcycle_from_db():
+        """Generate motorcycle using real motorcycle database"""
+        motorcycle = DataGenerator.motorcycle_db.get_random_motorcycle()
+        
+        return {
+            'make': motorcycle['make'],
+            'model': motorcycle['model'],
+            'type': 'motorcycle',
+            'support_level': 'Sport'
+        }
+    
+    @staticmethod
     def generate_vehicle_type():
         """Generate random vehicle type based on real database distribution"""
         # Get statistics from database
@@ -61,7 +75,7 @@ class DataGenerator:
         if vehicle_type == "truck":
             mean = 60  # Trucks tend to be slower
         elif vehicle_type == "motorcycle":
-            mean = 75  # Motorcycles tend to be faster
+            mean = 72  # Motorcycles tend to be faster but capped at 75
         else:
             mean = Config.SPEED_MEAN
         
@@ -84,9 +98,16 @@ class DataGenerator:
         
         vehicles = []
         for i in range(num_vehicles):
-            # Get real car from database
-            car_info = DataGenerator.generate_vehicle_from_cars_db()
-            vehicle_type = car_info['type']
+            # Randomly decide if motorcycle or car (15% motorcycles, 85% cars/trucks)
+            is_motorcycle = random.random() < 0.15
+            
+            if is_motorcycle:
+                vehicle_info = DataGenerator.generate_motorcycle_from_db()
+            else:
+                # Get real car from database
+                vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
+            
+            vehicle_type = vehicle_info['type']
             
             # Generate license plate
             license_plate = DataGenerator.generate_license_plate()
@@ -95,9 +116,9 @@ class DataGenerator:
             owner = owner_db.get_or_create_owner(license_plate)
             
             vehicle = Vehicle(
-                vehicle_id=f"{car_info['make'][:3].upper()}{i+1:04d}",
+                vehicle_id=f"{vehicle_info['make'][:3].upper()}{i+1:04d}",
                 license_plate=license_plate,
-                vehicle_type=f"{car_info['make']} {car_info['model']}",
+                vehicle_type=f"{vehicle_info['make']} {vehicle_info['model']}",
                 speed=DataGenerator.generate_speed(vehicle_type),
                 timestamp=datetime.now(),
                 owner_id=owner.owner_id,

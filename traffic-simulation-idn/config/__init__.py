@@ -12,10 +12,10 @@ class Config:
     MAX_VEHICLES_PER_BATCH = 15  # max 15 per batch for consistent violations
     
     # Speed distribution (normal distribution)
-    SPEED_MEAN = 85  # increased to generate 2-3 violations per batch
-    SPEED_STD_DEV = 20  # more variation in speeds
-    MIN_SPEED = 30
-    MAX_SPEED = 140
+    SPEED_MEAN = 70  # average speed around 70 km/h (below limit)
+    SPEED_STD_DEV = 8  # moderate variation in speeds (realistic)
+    MIN_SPEED = 45
+    MAX_SPEED = 95  # Allow speeds above 75 for natural violations
     
     # Vehicle type distribution (percentages)
     VEHICLE_TYPES = {

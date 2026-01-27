@@ -2,6 +2,7 @@ import time
 import threading
 import queue
 from datetime import datetime
+from typing import Callable
 from utils.generators import DataGenerator
 from utils.logger import logger
 from data_models.models import Vehicle
@@ -9,17 +10,21 @@ from data_models.models import Vehicle
 class TrafficSensor:
     """Simulates traffic sensor generating vehicle data"""
     
-    def __init__(self, data_queue: queue.Queue, interval: int = 10):
+    def __init__(self, data_queue: queue.Queue, interval: int = 10, 
+                 car_processor=None):
         """
         Args:
             data_queue: Queue to put generated vehicle data
             interval: Seconds between data generation batches
+            car_processor: Optional QueuedCarProcessor for sequential processing
         """
         self.data_queue = data_queue
         self.interval = interval
+        self.car_processor = car_processor
         self.is_running = False
         self.thread = None
         self.vehicles_generated = 0
+        self.on_batch_generated = None  # Callback when batch is generated
     
     def start(self):
         """Start the sensor simulation"""
@@ -43,12 +48,20 @@ class TrafficSensor:
                 vehicles = DataGenerator.generate_vehicle_batch()
                 self.vehicles_generated += len(vehicles)
                 
-                # Put data in queue
+                # If using queue processor, add to it for sequential checking
+                if self.car_processor:
+                    self.car_processor.add_vehicles(vehicles)
+                
+                # Also put in traditional queue for legacy support
                 self.data_queue.put({
                     'timestamp': datetime.now(),
                     'vehicles': vehicles,
                     'batch_size': len(vehicles)
                 })
+                
+                # Emit callback
+                if self.on_batch_generated:
+                    self.on_batch_generated(vehicles)
                 
                 logger.info(f"Generated {len(vehicles)} vehicles. Total: {self.vehicles_generated}")
                 

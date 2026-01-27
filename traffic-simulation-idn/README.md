@@ -167,3 +167,9 @@ Indonesian Traffic Violation Simulation System - Educational Purpose
 ---
 
 For complete documentation, see **[PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)**
+
+
+DATA for cars, Motorcycles, and Plate numbers:
+- [text](https://github.com/bike-md/bike_md) // Motorcycle data
+- [text](https://github.com/commaai/opendbc/blob/master/docs/CARS.md) // Car data
+- [text](https://github.com/riyantowibowo/indonesian-vehicle-license-plate-numbers/blob/main/data.json) // Plate number data

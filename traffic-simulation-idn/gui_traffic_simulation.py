@@ -455,14 +455,62 @@ class TrafficSimulationGUI(QMainWindow):
         left_layout.addWidget(stats_group)
         
         # Live Status Group
-        status_group = QGroupBox("Status Pemeriksaan")
+        status_group = QGroupBox("Status Pemeriksaan Real-time (5 Sensor)")
         status_layout = QVBoxLayout()
         
-        status_layout.addWidget(QLabel("Kendaraan Sedang Diperiksa:"))
-        self.current_vehicle_label = QLabel("Menunggu simulasi dimulai...")
-        self.current_vehicle_label.setStyleSheet("color: blue; font-weight: bold;")
-        self.current_vehicle_label.setWordWrap(True)
-        status_layout.addWidget(self.current_vehicle_label)
+        # Create 5 sensor panels
+        sensors_container = QWidget()
+        sensors_grid = QGridLayout()
+        
+        self.sensor_labels = {}  # Dictionary to store sensor UI elements
+        
+        for sensor_id in range(1, 6):
+            # Each sensor in a group
+            sensor_group = QGroupBox(f"Sensor {sensor_id}")
+            sensor_layout = QVBoxLayout()
+            
+            # Sensor status (IDLE/CHECKING/SAFE/VIOLATION)
+            status_label = QLabel("IDLE")
+            status_label.setStyleSheet("color: gray; font-weight: bold; font-size: 10pt; padding: 5px;")
+            sensor_layout.addWidget(status_label)
+            
+            # Current car plate
+            plate_label = QLabel("-")
+            plate_label.setStyleSheet("color: black; font-size: 10pt; padding: 3px;")
+            plate_label.setWordWrap(True)
+            sensor_layout.addWidget(QLabel("Plat:"))
+            sensor_layout.addWidget(plate_label)
+            
+            # Speed
+            speed_label = QLabel("-")
+            speed_label.setStyleSheet("color: black; font-size: 10pt; padding: 3px;")
+            sensor_layout.addWidget(QLabel("Kecepatan:"))
+            sensor_layout.addWidget(speed_label)
+            
+            # Fine amount
+            fine_label = QLabel("-")
+            fine_label.setStyleSheet("color: darkred; font-size: 10pt; padding: 3px;")
+            sensor_layout.addWidget(QLabel("Denda:"))
+            sensor_layout.addWidget(fine_label)
+            
+            sensor_group.setLayout(sensor_layout)
+            
+            # Store references to labels
+            self.sensor_labels[sensor_id] = {
+                'status': status_label,
+                'plate': plate_label,
+                'speed': speed_label,
+                'fine': fine_label,
+                'group': sensor_group
+            }
+            
+            # Add to grid (2 rows x 3 columns)
+            row = (sensor_id - 1) // 3
+            col = (sensor_id - 1) % 3
+            sensors_grid.addWidget(sensor_group, row, col)
+        
+        sensors_container.setLayout(sensors_grid)
+        status_layout.addWidget(sensors_container)
         
         status_group.setLayout(status_layout)
         left_layout.addWidget(status_group)
@@ -627,17 +675,17 @@ class TrafficSimulationGUI(QMainWindow):
         self.refresh_timer.stop()
         self.start_btn.setEnabled(True)
         self.stop_btn.setEnabled(False)
-        self.current_vehicle_label.setText("Simulasi dihentikan")
-        self.current_vehicle_label.setStyleSheet("color: orange; font-weight: bold;")
     
     def auto_refresh(self):
         """Auto-refresh violations and status every 500ms"""
         try:
             violations_file = Path("data_files/tickets.json")
             vehicles_file = Path("data_files/traffic_data.json")
+            worker_status_file = Path("data_files/worker_status.json")
             
             violations = []
             vehicles = []
+            worker_statuses = {}
             
             if violations_file.exists():
                 try:
@@ -653,6 +701,13 @@ class TrafficSimulationGUI(QMainWindow):
                 except:
                     vehicles = []
             
+            if worker_status_file.exists():
+                try:
+                    with open(worker_status_file, 'r') as f:
+                        worker_statuses = json.load(f) or {}
+                except:
+                    worker_statuses = {}
+            
             # Update violations table if count changed
             viol_count = len(violations)
             if viol_count != self.last_violation_count:
@@ -660,32 +715,67 @@ class TrafficSimulationGUI(QMainWindow):
                 self.refresh_violations_table()
                 self.last_violation_count = viol_count
             
-            # Update vehicle count and current vehicle
+            # Update vehicle count
             vehicle_count = len(vehicles)
             if vehicle_count != self.last_vehicle_count:
                 self.vehicles_count_label.setText(str(vehicle_count))
                 self.last_vehicle_count = vehicle_count
+            
+            # Update each sensor's status
+            for sensor_id in range(1, 6):
+                sensor_info = self.sensor_labels.get(sensor_id)
+                if not sensor_info:
+                    continue
                 
-                # Show current vehicle being checked
-                if vehicles:
-                    last_vehicle = vehicles[-1]
-                    plate = last_vehicle.get('license_plate', '?')
-                    speed = last_vehicle.get('speed', 0)
-                    status = "✓ OK" if 40 <= speed <= 75 else "✗ VIOLATION"
-                    self.current_vehicle_label.setText(
-                        f"Plat: {plate}\n"
-                        f"Kecepatan: {speed:.1f} km/h\n"
-                        f"Status: {status}"
-                    )
-                    if speed > 75 or speed < 40:
-                        self.current_vehicle_label.setStyleSheet("color: red; font-weight: bold;")
+                # Get worker status for this sensor
+                worker_key = str(sensor_id - 1)
+                worker_data = worker_statuses.get(worker_key, {})
+                
+                if worker_data and worker_data.get('vehicle'):
+                    vehicle = worker_data['vehicle']
+                    status = worker_data.get('status', 'CHECKING')
+                    
+                    plate = vehicle.get('license_plate', '?')
+                    speed = vehicle.get('speed', 0)
+                    
+                    # Check if this is a violation
+                    is_violation = any(v.get('license_plate') == plate for v in violations)
+                    
+                    if is_violation:
+                        # Find the violation to get fine
+                        violation = next((v for v in violations if v.get('license_plate') == plate), None)
+                        fine = violation.get('fine_amount', 0) * USD_TO_IDR if violation else 0
+                        
+                        status_text = "VIOLATION"
+                        color = "darkred"
+                        status_bg = "#ffe0e0"
+                        fine_text = f"Rp {fine:,.0f}"
                     else:
-                        self.current_vehicle_label.setStyleSheet("color: green; font-weight: bold;")
+                        status_text = "SAFE"
+                        color = "darkgreen"
+                        status_bg = "#e0ffe0"
+                        fine_text = "-"
+                    
+                    # Update sensor display
+                    sensor_info['status'].setText(status_text)
+                    sensor_info['status'].setStyleSheet(f"color: {color}; font-weight: bold; font-size: 10pt; padding: 5px; background-color: {status_bg}; border-radius: 3px;")
+                    
+                    sensor_info['plate'].setText(f"{plate}")
+                    sensor_info['speed'].setText(f"{speed:.1f} km/h")
+                    sensor_info['fine'].setText(fine_text)
+                    
+                else:
+                    # Sensor is idle
+                    sensor_info['status'].setText("IDLE")
+                    sensor_info['status'].setStyleSheet("color: gray; font-weight: bold; font-size: 10pt; padding: 5px;")
+                    sensor_info['plate'].setText("-")
+                    sensor_info['speed'].setText("-")
+                    sensor_info['fine'].setText("-")
             
             # Update statistics
             self.violations_count_label.setText(str(len(violations)))
-            total_fines = sum(v.get('fine', {}).get('total_fine', 0) for v in violations)
-            self.total_fines_label.setText(f"Rp {total_fines * USD_TO_IDR:,.0f}")
+            total_fines = sum(v.get('fine_amount', 0) for v in violations) * USD_TO_IDR
+            self.total_fines_label.setText(f"Rp {total_fines:,.0f}")
             
             speeds = [v.get('speed', 0) for v in vehicles]
             if speeds:

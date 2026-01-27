@@ -3,7 +3,10 @@ import threading
 import time
 import signal
 import sys
+import json
+from pathlib import Path
 from simulation.sensor import TrafficSensor
+from simulation.queue_processor import QueuedCarProcessor
 from simulation.analyzer import SpeedAnalyzer
 from dashboard.display import Dashboard
 from utils.logger import logger
@@ -16,11 +19,15 @@ class SpeedingTicketSimulator:
         # Setup configuration
         Config.setup_directories()
         
-        # Create data queue for communication (increased to 500 for more data)
+        # Create data queue for communication
         self.data_queue = queue.Queue(maxsize=500)
         
+        # Create queue-based car processor (5 concurrent sensors)
+        self.car_processor = QueuedCarProcessor(num_workers=5)
+        
         # Initialize components
-        self.sensor = TrafficSensor(self.data_queue, Config.SIMULATION_INTERVAL)
+        self.sensor = TrafficSensor(self.data_queue, Config.SIMULATION_INTERVAL, 
+                                    car_processor=self.car_processor)
         self.analyzer = SpeedAnalyzer(self.data_queue)
         self.dashboard = Dashboard(self.sensor, self.analyzer)
         
@@ -32,7 +39,6 @@ class SpeedingTicketSimulator:
         
         # On Windows, also register for other signals
         if sys.platform == 'win32':
-            # Windows doesn't have SIGUSR1 or other Unix signals
             signal.signal(signal.SIGBREAK, self._signal_handler)
     
     def _signal_handler(self, signum, frame):
@@ -48,8 +54,12 @@ class SpeedingTicketSimulator:
         
         try:
             # Start components
+            self.car_processor.start()
             self.sensor.start()
             self.analyzer.start()
+            
+            # Setup callbacks for smooth visualization
+            self._setup_callbacks()
             
             # Start dashboard in separate thread
             dashboard_thread = threading.Thread(
@@ -66,6 +76,78 @@ class SpeedingTicketSimulator:
         except Exception as e:
             logger.error(f"Error in simulation: {e}")
             self.stop()
+    
+    def _setup_callbacks(self):
+        """Setup callbacks for smooth car-by-car processing"""
+        # Initialize worker status file
+        worker_status_file = Path("data_files/worker_status.json")
+        worker_status_file.parent.mkdir(parents=True, exist_ok=True)
+        initial_status = {str(i): None for i in range(5)}
+        with open(worker_status_file, 'w') as f:
+            json.dump(initial_status, f)
+        
+        def on_car_checking(vehicle):
+            """Called when a car starts being checked"""
+            logger.info(f"[CHECK] Checking car: {vehicle.license_plate} (Speed: {vehicle.speed:.1f} km/h)")
+        
+        def on_car_checked(result):
+            """Called when a car verdict is ready"""
+            status = "[SAFE]" if not result.is_violation else "[VIOLATION]"
+            if result.is_violation:
+                logger.warning(
+                    f"{status}: {result.vehicle.license_plate} - "
+                    f"Owner: {result.vehicle.owner_name} - "
+                    f"Speed: {result.vehicle.speed:.1f} km/h - "
+                    f"Fine: ${result.ticket.fine_amount:.2f}"
+                )
+            else:
+                logger.info(f"{status}: {result.vehicle.license_plate}")
+        
+        def on_batch_complete(vehicles, violations):
+            """Called when a batch is completely processed"""
+            logger.info(
+                f"[COMPLETE] Batch done: {len(vehicles)} cars, "
+                f"{len(violations)} violations"
+            )
+        
+        def on_worker_status(worker_id, vehicle, status):
+            """Called when worker status changes"""
+            try:
+                worker_status_file = Path("data_files/worker_status.json")
+                
+                # Read current status
+                if worker_status_file.exists():
+                    with open(worker_status_file, 'r') as f:
+                        statuses = json.load(f)
+                else:
+                    statuses = {}
+                
+                # Update this worker
+                if status in ['VIOLATION', 'SAFE']:
+                    # Worker finished checking
+                    statuses[str(worker_id)] = None
+                else:
+                    # Worker is checking
+                    statuses[str(worker_id)] = {
+                        'vehicle': {
+                            'license_plate': vehicle.license_plate,
+                            'speed': vehicle.speed,
+                            'owner_name': vehicle.owner_name,
+                            'vehicle_type': vehicle.vehicle_type
+                        },
+                        'status': status
+                    }
+                
+                # Write back
+                with open(worker_status_file, 'w') as f:
+                    json.dump(statuses, f)
+            except Exception as e:
+                logger.debug(f"Error updating worker status: {e}")
+        
+        self.car_processor.on_car_checking = on_car_checking
+        self.car_processor.on_car_checked = on_car_checked
+        self.car_processor.on_batch_complete = on_batch_complete
+        self.car_processor.on_worker_status = on_worker_status
     
     def _control_loop(self):
         """Handle user input"""
@@ -114,6 +196,7 @@ class SpeedingTicketSimulator:
         self.is_running = False
         
         # Stop components
+        self.car_processor.stop()
         self.sensor.stop()
         self.analyzer.stop()
         
@@ -126,6 +209,7 @@ class SpeedingTicketSimulator:
     def _display_final_stats(self):
         """Display final statistics"""
         analyzer_stats = self.analyzer.get_stats()
+        processor_stats = self.car_processor.get_stats()
         stats = analyzer_stats['current_stats']
         
         print("\n" + "=" * 70)
@@ -133,6 +217,10 @@ class SpeedingTicketSimulator:
         print("=" * 70)
         print(f"Total Vehicles Processed: {analyzer_stats['total_processed']}")
         print(f"Speeding Violations: {analyzer_stats['speeding_processed']}")
+        print(f"Queue Processor Stats:")
+        print(f"  - Cars checked: {processor_stats['total_processed']}")
+        print(f"  - Violations: {processor_stats['total_violations']}")
+        print(f"  - Violation Rate: {processor_stats['violation_rate']:.1f}%")
         print(f"Total Fines Issued: ${stats['total_fines']}")
         print(f"Average Speed: {stats['avg_speed']} km/h")
         print(f"Maximum Speed Recorded: {stats['max_speed']} km/h")

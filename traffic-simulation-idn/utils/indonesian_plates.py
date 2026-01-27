@@ -91,8 +91,15 @@ class IndonesianPlateManager:
         """
         # Get random region code from comprehensive data
         flat_codes = IndonesianPlateManager._get_all_region_codes_flat()
-        region_code = random.choice(list(flat_codes.keys()))
-        region_location = flat_codes[region_code]
+        
+        # Filter to only use 1-2 character region codes (proper format)
+        valid_codes = {k: v for k, v in flat_codes.items() if len(k) <= 2}
+        
+        if not valid_codes:
+            valid_codes = flat_codes  # Fallback if no valid codes
+        
+        region_code = random.choice(list(valid_codes.keys()))
+        region_location = valid_codes[region_code]
         
         # Generate 4-digit number
         number = random.randint(1000, 9999)
