@@ -1,4 +1,4 @@
-# Indonesian Traffic Violation Simulation System
+# Speeding Ticket Monitor System
 
 A clean, real-time traffic violation simulation system for Indonesian traffic law compliance. Generates realistic traffic violations, calculates fines, and provides a live dashboard GUI.
 
