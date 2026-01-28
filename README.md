@@ -20,7 +20,7 @@ design, GUI engineering, data modeling, and simulation principles.
 
 ------------------------------------------------------------------------
 
-## 📸 System Preview
+## ---System Preview---
 
 <img width="1409" height="865" alt="image" src="https://github.com/user-attachments/assets/fc11d6f7-b7e1-4705-ba11-95300c9f7635" />
 
@@ -29,7 +29,7 @@ design, GUI engineering, data modeling, and simulation principles.
 
 ------------------------------------------------------------------------
 
-## 🧭 System Architecture
+## ---System Architecture---
 
 
 
