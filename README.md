@@ -1,5 +1,9 @@
-![Python
-Logo](https://www.python.org/static/community_logos/python-logo.png)
+<a href="https://www.python.org" target="_blank">
+  <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" 
+       alt="Python Logo" 
+       height="60">
+</a>
+
 
 #  Indonesian Traffic Violation Simulation System
 
