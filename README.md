@@ -1,8 +1,12 @@
 # 🚦 Indonesian Traffic Violation Simulation System
 
-A professional-grade simulation platform modeling Indonesian traffic
-behavior, violations, sensors, enforcement logic, and regional license
-plate intelligence.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Python](https://img.shields.io/badge/python-3.8%252B-blue)
+![Status](https://img.shields.io/badge/status-complete-brightgreen)
+![Docs](https://img.shields.io/badge/documentation-comprehensive-blueviolet)
+
+A project that is intended for the final exam.
 
 This project demonstrates applied logic reasoning, system architecture
 design, GUI engineering, data modeling, and simulation principles.
