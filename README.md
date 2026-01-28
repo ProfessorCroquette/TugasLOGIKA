@@ -40,7 +40,7 @@ Dashboard - JSON Databases
 
 ------------------------------------------------------------------------
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### GUI Mode
 
@@ -56,7 +56,7 @@ python main.py
 
 ------------------------------------------------------------------------
 
-## 📚 Documentation Index (Quick Access)
+## Documentation Index (Quick Access)
 
 All documentation is located inside the `/docs` directory.
 
@@ -72,7 +72,7 @@ All documentation is located inside the `/docs` directory.
 
 ------------------------------------------------------------------------
 
-## 🧠 Academic Framing
+## WHAT IS THIS PROJECT FOR?
 
 This project demonstrates:
 
@@ -90,7 +90,7 @@ Logic Programming - Simulation Engineering - Human-Computer Interaction
 
 ------------------------------------------------------------------------
 
-## 🛠 Technology Stack
+## Technology Stack
 
 -   Python 3.10+
 -   PyQt5 / PySide6 (GUI)
@@ -100,7 +100,7 @@ Logic Programming - Simulation Engineering - Human-Computer Interaction
 
 ------------------------------------------------------------------------
 
-## 📦 Installation
+## Installation
 
 ``` bash
 pip install -r requirements.txt
@@ -108,12 +108,13 @@ pip install -r requirements.txt
 
 ------------------------------------------------------------------------
 
-## 🧪 Validation
+## Validation
 
 -   GUI stress tested with continuous vehicle generation
--   Regional plate parsing verified against dataset
+-   Regional plate parsing verified against the dataset
 -   Statistical counters validated
 -   Error handling tested
+-   Log handling
 
 ------------------------------------------------------------------------
 
