@@ -1,0 +1,51 @@
+# =========================
+# Python cache / artifacts
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+.env/
+.envrc/
+
+# =========================
+# IDE / Editor junk
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+log/
+
+# =========================
+# Runtime / Generated data
+# (Your merge conflict villains)
+# =========================
+traffic-simulation-idn/data_files/*.json
+traffic-simulation-idn/data_files/*.csv
+
+# If you ever generate temp backups
+traffic-simulation-idn/data_files/*.bak
+traffic-simulation-idn/data_files/*.tmp
+
+# =========================
+# OS noise
+# =========================
+*.DS_Store
+desktop.ini

@@ -455,7 +455,7 @@ def generate_vehicle_with_plate():
 import json
 
 def save_generated_plates(generator):
-    """Save all generated plates to database"""
+    Save all generated plates to database
     plates_data = {
         'count': generator.get_generated_plates_count(),
         'generated_at': datetime.now().isoformat()
