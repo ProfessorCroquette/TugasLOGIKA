@@ -1,453 +1,16 @@
 [
   {
-    "vehicle_id": "KIA0001",
-    "license_plate": "FZ 7827 IR",
-    "vehicle_type": "Kia Niro Plug-in Hybrid 2022",
-    "speed": 58.8,
-    "timestamp": "2026-01-27T17:31:57.627555",
+    "vehicle_id": "LEX0001",
+    "license_plate": "PV 5182 CR",
+    "vehicle_type": "Lexus NX 2018-19",
+    "speed": 68.1,
+    "timestamp": "2026-01-27T23:35:16.094467",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1917276801692981",
-      "name": "Putri Sumarlin",
-      "region": "Cianjur, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HYU0002",
-    "license_plate": "ZY 2479 ZN",
-    "vehicle_type": "Hyundai Kona Electric 2018-21",
-    "speed": 54.0,
-    "timestamp": "2026-01-27T17:31:57.627629",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "0211975211952408",
-      "name": "Bambang Hartono",
-      "region": "Banjar, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "LEX0003",
-    "license_plate": "MW 7570 IT",
-    "vehicle_type": "Lexus ES 2017-18",
-    "speed": 80.4,
-    "timestamp": "2026-01-27T17:31:57.627688",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 30.0,
-    "owner": {
-      "id": "2540016206923152",
-      "name": "Prayogo Indrawan",
-      "region": "Sumenep, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HON0004",
-    "license_plate": "NY 7430 YG",
-    "vehicle_type": "Honda Insight 2019-22",
-    "speed": 68.8,
-    "timestamp": "2026-01-27T17:31:57.627738",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2347792301998074",
-      "name": "Indra Sugiono",
-      "region": "Lumajang, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "KIA0005",
-    "license_plate": "RQ 4407 TM",
-    "vehicle_type": "Kia Optima Hybrid 2019",
-    "speed": 67.1,
-    "timestamp": "2026-01-27T17:31:57.627789",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2434711012874264",
-      "name": "Rina Nugroho",
-      "region": "Purbalingga, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0006",
-    "license_plate": "SW 3164 EK",
-    "vehicle_type": "Toyota C-HR Hybrid 2017-20",
-    "speed": 68.2,
-    "timestamp": "2026-01-27T17:31:57.627837",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "3133806407644079",
-      "name": "Rina Gunawan",
-      "region": "Jombang, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "GMC0007",
-    "license_plate": "SS 4055 OB",
-    "vehicle_type": "GMC Yukon 2019-20",
-    "speed": 53.6,
-    "timestamp": "2026-01-27T17:31:57.627884",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "3105642002931207",
-      "name": "Yudi Hartono",
-      "region": "Mojokerto, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0008",
-    "license_plate": "NL 3902 IR",
-    "vehicle_type": "Toyota RAV4 2019-21",
-    "speed": 74.7,
-    "timestamp": "2026-01-27T17:31:57.627931",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "0617136507726071",
-      "name": "Dewi Hartono",
-      "region": "Batu, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "VOL0009",
-    "license_plate": "GJ 8320 IQ",
-    "vehicle_type": "Volkswagen Caddy Maxi 2019",
-    "speed": 73.2,
-    "timestamp": "2026-01-27T17:31:57.627978",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1202274208508699",
-      "name": "Dewi Santoso",
-      "region": "Brebes, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "KIA0010",
-    "license_plate": "GA 1265 UK",
-    "vehicle_type": "Kia K5 Hybrid 2020-22",
-    "speed": 63.2,
-    "timestamp": "2026-01-27T17:31:57.628024",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1325404304920304",
-      "name": "Nisak Sugiono",
-      "region": "Pekalongan, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HYU0011",
-    "license_plate": "KW 6171 FK",
-    "vehicle_type": "Hyundai Santa Fe 2019-20",
-    "speed": 70.0,
-    "timestamp": "2026-01-27T17:31:57.628071",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "3051241504985070",
-      "name": "Ayu Pratama",
-      "region": "Rembang, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "KIA0001",
-    "license_plate": "TB 1024 XI",
-    "vehicle_type": "Kia K5 Hybrid 2020-22",
-    "speed": 62.1,
-    "timestamp": "2026-01-27T17:32:00.628851",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2236231106698838",
-      "name": "Ahmad Wibowo",
-      "region": "Purwakarta, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "SUB0002",
-    "license_plate": "BA 8723 FV",
-    "vehicle_type": "Subaru Forester 2019-21",
-    "speed": 61.6,
-    "timestamp": "2026-01-27T17:32:00.628924",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2082281203840396",
-      "name": "Ahmad Prabowo",
-      "region": "Sumatera Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "LEX0003",
-    "license_plate": "BK 9714 ZV",
-    "vehicle_type": "Lexus NS 2022-25",
-    "speed": 78.3,
-    "timestamp": "2026-01-27T17:32:00.628976",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 30.0,
-    "owner": {
-      "id": "1935515701961262",
-      "name": "Sari Hermawan",
-      "region": "Sumatera Utara"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0004",
-    "license_plate": "HV 1806 CM",
-    "vehicle_type": "Toyota Avalon 2019-21",
-    "speed": 72.2,
-    "timestamp": "2026-01-27T17:32:00.629027",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2295025705995582",
-      "name": "Fitri Nugroho",
-      "region": "Kab. Semarang, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "MAN0005",
-    "license_plate": "EX 2717 OV",
-    "vehicle_type": "MAN eTGE 2020-24",
-    "speed": 67.1,
-    "timestamp": "2026-01-27T17:32:00.629075",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "3086096211594718",
-      "name": "Ahmad Nugroho",
-      "region": "Majalengka, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0006",
-    "license_plate": "TB 9355 US",
-    "vehicle_type": "Toyota C-HR 2017-20",
-    "speed": 65.9,
-    "timestamp": "2026-01-27T17:32:00.629122",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1621466104882844",
-      "name": "Sari Rahman",
-      "region": "Purwakarta, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "KAW0007",
-    "license_plate": "MA 3209 HZ",
-    "vehicle_type": "Kawasaki Adventurer",
-    "speed": 71.6,
-    "timestamp": "2026-01-27T17:32:00.629176",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2897062309973769",
-      "name": "Sari Cahyono",
-      "region": "Pamekasan, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0008",
-    "license_plate": "WW 9881 SR",
-    "vehicle_type": "Toyota Mirai 2021",
-    "speed": 73.9,
-    "timestamp": "2026-01-27T17:32:00.629224",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "0436512607645041",
-      "name": "Nisak Gunawan",
-      "region": "Sidoarjo, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HON0009",
-    "license_plate": "GB 7590 WW",
-    "vehicle_type": "Honda Fit 2018-20",
-    "speed": 75.1,
-    "timestamp": "2026-01-27T17:32:00.629272",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 80.64516129032258,
-    "owner": {
-      "id": "2050814702814055",
-      "name": "Budi Hermansyah",
-      "region": "Kab. Pekalongan, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "NIS0010",
-    "license_plate": "EZ 5779 EQ",
-    "vehicle_type": "Nissan Leaf 2018-23",
-    "speed": 73.5,
-    "timestamp": "2026-01-27T17:32:00.629318",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2468354911922890",
-      "name": "Nurhayati Santoso",
-      "region": "Kuningan, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0011",
-    "license_plate": "RZ 5998 YE",
-    "vehicle_type": "Toyota Yaris (Non-US only) 2020, 2023",
-    "speed": 77.4,
-    "timestamp": "2026-01-27T17:32:00.629365",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 36.0,
-    "owner": {
-      "id": "0842471804734233",
-      "name": "Dewi Pratama",
-      "region": "Purbalingga, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "VOL0001",
-    "license_plate": "TU 3565 AE",
-    "vehicle_type": "Volkswagen Passat NMS 2017-22",
-    "speed": 78.8,
-    "timestamp": "2026-01-27T17:32:03.629996",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 36.0,
-    "owner": {
-      "id": "1115426607620973",
-      "name": "Budi Gunawan",
-      "region": "Subang, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "SUZ0002",
-    "license_plate": "PY 6330 PY",
-    "vehicle_type": "Suzuki GSX-R750",
-    "speed": 70.9,
-    "timestamp": "2026-01-27T17:32:03.630063",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2085352307808696",
-      "name": "Bambang Sumargo",
+      "id": "0694445807995757",
+      "name": "Putri Rahman",
       "region": "Banyuwangi, Jawa Timur"
     },
     "registration": {
@@ -456,56 +19,18 @@
     }
   },
   {
-    "vehicle_id": "TOY0003",
-    "license_plate": "EC 9082 EE",
-    "vehicle_type": "Toyota Corolla Hybrid (South America only) 2020-23",
-    "speed": 62.6,
-    "timestamp": "2026-01-27T17:32:03.630118",
+    "vehicle_id": "\u0160KO0002",
+    "license_plate": "H 7967 TC",
+    "vehicle_type": "\u0160koda Kamiq 2021-23",
+    "speed": 64.7,
+    "timestamp": "2026-01-27T23:35:16.094766",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0161372809743676",
-      "name": "Hendra Rahman",
-      "region": "Cirebon, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HYU0004",
-    "license_plate": "DX 7595 TG",
-    "vehicle_type": "Hyundai Azera Hybrid 2019",
-    "speed": 63.6,
-    "timestamp": "2026-01-27T17:32:03.630169",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1422981610896056",
-      "name": "Haryo Indrawan",
-      "region": "Kab. Bandung Barat, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "DUC0005",
-    "license_plate": "HU 7885 CO",
-    "vehicle_type": "Ducati Ninja H2",
-    "speed": 60.1,
-    "timestamp": "2026-01-27T17:32:03.630222",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "3255751106658114",
-      "name": "Kusuma Sumargo",
-      "region": "Kendal, Jawa Tengah"
+      "id": "1236806603696992",
+      "name": "Fitri Sumargo",
+      "region": "Jawa Tengah"
     },
     "registration": {
       "stnk_status": "Active",
@@ -513,56 +38,132 @@
     }
   },
   {
-    "vehicle_id": "HYU0006",
-    "license_plate": "MS 6056 IN",
-    "vehicle_type": "Hyundai Staria 2023",
-    "speed": 59.1,
-    "timestamp": "2026-01-27T17:32:03.630272",
+    "vehicle_id": "KAW0003",
+    "license_plate": "AI 8327 YQ",
+    "vehicle_type": "Kawasaki SpeedMaster",
+    "speed": 62.9,
+    "timestamp": "2026-01-27T23:35:16.094838",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0613721108654197",
-      "name": "Suryanto Gunawan",
-      "region": "Sampang, Jawa Timur"
+      "id": "1131710401504532",
+      "name": "Kusuma Pratama",
+      "region": "Kab. Serang, Banten"
     },
     "registration": {
       "stnk_status": "Non-Active",
-      "sim_status": "Expired"
+      "sim_status": "Active"
     }
   },
   {
-    "vehicle_id": "MAZ0007",
-    "license_plate": "WW 4702 CM",
-    "vehicle_type": "Mazda CX-5 2017-21",
-    "speed": 72.2,
-    "timestamp": "2026-01-27T17:32:03.630321",
+    "vehicle_id": "NIS0004",
+    "license_plate": "E 8909 FX",
+    "vehicle_type": "Nissan X-Trail 2017",
+    "speed": 61.9,
+    "timestamp": "2026-01-27T23:35:16.094894",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1486381501990648",
-      "name": "Putri Wibowo",
-      "region": "Sidoarjo, Jawa Timur"
+      "id": "1723261204599270",
+      "name": "Lestari Sumargo",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0005",
+    "license_plate": "FO 1701 TX",
+    "vehicle_type": "Volkswagen Golf R 2015-19",
+    "speed": 74.7,
+    "timestamp": "2026-01-27T23:35:16.094945",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1170370706540049",
+      "name": "Adi Indrawan",
+      "region": "Kab. Bogor, Jawa Barat"
     },
     "registration": {
       "stnk_status": "Active",
       "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "\u0160KO0006",
+    "license_plate": "PR 3400 HC",
+    "vehicle_type": "\u0160koda Fabia 2022-23",
+    "speed": 77.2,
+    "timestamp": "2026-01-27T23:35:16.094996",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "3222840904963827",
+      "name": "Yudi Wijaya",
+      "region": "Jember, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0007",
+    "license_plate": "SS 8453 JO",
+    "vehicle_type": "Genesis GV70 Electrified (with HDA II) 2023-24",
+    "speed": 69.2,
+    "timestamp": "2026-01-27T23:35:16.095046",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0726591512741495",
+      "name": "Hendra Wijaya",
+      "region": "Mojokerto, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
     }
   },
   {
     "vehicle_id": "LEX0008",
-    "license_plate": "HB 9325 AS",
-    "vehicle_type": "Lexus ES Hybrid 2017-18",
-    "speed": 60.4,
-    "timestamp": "2026-01-27T17:32:03.630369",
+    "license_plate": "SY 9585 PP",
+    "vehicle_type": "Lexus RX Hybrid 2016",
+    "speed": 55.9,
+    "timestamp": "2026-01-27T23:35:16.095093",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1001054803675342",
-      "name": "Adi Hartono",
-      "region": "Salatiga, Jawa Tengah"
+      "id": "2269151005796275",
+      "name": "Adi Setiawan",
+      "region": "Jombang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0009",
+    "license_plate": "TL 9249 KY",
+    "vehicle_type": "Volkswagen e-Crafter 2018-24",
+    "speed": 66.8,
+    "timestamp": "2026-01-27T23:35:16.095140",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2786131207659740",
+      "name": "Suryanto Setiawan",
+      "region": "Karawang, Jawa Barat"
     },
     "registration": {
       "stnk_status": "Active",
@@ -570,17 +171,340 @@
     }
   },
   {
-    "vehicle_id": "TOY0009",
-    "license_plate": "HQ 6944 ZA",
-    "vehicle_type": "Toyota Camry 2018-20",
-    "speed": 69.4,
-    "timestamp": "2026-01-27T17:32:03.630416",
+    "vehicle_id": "GEN0010",
+    "license_plate": "AY 9060 VZ",
+    "vehicle_type": "Genesis GV70 Electrified (with HDA II) 2023-24",
+    "speed": 56.6,
+    "timestamp": "2026-01-27T23:35:16.095188",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0266141311558133",
-      "name": "Sari Santoso",
+      "id": "3156892301613504",
+      "name": "Maya Cahyono",
+      "region": "Kab. Tangerang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "SUB0011",
+    "license_plate": "DA 9348 DQ",
+    "vehicle_type": "Subaru Crosstrek 2020-23",
+    "speed": 81.4,
+    "timestamp": "2026-01-27T23:35:16.095234",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "2912875810588152",
+      "name": "Bambang Indrawan",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0012",
+    "license_plate": "RT 2627 UP",
+    "vehicle_type": "Honda XR650L",
+    "speed": 76.5,
+    "timestamp": "2026-01-27T23:35:16.095283",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0974050303894169",
+      "name": "Prayogo Cahyono",
+      "region": "Cilacap, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0001",
+    "license_plate": "DV 6563 UR",
+    "vehicle_type": "Volkswagen Polo 2018-23",
+    "speed": 58.1,
+    "timestamp": "2026-01-27T23:35:19.096472",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1367556810966127",
+      "name": "Wahyu Prasetyo",
+      "region": "Kab. Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "SEA0002",
+    "license_plate": "PS 6535 JJ",
+    "vehicle_type": "SEAT Ateca 2016-23",
+    "speed": 82.2,
+    "timestamp": "2026-01-27T23:35:19.096537",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2073301005731263",
+      "name": "Hendra Santoso",
+      "region": "Jember, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0003",
+    "license_plate": "ED 9308 XZ",
+    "vehicle_type": "Volkswagen Crafter 2017-24",
+    "speed": 71.7,
+    "timestamp": "2026-01-27T23:35:19.096590",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2278125801924022",
+      "name": "Indra Sumargo",
+      "region": "Cirebon, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0004",
+    "license_plate": "TM 2567 DX",
+    "vehicle_type": "Volkswagen Atlas Cross Sport 2020-22",
+    "speed": 94.8,
+    "timestamp": "2026-01-27T23:35:19.096640",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 50.0,
+    "owner": {
+      "id": "2103641301802054",
+      "name": "Lestari Sumarlin",
+      "region": "Karawang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0005",
+    "license_plate": "ZJ 2402 RR",
+    "vehicle_type": "Volkswagen Golf SportsVan 2015-20",
+    "speed": 76.4,
+    "timestamp": "2026-01-27T23:35:19.096689",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0286010206634012",
+      "name": "Hendra Hermansyah",
+      "region": "Tasikmalaya, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "FOR0006",
+    "license_plate": "ZM 9350 XF",
+    "vehicle_type": "Ford Kuga 2020-23",
+    "speed": 77.3,
+    "timestamp": "2026-01-27T23:35:19.096739",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0552605307962184",
+      "name": "Diana Hermawan",
+      "region": "Kab. Tasikmalaya, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0007",
+    "license_plate": "TW 6523 FZ",
+    "vehicle_type": "Honda Civic Hatchback Hybrid (Europe only) 2023",
+    "speed": 67.6,
+    "timestamp": "2026-01-27T23:35:19.096789",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0649085303616223",
+      "name": "Ahmad Sumargo",
+      "region": "Subang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0008",
+    "license_plate": "FC 1760 IY",
+    "vehicle_type": "Toyota Sienna 2021-23",
+    "speed": 71.4,
+    "timestamp": "2026-01-27T23:35:19.096836",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3378781906555832",
+      "name": "Adi Cahyono",
+      "region": "Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HYU0009",
+    "license_plate": "ER 8054 FU",
+    "vehicle_type": "Hyundai Tucson 2021",
+    "speed": 70.4,
+    "timestamp": "2026-01-27T23:35:19.096884",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3184510605545464",
+      "name": "Siti Prasetyo",
+      "region": "Indramayu, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0010",
+    "license_plate": "HP 8703 LT",
+    "vehicle_type": "Honda CR-V Hybrid 2017-22",
+    "speed": 68.1,
+    "timestamp": "2026-01-27T23:35:19.096931",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0732831302813452",
+      "name": "Maya Wibowo",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "RAM0011",
+    "license_plate": "EG 4751 DE",
+    "vehicle_type": "Ram 2500 2020-24",
+    "speed": 70.3,
+    "timestamp": "2026-01-27T23:35:19.096979",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0307025412794468",
+      "name": "Kusuma Hartono",
+      "region": "Cirebon, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0012",
+    "license_plate": "TE 7572 IY",
+    "vehicle_type": "Honda Civic Hatchback Hybrid (Europe only) 2023",
+    "speed": 79.5,
+    "timestamp": "2026-01-27T23:35:19.097025",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "1626335707910026",
+      "name": "Siti Pratama",
+      "region": "Karawang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0013",
+    "license_plate": "GN 3037 VW",
+    "vehicle_type": "Ford Maverick 2022",
+    "speed": 66.9,
+    "timestamp": "2026-01-27T23:35:19.097073",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1438964701996342",
+      "name": "Ahmad Gunawan",
+      "region": "Tegal, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0014",
+    "license_plate": "DI 8498 AV",
+    "vehicle_type": "Volkswagen Atlas Cross Sport 2020-22",
+    "speed": 67.9,
+    "timestamp": "2026-01-27T23:35:19.097121",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1444244705979372",
+      "name": "Retno Setiawan",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0015",
+    "license_plate": "HW 4441 LR",
+    "vehicle_type": "Subaru Crosstrek Hybrid 2020",
+    "speed": 77.1,
+    "timestamp": "2026-01-27T23:35:19.097170",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "3466284403944976",
+      "name": "Siti Gunawan",
       "region": "Semarang, Jawa Tengah"
     },
     "registration": {
@@ -589,18 +513,37 @@
     }
   },
   {
-    "vehicle_id": "VOL0010",
-    "license_plate": "PH 9622 YM",
-    "vehicle_type": "Volkswagen Atlas 2018-23",
-    "speed": 79.9,
-    "timestamp": "2026-01-27T17:32:03.630464",
+    "vehicle_id": "KIA0001",
+    "license_plate": "GS 7596 PS",
+    "vehicle_type": "Kia Niro Hybrid 2018",
+    "speed": 64.4,
+    "timestamp": "2026-01-27T23:35:22.098061",
     "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 36.0,
+    "ticket_issued": false,
+    "fine_amount": 0.0,
     "owner": {
-      "id": "2109120503875717",
-      "name": "Yudi Pratama",
-      "region": "Situbondo, Jawa Timur"
+      "id": "3173050205790565",
+      "name": "Wawan Prabowo",
+      "region": "Pekalongan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0002",
+    "license_plate": "WX 1604 GE",
+    "vehicle_type": "Volkswagen Passat GTE 2015-22",
+    "speed": 51.7,
+    "timestamp": "2026-01-27T23:35:22.098128",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0106051211684135",
+      "name": "Maya Sugiono",
+      "region": "Sidoarjo, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Non-Active",
@@ -608,37 +551,37 @@
     }
   },
   {
-    "vehicle_id": "SUB0011",
-    "license_plate": "GY 7038 CW",
-    "vehicle_type": "Subaru Outback 2015-17",
-    "speed": 80.1,
-    "timestamp": "2026-01-27T17:32:03.630511",
+    "vehicle_id": "HYU0003",
+    "license_plate": "MW 7473 RX",
+    "vehicle_type": "Hyundai Ioniq Electric 2019",
+    "speed": 66.8,
+    "timestamp": "2026-01-27T23:35:22.098181",
     "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 30.0,
+    "ticket_issued": false,
+    "fine_amount": 0.0,
     "owner": {
-      "id": "1241246504987587",
-      "name": "Hendra Kusuma",
-      "region": "Tegal, Jawa Tengah"
+      "id": "1754654909612387",
+      "name": "Maya Pratama",
+      "region": "Sumenep, Jawa Timur"
     },
     "registration": {
-      "stnk_status": "Active",
+      "stnk_status": "Non-Active",
       "sim_status": "Active"
     }
   },
   {
-    "vehicle_id": "KIA0012",
-    "license_plate": "SQ 8938 HT",
-    "vehicle_type": "Kia Forte 2022-23",
-    "speed": 75.9,
-    "timestamp": "2026-01-27T17:32:03.630557",
+    "vehicle_id": "VOL0004",
+    "license_plate": "PH 5971 LX",
+    "vehicle_type": "Volkswagen Arteon R 2020-23",
+    "speed": 75.6,
+    "timestamp": "2026-01-27T23:35:22.098232",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 75.0,
     "owner": {
-      "id": "3261814203859111",
-      "name": "Indra Wibowo",
-      "region": "Kab. Mojokerto, Jawa Timur"
+      "id": "2431201903803021",
+      "name": "Yudi Hermawan",
+      "region": "Situbondo, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Active",
@@ -646,18 +589,18 @@
     }
   },
   {
-    "vehicle_id": "TOY0001",
-    "license_plate": "HU 3911 JF",
-    "vehicle_type": "Toyota Prius Prime 2017-20",
-    "speed": 62.5,
-    "timestamp": "2026-01-27T17:32:06.631192",
+    "vehicle_id": "HON0005",
+    "license_plate": "WJ 6403 XM",
+    "vehicle_type": "Honda HR-V 2023-25",
+    "speed": 71.9,
+    "timestamp": "2026-01-27T23:35:22.098282",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "2358245808987717",
-      "name": "Prayogo Wijaya",
-      "region": "Kendal, Jawa Tengah"
+      "id": "1177064504511812",
+      "name": "Maya Indrawan",
+      "region": "Gresik, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Active",
@@ -665,18 +608,18 @@
     }
   },
   {
-    "vehicle_id": "KIA0002",
-    "license_plate": "BH 3746 SK",
-    "vehicle_type": "Kia Niro Hybrid 2021",
-    "speed": 67.3,
-    "timestamp": "2026-01-27T17:32:06.631255",
+    "vehicle_id": "FOR0006",
+    "license_plate": "NW 7173 VJ",
+    "vehicle_type": "Ford Escape Plug-in Hybrid 2023-24",
+    "speed": 72.9,
+    "timestamp": "2026-01-27T23:35:22.098330",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "2758434805938927",
-      "name": "Rina Bambang",
-      "region": "Jambi"
+      "id": "2656172001647433",
+      "name": "Retno Indrawan",
+      "region": "Kab. Pasuruan, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Active",
@@ -684,18 +627,37 @@
     }
   },
   {
-    "vehicle_id": "KAW0003",
-    "license_plate": "EL 7604 FD",
-    "vehicle_type": "Kawasaki Trident",
-    "speed": 76.6,
-    "timestamp": "2026-01-27T17:32:06.631309",
+    "vehicle_id": "FOR0007",
+    "license_plate": "SA 2122 FP",
+    "vehicle_type": "Ford Maverick 2023-24",
+    "speed": 69.8,
+    "timestamp": "2026-01-27T23:35:22.098377",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3449416509717327",
+      "name": "Maya Indrawan",
+      "region": "Bojonegoro, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HAR0008",
+    "license_plate": "PO 4774 EL",
+    "vehicle_type": "Harley-Davidson Road Glide Special",
+    "speed": 83.7,
+    "timestamp": "2026-01-27T23:35:22.098432",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 30.0,
     "owner": {
-      "id": "3070530703745379",
-      "name": "Yudi Prasetyo",
-      "region": "Kab. Cirebon, Jawa Barat"
+      "id": "1363851802637568",
+      "name": "Totok Pratama",
+      "region": "Jember, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Active",
@@ -703,18 +665,37 @@
     }
   },
   {
-    "vehicle_id": "CHR0004",
-    "license_plate": "HI 9983 TB",
-    "vehicle_type": "Chrysler Pacifica Hybrid 2019-25",
-    "speed": 71.6,
-    "timestamp": "2026-01-27T17:32:06.631359",
+    "vehicle_id": "KIA0009",
+    "license_plate": "AV 4549 QV",
+    "vehicle_type": "Kia Niro EV (without HDA II) 2023-25",
+    "speed": 67.8,
+    "timestamp": "2026-01-27T23:35:22.098486",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "2405041107649197",
-      "name": "Budi Hermawan",
-      "region": "Kab. Semarang, Jawa Tengah"
+      "id": "1114560611801705",
+      "name": "Diana Indrawan",
+      "region": "Kab. Tangerang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "CHE0010",
+    "license_plate": "Z 7494 NV",
+    "vehicle_type": "Chevrolet Bolt EUV 2022-23",
+    "speed": 59.7,
+    "timestamp": "2026-01-27T23:35:22.098536",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1841571403549110",
+      "name": "Prayogo Santoso",
+      "region": "Jawa Barat"
     },
     "registration": {
       "stnk_status": "Active",
@@ -722,18 +703,170 @@
     }
   },
   {
-    "vehicle_id": "RIV0005",
-    "license_plate": "DO 2165 LO",
-    "vehicle_type": "Rivian R1S 2022-24",
-    "speed": 68.2,
-    "timestamp": "2026-01-27T17:32:06.631407",
+    "vehicle_id": "HON0011",
+    "license_plate": "ZW 1253 YM",
+    "vehicle_type": "Honda Civic Hybrid 2025-26",
+    "speed": 67.8,
+    "timestamp": "2026-01-27T23:35:22.098584",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0496446202981241",
-      "name": "Budi Hermansyah",
-      "region": "Bandung, Jawa Barat"
+      "id": "2011465504582677",
+      "name": "Rina Hermansyah",
+      "region": "Pangandaran, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0012",
+    "license_plate": "SH 4465 CX",
+    "vehicle_type": "Toyota RAV4 Hybrid 2022",
+    "speed": 73.4,
+    "timestamp": "2026-01-27T23:35:22.098631",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2384596604578000",
+      "name": "Diana Wijaya",
+      "region": "Tuban, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0013",
+    "license_plate": "KC 2814 RM",
+    "vehicle_type": "Honda Pilot 2016-22",
+    "speed": 65.9,
+    "timestamp": "2026-01-27T23:35:22.098679",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3093515106835333",
+      "name": "Maya Pratama",
+      "region": "Jepara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0014",
+    "license_plate": "PX 1843 IN",
+    "vehicle_type": "Toyota Corolla Hybrid 2020-22",
+    "speed": 73.8,
+    "timestamp": "2026-01-27T23:35:22.098726",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2024156404925639",
+      "name": "Fitri Kusuma",
+      "region": "Banyuwangi, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "MAZ0015",
+    "license_plate": "MJ 9651 MK",
+    "vehicle_type": "Mazda CX-9 2021-23",
+    "speed": 66.3,
+    "timestamp": "2026-01-27T23:35:22.098773",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1960542511539777",
+      "name": "Adi Gunawan",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0001",
+    "license_plate": "DW 6042 BL",
+    "vehicle_type": "Ford Escape Plug-in Hybrid 2020-22",
+    "speed": 67.7,
+    "timestamp": "2026-01-27T23:35:25.099629",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0929034907722106",
+      "name": "Suryanto Hartono",
+      "region": "Sulawesi Selatan, (Bone, Soppeng, Wajo)"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0002",
+    "license_plate": "KX 7593 FN",
+    "vehicle_type": "Genesis G70 2019-21",
+    "speed": 55.4,
+    "timestamp": "2026-01-27T23:35:25.099692",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1072140911696258",
+      "name": "Fitri Santoso",
+      "region": "Blora, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0003",
+    "license_plate": "NA 7548 DW",
+    "vehicle_type": "Volkswagen Jetta 2019-23",
+    "speed": 66.3,
+    "timestamp": "2026-01-27T23:35:25.099744",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1204930802654993",
+      "name": "Prayogo Setiawan",
+      "region": "Malang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0004",
+    "license_plate": "KE 7932 CP",
+    "vehicle_type": "Honda Fit 2018-20",
+    "speed": 71.8,
+    "timestamp": "2026-01-27T23:35:25.099796",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2649765406911689",
+      "name": "Rendi Pratama",
+      "region": "Blora, Jawa Tengah"
     },
     "registration": {
       "stnk_status": "Non-Active",
@@ -741,17 +874,112 @@
     }
   },
   {
-    "vehicle_id": "KIA0006",
-    "license_plate": "SM 7190 EI",
-    "vehicle_type": "Kia Carnival 2022-24",
-    "speed": 69.3,
-    "timestamp": "2026-01-27T17:32:06.631456",
+    "vehicle_id": "VOL0005",
+    "license_plate": "WL 3827 NW",
+    "vehicle_type": "Volkswagen Passat NMS 2017-22",
+    "speed": 67.7,
+    "timestamp": "2026-01-27T23:35:25.099846",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "2041735811976355",
-      "name": "Wahyu Sumargo",
+      "id": "2541042306831298",
+      "name": "Dewi Prabowo",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0006",
+    "license_plate": "TA 9406 JP",
+    "vehicle_type": "Honda CBR300RA",
+    "speed": 79.3,
+    "timestamp": "2026-01-27T23:35:25.099897",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 42.0,
+    "owner": {
+      "id": "1134451201682148",
+      "name": "Kusuma Wibowo",
+      "region": "Purwakarta, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0007",
+    "license_plate": "MU 8029 FH",
+    "vehicle_type": "Volkswagen Golf GTE 2015-20",
+    "speed": 74.8,
+    "timestamp": "2026-01-27T23:35:25.099946",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0657815512999693",
+      "name": "Wahyu Prasetyo",
+      "region": "Sumenep, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0008",
+    "license_plate": "AV 8719 JS",
+    "vehicle_type": "Hyundai Veloster 2019-20",
+    "speed": 65.9,
+    "timestamp": "2026-01-27T23:35:25.099994",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2377935605845527",
+      "name": "Maya Bambang",
+      "region": "Kab. Tangerang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "TOY0009",
+    "license_plate": "NC 7921 XG",
+    "vehicle_type": "Toyota RAV4 2023-25",
+    "speed": 74.2,
+    "timestamp": "2026-01-27T23:35:25.100041",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0252730301892281",
+      "name": "Ahmad Santoso",
+      "region": "Malang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0010",
+    "license_plate": "SO 1547 HR",
+    "vehicle_type": "Ford Kuga Plug-in Hybrid 2020-23",
+    "speed": 52.8,
+    "timestamp": "2026-01-27T23:35:25.100088",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0136886612885247",
+      "name": "Kusuma Hartono",
       "region": "Kab. Mojokerto, Jawa Timur"
     },
     "registration": {
@@ -760,16 +988,700 @@
     }
   },
   {
-    "vehicle_id": "TOY0007",
-    "license_plate": "PA 7465 EJ",
-    "vehicle_type": "Toyota Corolla 2020-22",
-    "speed": 73.5,
-    "timestamp": "2026-01-27T17:32:06.631502",
+    "vehicle_id": "SUZ0001",
+    "license_plate": "SL 1344 DU",
+    "vehicle_type": "Suzuki DL1000K",
+    "speed": 85.9,
+    "timestamp": "2026-01-27T23:35:28.100751",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0771772712954244",
+      "name": "Rendi Santoso",
+      "region": "Lamongan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0002",
+    "license_plate": "WY 9465 RQ",
+    "vehicle_type": "Hyundai Staria 2023",
+    "speed": 68.9,
+    "timestamp": "2026-01-27T23:35:28.100818",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0974905908797570",
+      "id": "3336854501588559",
+      "name": "Ahmad Gunawan",
+      "region": "Sidoarjo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HAR0003",
+    "license_plate": "SQ 2293 BJ",
+    "vehicle_type": "Harley-Davidson Dyna Fat Bob",
+    "speed": 71.5,
+    "timestamp": "2026-01-27T23:35:28.100872",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0416752209756336",
+      "name": "Bambang Cahyono",
+      "region": "Kab. Mojokerto, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0004",
+    "license_plate": "KI 8317 IZ",
+    "vehicle_type": "Honda Civic 2016-18",
+    "speed": 70.4,
+    "timestamp": "2026-01-27T23:35:28.100922",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0248545706980982",
+      "name": "Maya Hermansyah",
+      "region": "Rembang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "RIV0005",
+    "license_plate": "WF 6462 AE",
+    "vehicle_type": "Rivian R1S 2022-24",
+    "speed": 74.6,
+    "timestamp": "2026-01-27T23:35:28.100971",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0790375410891097",
+      "name": "Sari Sugiono",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TES0006",
+    "license_plate": "EQ 6091 CP",
+    "vehicle_type": "Tesla Model Y (with HW4) 2024-25",
+    "speed": 62.4,
+    "timestamp": "2026-01-27T23:35:28.101021",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0725174107702974",
+      "name": "Retno Sumargo",
+      "region": "Indramayu, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0007",
+    "license_plate": "BE 2015 VD",
+    "vehicle_type": "Toyota Prius 2017-20",
+    "speed": 63.6,
+    "timestamp": "2026-01-27T23:35:28.101071",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2793915001795075",
+      "name": "Sari Hermawan",
+      "region": "Lampung"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0008",
+    "license_plate": "ZT 2000 FK",
+    "vehicle_type": "Kia EV6 (without HDA II) 2022-24",
+    "speed": 63.6,
+    "timestamp": "2026-01-27T23:35:28.101119",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3176661101792528",
+      "name": "Fitri Setiawan",
+      "region": "Ciamis, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0009",
+    "license_plate": "NE 1169 BC",
+    "vehicle_type": "Volkswagen Golf R 2015-19",
+    "speed": 85.2,
+    "timestamp": "2026-01-27T23:35:28.101169",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "3274714205936021",
+      "name": "Handoko Hermawan",
+      "region": "Malang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "SUB0010",
+    "license_plate": "ZO 3075 NB",
+    "vehicle_type": "Subaru Forester Hybrid 2020",
+    "speed": 85.0,
+    "timestamp": "2026-01-27T23:35:28.101216",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "3049116011818514",
+      "name": "Hendra Sumargo",
+      "region": "Kab. Tasikmalaya, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GMC0011",
+    "license_plate": "ZA 3631 NA",
+    "vehicle_type": "GMC Sierra 1500 2020-21",
+    "speed": 61.6,
+    "timestamp": "2026-01-27T23:35:28.101263",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2043804603642075",
+      "name": "Maya Hermansyah",
+      "region": "Sumedang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0012",
+    "license_plate": "DL 7186 LL",
+    "vehicle_type": "Ford Expedition 2022-24",
+    "speed": 62.0,
+    "timestamp": "2026-01-27T23:35:28.101311",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1082466111957355",
+      "name": "Prayogo Wijaya",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "ACU0013",
+    "license_plate": "L 4809 IJ",
+    "vehicle_type": "Acura TLX 2025",
+    "speed": 69.8,
+    "timestamp": "2026-01-27T23:35:28.101359",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1078870404732720",
+      "name": "Dewi Rahman",
+      "region": "Surabaya, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0014",
+    "license_plate": "BT 3447 KE",
+    "vehicle_type": "Genesis GV70 Electrified (Australia Only) 2022",
+    "speed": 71.5,
+    "timestamp": "2026-01-27T23:35:28.101406",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1489550502661833",
+      "name": "Prayogo Rahman",
+      "region": "Jakarta Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0015",
+    "license_plate": "GA 6099 OD",
+    "vehicle_type": "Ford Escape Plug-in Hybrid 2023-24",
+    "speed": 66.4,
+    "timestamp": "2026-01-27T23:35:28.101458",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1417165212834880",
+      "name": "Handoko Hermawan",
+      "region": "Pekalongan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "RAM0001",
+    "license_plate": "AW 5408 ZX",
+    "vehicle_type": "Ram 2500 2020-24",
+    "speed": 59.7,
+    "timestamp": "2026-01-27T23:35:31.102120",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3456060409711344",
+      "name": "Yudi Rahman",
+      "region": "Kab. Tangerang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0002",
+    "license_plate": "FS 5918 MA",
+    "vehicle_type": "Ford Escape Hybrid 2023-24",
+    "speed": 66.5,
+    "timestamp": "2026-01-27T23:35:31.102186",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3149361912852135",
+      "name": "Dewi Hartono",
+      "region": "Sukabumi, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0003",
+    "license_plate": "EY 3015 SU",
+    "vehicle_type": "Honda City (Brazil only) 2023",
+    "speed": 64.1,
+    "timestamp": "2026-01-27T23:35:31.102237",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2196600902563497",
+      "name": "Rina Setiawan",
+      "region": "Kuningan, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0004",
+    "license_plate": "FB 3234 XQ",
+    "vehicle_type": "Hyundai Kona 2022-23",
+    "speed": 76.3,
+    "timestamp": "2026-01-27T23:35:31.102291",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2101936310660836",
+      "name": "Siti Sumargo",
+      "region": "Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0005",
+    "license_plate": "MZ 8803 NR",
+    "vehicle_type": "Honda Civic 2016-18",
+    "speed": 62.9,
+    "timestamp": "2026-01-27T23:35:31.102338",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3107912207693415",
+      "name": "Maya Gunawan",
+      "region": "Sumenep, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0006",
+    "license_plate": "GP 4772 MH",
+    "vehicle_type": "Hyundai Azera Hybrid 2019",
+    "speed": 72.9,
+    "timestamp": "2026-01-27T23:35:31.102385",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0729285709955105",
+      "name": "Suryanto Sumargo",
+      "region": "Kab. Tegal, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0007",
+    "license_plate": "RY 5165 GX",
+    "vehicle_type": "Kia Niro Plug-in Hybrid 2021",
+    "speed": 77.9,
+    "timestamp": "2026-01-27T23:35:31.102431",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2156786106766124",
+      "name": "Diana Hermansyah",
+      "region": "Banjarnegara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0008",
+    "license_plate": "FT 7657 KD",
+    "vehicle_type": "Toyota Corolla Hatchback 2019-22",
+    "speed": 70.6,
+    "timestamp": "2026-01-27T23:35:31.102477",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0379032408607313",
+      "name": "Yudi Nugroho",
+      "region": "Sukabumi, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0009",
+    "license_plate": "DQ 7778 PV",
+    "vehicle_type": "Volkswagen Golf GTI 2015-21",
+    "speed": 57.6,
+    "timestamp": "2026-01-27T23:35:31.102521",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1282091706742305",
+      "name": "Ahmad Indrawan",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0010",
+    "license_plate": "RK 8027 AP",
+    "vehicle_type": "Volkswagen T-Roc 2018-23",
+    "speed": 63.9,
+    "timestamp": "2026-01-27T23:35:31.102567",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2441711211603376",
+      "name": "Totok Rahman",
+      "region": "Cilacap, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0011",
+    "license_plate": "ZP 3742 YB",
+    "vehicle_type": "Honda Odyssey 2021-26",
+    "speed": 61.0,
+    "timestamp": "2026-01-27T23:35:31.102614",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1364100206706193",
+      "name": "Wawan Sugiono",
+      "region": "Kab. Tasikmalaya, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "KIA0012",
+    "license_plate": "RC 2877 RG",
+    "vehicle_type": "Kia Forte 2019-21",
+    "speed": 73.8,
+    "timestamp": "2026-01-27T23:35:31.102661",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2594292506926421",
+      "name": "Haryo Rahman",
+      "region": "Purbalingga, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0013",
+    "license_plate": "MJ 3883 NF",
+    "vehicle_type": "Volkswagen Golf GTD 2015-20",
+    "speed": 74.2,
+    "timestamp": "2026-01-27T23:35:31.102705",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1434222805716811",
+      "name": "Yudi Kusuma",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0001",
+    "license_plate": "F 4845 EQ",
+    "vehicle_type": "Genesis G70 2022-23",
+    "speed": 82.0,
+    "timestamp": "2026-01-27T23:35:34.103487",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "1958812308775498",
+      "name": "Retno Prasetyo",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0002",
+    "license_plate": "DX 4739 ZR",
+    "vehicle_type": "Volkswagen Caravelle 2020",
+    "speed": 60.9,
+    "timestamp": "2026-01-27T23:35:34.103555",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3065912604526690",
+      "name": "Sari Gunawan",
+      "region": "Kab. Bandung Barat, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LEX0003",
+    "license_plate": "ZQ 1359 CP",
+    "vehicle_type": "Lexus NX 2018-19",
+    "speed": 78.2,
+    "timestamp": "2026-01-27T23:35:34.103610",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "0147234410773336",
+      "name": "Siti Cahyono",
+      "region": "Kab. Tasikmalaya, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0004",
+    "license_plate": "BG 7606 YC",
+    "vehicle_type": "Honda CR-V 2015-16",
+    "speed": 62.8,
+    "timestamp": "2026-01-27T23:35:34.103659",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2732622710765136",
+      "name": "Diana Kusuma",
+      "region": "Sumatera Selatan"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HYU0005",
+    "license_plate": "KE 2469 SR",
+    "vehicle_type": "Hyundai Elantra 2017-18",
+    "speed": 60.1,
+    "timestamp": "2026-01-27T23:35:34.103709",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2923401708745781",
+      "name": "Siti Kusuma",
+      "region": "Blora, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0006",
+    "license_plate": "HW 2437 MZ",
+    "vehicle_type": "Volkswagen Sharan 2018-22",
+    "speed": 65.5,
+    "timestamp": "2026-01-27T23:35:34.103759",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1239962810616395",
+      "name": "Kusuma Pratama",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "SUZ0007",
+    "license_plate": "EK 9852 CB",
+    "vehicle_type": "Suzuki GSF600S",
+    "speed": 75.4,
+    "timestamp": "2026-01-27T23:35:34.103810",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 80.64516129032258,
+    "owner": {
+      "id": "3399115911739930",
+      "name": "Indra Sumargo",
+      "region": "Kab. Cirebon, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0008",
+    "license_plate": "E 5723 EY",
+    "vehicle_type": "Kia Optima 2019-20",
+    "speed": 72.7,
+    "timestamp": "2026-01-27T23:35:34.103859",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1036732610528470",
+      "name": "Putri Wijaya",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0009",
+    "license_plate": "PA 5618 VA",
+    "vehicle_type": "Subaru Crosstrek 2018-19",
+    "speed": 77.2,
+    "timestamp": "2026-01-27T23:35:34.103908",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "3031612403876017",
       "name": "Fitri Sugiono",
       "region": "Bondowoso, Jawa Timur"
     },
@@ -779,56 +1691,18 @@
     }
   },
   {
-    "vehicle_id": "TOY0008",
-    "license_plate": "Z 6689 VO",
-    "vehicle_type": "Toyota C-HR 2017-20",
-    "speed": 57.3,
-    "timestamp": "2026-01-27T17:32:06.631655",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1208215808671183",
-      "name": "Indra Pratama",
-      "region": "Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HON0009",
-    "license_plate": "KO 3627 DZ",
-    "vehicle_type": "Honda Inspire 2018",
-    "speed": 75.3,
-    "timestamp": "2026-01-27T17:32:06.631708",
+    "vehicle_id": "ACU0010",
+    "license_plate": "EH 2959 QF",
+    "vehicle_type": "Acura RDX 2016-18",
+    "speed": 81.2,
+    "timestamp": "2026-01-27T23:35:34.103955",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
-    "fine_amount": 75.0,
+    "fine_amount": 30.0,
     "owner": {
-      "id": "1651492605599119",
-      "name": "Lestari Wijaya",
-      "region": "Kudus, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "SUZ0010",
-    "license_plate": "BC 2569 DV",
-    "vehicle_type": "Suzuki RM-Z450",
-    "speed": 75.4,
-    "timestamp": "2026-01-27T17:32:06.631755",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 75.0,
-    "owner": {
-      "id": "1061672801996898",
-      "name": "Sari Sugiono",
-      "region": "Tangerang, Banten"
+      "id": "2489735403669664",
+      "name": "Totok Sumarlin",
+      "region": "Kab. Cirebon, Jawa Barat"
     },
     "registration": {
       "stnk_status": "Active",
@@ -837,74 +1711,17 @@
   },
   {
     "vehicle_id": "HAR0011",
-    "license_plate": "KK 2909 UV",
-    "vehicle_type": "Harley-Davidson Softail",
-    "speed": 68.5,
-    "timestamp": "2026-01-27T17:32:06.631802",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1115205512590352",
-      "name": "Hendra Indrawan",
-      "region": "Kudus, Jawa Tengah"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HYU0012",
-    "license_plate": "NV 4180 KT",
-    "vehicle_type": "Hyundai Santa Fe Hybrid 2022-23",
-    "speed": 61.0,
-    "timestamp": "2026-01-27T17:32:06.631848",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "1541860709653032",
-      "name": "Wahyu Indrawan",
-      "region": "Pasuruan, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "TOY0013",
-    "license_plate": "TD 7557 WZ",
-    "vehicle_type": "Toyota Corolla Hatchback 2019-22",
-    "speed": 72.0,
-    "timestamp": "2026-01-27T17:32:06.631894",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "0765844508640397",
-      "name": "Fitri Sumarlin",
-      "region": "Karawang, Jawa Barat"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    }
-  },
-  {
-    "vehicle_id": "HYU0014",
-    "license_plate": "Z 2353 YX",
-    "vehicle_type": "Hyundai Veloster 2019-20",
-    "speed": 81.6,
-    "timestamp": "2026-01-27T17:32:06.631941",
+    "license_plate": "A 1654 IN",
+    "vehicle_type": "Harley-Davidson Electra Glide",
+    "speed": 81.9,
+    "timestamp": "2026-01-27T23:35:34.104003",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 42.0,
     "owner": {
-      "id": "2701764507750479",
-      "name": "Fitri Nugroho",
-      "region": "Jawa Barat"
+      "id": "2072991901997964",
+      "name": "Rendi Sumarlin",
+      "region": "Banten"
     },
     "registration": {
       "stnk_status": "Non-Active",
@@ -912,56 +1729,37 @@
     }
   },
   {
-    "vehicle_id": "TOY0015",
-    "license_plate": "S 9231 IB",
-    "vehicle_type": "Toyota Corolla Hybrid (South America only) 2020-23",
-    "speed": 45,
-    "timestamp": "2026-01-27T17:32:06.631990",
+    "vehicle_id": "AUD0001",
+    "license_plate": "HW 2172 MN",
+    "vehicle_type": "Audi A3 2014-19",
+    "speed": 73.4,
+    "timestamp": "2026-01-27T23:36:17.408805",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1061914804816772",
-      "name": "Wahyu Gunawan",
-      "region": "Jawa Timur"
+      "id": "1929152601599688",
+      "name": "Fitri Pratama",
+      "region": "Semarang, Jawa Tengah"
     },
     "registration": {
       "stnk_status": "Active",
-      "sim_status": "Expired"
-    }
-  },
-  {
-    "vehicle_id": "VOL0001",
-    "license_plate": "MX 3591 DR",
-    "vehicle_type": "Volkswagen Golf Alltrack 2015-19",
-    "speed": 69.6,
-    "timestamp": "2026-01-27T17:32:09.632638",
-    "location": "Highway-Sensor-001",
-    "ticket_issued": false,
-    "fine_amount": 0.0,
-    "owner": {
-      "id": "2268330201666110",
-      "name": "Rina Sumargo",
-      "region": "Sumenep, Jawa Timur"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
       "sim_status": "Active"
     }
   },
   {
     "vehicle_id": "VOL0002",
-    "license_plate": "PK 6744 CB",
-    "vehicle_type": "Volkswagen Arteon eHybrid 2020-23",
-    "speed": 69.3,
-    "timestamp": "2026-01-27T17:32:09.632795",
+    "license_plate": "KD 4867 UW",
+    "vehicle_type": "Volkswagen Atlas Cross Sport 2020-22",
+    "speed": 67.9,
+    "timestamp": "2026-01-27T23:36:17.408882",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1086360701860682",
-      "name": "Rendi Hartono",
-      "region": "Jember, Jawa Timur"
+      "id": "2916082711618069",
+      "name": "Totok Cahyono",
+      "region": "Rembang, Jawa Tengah"
     },
     "registration": {
       "stnk_status": "Active",
@@ -969,17 +1767,36 @@
     }
   },
   {
-    "vehicle_id": "YAM0003",
-    "license_plate": "SA 5452 SA",
-    "vehicle_type": "Yamaha XVS65",
-    "speed": 75.5,
-    "timestamp": "2026-01-27T17:32:09.632857",
+    "vehicle_id": "DUC0003",
+    "license_plate": "KC 5758 RO",
+    "vehicle_type": "Ducati KX450F",
+    "speed": 59.8,
+    "timestamp": "2026-01-27T23:36:17.408948",
     "location": "Highway-Sensor-001",
-    "ticket_issued": true,
-    "fine_amount": 75.0,
+    "ticket_issued": false,
+    "fine_amount": 0.0,
     "owner": {
-      "id": "1684206211730327",
-      "name": "Adi Sumarlin",
+      "id": "0889134110649710",
+      "name": "Rina Sumargo",
+      "region": "Jepara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GMC0004",
+    "license_plate": "SB 9396 JD",
+    "vehicle_type": "GMC Sierra 1500 2020-21",
+    "speed": 50.8,
+    "timestamp": "2026-01-27T23:36:17.409004",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1820294810730369",
+      "name": "Hendra Nugroho",
       "region": "Bojonegoro, Jawa Timur"
     },
     "registration": {
@@ -988,18 +1805,37 @@
     }
   },
   {
-    "vehicle_id": "TOY0004",
-    "license_plate": "WV 3924 FS",
-    "vehicle_type": "Toyota C-HR Hybrid 2017-20",
-    "speed": 69.0,
-    "timestamp": "2026-01-27T17:32:09.632911",
+    "vehicle_id": "CHR0005",
+    "license_plate": "PQ 7212 GE",
+    "vehicle_type": "Chrysler Pacifica Hybrid 2019-25",
+    "speed": 70.2,
+    "timestamp": "2026-01-27T23:36:17.409059",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0476696805765030",
-      "name": "Prayogo Hermawan",
-      "region": "Sidoarjo, Jawa Timur"
+      "id": "1924046610844818",
+      "name": "Sari Hermansyah",
+      "region": "Jember, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0006",
+    "license_plate": "AH 7797 MS",
+    "vehicle_type": "Honda Civic Hatchback 2022-24",
+    "speed": 59.1,
+    "timestamp": "2026-01-27T23:36:17.409112",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1859425403535008",
+      "name": "Putri Sumargo",
+      "region": "Kab. Serang, Banten"
     },
     "registration": {
       "stnk_status": "Active",
@@ -1007,18 +1843,18 @@
     }
   },
   {
-    "vehicle_id": "JEE0005",
-    "license_plate": "KZ 6123 XF",
-    "vehicle_type": "Jeep Grand Cherokee 2016-18",
-    "speed": 75.4,
-    "timestamp": "2026-01-27T17:32:09.632961",
+    "vehicle_id": "DUC0007",
+    "license_plate": "SQ 7555 NR",
+    "vehicle_type": "Ducati Ninja ZX-6R",
+    "speed": 75.6,
+    "timestamp": "2026-01-27T23:36:17.409164",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 80.64516129032258,
     "owner": {
-      "id": "1868785408976953",
-      "name": "Indra Santoso",
-      "region": "Grobogan, Jawa Tengah"
+      "id": "1322931703544858",
+      "name": "Lestari Pratama",
+      "region": "Kab. Mojokerto, Jawa Timur"
     },
     "registration": {
       "stnk_status": "Non-Active",
@@ -1026,36 +1862,36 @@
     }
   },
   {
-    "vehicle_id": "YAM0006",
-    "license_plate": "GO 5298 ZR",
-    "vehicle_type": "Yamaha YZF-R1",
-    "speed": 76.5,
-    "timestamp": "2026-01-27T17:32:09.633011",
+    "vehicle_id": "VOL0008",
+    "license_plate": "BW 4486 KV",
+    "vehicle_type": "Volkswagen CC 2018-22",
+    "speed": 83.6,
+    "timestamp": "2026-01-27T23:36:17.409235",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 36.0,
     "owner": {
-      "id": "1125100811770459",
-      "name": "Putri Gunawan",
-      "region": "Kab. Pekalongan, Jawa Tengah"
+      "id": "1792260310705352",
+      "name": "Adi Santoso",
+      "region": "Tangerang Selatan, Banten"
     },
     "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
+      "stnk_status": "Active",
+      "sim_status": "Expired"
     }
   },
   {
-    "vehicle_id": "VOL0007",
-    "license_plate": "WJ 7344 GT",
-    "vehicle_type": "Volkswagen Grand California 2019-24",
-    "speed": 70.6,
-    "timestamp": "2026-01-27T17:32:09.633059",
+    "vehicle_id": "GMC0009",
+    "license_plate": "WL 1697 EW",
+    "vehicle_type": "GMC Sierra 1500 2020-21",
+    "speed": 54.3,
+    "timestamp": "2026-01-27T23:36:17.409285",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1990825010771251",
-      "name": "Indra Wibowo",
+      "id": "3116616807812959",
+      "name": "Lestari Indrawan",
       "region": "Gresik, Jawa Timur"
     },
     "registration": {
@@ -1064,17 +1900,74 @@
     }
   },
   {
-    "vehicle_id": "GEN0008",
-    "license_plate": "NB 7610 TO",
-    "vehicle_type": "Genesis GV60 (Advanced Trim) 2023",
-    "speed": 81.7,
-    "timestamp": "2026-01-27T17:32:09.633157",
+    "vehicle_id": "SUB0010",
+    "license_plate": "NA 6885 RU",
+    "vehicle_type": "Subaru Outback 2018-19",
+    "speed": 69.0,
+    "timestamp": "2026-01-27T23:36:17.409334",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0728492201516043",
+      "name": "Putri Cahyono",
+      "region": "Malang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "MAZ0011",
+    "license_plate": "EW 9482 AV",
+    "vehicle_type": "Mazda CX-5 2017-21",
+    "speed": 68.1,
+    "timestamp": "2026-01-27T23:36:17.409383",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0337276601854979",
+      "name": "Siti Sumarlin",
+      "region": "Majalengka, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "TOY0012",
+    "license_plate": "FJ 4597 ET",
+    "vehicle_type": "Toyota Avalon Hybrid 2022",
+    "speed": 80.4,
+    "timestamp": "2026-01-27T23:36:17.409436",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
-    "fine_amount": 36.0,
+    "fine_amount": 30.0,
     "owner": {
-      "id": "2401395507848094",
-      "name": "Diana Gunawan",
+      "id": "3281300311872997",
+      "name": "Nurhayati Sumarlin",
+      "region": "Kab. Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0013",
+    "license_plate": "NC 2865 DZ",
+    "vehicle_type": "Kia Niro EV (with HDA II) 2025",
+    "speed": 63.9,
+    "timestamp": "2026-01-27T23:36:17.409486",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1764116007684273",
+      "name": "Prayogo Wibowo",
       "region": "Malang, Jawa Timur"
     },
     "registration": {
@@ -1083,18 +1976,94 @@
     }
   },
   {
-    "vehicle_id": "SUB0009",
-    "license_plate": "HY 6524 TS",
-    "vehicle_type": "Subaru Outback 2020-22",
-    "speed": 86.9,
-    "timestamp": "2026-01-27T17:32:09.633208",
+    "vehicle_id": "VOL0014",
+    "license_plate": "NQ 7260 PT",
+    "vehicle_type": "Volkswagen Jetta 2015-18",
+    "speed": 89.1,
+    "timestamp": "2026-01-27T23:36:17.409534",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
-    "fine_amount": 36.0,
+    "fine_amount": 30.0,
     "owner": {
-      "id": "0906091503699111",
-      "name": "Retno Hartono",
+      "id": "2189855508500302",
+      "name": "Rendi Hartono",
+      "region": "Probolinggo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0015",
+    "license_plate": "HR 9793 PR",
+    "vehicle_type": "Hyundai Nexo 2021",
+    "speed": 66.1,
+    "timestamp": "2026-01-27T23:36:17.409584",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2479376507951545",
+      "name": "Diana Rahman",
       "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0001",
+    "license_plate": "FN 1780 GU",
+    "vehicle_type": "Honda CRF250R",
+    "speed": 78.7,
+    "timestamp": "2026-01-27T23:36:20.410302",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2337332304618200",
+      "name": "Hendra Nugroho",
+      "region": "Kab. Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "DUC0002",
+    "license_plate": "ZD 4320 HR",
+    "vehicle_type": "Ducati Vulcan 500",
+    "speed": 78.1,
+    "timestamp": "2026-01-27T23:36:20.410367",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "0903754702826088",
+      "name": "Handoko Indrawan",
+      "region": "Garut, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "NIS0003",
+    "license_plate": "KS 5489 SS",
+    "vehicle_type": "Nissan X-Trail 2017",
+    "speed": 74.7,
+    "timestamp": "2026-01-27T23:36:20.410424",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1067636808549818",
+      "name": "Bambang Hartono",
+      "region": "Pati, Jawa Tengah"
     },
     "registration": {
       "stnk_status": "Non-Active",
@@ -1102,17 +2071,397 @@
     }
   },
   {
-    "vehicle_id": "KIA0010",
-    "license_plate": "DR 3455 CE",
-    "vehicle_type": "Kia Sorento Plug-in Hybrid 2022-23",
-    "speed": 78.7,
-    "timestamp": "2026-01-27T17:32:09.633257",
+    "vehicle_id": "ACU0004",
+    "license_plate": "GT 6107 VS",
+    "vehicle_type": "Acura RDX 2022-25",
+    "speed": 68.8,
+    "timestamp": "2026-01-27T23:36:20.410476",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0173166505588390",
+      "name": "Budi Rahman",
+      "region": "Kab. Pekalongan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0005",
+    "license_plate": "KV 6492 JX",
+    "vehicle_type": "Volkswagen Tiguan 2018-24",
+    "speed": 78.1,
+    "timestamp": "2026-01-27T23:36:20.410526",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0185940610926780",
+      "name": "Totok Rahman",
+      "region": "Jepara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "YAM0006",
+    "license_plate": "EF 7231 RS",
+    "vehicle_type": "Yamaha YZF-R1",
+    "speed": 67.3,
+    "timestamp": "2026-01-27T23:36:20.410576",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0732841206631151",
+      "name": "Adi Pratama",
+      "region": "Cirebon, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0007",
+    "license_plate": "WJ 7812 HH",
+    "vehicle_type": "Hyundai Santa Cruz 2022-24",
+    "speed": 66.9,
+    "timestamp": "2026-01-27T23:36:20.410625",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1397992009851906",
+      "name": "Retno Bambang",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0008",
+    "license_plate": "KS 5591 CF",
+    "vehicle_type": "Ford Bronco Sport 2021-24",
+    "speed": 72.0,
+    "timestamp": "2026-01-27T23:36:20.410673",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3118631704907961",
+      "name": "Hendra Wibowo",
+      "region": "Pati, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "\u0160KO0009",
+    "license_plate": "DZ 3232 GW",
+    "vehicle_type": "\u0160koda Fabia 2022-23",
+    "speed": 63.3,
+    "timestamp": "2026-01-27T23:36:20.410729",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1216790803621171",
+      "name": "Diana Sumarlin",
+      "region": "Kab. Bandung Barat, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "YAM0010",
+    "license_plate": "WA 8082 SP",
+    "vehicle_type": "Yamaha YFZ450R",
+    "speed": 67.2,
+    "timestamp": "2026-01-27T23:36:20.410778",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0646702510992082",
+      "name": "Siti Setiawan",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0011",
+    "license_plate": "WI 8091 IP",
+    "vehicle_type": "Toyota RAV4 Hybrid 2022",
+    "speed": 72.6,
+    "timestamp": "2026-01-27T23:36:20.410825",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3323155602669548",
+      "name": "Diana Hermansyah",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "DUC0012",
+    "license_plate": "DD 8572 OV",
+    "vehicle_type": "Ducati ZZR600",
+    "speed": 77.2,
+    "timestamp": "2026-01-27T23:36:20.410878",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "2120771403682125",
+      "name": "Hendra Rahman",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0001",
+    "license_plate": "WS 2486 KS",
+    "vehicle_type": "Subaru Ascent 2019-21",
+    "speed": 76.8,
+    "timestamp": "2026-01-27T23:36:23.411972",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0666954608572716",
+      "name": "Nisak Sumarlin",
+      "region": "Sidoarjo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "LEX0002",
+    "license_plate": "HS 1558 CP",
+    "vehicle_type": "Lexus CT Hybrid 2017-18",
+    "speed": 71.6,
+    "timestamp": "2026-01-27T23:36:23.412040",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0326690706548932",
+      "name": "Totok Sumargo",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LEX0003",
+    "license_plate": "AR 3815 LB",
+    "vehicle_type": "Lexus NS 2022-25",
+    "speed": 67.3,
+    "timestamp": "2026-01-27T23:36:23.412094",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1132666712929001",
+      "name": "Bambang Bambang",
+      "region": "Lebak, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "AUD0004",
+    "license_plate": "GK 7601 ZD",
+    "vehicle_type": "Audi S3 2015-17",
+    "speed": 69.5,
+    "timestamp": "2026-01-27T23:36:23.412146",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0988601406609532",
+      "name": "Nisak Nugroho",
+      "region": "Kab. Pekalongan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0005",
+    "license_plate": "PF 8285 XI",
+    "vehicle_type": "Toyota Prius Prime 2021-22",
+    "speed": 58.2,
+    "timestamp": "2026-01-27T23:36:23.412197",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1638202405838305",
+      "name": "Suryanto Wibowo",
+      "region": "Situbondo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0006",
+    "license_plate": "KB 3073 BR",
+    "vehicle_type": "Volkswagen Golf R 2015-19",
+    "speed": 67.1,
+    "timestamp": "2026-01-27T23:36:23.412247",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1297110304720187",
+      "name": "Ahmad Gunawan",
+      "region": "Kudus, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0007",
+    "license_plate": "PO 6612 AU",
+    "vehicle_type": "Volkswagen Atlas Cross Sport 2020-22",
+    "speed": 66.4,
+    "timestamp": "2026-01-27T23:36:23.412297",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2706405512651400",
+      "name": "Adi Gunawan",
+      "region": "Jember, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "ACU0008",
+    "license_plate": "MI 8480 BE",
+    "vehicle_type": "Acura RLX 2017",
+    "speed": 76.1,
+    "timestamp": "2026-01-27T23:36:23.412346",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 42.0,
+    "owner": {
+      "id": "1273740305950140",
+      "name": "Sari Wibowo",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "GEN0009",
+    "license_plate": "GJ 5428 PQ",
+    "vehicle_type": "Genesis GV60 (Advanced Trim) 2023",
+    "speed": 65.6,
+    "timestamp": "2026-01-27T23:36:23.412393",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1082612711783326",
+      "name": "Lestari Prabowo",
+      "region": "Brebes, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0010",
+    "license_plate": "TI 4400 RV",
+    "vehicle_type": "Toyota Corolla 2017-19",
+    "speed": 73.9,
+    "timestamp": "2026-01-27T23:36:23.412442",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0585286205767873",
+      "name": "Maya Setiawan",
+      "region": "Karawang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "BMW0011",
+    "license_plate": "AG 2147 US",
+    "vehicle_type": "BMW Superbike",
+    "speed": 76.7,
+    "timestamp": "2026-01-27T23:36:23.412492",
     "location": "Highway-Sensor-001",
     "ticket_issued": true,
     "fine_amount": 30.0,
     "owner": {
-      "id": "2183502310525677",
-      "name": "Maya Indrawan",
+      "id": "0187551708918834",
+      "name": "Diana Prasetyo",
+      "region": "Kab. Serang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "RAM0012",
+    "license_plate": "DK 5385 CF",
+    "vehicle_type": "Ram 3500 2019-22",
+    "speed": 80.0,
+    "timestamp": "2026-01-27T23:36:23.412541",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "0944706107787298",
+      "name": "Totok Cahyono",
       "region": "Bandung, Jawa Barat"
     },
     "registration": {
@@ -1121,18 +2470,227 @@
     }
   },
   {
-    "vehicle_id": "HYU0011",
-    "license_plate": "GB 2832 HW",
-    "vehicle_type": "Hyundai Tucson Diesel 2019",
-    "speed": 58.0,
-    "timestamp": "2026-01-27T17:32:09.633305",
+    "vehicle_id": "KIA0013",
+    "license_plate": "ZW 1492 DC",
+    "vehicle_type": "Kia Niro Plug-in Hybrid 2018-19",
+    "speed": 73.1,
+    "timestamp": "2026-01-27T23:36:23.412589",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "0683114901851197",
-      "name": "Wawan Cahyono",
-      "region": "Kab. Pekalongan, Jawa Tengah"
+      "id": "1487606302594311",
+      "name": "Dewi Santoso",
+      "region": "Pangandaran, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0001",
+    "license_plate": "MT 3289 CU",
+    "vehicle_type": "Honda Ridgeline 2017-25",
+    "speed": 76.4,
+    "timestamp": "2026-01-27T23:36:26.413449",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "3243584909572635",
+      "name": "Budi Sugiono",
+      "region": "Sampang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0002",
+    "license_plate": "TG 5851 YJ",
+    "vehicle_type": "Kia Sorento 2018",
+    "speed": 81.0,
+    "timestamp": "2026-01-27T23:36:26.413512",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "1606971212833762",
+      "name": "Sari Bambang",
+      "region": "Karawang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0003",
+    "license_plate": "GL 9461 HN",
+    "vehicle_type": "Toyota RAV4 Hybrid 2022",
+    "speed": 72.2,
+    "timestamp": "2026-01-27T23:36:26.413568",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2825985907600078",
+      "name": "Kusuma Bambang",
+      "region": "Batang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0004",
+    "license_plate": "WG 1243 IQ",
+    "vehicle_type": "Ford F-150 2021-23",
+    "speed": 64.3,
+    "timestamp": "2026-01-27T23:36:26.413617",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1407951411610078",
+      "name": "Wahyu Gunawan",
+      "region": "Gresik, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0005",
+    "license_plate": "AL 1826 NM",
+    "vehicle_type": "Hyundai Kona Electric (with HDA II, Korea only) 2023",
+    "speed": 87.8,
+    "timestamp": "2026-01-27T23:36:26.413667",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "0933214502802674",
+      "name": "Dewi Rahman",
+      "region": "Pandeglang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0006",
+    "license_plate": "AM 7800 AX",
+    "vehicle_type": "Volkswagen Touran 2016-23",
+    "speed": 69.5,
+    "timestamp": "2026-01-27T23:36:26.413716",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2270990408993847",
+      "name": "Diana Bambang",
+      "region": "Pandeglang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "\u0160KO0007",
+    "license_plate": "WO 3996 JG",
+    "vehicle_type": "\u0160koda Karoq 2019-23",
+    "speed": 72.9,
+    "timestamp": "2026-01-27T23:36:26.413766",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2768020908929788",
+      "name": "Yudi Indrawan",
+      "region": "Sidoarjo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0008",
+    "license_plate": "ES 1065 GL",
+    "vehicle_type": "Toyota Avalon 2022",
+    "speed": 66.2,
+    "timestamp": "2026-01-27T23:36:26.413814",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0912896112622795",
+      "name": "Haryo Hartono",
+      "region": "Indramayu, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0009",
+    "license_plate": "AD 4211 WI",
+    "vehicle_type": "Genesis G70 2022-23",
+    "speed": 71.1,
+    "timestamp": "2026-01-27T23:36:26.413861",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1026466604998357",
+      "name": "Totok Sumargo",
+      "region": "Serang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0010",
+    "license_plate": "RJ 2608 SS",
+    "vehicle_type": "Toyota Sienna 2021-23",
+    "speed": 67.6,
+    "timestamp": "2026-01-27T23:36:26.413910",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1752751508561719",
+      "name": "Adi Cahyono",
+      "region": "Banyumas, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "KIA0011",
+    "license_plate": "FK 4182 RN",
+    "vehicle_type": "Kia Sorento 2018",
+    "speed": 62.5,
+    "timestamp": "2026-01-27T23:36:26.413957",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1395155309971180",
+      "name": "Dewi Cahyono",
+      "region": "Kab. Bogor, Jawa Barat"
     },
     "registration": {
       "stnk_status": "Active",
@@ -1141,16 +2699,1194 @@
   },
   {
     "vehicle_id": "HYU0012",
-    "license_plate": "DK 8766 IF",
-    "vehicle_type": "Hyundai Tucson 2023-24",
-    "speed": 72.0,
-    "timestamp": "2026-01-27T17:32:09.633352",
+    "license_plate": "HI 4427 OZ",
+    "vehicle_type": "Hyundai Ioniq Electric 2020",
+    "speed": 64.8,
+    "timestamp": "2026-01-27T23:36:26.414005",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1545896409681183",
-      "name": "Ahmad Gunawan",
+      "id": "2517811710834294",
+      "name": "Ahmad Sumargo",
+      "region": "Kab. Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0001",
+    "license_plate": "NV 8181 CL",
+    "vehicle_type": "Toyota RAV4 Hybrid 2017-18",
+    "speed": 77.6,
+    "timestamp": "2026-01-27T23:36:29.414643",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "1652904909502898",
+      "name": "Ahmad Sugiono",
+      "region": "Pasuruan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "DUC0002",
+    "license_plate": "KN 3187 VQ",
+    "vehicle_type": "Ducati Ninja 300",
+    "speed": 75.6,
+    "timestamp": "2026-01-27T23:36:29.414706",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 75.0,
+    "owner": {
+      "id": "1256084908754831",
+      "name": "Diana Setiawan",
+      "region": "Blora, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0003",
+    "license_plate": "RF 9335 ES",
+    "vehicle_type": "Toyota Avalon 2017-18",
+    "speed": 66.4,
+    "timestamp": "2026-01-27T23:36:29.414762",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1979694211535097",
+      "name": "Nisak Pratama",
+      "region": "Cilacap, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KAW0004",
+    "license_plate": "TO 7075 KW",
+    "vehicle_type": "Kawasaki Adventurer",
+    "speed": 76.9,
+    "timestamp": "2026-01-27T23:36:29.414812",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2112022105958205",
+      "name": "Handoko Hermawan",
+      "region": "Karawang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0005",
+    "license_plate": "AG 8227 RY",
+    "vehicle_type": "Toyota Prius 2021-22",
+    "speed": 64.8,
+    "timestamp": "2026-01-27T23:36:29.414861",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0589626507800860",
+      "name": "Wahyu Wibowo",
+      "region": "Kab. Serang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0006",
+    "license_plate": "KK 2646 AK",
+    "vehicle_type": "Honda Civic 2016-18",
+    "speed": 62.8,
+    "timestamp": "2026-01-27T23:36:29.414912",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1203330503896380",
+      "name": "Fitri Wijaya",
+      "region": "Kudus, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0007",
+    "license_plate": "PZ 7689 EL",
+    "vehicle_type": "Subaru XV 2018-19",
+    "speed": 69.9,
+    "timestamp": "2026-01-27T23:36:29.414962",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1411112305995948",
+      "name": "Yudi Bambang",
+      "region": "Banyuwangi, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0008",
+    "license_plate": "BE 2715 NG",
+    "vehicle_type": "Volkswagen Atlas 2018-23",
+    "speed": 74.5,
+    "timestamp": "2026-01-27T23:36:29.415011",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2878996606550764",
+      "name": "Adi Hartono",
+      "region": "Lampung"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "ACU0009",
+    "license_plate": "EI 3205 CG",
+    "vehicle_type": "Acura Integra 2023-25",
+    "speed": 56.6,
+    "timestamp": "2026-01-27T23:36:29.415059",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2394911608788521",
+      "name": "Rendi Bambang",
+      "region": "Kab. Cirebon, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KTM0010",
+    "license_plate": "E 3300 AD",
+    "vehicle_type": "KTM Vision Tour",
+    "speed": 74.8,
+    "timestamp": "2026-01-27T23:36:29.415108",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3029731905717734",
+      "name": "Maya Bambang",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0011",
+    "license_plate": "KH 1760 MR",
+    "vehicle_type": "Ford F-150 2021-23",
+    "speed": 53.4,
+    "timestamp": "2026-01-27T23:36:29.415156",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0526901008830569",
+      "name": "Ayu Prabowo",
+      "region": "Pati, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0012",
+    "license_plate": "MQ 9353 ZF",
+    "vehicle_type": "Kia Niro Hybrid 2022",
+    "speed": 71.6,
+    "timestamp": "2026-01-27T23:36:29.415204",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0978300401981667",
+      "name": "Handoko Santoso",
+      "region": "Sampang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HON0013",
+    "license_plate": "SQ 1039 XD",
+    "vehicle_type": "Honda Accord Hybrid 2023-25",
+    "speed": 65.5,
+    "timestamp": "2026-01-27T23:36:29.415251",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2127991704963048",
+      "name": "Maya Sumargo",
+      "region": "Kab. Mojokerto, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0014",
+    "license_plate": "EX 2594 ZB",
+    "vehicle_type": "Toyota RAV4 2019-21",
+    "speed": 75.1,
+    "timestamp": "2026-01-27T23:36:29.415297",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 75.0,
+    "owner": {
+      "id": "3052570803933073",
+      "name": "Bambang Wijaya",
+      "region": "Majalengka, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0015",
+    "license_plate": "KB 8451 IZ",
+    "vehicle_type": "Kia Niro Plug-in Hybrid 2020",
+    "speed": 75.7,
+    "timestamp": "2026-01-27T23:36:29.415344",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 75.0,
+    "owner": {
+      "id": "1547192811968444",
+      "name": "Ahmad Prabowo",
+      "region": "Kudus, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0001",
+    "license_plate": "MK 8745 OK",
+    "vehicle_type": "Kia EV6 (without HDA II) 2022-24",
+    "speed": 66.8,
+    "timestamp": "2026-01-27T23:36:32.416297",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0366350405585885",
+      "name": "Ahmad Sumarlin",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0002",
+    "license_plate": "MF 1551 KL",
+    "vehicle_type": "Honda CBR300R",
+    "speed": 67.1,
+    "timestamp": "2026-01-27T23:36:32.416389",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0718412010917152",
+      "name": "Kusuma Pratama",
+      "region": "Pamekasan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "DUC0003",
+    "license_plate": "BS 8691 CS",
+    "vehicle_type": "Ducati KX450F",
+    "speed": 80.4,
+    "timestamp": "2026-01-27T23:36:32.416441",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "3171920511550301",
+      "name": "Nurhayati Sumarlin",
+      "region": "Jakarta Selatan"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "ACU0004",
+    "license_plate": "SM 9507 RR",
+    "vehicle_type": "Acura RDX 2016-18",
+    "speed": 72.8,
+    "timestamp": "2026-01-27T23:36:32.416494",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0739404112765566",
+      "name": "Maya Hermansyah",
+      "region": "Kab. Mojokerto, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0005",
+    "license_plate": "DS 6688 OX",
+    "vehicle_type": "Kia Carnival (China only) 2023",
+    "speed": 89.7,
+    "timestamp": "2026-01-27T23:36:32.416543",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "0504984305959328",
+      "name": "Diana Gunawan",
+      "region": "Cimahi, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LEX0006",
+    "license_plate": "MW 8451 JJ",
+    "vehicle_type": "Lexus RC 2023",
+    "speed": 65.6,
+    "timestamp": "2026-01-27T23:36:32.416591",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2133344511806279",
+      "name": "Ayu Wijaya",
+      "region": "Sumenep, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0007",
+    "license_plate": "RV 1018 SL",
+    "vehicle_type": "Hyundai Palisade 2020-22",
+    "speed": 65.1,
+    "timestamp": "2026-01-27T23:36:32.416639",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2950614812708823",
+      "name": "Nisak Sugiono",
+      "region": "Purbalingga, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0008",
+    "license_plate": "MM 4481 OD",
+    "vehicle_type": "Volkswagen Caddy Maxi 2019",
+    "speed": 57.9,
+    "timestamp": "2026-01-27T23:36:32.416687",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1535241210760113",
+      "name": "Nurhayati Kusuma",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "ACU0009",
+    "license_plate": "PT 8118 AR",
+    "vehicle_type": "Acura MDX 2017-20",
+    "speed": 72.7,
+    "timestamp": "2026-01-27T23:36:32.416734",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1024481006928324",
+      "name": "Yudi Wibowo",
+      "region": "Jember, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "AUD0010",
+    "license_plate": "PW 7372 RX",
+    "vehicle_type": "Audi Q5 2017-24",
+    "speed": 68.1,
+    "timestamp": "2026-01-27T23:36:32.416781",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1270980610593264",
+      "name": "Fitri Santoso",
+      "region": "Banyuwangi, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0011",
+    "license_plate": "ZV 5785 FR",
+    "vehicle_type": "Genesis G80 2018-19",
+    "speed": 89.5,
+    "timestamp": "2026-01-27T23:36:32.416828",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 42.0,
+    "owner": {
+      "id": "0181260910699838",
+      "name": "Rendi Kusuma",
+      "region": "Ciamis, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "TOY0012",
+    "license_plate": "HZ 7785 AI",
+    "vehicle_type": "Toyota Highlander 2017-19",
+    "speed": 75.4,
+    "timestamp": "2026-01-27T23:36:32.416874",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 75.0,
+    "owner": {
+      "id": "1420122108886687",
+      "name": "Fitri Nugroho",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0013",
+    "license_plate": "PE 8763 ZW",
+    "vehicle_type": "Toyota Sequoia 2023-25",
+    "speed": 50.7,
+    "timestamp": "2026-01-27T23:36:32.416920",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2102366301837154",
+      "name": "Siti Santoso",
+      "region": "Situbondo, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0001",
+    "license_plate": "SA 4290 ZX",
+    "vehicle_type": "Kia K5 Hybrid 2020-22",
+    "speed": 66.1,
+    "timestamp": "2026-01-27T23:36:35.417554",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0720704207899114",
+      "name": "Hendra Cahyono",
+      "region": "Bojonegoro, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0002",
+    "license_plate": "KP 2590 GO",
+    "vehicle_type": "Hyundai Sonata 2018-19",
+    "speed": 55.5,
+    "timestamp": "2026-01-27T23:36:35.417618",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2697924211687572",
+      "name": "Lestari Bambang",
+      "region": "Grobogan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0003",
+    "license_plate": "AI 1364 UV",
+    "vehicle_type": "Hyundai Ioniq Plug-in Hybrid 2019",
+    "speed": 62.3,
+    "timestamp": "2026-01-27T23:36:35.417673",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3495012108855011",
+      "name": "Ahmad Rahman",
+      "region": "Kab. Serang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0004",
+    "license_plate": "GB 9317 DQ",
+    "vehicle_type": "Hyundai Ioniq Hybrid 2017-19",
+    "speed": 66.4,
+    "timestamp": "2026-01-27T23:36:35.417724",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1113792406680671",
+      "name": "Totok Prasetyo",
+      "region": "Kab. Pekalongan, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0005",
+    "license_plate": "HL 9469 BJ",
+    "vehicle_type": "Volkswagen Golf SportsVan 2015-20",
+    "speed": 68.5,
+    "timestamp": "2026-01-27T23:36:35.417774",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2037376203628074",
+      "name": "Dewi Sugiono",
+      "region": "Kab. Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "\u0160KO0006",
+    "license_plate": "FH 3053 UG",
+    "vehicle_type": "\u0160koda Kamiq 2021-23",
+    "speed": 50.3,
+    "timestamp": "2026-01-27T23:36:35.417825",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0262830408890111",
+      "name": "Diana Hartono",
+      "region": "Kab. Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "LEX0007",
+    "license_plate": "SZ 5812 ZC",
+    "vehicle_type": "Lexus RC 2018-20",
+    "speed": 56.0,
+    "timestamp": "2026-01-27T23:36:35.417875",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3435251508695310",
+      "name": "Haryo Kusuma",
+      "region": "Jombang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0008",
+    "license_plate": "SW 4901 RU",
+    "vehicle_type": "Toyota Alphard Hybrid 2021",
+    "speed": 66.5,
+    "timestamp": "2026-01-27T23:36:35.417924",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0646181311829643",
+      "name": "Sari Wibowo",
+      "region": "Jombang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LEX0009",
+    "license_plate": "F 4878 CN",
+    "vehicle_type": "Lexus NX Hybrid 2018-19",
+    "speed": 58.9,
+    "timestamp": "2026-01-27T23:36:35.417976",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1673931205564553",
+      "name": "Putri Wijaya",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KIA0010",
+    "license_plate": "RX 4342 VH",
+    "vehicle_type": "Kia Niro Plug-in Hybrid 2020",
+    "speed": 66.7,
+    "timestamp": "2026-01-27T23:36:35.418024",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1676316308729409",
+      "name": "Suryanto Wijaya",
+      "region": "Banyumas, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "KIA0011",
+    "license_plate": "KW 1574 EW",
+    "vehicle_type": "Kia Sorento 2018",
+    "speed": 68.9,
+    "timestamp": "2026-01-27T23:36:35.418072",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2168400906911558",
+      "name": "Lestari Pratama",
+      "region": "Rembang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0012",
+    "license_plate": "B 7122 HJ",
+    "vehicle_type": "Genesis G80 2018-19",
+    "speed": 65.5,
+    "timestamp": "2026-01-27T23:36:35.418122",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0677442501581356",
+      "name": "Nurhayati Santoso",
+      "region": "JADETABEK"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0013",
+    "license_plate": "ZT 3809 PG",
+    "vehicle_type": "Genesis G80 2018-19",
+    "speed": 70.4,
+    "timestamp": "2026-01-27T23:36:35.418169",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1574014904675887",
+      "name": "Maya Prabowo",
+      "region": "Ciamis, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0014",
+    "license_plate": "FZ 4980 HC",
+    "vehicle_type": "Hyundai Elantra 2019",
+    "speed": 64.0,
+    "timestamp": "2026-01-27T23:36:35.418217",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0974545608621744",
+      "name": "Yudi Kusuma",
+      "region": "Cianjur, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0015",
+    "license_plate": "BB 9054 PP",
+    "vehicle_type": "Ford F-150 Hybrid 2021-23",
+    "speed": 69.4,
+    "timestamp": "2026-01-27T23:36:35.418264",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1521804807768318",
+      "name": "Sari Santoso",
+      "region": "Sumatera Utara"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0001",
+    "license_plate": "BA 7627 BL",
+    "vehicle_type": "Genesis GV70 (3.5T Trim, without HDA II) 2022-23",
+    "speed": 61.8,
+    "timestamp": "2026-01-27T23:36:38.418981",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3138715303988255",
+      "name": "Prayogo Bambang",
+      "region": "Sumatera Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0002",
+    "license_plate": "RJ 7901 BO",
+    "vehicle_type": "Volkswagen Golf GTE 2015-20",
+    "speed": 64.2,
+    "timestamp": "2026-01-27T23:36:38.419046",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2717105906943518",
+      "name": "Maya Prabowo",
+      "region": "Banyumas, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GEN0003",
+    "license_plate": "HX 4287 WS",
+    "vehicle_type": "Genesis GV70 (2.5T Trim, without HDA II) 2022-24",
+    "speed": 71.0,
+    "timestamp": "2026-01-27T23:36:38.419100",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1972116611997910",
+      "name": "Fitri Rahman",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LIN0004",
+    "license_plate": "HH 3424 UH",
+    "vehicle_type": "Lincoln Aviator 2020-24",
+    "speed": 68.9,
+    "timestamp": "2026-01-27T23:36:38.419150",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0604370511697696",
+      "name": "Totok Indrawan",
+      "region": "Semarang, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "ACU0005",
+    "license_plate": "DX 3968 NE",
+    "vehicle_type": "Acura RLX 2017",
+    "speed": 66.7,
+    "timestamp": "2026-01-27T23:36:38.419199",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2556476112575922",
+      "name": "Fitri Indrawan",
+      "region": "Kab. Bandung Barat, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0006",
+    "license_plate": "GU 6082 YL",
+    "vehicle_type": "Toyota Avalon 2017-18",
+    "speed": 64.0,
+    "timestamp": "2026-01-27T23:36:38.419249",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2205880408928035",
+      "name": "Wawan Prabowo",
+      "region": "Brebes, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HYU0007",
+    "license_plate": "DL 8514 IA",
+    "vehicle_type": "Hyundai Kona 2020",
+    "speed": 75.2,
+    "timestamp": "2026-01-27T23:36:38.419298",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 80.64516129032258,
+    "owner": {
+      "id": "0941165910919527",
+      "name": "Kusuma Bambang",
+      "region": "Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0008",
+    "license_plate": "NT 2672 TJ",
+    "vehicle_type": "Ford Maverick 2023-24",
+    "speed": 80.7,
+    "timestamp": "2026-01-27T23:36:38.419346",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "3391166308858643",
+      "name": "Bambang Sugiono",
+      "region": "Kab. Pasuruan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "HYU0009",
+    "license_plate": "EX 2542 VX",
+    "vehicle_type": "Hyundai Ioniq Plug-in Hybrid 2019",
+    "speed": 74.0,
+    "timestamp": "2026-01-27T23:36:38.419394",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3122574802544068",
+      "name": "Sari Wibowo",
+      "region": "Majalengka, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "DOD0010",
+    "license_plate": "SN 9428 EB",
+    "vehicle_type": "Dodge Durango 2020-21",
+    "speed": 69.6,
+    "timestamp": "2026-01-27T23:36:38.419534",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2076730412560704",
+      "name": "Nisak Wibowo",
+      "region": "Kab. Mojokerto, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "VOL0011",
+    "license_plate": "AM 4238 ET",
+    "vehicle_type": "Volkswagen e-Golf 2014-20",
+    "speed": 80.5,
+    "timestamp": "2026-01-27T23:36:38.419584",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "1521226405664972",
+      "name": "Rendi Setiawan",
+      "region": "Pandeglang, Banten"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GMC0012",
+    "license_plate": "AR 4262 SD",
+    "vehicle_type": "GMC Sierra 1500 2020-21",
+    "speed": 68.4,
+    "timestamp": "2026-01-27T23:36:38.419634",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2834442102914448",
+      "name": "Sari Kusuma",
+      "region": "Lebak, Banten"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0013",
+    "license_plate": "RI 6447 HH",
+    "vehicle_type": "Subaru Forester 2017-18",
+    "speed": 67.5,
+    "timestamp": "2026-01-27T23:36:38.419684",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1005172612926755",
+      "name": "Adi Hermansyah",
+      "region": "Banjarnegara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "VOL0001",
+    "license_plate": "PZ 7114 NX",
+    "vehicle_type": "Volkswagen Jetta 2015-18",
+    "speed": 72.6,
+    "timestamp": "2026-01-27T23:36:41.420316",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2813505001599547",
+      "name": "Sari Prabowo",
+      "region": "Banyuwangi, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "SUB0002",
+    "license_plate": "MT 4091 VL",
+    "vehicle_type": "Subaru Outback 2023",
+    "speed": 84.8,
+    "timestamp": "2026-01-27T23:36:41.420380",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0538650912833216",
+      "name": "Totok Sumargo",
+      "region": "Sampang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "LEX0003",
+    "license_plate": "RR 3237 GW",
+    "vehicle_type": "Lexus NX Hybrid 2018-19",
+    "speed": 70.1,
+    "timestamp": "2026-01-27T23:36:41.420434",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1069756201596942",
+      "name": "Haryo Prabowo",
+      "region": "Cilacap, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0004",
+    "license_plate": "MH 2715 BG",
+    "vehicle_type": "Ford Maverick 2023-24",
+    "speed": 77.8,
+    "timestamp": "2026-01-27T23:36:41.420485",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "0395170110681154",
+      "name": "Fitri Wibowo",
+      "region": "Bangkalan, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TES0005",
+    "license_plate": "MR 6583 LE",
+    "vehicle_type": "Tesla Model 3 (with HW4) 2024-25",
+    "speed": 76.8,
+    "timestamp": "2026-01-27T23:36:41.420624",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "1774672303734197",
+      "name": "Ayu Pratama",
+      "region": "Sampang, Jawa Timur"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "KAW0006",
+    "license_plate": "DR 5809 QC",
+    "vehicle_type": "Kawasaki SpeedMaster",
+    "speed": 73.2,
+    "timestamp": "2026-01-27T23:36:41.420716",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "1889486101885984",
+      "name": "Hendra Gunawan",
       "region": "Bandung, Jawa Barat"
     },
     "registration": {
@@ -1159,21 +3895,154 @@
     }
   },
   {
-    "vehicle_id": "VOL0013",
-    "license_plate": "PE 3096 KF",
-    "vehicle_type": "Volkswagen Grand California 2019-24",
-    "speed": 56.6,
-    "timestamp": "2026-01-27T17:32:09.633397",
+    "vehicle_id": "SUB0007",
+    "license_plate": "RI 4006 LN",
+    "vehicle_type": "Subaru Outback 2018-19",
+    "speed": 71.5,
+    "timestamp": "2026-01-27T23:36:41.420795",
     "location": "Highway-Sensor-001",
     "ticket_issued": false,
     "fine_amount": 0.0,
     "owner": {
-      "id": "1215591108513868",
-      "name": "Dewi Pratama",
-      "region": "Situbondo, Jawa Timur"
+      "id": "3046331006942595",
+      "name": "Yudi Hartono",
+      "region": "Banjarnegara, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "TOY0008",
+    "license_plate": "TY 3779 CI",
+    "vehicle_type": "Toyota Sienna 2021-23",
+    "speed": 56.0,
+    "timestamp": "2026-01-27T23:36:41.420871",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "3049471310923122",
+      "name": "Handoko Sugiono",
+      "region": "Subang, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HYU0009",
+    "license_plate": "GE 2646 TY",
+    "vehicle_type": "Hyundai Santa Fe Plug-in Hybrid 2022-23",
+    "speed": 79.7,
+    "timestamp": "2026-01-27T23:36:41.420942",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 36.0,
+    "owner": {
+      "id": "2001915310753751",
+      "name": "Prayogo Prabowo",
+      "region": "Tegal, Jawa Tengah"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    }
+  },
+  {
+    "vehicle_id": "SUB0010",
+    "license_plate": "T 2779 OV",
+    "vehicle_type": "Subaru Ascent 2023",
+    "speed": 85.2,
+    "timestamp": "2026-01-27T23:36:41.421013",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 30.0,
+    "owner": {
+      "id": "2470582703777551",
+      "name": "Prayogo Prabowo",
+      "region": "Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "GMC0011",
+    "license_plate": "DY 5556 HH",
+    "vehicle_type": "GMC Sierra 1500 2020-21",
+    "speed": 50.8,
+    "timestamp": "2026-01-27T23:36:41.421089",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "2317266010757840",
+      "name": "Budi Nugroho",
+      "region": "Kab. Bandung, Jawa Barat"
     },
     "registration": {
       "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0012",
+    "license_plate": "DV 9615 YD",
+    "vehicle_type": "Ford Maverick 2023-24",
+    "speed": 68.9,
+    "timestamp": "2026-01-27T23:36:41.421189",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0952560204882141",
+      "name": "Totok Hartono",
+      "region": "Kab. Bandung, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "FOR0013",
+    "license_plate": "FD 8402 SB",
+    "vehicle_type": "Ford Focus 2018",
+    "speed": 57.8,
+    "timestamp": "2026-01-27T23:36:41.421350",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": false,
+    "fine_amount": 0.0,
+    "owner": {
+      "id": "0702024608874117",
+      "name": "Maya Prabowo",
+      "region": "Bogor, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    }
+  },
+  {
+    "vehicle_id": "HON0014",
+    "license_plate": "DS 7954 HU",
+    "vehicle_type": "Honda Civic 2022-24",
+    "speed": 75.1,
+    "timestamp": "2026-01-27T23:36:41.421548",
+    "location": "Highway-Sensor-001",
+    "ticket_issued": true,
+    "fine_amount": 75.0,
+    "owner": {
+      "id": "0154614512967248",
+      "name": "Budi Wijaya",
+      "region": "Cimahi, Jawa Barat"
+    },
+    "registration": {
+      "stnk_status": "Active",
       "sim_status": "Active"
     }
   }

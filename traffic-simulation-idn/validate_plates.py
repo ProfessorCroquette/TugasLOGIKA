@@ -3,7 +3,7 @@
 import re
 from utils.indonesian_plates import IndonesianPlateManager
 
-# Proper Indonesian plate format: [1-2 letters] [4 digits] [1-3 letters]
+# Indonesian plate format: [1-2 letters] [4 digits] [1-3 letters]
 plate_pattern = r'^[A-Z]{1,2} \d{4} [A-Z]{1,3}$'
 
 print("Validating 20 generated license plates:")

@@ -1,6 +1,6 @@
 """
 Queue-based car processor with concurrent sensor workers
-Processes cars sequentially but with 5 concurrent sensors for efficiency
+Processes cars sequentially with 5 concurrent sensors for efficiency
 """
 
 import threading
@@ -31,7 +31,7 @@ class QueuedCarProcessor:
     """
     Processes cars from a queue using 5 concurrent sensor workers.
     - Cars are processed one-by-one sequentially
-    - But 5 sensors work in parallel for efficiency
+    - 5 sensors work in parallel for efficiency
     - Each car gets a verdict before moving to next
     """
     

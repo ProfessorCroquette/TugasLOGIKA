@@ -111,16 +111,16 @@ All modules compile: ✅
 ## What This Fixes
 
 ### Before
-❌ Speeds ranging 30-140 km/h (unrealistic)  
-❌ Average speed 85 km/h (too high)  
-❌ Too many high-speed violations  
-❌ Simulation looked unrealistic  
+ Speeds ranging 30-140 km/h (unrealistic)  
+ Average speed 85 km/h (too high)  
+ Too many high-speed violations  
+ Simulation looked unrealistic  
 
 ### After
-✅ Speeds ranging 45-95 km/h (realistic)  
-✅ Average speed 70 km/h (normal traffic)  
-✅ Natural number of violations (~20-30%)  
-✅ Simulation looks realistic  
+Speeds ranging 45-95 km/h (realistic)  
+Average speed 70 km/h (normal traffic)  
+Natural number of violations (~20-30%)  
+Simulation looks realistic  
 
 ---
 

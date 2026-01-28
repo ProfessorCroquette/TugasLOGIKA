@@ -43,7 +43,7 @@ class SpeedingTicketSimulator:
     
     def _signal_handler(self, signum, frame):
         """Handle termination signals"""
-        logger.info(f"Received signal {signum}, stopping gracefully...")
+        logger.info(f"Received signal {signum}, stopping gracefully, calmly...")
         self.stop()
         sys.exit(0)
     

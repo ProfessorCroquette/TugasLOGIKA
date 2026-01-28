@@ -87,7 +87,7 @@ STEP 6: Next batch starts (back to STEP 1)
 
 ═══════════════════════════════════════════════════════════════════
 
-💻 SAMPLE OUTPUT
+ SAMPLE OUTPUT
 
 Console:
   Car queue processor started with 5 concurrent sensors
@@ -143,7 +143,7 @@ All tests PASSED:
 
 ═══════════════════════════════════════════════════════════════════
 
-📖 DOCUMENTATION
+ DOCUMENTATION
 
 Quick Start:           QUICK_REFERENCE.md (5 min)
 User Guide:           QUEUE_PROCESSING_GUIDE.md (10 min)
@@ -153,7 +153,7 @@ Complete Overview:    IMPLEMENTATION_SUMMARY.md (20 min)
 
 ═══════════════════════════════════════════════════════════════════
 
-🎯 KEY FEATURES
+ FEATURES
 
 Sequential Processing:
   - Cars process one at a time
