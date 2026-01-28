@@ -84,10 +84,7 @@ This project demonstrates:
 -   Defensive programming practices
 -   Scalable sensor modeling
 -   Regional data integration
-
-Suitable for: - Software Engineering coursework - Systems Modeling -
-Logic Programming - Simulation Engineering - Human-Computer Interaction
-
+-   Demonstrate simple AI logic using near-realistic simulation
 ------------------------------------------------------------------------
 
 ## Technology Stack
