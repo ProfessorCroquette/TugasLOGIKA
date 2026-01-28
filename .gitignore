@@ -49,3 +49,4 @@ traffic-simulation-idn/data_files/*.tmp
 # =========================
 *.DS_Store
 desktop.ini
+traffic-simulation-idn/data_files/tickets.json
