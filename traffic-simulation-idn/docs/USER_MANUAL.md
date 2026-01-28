@@ -65,89 +65,179 @@ All vehicle and violation management is done through the GUI:
 
 ## GUI Interface
 
-### Main Window
+### Main Window - Sistem Monitoring Pelanggaran Lalu Lintas Indonesia
 
-The GUI consists of several tabs:
+The GUI provides real-time traffic violation monitoring with an integrated dashboard and violations table.
 
-#### 1. Dashboard Tab
-- Real-time statistics
-- Active vehicles count
-- Recent violations
-- System status
+#### Left Panel: Control & Statistics
+**Kontrol Simulasi (Simulation Control):**
+- **Mulai Simulasi** (Start Simulation) - Green button
+- **Hentikan Simulasi** (Stop Simulation) - Red button
+- **Hapus Data** (Clear Data) - Delete all violations and vehicle records
 
-#### 2. Simulation Tab
-- Start/Stop simulation
-- Adjust vehicle count
-- Set simulation parameters
-- View simulation progress
+**Statistik Real-time (Real-time Statistics):**
+- **Total Pelanggaran** - Count of all detected violations
+- **Kendaraan Diproses** - Total vehicles processed through sensors
+- **Total Denda (IDR)** - Sum of all fines in Indonesian Rupiah
+- **Rata-rata Kecepatan** - Average speed of all checked vehicles
+- **Kecepatan Maksimal** - Maximum speed detected
 
-#### 3. Violations Tab
-- List all violations
-- Filter by type, date range, vehicle
-- View violation details
-- Print tickets
+**Status Pemeriksaan Real-time (5 Sensor):**
+- 5 individual sensor panels (Sensor 1-5)
+- Each shows: Status (IDLE/SAFE/VIOLATION), License Plate, Speed, Fine Amount
+- Real-time color updates: IDLE (gray), SAFE (green), VIOLATION (red)
 
-#### 4. Reports Tab
-- Generate daily/monthly reports
-- Export to CSV, PDF, Excel
-- View historical reports
-- Compare periods
+#### Right Panel: Violations Table
+- **Plat Nomor** (License Plate)
+- **Pemilik** (Owner Name)
+- **Kecepatan** (Speed in km/h)
+- **Denda (IDR)** (Fine in Indonesian Rupiah - shown in red)
+- **Status STNK** (Vehicle Registration Status - shows Non-Active if expired)
+- **Detail** (View Details button) - Opens violation details dialog
 
-#### 5. Settings Tab
-- Database configuration
-- Email settings
-- UI preferences
-- System logging
-
-### Using the Dashboard
+### Using the GUI Dashboard
 
 1. **Start Simulation**
-   - Click "Simulation" tab
-   - Set vehicle count (1-500)
-   - Click "Start" button
-   - Monitor progress bar
+   - Click "Mulai Simulasi" button
+   - System generates vehicles through 5 parallel sensors
+   - Violations are detected and displayed in real-time
+   - Statistics update every 500ms
 
 2. **View Violations**
-   - Click "Violations" tab
-   - Use filters at top
-   - Click row for details
-   - Right-click for options
+   - Violations appear in the right panel table
+   - Click "Lihat" (Detail) button for complete violation information
+   - Detail dialog shows: Plate, Owner Info, Vehicle Type, Speed, Fine Calculation
+   - Fine Calculation shows: Base Fine (USD/IDR), Penalty Multiplier, Total Fine
 
-3. **Generate Report**
-   - Click "Reports" tab
-   - Select date range
-   - Choose report type
-   - Select export format
-   - Click "Generate"
+3. **Stop Simulation**
+   - Click "Hentikan Simulasi" button
+   - Statistics remain displayed (don't reset)
+   - Data persists in JSON files
+   - Can resume simulation later
 
-### Keyboard Shortcuts
-- `Ctrl+N`: New simulation
-- `Ctrl+E`: Export current view
-- `Ctrl+P`: Print
-- `Ctrl+S`: Save settings
-- `Ctrl+Q`: Quit application
+4. **Clear All Data**
+   - Click "Hapus Data" button
+   - Confirms deletion before removing all violations and vehicles
+   - Clears tickets.json and traffic_data.json
+   - Statistics reset to zero
+
+### Real-Time Data Files Updated
+
+During simulation, the following JSON files are continuously updated:
+- **data_files/tickets.json** - All detected violations with complete details
+- **data_files/traffic_data.json** - All vehicles processed
+- **data_files/worker_status.json** - Current status of each sensor's work
+
+### Violation Detail Dialog - Pengaturan Denda
+
+Shows detailed information for each violation:
+1. **Informasi Umum** (General Info)
+   - License Plate
+   - Owner Name/ID
+   - Vehicle Type (Mobil/Motor/Truck)
+   - Region (from NIK)
+   - Timestamp
+
+2. **Perhitungan Denda** (Fine Calculation)
+   - Denda Dasar (Base Fine) in USD and IDR
+   - Pengali Penalti (Penalty Multiplier) - highlighted if > 1.0
+   - Total Denda (Total Fine) in USD and IDR
 
 ## Managing Data
 
-### Adding Vehicles
-1. Go to Violations tab
-2. Click "Add Vehicle" button
-3. Fill in form:
-   - License Plate
-   - Vehicle Type
-   - Owner Name
-   - Owner ID (KTP)
-4. Click "Save"
+### Violation Detail Structure
 
-### Editing Records
-1. Select record in table
-2. Right-click and select "Edit"
-3. Modify fields
-4. Click "Save"
+When you click "Lihat" (Detail) button, the dialog displays:
 
-### Deleting Records
-1. Select record
-2. Right-click → "Delete"
+```
+INFORMASI UMUM
+- Plat Nomor: B 1234 ABC (License plate format)
+- Pemilik: John Doe
+- ID Pemilik: 3275123456789012
+- Wilayah: B = Jakarta (DKI)
+- Tipe Kendaraan: Mobil / Motor / Truck
+- Waktu: 2026-01-29 10:30:45
+
+PERHITUNGAN DENDA
+- Denda Dasar: $50.00 / Rp 775,000
+- Pengali Penalti: 1.5x (highlighted if > 1.0)
+- Total Denda: $75.00 / Rp 1,162,500
+```
+
+### JSON Data File Formats
+
+**tickets.json Structure (Violations):**
+```json
+[
+  {
+    "license_plate": "B 1234 ABC",
+    "speed": 85,
+    "timestamp": "2026-01-29T10:30:45",
+    "vehicle_type": "Mobil",
+    "fine_amount": 50,
+    "penalty_multiplier": 1.5,
+    "owner": {
+      "id": "3275123456789012",
+      "name": "John Doe",
+      "region": "B"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.5,
+      "total_fine": 75
+    }
+  }
+]
+```
+
+**traffic_data.json Structure (Vehicles):**
+```json
+[
+  {
+    "license_plate": "B 1234 ABC",
+    "speed": 85,
+    "timestamp": "2026-01-29T10:30:45",
+    "vehicle_type": "Mobil",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Avanza",
+    "owner": {
+      "id": "3275123456789012",
+      "name": "John Doe"
+    }
+  }
+]
+```
+
+**worker_status.json Structure (Sensor Status):**
+```json
+{
+  "0": {
+    "status": "CHECKING",
+    "vehicle": {
+      "license_plate": "B 1234 ABC",
+      "speed": 85
+    }
+  },
+  "1": {
+    "status": "IDLE",
+    "vehicle": null
+  }
+}
+```
+
+### Auto-Refresh Mechanism
+
+The GUI auto-refreshes every 500ms:
+- Reads JSON files from disk
+- Updates violations table if count changed
+- Always updates vehicle counter
+- Updates sensor status panels (IDLE/SAFE/VIOLATION)
+- Recalculates statistics (fines, speeds)
+- Converts nested JSON structure to flat GUI format
 3. Confirm deletion
 
 ## Generating Reports

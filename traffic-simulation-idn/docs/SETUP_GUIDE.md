@@ -3,35 +3,20 @@
 ## System Requirements
 
 - Python 3.9 or higher
-- MySQL 8.0 or higher
-- Redis 6.0 or higher
-- 4GB RAM minimum
-- 10GB disk space
+- PyQt5 for GUI (installed via pip)
+- 2GB RAM minimum
+- 5GB disk space
+- Windows 10+, macOS 10.15+, or Linux (Ubuntu 20.04+)
+
+**Note:** This application uses JSON file storage, not MySQL or Redis. Previous database requirements have been removed.
 
 ## Installation Steps
 
 ### 1. Prerequisites
 
-#### Windows
-```powershell
-# Install Python 3.11
-# Download from https://www.python.org/downloads/
-
-# Install MySQL
-# Download from https://dev.mysql.com/downloads/mysql/
-
-# Install Redis (using WSL or Docker)
-# Or download from https://github.com/microsoftarchive/redis/releases
-```
-
-#### Linux/Mac
+Ensure Python 3.9+ is installed:
 ```bash
-# Ubuntu/Debian
-sudo apt-get update
-sudo apt-get install python3.11 python3-pip mysql-server redis-server
-
-# macOS
-brew install python@3.11 mysql redis
+python --version  # Should be 3.9 or higher
 ```
 
 ### 2. Clone Repository
@@ -41,13 +26,16 @@ cd TugasLOGIKA/traffic-simulation-idn
 ```
 
 ### 3. Create Virtual Environment
-```bash
-# Windows
+
+**Windows:**
+```powershell
 python -m venv venv
 venv\Scripts\activate
+```
 
-# Linux/Mac
-python3.11 -m venv venv
+**Linux/Mac:**
+```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
@@ -56,48 +44,109 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 5. Configure Environment
+Key dependencies (from requirements.txt):
+- PyQt5 - GUI framework
+- pathlib - File operations
+- json - Data storage
+- subprocess - Process management
 
+### 5. Verify Installation
+
+Test imports and basic setup:
 ```bash
-# Copy example environment file
-cp .env.example .env
-
-# Edit .env with your settings
-nano .env  # or use your preferred editor
+python -c "from gui_traffic_simulation import TrafficSimulationGUI; print('✓ GUI imports successful')"
+python -c "from simulation.sensor import TrafficSensor; print('✓ Simulation imports successful')"
 ```
 
-Key settings to configure:
-- `DB_HOST`, `DB_USER`, `DB_PASSWORD`
-- `REDIS_HOST`, `REDIS_PORT`
-- `SMTP_` settings for email
-- `TWILIO_` settings for SMS
+### 6. Run the Application
 
-### 6. Database Setup
-
-#### Create Database and User
+**GUI Mode (Recommended):**
 ```bash
-mysql -u root -p
-
-CREATE DATABASE traffic_simulation;
-CREATE USER 'traffic_user'@'localhost' IDENTIFIED BY 'your_password';
-GRANT ALL PRIVILEGES ON traffic_simulation.* TO 'traffic_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+python gui_traffic_simulation.py
 ```
 
-#### Run Migrations
+**CLI Mode:**
 ```bash
-alembic upgrade head
+python main.py
 ```
 
-#### Seed Initial Data
-```bash
-python scripts/setup/setup_database.sh
+## Configuration
+
+### Environment Setup
+
+Configuration is handled in `config/` folder:
+- `config/settings.py` - General settings
+- `config/gui_config.py` - GUI-specific configuration
+- `config/logging_config.py` - Logging setup
+
+No .env file needed - configuration is code-based.
+
+### Key Configuration Parameters
+
+**From config/settings.py:**
+- `SIMULATION_INTERVAL` - Time between vehicle generations
+- `BASE_SPEED_LIMIT` - Speed limit threshold
+- `USD_TO_IDR` - Currency conversion (1 USD = 15,500 IDR)
+
+**GUI Configuration:**
+- Auto-refresh interval: 500ms (hardcoded in gui_traffic_simulation.py)
+- Number of sensors: 5 (parallel vehicle processors)
+- Vehicle batch size: Configurable via DataGenerator
+
+### Data Directory Structure
+
+The application automatically creates these directories:
+```
+data_files/
+├── tickets.json         # All detected violations
+├── traffic_data.json    # All processed vehicles
+└── worker_status.json   # Current sensor status
+
+logs/
+└── simulation_*.log     # Simulation logs (auto-cleanup of old logs)
+
+outputs/
+├── backups/            # Data backups
+├── logs/              # Additional logs
+├── reports/           # Generated reports
+└── screenshots/       # GUI screenshots
 ```
 
-### 7. Verify Installation
+## First Run
 
+1. Open terminal/PowerShell in project directory
+2. Activate virtual environment: `venv\Scripts\activate` (Windows) or `source venv/bin/activate` (Linux/Mac)
+3. Run GUI: `python gui_traffic_simulation.py`
+4. Click "Mulai Simulasi" (Start Simulation) button
+5. Monitor violations appearing in real-time
+
+## Troubleshooting
+
+### Issue: PyQt5 Import Error
+**Solution:**
 ```bash
+pip install PyQt5 --upgrade
+```
+
+### Issue: "No module named 'config'"
+**Solution:** Ensure you're running from the project root directory:
+```bash
+cd traffic-simulation-idn
+python gui_traffic_simulation.py
+```
+
+### Issue: Permission Denied on Linux/Mac
+**Solution:**
+```bash
+chmod +x gui_traffic_simulation.py
+python gui_traffic_simulation.py
+```
+
+### Issue: Data Files Not Found
+**Solution:** The application auto-creates data_files/ directory on first run. If missing:
+```bash
+python -c "from config import Config; Config.setup_directories()"
+```
 # Test GUI launch
 python gui_traffic_simulation.py
 

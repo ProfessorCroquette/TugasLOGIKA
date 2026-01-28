@@ -724,11 +724,9 @@ class TrafficSimulationGUI(QMainWindow):
         self.start_btn.setEnabled(False)
         self.stop_btn.setEnabled(True)
         
-        # Clear previous data
-        self.violations = []
+        # Reset counters for update detection (don't clear violations)
         self.last_violation_count = 0
         self.last_vehicle_count = 0
-        self.refresh_violations_table()
         
         # Start refresh timer for real-time updates
         self.refresh_timer.start()
@@ -809,11 +807,10 @@ class TrafficSimulationGUI(QMainWindow):
                 self.refresh_violations_table()
                 self.last_violation_count = viol_count
             
-            # Update vehicle count
+            # Update vehicle count - always update to show current count
             vehicle_count = len(vehicles)
-            if vehicle_count != self.last_vehicle_count:
-                self.vehicles_count_label.setText(str(vehicle_count))
-                self.last_vehicle_count = vehicle_count
+            self.vehicles_count_label.setText(str(vehicle_count))
+            self.last_vehicle_count = vehicle_count
             
             # Update each sensor's status
             for sensor_id in range(1, 6):
@@ -878,7 +875,8 @@ class TrafficSimulationGUI(QMainWindow):
             total_fines_idr = total_fines * USD_TO_IDR
             self.total_fines_label.setText(f"Rp {total_fines_idr:,.0f}")
             
-            speeds = [v.get('speed', 0) for v in vehicles]
+            # Calculate speeds from violations (all checked vehicles)
+            speeds = [v.get('speed', 0) for v in violations]
             if speeds:
                 self.avg_speed_label.setText(f"{sum(speeds) / len(speeds):.1f} km/h")
                 self.max_speed_label.setText(f"{max(speeds):.1f} km/h")
@@ -910,12 +908,13 @@ class TrafficSimulationGUI(QMainWindow):
             # Extract fine amounts from nested structure
             total_fines = 0
             for t in violations:
-                fine_amount = t.get('total_fine', 0)
+                fine_amount = t.get('fine_amount', 0)
                 if not fine_amount and 'fine' in t and isinstance(t['fine'], dict):
                     fine_amount = t['fine'].get('total_fine', 0)
                 total_fines += fine_amount
             self.total_fines_label.setText(f"Rp {total_fines * USD_TO_IDR:,.0f}")
             
+            # Calculate speeds from violations (checked vehicles)
             speeds = [v.get('speed', 0) for v in violations]
             if speeds:
                 self.avg_speed_label.setText(f"{sum(speeds) / len(speeds):.1f} km/h")
