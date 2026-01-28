@@ -19,6 +19,11 @@ class Vehicle:
     owner_region: str = ""
     stnk_status: str = ""
     sim_status: str = ""
+    vehicle_make: str = ""
+    vehicle_model: str = ""
+    vehicle_category: str = "Pribadi"  # Pribadi, Barang, Umum, Pemerintah, etc.
+    plate_type: str = "PRIBADI"  # PRIBADI, NIAGA/TRUK, PEMERINTAH, DIPLOMATIK
+    plate_color: str = "BLACK"  # BLACK, YELLOW, RED, WHITE
     
     def __post_init__(self):
         """Generate ID if not provided"""
@@ -31,6 +36,11 @@ class Ticket:
     ticket_id: str = field(default_factory=lambda: str(uuid.uuid4()))
     license_plate: str = ""
     vehicle_type: str = ""
+    vehicle_make: str = ""
+    vehicle_model: str = ""
+    vehicle_category: str = "Pribadi"
+    plate_type: str = "PRIBADI"
+    plate_color: str = "BLACK"
     speed: float = 0.0
     speed_limit: float = 75.0
     fine_amount: float = 0.0

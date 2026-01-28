@@ -108,6 +108,9 @@ class SpeedAnalyzer:
                 ticket = Ticket(
                     license_plate=vehicle.license_plate,
                     vehicle_type=vehicle.vehicle_type,
+                    vehicle_make=vehicle.vehicle_make,
+                    vehicle_model=vehicle.vehicle_model,
+                    vehicle_category=vehicle.vehicle_category,
                     speed=vehicle.speed,
                     fine_amount=total_fine,
                     timestamp=vehicle.timestamp,

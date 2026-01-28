@@ -5,22 +5,37 @@ from config import Config
 from data_models.models import Vehicle
 from .car_database import CarDatabase
 from .motorcycle_database import MotorcycleDatabase
-from .indonesian_plates import IndonesianPlateManager, owner_db, VehicleOwner
+from .truck_database import TruckDatabase
+from .indonesian_plates import IndonesianPlateManager, owner_db, VehicleOwner, VehicleType, VehicleCategory
+from .plate_generator import (
+    get_plate_generator, TruckSubType, TruckClass,
+    GovernmentAgency, DiplomaticCountry
+)
 
 class DataGenerator:
-    """Generates random vehicle data using real car and motorcycle databases"""
+    """Generates random vehicle data using real car, motorcycle, and truck databases"""
     
     # Load databases once
     car_db = CarDatabase("CARS.md")
     motorcycle_db = MotorcycleDatabase("model.csv")
+    truck_db = TruckDatabase()
     
     @staticmethod
-    def generate_license_plate():
-        """Generate random license plate (Indonesian format)
-        Format: [Region Code] [Number] [Owner Code]
-        Example: D 1234 CD (Bandung, number 1234, owner code CD)
+    def generate_license_plate(vehicle_type: str = 'car'):
+        """Generate random license plate following Indonesian nomenclature
+        Format: [Region Code] [4-digit number] [Sub Code] [Owner letters]
+        Examples:
+        - Motor: B 1234 U AB
+        - Mobil: B 5678 P ABC
+        
+        Args:
+            vehicle_type: 'motorcycle' or 'car'
+        
+        Returns:
+            plate string (e.g., "B 1234 U AB")
         """
-        plate, region = IndonesianPlateManager.generate_plate()
+        vehicle_enum = VehicleType.RODA_DUA if vehicle_type == 'motorcycle' else VehicleType.RODA_EMPAT_LEBIH
+        plate, region_name, sub_region, vehicle_display = IndonesianPlateManager.generate_plate(vehicle_enum)
         return plate
     
     @staticmethod
@@ -57,6 +72,19 @@ class DataGenerator:
         }
     
     @staticmethod
+    def generate_truck_from_db():
+        """Generate truck using real truck database"""
+        truck = DataGenerator.truck_db.get_random_truck()
+        
+        return {
+            'make': truck['make'],
+            'model': truck['model'],
+            'type': 'truck',
+            'cabin': truck['cabin'],
+            'category': truck['category']
+        }
+    
+    @staticmethod
     def generate_vehicle_type():
         """Generate random vehicle type based on real database distribution"""
         # Get statistics from database
@@ -90,43 +118,144 @@ class DataGenerator:
     
     @staticmethod
     def generate_vehicle_batch():
-        """Generate a batch of random vehicles using real car database with owner info"""
+        """Generate a batch of random vehicles with probability distribution:
+        50% Pribadi (cars/motorcycles) - Private plate (BLACK)
+        40% Barang/Truk/Angkutan Umum (commercial) - Truck plate (YELLOW)
+        5% Pemerintah (government) - Government plate (RED)
+        5% Kedutaan (diplomatic) - Diplomatic plate (WHITE)
+        """
         num_vehicles = random.randint(
             Config.MIN_VEHICLES_PER_BATCH,
             Config.MAX_VEHICLES_PER_BATCH
         )
         
         vehicles = []
+        plate_gen = get_plate_generator()
+        
         for i in range(num_vehicles):
-            # Randomly decide if motorcycle or car (15% motorcycles, 85% cars/trucks)
-            is_motorcycle = random.random() < 0.15
+            # Select vehicle type by probability
+            rand = random.random()
             
-            if is_motorcycle:
-                vehicle_info = DataGenerator.generate_motorcycle_from_db()
-            else:
-                # Get real car from database
+            if rand < 0.50:
+                # PRIBADI (50%) - Private cars and motorcycles
+                is_motorcycle = random.random() < 0.15  # 15% motorcycles within pribadi
+                
+                if is_motorcycle:
+                    vehicle_info = DataGenerator.generate_motorcycle_from_db()
+                    vehicle_class = 'roda_dua'
+                else:
+                    vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
+                    vehicle_class = 'roda_empat'
+                
+                vehicle_category = VehicleCategory.PRIBADI.value
+                plate_color = 'BLACK'
+                plate_type = 'PRIBADI'
+                
+                # Generate private plate
+                region_code = random.choice(['B', 'D', 'F', 'H', 'L', 'AB', 'AG', 'AA', 'BL', 'BP', 'KB', 'KT', 'DK'])
+                plate_data = plate_gen.generate_private_plate(region_code)
+                license_plate = plate_data['plate']
+                
+            elif rand < 0.90:
+                # BARANG/TRUK/ANGKUTAN UMUM (40%) - Commercial vehicles
+                vehicle_info = DataGenerator.generate_truck_from_db()
+                vehicle_class = 'roda_empat'
+                vehicle_category = VehicleCategory.BARANG.value
+                plate_color = 'YELLOW'
+                plate_type = 'NIAGA/TRUK'
+                
+                # Generate truck plate with random specifications
+                truck_type = random.choice([
+                    TruckSubType.GENERAL,
+                    TruckSubType.CONTAINER,
+                    TruckSubType.TANKER,
+                    TruckSubType.DUMP,
+                    TruckSubType.FLATBED
+                ])
+                truck_class = random.choice([
+                    TruckClass.LIGHT,
+                    TruckClass.MEDIUM,
+                    TruckClass.HEAVY
+                ])
+                region_code = random.choice(['B', 'D', 'F', 'H', 'L', 'AB', 'BL'])
+                
+                plate_data = plate_gen.generate_truck_plate(
+                    region_code=region_code,
+                    truck_type=truck_type,
+                    truck_class=truck_class
+                )
+                license_plate = plate_data['plate']
+                
+            elif rand < 0.95:
+                # PEMERINTAH (5%) - Government vehicles
                 vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
+                vehicle_class = 'roda_empat'
+                vehicle_category = 'PEMERINTAH'
+                plate_color = 'RED'
+                plate_type = 'PEMERINTAH'
+                
+                # Generate government plate
+                agency = random.choice([
+                    GovernmentAgency.POLICE,
+                    GovernmentAgency.ARMY_LAND,
+                    GovernmentAgency.ARMY_NAVY,
+                    GovernmentAgency.ARMY_AIR,
+                    GovernmentAgency.PRESIDENCY,
+                    GovernmentAgency.PARLIAMENT
+                ])
+                
+                plate_data = plate_gen.generate_government_plate(agency)
+                license_plate = plate_data['plate']
+                
+            else:
+                # KEDUTAAN (5%) - Diplomatic vehicles
+                vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
+                vehicle_class = 'roda_empat'
+                vehicle_category = 'KEDUTAAN'
+                plate_color = 'WHITE'
+                plate_type = 'DIPLOMATIK'
+                
+                # Generate diplomatic plate
+                country = random.choice([
+                    DiplomaticCountry.USA,
+                    DiplomaticCountry.CHINA,
+                    DiplomaticCountry.JAPAN,
+                    DiplomaticCountry.SOUTH_KOREA,
+                    DiplomaticCountry.SINGAPORE,
+                    DiplomaticCountry.MALAYSIA,
+                    DiplomaticCountry.THAILAND,
+                    DiplomaticCountry.VIETNAM,
+                    DiplomaticCountry.PHILIPPINES,
+                    DiplomaticCountry.INDIA
+                ])
+                is_consular = random.random() < 0.3
+                
+                plate_data = plate_gen.generate_diplomatic_plate(country, is_consular)
+                license_plate = plate_data['plate']
             
             vehicle_type = vehicle_info['type']
             
-            # Generate license plate
-            license_plate = DataGenerator.generate_license_plate()
-            
             # Get or create owner for this vehicle
-            owner = owner_db.get_or_create_owner(license_plate)
+            owner = owner_db.get_or_create_owner(license_plate, vehicle_class)
             
             vehicle = Vehicle(
                 vehicle_id=f"{vehicle_info['make'][:3].upper()}{i+1:04d}",
                 license_plate=license_plate,
-                vehicle_type=f"{vehicle_info['make']} {vehicle_info['model']}",
+                vehicle_type=vehicle_class,  # 'roda_dua' or 'roda_empat'
                 speed=DataGenerator.generate_speed(vehicle_type),
                 timestamp=datetime.now(),
                 owner_id=owner.owner_id,
                 owner_name=owner.name,
                 owner_region=owner.region,
                 stnk_status='Active' if owner.stnk_status else 'Non-Active',
-                sim_status='Active' if owner.sim_status else 'Expired'
+                sim_status='Active' if owner.sim_status else 'Expired',
+                vehicle_make=vehicle_info.get('make', ''),
+                vehicle_model=vehicle_info.get('model', ''),
             )
+            # Add vehicle category and plate info for display
+            vehicle.vehicle_category = vehicle_category
+            vehicle.plate_type = plate_type
+            vehicle.plate_color = plate_color
             vehicles.append(vehicle)
         
         return vehicles

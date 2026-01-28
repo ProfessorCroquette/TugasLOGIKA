@@ -47,6 +47,9 @@ class DataStorage:
                     'vehicle_id': v.vehicle_id,
                     'license_plate': v.license_plate,
                     'vehicle_type': v.vehicle_type,
+                    'vehicle_make': v.vehicle_make,
+                    'vehicle_model': v.vehicle_model,
+                    'vehicle_category': v.vehicle_category,
                     'speed': v.speed,
                     'timestamp': v.timestamp.isoformat(),
                     'location': v.location,
@@ -89,6 +92,9 @@ class DataStorage:
                     'ticket_id': t.ticket_id,
                     'license_plate': t.license_plate,
                     'vehicle_type': t.vehicle_type,
+                    'vehicle_make': t.vehicle_make,
+                    'vehicle_model': t.vehicle_model,
+                    'vehicle_category': t.vehicle_category,
                     'speed': t.speed,
                     'speed_limit': t.speed_limit,
                     'timestamp': t.timestamp.isoformat(),
@@ -111,9 +117,16 @@ class DataStorage:
                 }
                 tickets_data.append(ticket_dict)
             
-            # Read existing data
-            with open(self.tickets_file, 'r') as f:
-                existing_data = json.load(f)
+            # Read existing data with error handling
+            existing_data = []
+            try:
+                with open(self.tickets_file, 'r') as f:
+                    content = f.read().strip()
+                    if content:
+                        existing_data = json.loads(content)
+            except (json.JSONDecodeError, FileNotFoundError, IOError) as read_err:
+                logger.debug(f"Could not read existing tickets (will create new): {read_err}")
+                existing_data = []
             
             # Append new data
             existing_data.extend(tickets_data)

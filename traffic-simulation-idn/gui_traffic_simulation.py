@@ -1,6 +1,7 @@
 """
 Qt5 GUI for Indonesian Traffic Violation Simulation
-Displays real-time violations with owner information and Rupiah currency
+Displays real-time violations with owner information, vehicle types, and Rupiah currency
+Follows Indonesian plate nomenclature: Roda Dua (Motor) and Roda Empat atau lebih (Mobil)
 """
 
 import sys
@@ -198,7 +199,29 @@ class ViolationDetailDialog(QDialog):
         vehicle_layout.addWidget(QLabel(region), 1, 1)
         
         vehicle_layout.addWidget(QLabel("Tipe Kendaraan:"), 2, 0)
-        vehicle_layout.addWidget(QLabel(self.violation.get('vehicle_type', '-')), 2, 1)
+        vehicle_type = self.violation.get('vehicle_type', '-')
+        vehicle_make = self.violation.get('vehicle_make', '').strip()
+        vehicle_model = self.violation.get('vehicle_model', '').strip()
+        vehicle_category = self.violation.get('vehicle_category', 'Pribadi')
+        
+        # Translate vehicle type to Indonesian
+        if vehicle_type == 'roda_dua':
+            vehicle_type_display = 'Roda Dua (Motor)'
+        elif vehicle_type == 'roda_empat':
+            vehicle_type_display = 'Roda Empat atau lebih (Mobil/Truk)'
+        else:
+            vehicle_type_display = str(vehicle_type)
+        
+        # Add make and model if available (skip if empty or 'Unknown')
+        if vehicle_make and vehicle_make != 'Unknown' and vehicle_model and vehicle_model != 'Unknown':
+            vehicle_type_display = f"{vehicle_type_display} - {vehicle_make} {vehicle_model}"
+        elif vehicle_make and vehicle_make != 'Unknown':
+            vehicle_type_display = f"{vehicle_type_display} - {vehicle_make}"
+        
+        vehicle_layout.addWidget(QLabel(vehicle_type_display), 2, 1)
+        
+        vehicle_layout.addWidget(QLabel("Kategori Kendaraan:"), 3, 0)
+        vehicle_layout.addWidget(QLabel(vehicle_category), 3, 1)
         
         vehicle_group.setLayout(vehicle_layout)
         layout.addWidget(vehicle_group)
@@ -216,8 +239,10 @@ class ViolationDetailDialog(QDialog):
         owner_layout.addWidget(QLabel(str(owner_id)), 1, 1)
         
         owner_region = self.violation.get('owner_region', self.violation.get('owner', {}).get('region', '-'))
+        # Convert region code to region name if needed
+        owner_region_display = self._convert_region_code_to_name(owner_region)
         owner_layout.addWidget(QLabel("Tempat Tinggal:"), 2, 0)
-        owner_layout.addWidget(QLabel(str(owner_region)), 2, 1)
+        owner_layout.addWidget(QLabel(str(owner_region_display)), 2, 1)
         
         owner_group.setLayout(owner_layout)
         layout.addWidget(owner_group)
@@ -338,6 +363,32 @@ class ViolationDetailDialog(QDialog):
             code = parts[0]
             return regions.get(code, f'Kode: {code}')
         return 'Tidak Diketahui'
+    
+    def _convert_region_code_to_name(self, value: str) -> str:
+        """Convert region code to full region name"""
+        if not value or value == '-':
+            return value
+        
+        # Map of region codes to full names
+        regions_map = {
+            'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
+            'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
+            'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
+            'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
+            'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
+            'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
+            'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
+            'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
+            'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
+            'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
+        }
+        
+        # If value looks like a region code, convert it
+        if value.upper() in regions_map:
+            return regions_map[value.upper()]
+        
+        # If it's already a full name or unknown format, return as is
+        return value
 
 
 class TrafficSimulationGUI(QMainWindow):
@@ -552,6 +603,32 @@ class TrafficSimulationGUI(QMainWindow):
         main_widget.setLayout(main_layout)
         self.update_stats()
     
+    def _convert_region_code_to_name(self, value: str) -> str:
+        """Convert region code to full region name"""
+        if not value or value == '-':
+            return value
+        
+        # Map of region codes to full names
+        regions_map = {
+            'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
+            'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
+            'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
+            'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
+            'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
+            'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
+            'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
+            'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
+            'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
+            'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
+        }
+        
+        # If value looks like a region code, convert it
+        if value.upper() in regions_map:
+            return regions_map[value.upper()]
+        
+        # If it's already a full name or unknown format, return as is
+        return value
+    
     def load_violations(self):
         """Load violations from file"""
         try:
@@ -570,11 +647,28 @@ class TrafficSimulationGUI(QMainWindow):
         """Convert nested violation structure from JSON to flat GUI structure"""
         flattened = violation.copy()
         
+        # Ensure vehicle_type is present (from root level or keep as-is)
+        if 'vehicle_type' not in flattened:
+            flattened['vehicle_type'] = '-'
+        
+        # Keep vehicle make and model as empty if not present (don't force to '-')
+        # This prevents 'Unknown Unknown' from showing in detail dialog
+        if 'vehicle_make' not in flattened:
+            flattened['vehicle_make'] = ''
+        if 'vehicle_model' not in flattened:
+            flattened['vehicle_model'] = ''
+        
+        # Ensure vehicle category is present
+        if 'vehicle_category' not in flattened:
+            flattened['vehicle_category'] = 'Pribadi'
+        
         # Flatten owner data
         if 'owner' in violation and isinstance(violation['owner'], dict):
             flattened['owner_id'] = violation['owner'].get('id', '-')
             flattened['owner_name'] = violation['owner'].get('name', '-')
-            flattened['owner_region'] = violation['owner'].get('region', '-')
+            # Convert region code to region name for export
+            region_value = violation['owner'].get('region', '-')
+            flattened['owner_region'] = self._convert_region_code_to_name(region_value)
         
         # Flatten registration data
         if 'registration' in violation and isinstance(violation['registration'], dict):
@@ -774,8 +868,15 @@ class TrafficSimulationGUI(QMainWindow):
             
             # Update statistics
             self.violations_count_label.setText(str(len(violations)))
-            total_fines = sum(v.get('fine_amount', 0) for v in violations) * USD_TO_IDR
-            self.total_fines_label.setText(f"Rp {total_fines:,.0f}")
+            # Extract fine amounts from nested structure
+            total_fines = 0
+            for v in violations:
+                fine_amount = v.get('fine_amount', 0)
+                if not fine_amount and 'fine' in v and isinstance(v['fine'], dict):
+                    fine_amount = v['fine'].get('total_fine', 0)
+                total_fines += fine_amount
+            total_fines_idr = total_fines * USD_TO_IDR
+            self.total_fines_label.setText(f"Rp {total_fines_idr:,.0f}")
             
             speeds = [v.get('speed', 0) for v in vehicles]
             if speeds:
@@ -806,7 +907,13 @@ class TrafficSimulationGUI(QMainWindow):
             self.violations_count_label.setText(str(len(violations)))
             self.vehicles_count_label.setText(str(len(vehicles)))
             
-            total_fines = sum(t.get('total_fine', 0) for t in violations)
+            # Extract fine amounts from nested structure
+            total_fines = 0
+            for t in violations:
+                fine_amount = t.get('total_fine', 0)
+                if not fine_amount and 'fine' in t and isinstance(t['fine'], dict):
+                    fine_amount = t['fine'].get('total_fine', 0)
+                total_fines += fine_amount
             self.total_fines_label.setText(f"Rp {total_fines * USD_TO_IDR:,.0f}")
             
             speeds = [v.get('speed', 0) for v in violations]
