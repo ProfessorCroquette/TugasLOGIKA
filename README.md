@@ -1,5 +1,4 @@
-# POWERED BY 
-<a href="https://www.python.org" target="_blank">
+POWERED BY <a href="https://www.python.org" target="_blank">
   <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" 
        alt="Python Logo" 
        height="60">
