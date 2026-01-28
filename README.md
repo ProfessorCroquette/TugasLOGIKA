@@ -27,10 +27,107 @@ design, GUI engineering, data modeling, and simulation principles.
 
 ## 🧭 System Architecture
 
-> 🗺 Architecture Diagram Placeholder\
+
 > Add your architecture diagram here:
 
-    docs/assets/system_architecture.png
+flowchart TB
+
+%% =========================
+%% GUI Layer
+%% =========================
+GUI["🖥️ GUI Dashboard Layer<br/>
+<b>gui_traffic_simulation.py</b> (PyQt5)<br/>
+• TrafficSimulationGUI (QMainWindow)<br/>
+• ViolationDetailDialog<br/>
+• SimulationWorker (QThread)<br/>
+• Auto-refresh every 500ms"]
+
+%% =========================
+%% Data Files
+%% =========================
+FILES["📁 Real-Time Data Files (JSON)<br/>
+• tickets.json (Violations)<br/>
+• traffic_data.json (Vehicles)<br/>
+• worker_status.json (Sensors)"]
+
+%% =========================
+%% Simulation Engine
+%% =========================
+ENGINE["⚙️ Simulation Engine (main.py)<br/>
+SpeedingTicketSimulator"]
+
+SENSOR["🚦 TrafficSensor<br/>
+• Generates vehicles<br/>
+• Assigns speeds<br/>
+• Detects violations<br/>
+• Pushes to queue"]
+
+PROCESSOR["🧵 QueuedCarProcessor<br/>
+5 Parallel Workers<br/>
+1️⃣ Queue Processing<br/>
+2️⃣ Violation Detection<br/>
+3️⃣ Write tickets.json<br/>
+4️⃣ Update worker_status.json<br/>
+5️⃣ Fine Calculation"]
+
+ANALYZER["📊 SpeedAnalyzer<br/>
+• Monitors queue<br/>
+• Calculates statistics"]
+
+DASHBOARD["🖥️ Console Dashboard<br/>
+• Displays violations<br/>
+• Shows statistics"]
+
+%% =========================
+%% Utilities Layer
+%% =========================
+GENERATOR["🔁 utils/generators.py<br/>
+DataGenerator<br/>
+• Random vehicles<br/>
+• NIK generation<br/>
+• Distribution rules"]
+
+PLATES["🚘 utils/indonesian_plates.py<br/>
+Plate Generator<br/>
+• 30+ Regions<br/>
+• Format: B 1234 ABC"]
+
+FINES["💰 utils/violation_utils.py<br/>
+Fine Calculator<br/>
+• Base fines<br/>
+• Multipliers<br/>
+• USD → IDR"]
+
+DATABASES["🗄️ Vehicle Databases<br/>
+• car_database.py<br/>
+• motorcycle_database.py<br/>
+• model datasets"]
+
+%% =========================
+%% Connections
+%% =========================
+GUI --> FILES
+FILES --> GUI
+
+FILES --> ENGINE
+
+ENGINE --> SENSOR
+ENGINE --> PROCESSOR
+ENGINE --> ANALYZER
+ENGINE --> DASHBOARD
+
+SENSOR --> PROCESSOR
+PROCESSOR --> FILES
+ANALYZER --> FILES
+
+PROCESSOR --> FINES
+PROCESSOR --> PLATES
+SENSOR --> GENERATOR
+
+GENERATOR --> DATABASES
+PLATES --> DATABASES
+FINES --> DATABASES
+
 
 Core Components: - Traffic Sensors (5 parallel streams) - Violation
 Analyzer Engine - Plate & Regional Decoder - Vehicle Generator - GUI
