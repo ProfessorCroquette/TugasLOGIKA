@@ -1,316 +1,19 @@
 [
   {
-    "ticket_id": "fea2a065-7d2d-4a16-a013-8dcb7cdca245",
-    "license_plate": "RI 5 4",
+    "ticket_id": "1d883978-b33b-41eb-80cd-55b962222f20",
+    "license_plate": "DK 50 KT",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Acura",
-    "vehicle_model": "MDX 2025-26",
-    "vehicle_category": "PEMERINTAH",
-    "speed": 81.8,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:41.679954",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "2366536604863466",
-      "name": "Wahyu Indrawan",
-      "region": "Pemerintah Indonesia"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "ba68f3bf-15a8-482f-ad02-c827057432ee",
-    "license_plate": "CD 88 01",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Toyota",
-    "vehicle_model": "Avalon Hybrid 2019-21",
-    "vehicle_category": "KEDUTAAN",
-    "speed": 78.0,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:41.680106",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1790165911921245",
-      "name": "Wahyu Setiawan",
-      "region": "Diplomatik"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "22007c7a-2cec-49a6-b94e-42b4a4d8f56b",
-    "license_plate": "CC 88 58",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Kia",
-    "vehicle_model": "Sorento 2021-23",
-    "vehicle_category": "KEDUTAAN",
-    "speed": 78.1,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:44.680948",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "3198845909699704",
-      "name": "Budi Pratama",
-      "region": "Diplomatik"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "8d83c4c6-97f4-468e-b9d4-43cef34ad127",
-    "license_plate": "DK 5 NDV",
-    "vehicle_type": "roda_dua",
-    "vehicle_make": "Honda",
-    "vehicle_model": "CBR500RA",
+    "vehicle_make": "Ford",
+    "vehicle_model": "Maverick 2022",
     "vehicle_category": "Pribadi",
-    "speed": 81.5,
+    "speed": 95,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:44.680981",
+    "timestamp": "2026-01-30T12:37:39.552226",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1402555702993746",
-      "name": "Yudi Setiawan",
-      "region": "Bali"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "0efd5229-fe7b-4b1d-844f-a804681471c9",
-    "license_plate": "L 0120 Z",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Hyundai",
-    "vehicle_model": "Ioniq Hybrid 2017-19",
-    "vehicle_category": "Pribadi",
-    "speed": 83.2,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:44.681001",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "2145556110616929",
-      "name": "Bambang Pratama",
-      "region": "Kota Surabaya"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Expired"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.4,
-      "total_fine": 42.0
-    }
-  },
-  {
-    "ticket_id": "dc5c42e7-2ccc-4034-b482-7f18dc64eafd",
-    "license_plate": "B 68 NVD",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Volkswagen",
-    "vehicle_model": "Taos 2022-24",
-    "vehicle_category": "Pribadi",
-    "speed": 75.2,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:44.681157",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "0493960512576339",
-      "name": "Ahmad Sumargo",
-      "region": "DKI Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 75,
-      "penalty_multiplier": 1.0,
-      "total_fine": 75.0
-    }
-  },
-  {
-    "ticket_id": "f03a4255-292c-40e5-8791-14d711594841",
-    "license_plate": "AG 4 A",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Volkswagen",
-    "vehicle_model": "Jetta GLI 2021-23",
-    "vehicle_category": "Pribadi",
-    "speed": 78.2,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:47.682357",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1005741612736747",
-      "name": "Budi Cahyono",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "978ad2cb-ce65-4216-9979-673b5eb080ae",
-    "license_plate": "AG 298 LF",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Toyota",
-    "vehicle_model": "Prius Prime 2017-20",
-    "vehicle_category": "Pribadi",
-    "speed": 76.3,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:50.719813",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "0508801211579022",
-      "name": "Dewi Bambang",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.2,
-      "total_fine": 36.0
-    }
-  },
-  {
-    "ticket_id": "71748685-94ee-4278-9e0b-8586ac66809a",
-    "license_plate": "F 5 SM",
-    "vehicle_type": "roda_dua",
-    "vehicle_make": "Harley-Davidson",
-    "vehicle_model": "V-Rod",
-    "vehicle_category": "Pribadi",
-    "speed": 76.8,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:53.721085",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1279634110549159",
-      "name": "Fitri Indrawan",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Expired"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.2,
-      "total_fine": 36.0
-    }
-  },
-  {
-    "ticket_id": "90c22cd5-bdc0-4c03-a691-5be73dc4f9c0",
-    "license_plate": "BP 9594 RCY",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Honda",
-    "vehicle_model": "Civic Hatchback Hybrid 2025-26",
-    "vehicle_category": "Pribadi",
-    "speed": 84.8,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:53.721202",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "0662555207721786",
-      "name": "Maya Nugroho",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "3219c68a-0e79-4374-b902-b00f3ccf28da",
-    "license_plate": "B 667 YY",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Volkswagen",
-    "vehicle_model": "Golf GTI 2015-21",
-    "vehicle_category": "Pribadi",
-    "speed": 81.6,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:56.722579",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1498144712544793",
-      "name": "Rina Santoso",
-      "region": "DKI Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Expired"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.2,
-      "total_fine": 36.0
-    }
-  },
-  {
-    "ticket_id": "982841aa-036b-4184-a3ed-e8a3281e91ec",
-    "license_plate": "DK 35 CX",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Toyota",
-    "vehicle_model": "Avalon Hybrid 2019-21",
-    "vehicle_category": "Pribadi",
-    "speed": 94.6,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:59.723452",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1306611711620261",
-      "name": "Nurhayati Kusuma",
+      "id": "3345166611911233",
+      "name": "Rina Sumarlin",
       "region": "Bali"
     },
     "registration": {
@@ -324,21 +27,75 @@
     }
   },
   {
-    "ticket_id": "467f2019-a612-4cef-be5d-38ddaddc1753",
-    "license_plate": "KB 1 P",
+    "ticket_id": "d1d7e345-2678-42d8-bbe9-cafad1601111",
+    "license_plate": "AB 9206 B",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Acura",
-    "vehicle_model": "TLX 2018-20",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "RAV4 Hybrid 2019-21",
     "vehicle_category": "Pribadi",
-    "speed": 84.1,
+    "speed": 79.4,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:21:59.723635",
+    "timestamp": "2026-01-30T12:37:39.552453",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "0274376612649054",
-      "name": "Siti Cahyono",
+      "id": "1732802808538498",
+      "name": "Wahyu Hermansyah",
+      "region": "Yogyakarta"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.2,
+      "total_fine": 36.0
+    }
+  },
+  {
+    "ticket_id": "6271b4da-130b-4407-9d6e-5dbd23a79504",
+    "license_plate": "F 3489 N (TRUK-8T)",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Renault",
+    "vehicle_model": "E-Tech T Electric",
+    "vehicle_category": "Barang",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:39.552500",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0589205310508307",
+      "name": "Indra Hartono",
       "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.2,
+      "total_fine": 60.0
+    }
+  },
+  {
+    "ticket_id": "c7507dc9-ca28-43ac-b6c2-223a0817c469",
+    "license_plate": "H 259 UYE",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Hyundai",
+    "vehicle_model": "Ioniq Plug-in Hybrid 2019",
+    "vehicle_category": "Pribadi",
+    "speed": 80.8,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:42.553163",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0654380812979319",
+      "name": "Maya Sumargo",
+      "region": "Kota Semarang"
     },
     "registration": {
       "stnk_status": "Active",
@@ -351,75 +108,75 @@
     }
   },
   {
-    "ticket_id": "a9a129da-50dc-4c14-8b54-64e520666fb0",
-    "license_plate": "BL 5 SBD (TRUK-8T)",
+    "ticket_id": "029eef03-b26c-406e-aad3-073fb2c0b6d6",
+    "license_plate": "B 685 TYY (TRUK-24T) - RUTE: LP",
     "vehicle_type": "roda_empat",
     "vehicle_make": "Iveco",
-    "vehicle_model": "Stralis",
+    "vehicle_model": "Stralis Hi-Way",
     "vehicle_category": "Barang",
-    "speed": 78.6,
+    "speed": 27.3,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:02.724323",
+    "timestamp": "2026-01-30T12:37:42.553255",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1481491608778777",
-      "name": "Indra Hermansyah",
-      "region": "Aceh"
+      "id": "3393581901679584",
+      "name": "Bambang Setiawan",
+      "region": "DKI Jakarta"
     },
     "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
+      "stnk_status": "Active",
+      "sim_status": "Expired"
     },
     "fine": {
-      "base_fine": 30,
+      "base_fine": 35,
       "penalty_multiplier": 1.2,
-      "total_fine": 36.0
+      "total_fine": 42.0
     }
   },
   {
-    "ticket_id": "b4c77fa4-4245-4ffe-9d13-cc9be12be35f",
-    "license_plate": "F 8 YY",
-    "vehicle_type": "roda_dua",
-    "vehicle_make": "Kawasaki",
-    "vehicle_model": "Tiger",
-    "vehicle_category": "Pribadi",
-    "speed": 79.7,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:02.724371",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "2170022712997804",
-      "name": "Putri Bambang",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Non-Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.2,
-      "total_fine": 36.0
-    }
-  },
-  {
-    "ticket_id": "664bed07-b873-4832-b6db-4c787942e74e",
-    "license_plate": "BL 8 DSH",
+    "ticket_id": "e895496e-7560-4e61-8fc8-b13ec60b55d1",
+    "license_plate": "AB 05 KEW",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Honda",
-    "vehicle_model": "Odyssey 2018-20",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "RAV4 Hybrid 2017-18",
     "vehicle_category": "Pribadi",
-    "speed": 79.5,
+    "speed": 29.4,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:02.724439",
+    "timestamp": "2026-01-30T12:37:42.554007",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1879425601629050",
-      "name": "Kusuma Wibowo",
-      "region": "Aceh"
+      "id": "0181751708964977",
+      "name": "Siti Wijaya",
+      "region": "Yogyakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.2,
+      "total_fine": 42.0
+    }
+  },
+  {
+    "ticket_id": "f1560efe-c308-4abc-920f-2e95da325c4e",
+    "license_plate": "L 9952 Y",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Lexus",
+    "vehicle_model": "UX Hybrid 2019-24",
+    "vehicle_category": "Pribadi",
+    "speed": 78.4,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:45.556185",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0942102504808761",
+      "name": "Kusuma Setiawan",
+      "region": "Kota Surabaya"
     },
     "registration": {
       "stnk_status": "Active",
@@ -432,100 +189,19 @@
     }
   },
   {
-    "ticket_id": "97783c37-b6b1-40e6-a293-4b7b79aaa1f3",
-    "license_plate": "F 893 UU",
+    "ticket_id": "7f4fd73f-62a6-4a55-9e78-5c0100074506",
+    "license_plate": "F 09 P",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Kia",
-    "vehicle_model": "Sorento 2021-23",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "bZ4x 2023-25",
     "vehicle_category": "Pribadi",
-    "speed": 80.9,
+    "speed": 36.3,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:02.724566",
+    "timestamp": "2026-01-30T12:37:45.556232",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1839966206699413",
-      "name": "Wahyu Bambang",
-      "region": "Jakarta"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "e4c68d86-6c80-4cbd-a2b0-c056f2694954",
-    "license_plate": "L 6 Y",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Honda",
-    "vehicle_model": "Accord Hybrid 2018-22",
-    "vehicle_category": "Pribadi",
-    "speed": 78.6,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:02.724584",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "2852321806766635",
-      "name": "Budi Sumargo",
-      "region": "Kota Surabaya"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "9e115c59-8cfa-497f-b904-8057f9d1da4d",
-    "license_plate": "L 3 TP",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Chevrolet",
-    "vehicle_model": "Bolt EUV 2022-23",
-    "vehicle_category": "Pribadi",
-    "speed": 87.3,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:05.725384",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1666680705707116",
-      "name": "Bambang Wibowo",
-      "region": "Kota Surabaya"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "7ccf7d51-0850-42a7-82af-8bce12f53c10",
-    "license_plate": "F 97 W",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "Subaru",
-    "vehicle_model": "Outback 2015-17",
-    "vehicle_category": "Pribadi",
-    "speed": 81.6,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:05.725458",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1833534711956131",
+      "id": "2106190208801905",
       "name": "Suryanto Sumarlin",
       "region": "Jakarta"
     },
@@ -534,53 +210,107 @@
       "sim_status": "Active"
     },
     "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "4688bc87-ade4-44c8-81e5-baf9315c116d",
+    "license_plate": "D 312 F (TRUK-24T) - RUTE: LP",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "MAN",
+    "vehicle_model": "TGX TG2",
+    "vehicle_category": "Barang",
+    "speed": 89.1,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:45.556369",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1956134207605988",
+      "name": "Hendra Indrawan",
+      "region": "Kota Bandung"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
       "base_fine": 30,
       "penalty_multiplier": 1.0,
       "total_fine": 30.0
     }
   },
   {
-    "ticket_id": "15723338-07d2-4002-ada9-87440b443605",
-    "license_plate": "DK 4441 ANJ",
+    "ticket_id": "a96105d8-c372-484a-9e53-79e0b50f2620",
+    "license_plate": "H 7 KVPF (TRUK-8T)",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Hyundai",
-    "vehicle_model": "Kona Electric 2022-23",
-    "vehicle_category": "Pribadi",
-    "speed": 78.5,
+    "vehicle_make": "DAF",
+    "vehicle_model": "XD",
+    "vehicle_category": "Barang",
+    "speed": 21.9,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:05.725486",
+    "timestamp": "2026-01-30T12:37:45.556411",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "0278506503601283",
+      "id": "2517440611550620",
+      "name": "Rendi Bambang",
+      "region": "Kota Semarang"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.0,
+      "total_fine": 35.0
+    }
+  },
+  {
+    "ticket_id": "fac2f256-c686-4470-abc7-9ea470c01efb",
+    "license_plate": "DK 68 CWV",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Volkswagen",
+    "vehicle_model": "T-Roc 2018-23",
+    "vehicle_category": "Pribadi",
+    "speed": 32.3,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:45.556441",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0134482806964210",
       "name": "Maya Hartono",
       "region": "Bali"
     },
     "registration": {
       "stnk_status": "Active",
-      "sim_status": "Expired"
+      "sim_status": "Active"
     },
     "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.2,
-      "total_fine": 36.0
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
     }
   },
   {
-    "ticket_id": "a203b8d8-52e1-45e2-908a-39c636490326",
-    "license_plate": "B 42 AD",
+    "ticket_id": "1476bdbb-5411-42db-b636-4b3656626dd9",
+    "license_plate": "B 0107 M",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Lexus",
-    "vehicle_model": "RX Hybrid 2020-22",
+    "vehicle_make": "Volkswagen",
+    "vehicle_model": "Arteon 2018-23",
     "vehicle_category": "Pribadi",
-    "speed": 78.9,
+    "speed": 80.8,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:05.725519",
+    "timestamp": "2026-01-30T12:37:45.556809",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "3238432307914077",
-      "name": "Rendi Pratama",
+      "id": "0337084808518912",
+      "name": "Wahyu Pratama",
       "region": "DKI Jakarta"
     },
     "registration": {
@@ -594,20 +324,263 @@
     }
   },
   {
-    "ticket_id": "3def4799-43de-40b1-b7c5-b9b3b64c2c3a",
-    "license_plate": "B 3728 HA",
+    "ticket_id": "11133aa7-bcb9-40fc-867e-66dc7ac92dbc",
+    "license_plate": "AB 6903 TKP (TRUK-16T) - RUTE: LP",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Volkswagen",
-    "vehicle_model": "Golf GTD 2015-20",
-    "vehicle_category": "Pribadi",
-    "speed": 81.9,
+    "vehicle_make": "Mercedes-Benz",
+    "vehicle_model": "Actros MP3",
+    "vehicle_category": "Barang",
+    "speed": 36.0,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:08.726143",
+    "timestamp": "2026-01-30T12:37:45.556961",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1866265703542686",
-      "name": "Lestari Hermansyah",
+      "id": "0149691112957885",
+      "name": "Wahyu Sugiono",
+      "region": "Yogyakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.2,
+      "total_fine": 24.0
+    }
+  },
+  {
+    "ticket_id": "80465011-de04-4ea0-bafe-0a410aca8cf8",
+    "license_plate": "BL 2 X",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "bZ4x 2023-25",
+    "vehicle_category": "Pribadi",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:48.558306",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0251764204543717",
+      "name": "Putri Setiawan",
+      "region": "Aceh"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.0,
+      "total_fine": 50.0
+    }
+  },
+  {
+    "ticket_id": "d6ba64df-e6a9-4bbf-9bf9-901fbfc6899f",
+    "license_plate": "KB 6 T",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Volkswagen",
+    "vehicle_model": "Taos 2022-24",
+    "vehicle_category": "Pribadi",
+    "speed": 30.9,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:48.558428",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1830115512870764",
+      "name": "Lestari Gunawan",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "34cd60d4-ce20-43eb-afef-20047e210eb6",
+    "license_plate": "L 84 GXEN (TRUK-16T) - RUTE: LP",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Renault",
+    "vehicle_model": "E-Tech T Electric",
+    "vehicle_category": "Barang",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:48.558471",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "3094571301721891",
+      "name": "Handoko Hermawan",
+      "region": "Kota Surabaya"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.2,
+      "total_fine": 60.0
+    }
+  },
+  {
+    "ticket_id": "45c9549f-9055-491d-9720-254fb1b94581",
+    "license_plate": "RI 2 83",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Hyundai",
+    "vehicle_model": "Tucson Diesel 2019",
+    "vehicle_category": "PEMERINTAH",
+    "speed": 31.9,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:51.559382",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2939651307701289",
+      "name": "Prayogo Santoso",
+      "region": "Pemerintah Indonesia"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "cf44ee9d-21be-4e14-9d4e-3c8b17d9a361",
+    "license_plate": "KT 1 LV",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Honda",
+    "vehicle_model": "Fit 2018-20",
+    "vehicle_category": "Pribadi",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:51.559431",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "3387970803983740",
+      "name": "Rina Hermawan",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.2,
+      "total_fine": 60.0
+    }
+  },
+  {
+    "ticket_id": "ad6ae4b3-bd37-4102-ad0e-7555b12ca4b0",
+    "license_plate": "KT 2540 YTW",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Honda",
+    "vehicle_model": "Pilot 2023-25",
+    "vehicle_category": "Pribadi",
+    "speed": 35.7,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:51.559662",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2672270102768011",
+      "name": "Rina Prabowo",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.2,
+      "total_fine": 24.0
+    }
+  },
+  {
+    "ticket_id": "0d4c22fc-d62c-4668-8293-8b0fa1a4f253",
+    "license_plate": "AG 993 P",
+    "vehicle_type": "roda_dua",
+    "vehicle_make": "Suzuki",
+    "vehicle_model": "DL1000K",
+    "vehicle_category": "Pribadi",
+    "speed": 21.0,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:51.559698",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0228575101795020",
+      "name": "Siti Kusuma",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.0,
+      "total_fine": 35.0
+    }
+  },
+  {
+    "ticket_id": "a95322b7-1e76-4dbe-9249-8f4069ef5878",
+    "license_plate": "H 88 DLB (TRUK-8T)",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Renault",
+    "vehicle_model": "T-Range",
+    "vehicle_category": "Barang",
+    "speed": 36.9,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:51.559737",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2835164209728706",
+      "name": "Retno Hartono",
+      "region": "Kota Semarang"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "e68478bc-6c6a-40d6-821d-451267805c7e",
+    "license_plate": "B 6575 VHB (TRUK-8T)",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Scania",
+    "vehicle_model": "R 2016",
+    "vehicle_category": "Barang",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:54.560553",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1103904310796584",
+      "name": "Indra Rahman",
       "region": "DKI Jakarta"
     },
     "registration": {
@@ -615,53 +588,26 @@
       "sim_status": "Active"
     },
     "fine": {
-      "base_fine": 30,
+      "base_fine": 50,
       "penalty_multiplier": 1.0,
-      "total_fine": 30.0
+      "total_fine": 50.0
     }
   },
   {
-    "ticket_id": "ff9aa57d-df61-443e-b9f6-932cd046368b",
-    "license_plate": "CD 74 0155",
+    "ticket_id": "fa022022-8252-4cf0-af39-61d00f972019",
+    "license_plate": "AA 5011 WDK",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "Volkswagen",
-    "vehicle_model": "Jetta 2015-18",
-    "vehicle_category": "KEDUTAAN",
-    "speed": 85.4,
-    "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:08.726248",
-    "location": "Highway-Sensor-001",
-    "status": "PENDING",
-    "owner": {
-      "id": "1338554610960907",
-      "name": "Suryanto Cahyono",
-      "region": "Diplomatik"
-    },
-    "registration": {
-      "stnk_status": "Active",
-      "sim_status": "Active"
-    },
-    "fine": {
-      "base_fine": 30,
-      "penalty_multiplier": 1.0,
-      "total_fine": 30.0
-    }
-  },
-  {
-    "ticket_id": "597cb3cb-5a36-4c50-96a7-35374fbf6de7",
-    "license_plate": "KT 8 JG",
-    "vehicle_type": "roda_empat",
-    "vehicle_make": "\u0160koda",
-    "vehicle_model": "Octavia RS 2016",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Sienna 2024-25",
     "vehicle_category": "Pribadi",
-    "speed": 79.2,
+    "speed": 80.1,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:08.726283",
+    "timestamp": "2026-01-30T12:37:54.560579",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "1394926406578795",
-      "name": "Rendi Sumargo",
+      "id": "2345584105842094",
+      "name": "Rendi Wijaya",
       "region": "Jakarta"
     },
     "registration": {
@@ -675,21 +621,48 @@
     }
   },
   {
-    "ticket_id": "80e5e430-3252-4497-800a-09200d78910f",
-    "license_plate": "B 6 KLY",
+    "ticket_id": "b1f4b3c3-914b-43a2-9fc2-bfa62afc0766",
+    "license_plate": "RI 5 2",
     "vehicle_type": "roda_empat",
-    "vehicle_make": "CUPRA",
-    "vehicle_model": "Ateca 2018-23",
-    "vehicle_category": "Pribadi",
-    "speed": 77.7,
+    "vehicle_make": "Audi",
+    "vehicle_model": "Q3 2019-24",
+    "vehicle_category": "PEMERINTAH",
+    "speed": 93.8,
     "speed_limit": 75.0,
-    "timestamp": "2026-01-29T05:22:08.726323",
+    "timestamp": "2026-01-30T12:37:54.560701",
     "location": "Highway-Sensor-001",
     "status": "PENDING",
     "owner": {
-      "id": "0177992612866188",
-      "name": "Fitri Kusuma",
-      "region": "DKI Jakarta"
+      "id": "2960870702741822",
+      "name": "Wahyu Gunawan",
+      "region": "Pemerintah Indonesia"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.0,
+      "total_fine": 50.0
+    }
+  },
+  {
+    "ticket_id": "24de82f5-65b1-4a37-8c14-0a7623d5f566",
+    "license_plate": "D 2 USZ",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Camry 2025",
+    "vehicle_category": "Pribadi",
+    "speed": 77.6,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:57.561317",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2726536512857797",
+      "name": "Kusuma Prasetyo",
+      "region": "Kota Bandung"
     },
     "registration": {
       "stnk_status": "Active",
@@ -699,6 +672,357 @@
       "base_fine": 30,
       "penalty_multiplier": 1.0,
       "total_fine": 30.0
+    }
+  },
+  {
+    "ticket_id": "bb3bec7d-3a94-411c-aa65-5c61aeee36f3",
+    "license_plate": "AB 8963 DD (TRUK-16T) - RUTE: LK",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Renault",
+    "vehicle_model": "E-Tech T Electric",
+    "vehicle_category": "Barang",
+    "speed": 76.5,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:57.561457",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0818934803732978",
+      "name": "Hendra Bambang",
+      "region": "Yogyakarta"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.4,
+      "total_fine": 42.0
+    }
+  },
+  {
+    "ticket_id": "60b9308f-125e-4a5a-ae88-63e1bd4795a8",
+    "license_plate": "RI 2 051",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Honda",
+    "vehicle_model": "Clarity 2018-21",
+    "vehicle_category": "PEMERINTAH",
+    "speed": 21.8,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:37:57.561556",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1684721703873915",
+      "name": "Fitri Sumargo",
+      "region": "Pemerintah Indonesia"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.0,
+      "total_fine": 35.0
+    }
+  },
+  {
+    "ticket_id": "c6acc5c3-b818-4ea6-884d-04adff51449a",
+    "license_plate": "AG 267 S",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Alphard Hybrid 2021",
+    "vehicle_category": "Pribadi",
+    "speed": 32.6,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.562166",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2734971301878476",
+      "name": "Rina Hermawan",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "edfb64bf-570a-4a2d-bcfa-fe8111889356",
+    "license_plate": "CD 90 713",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "\u0160koda",
+    "vehicle_model": "Scala 2020-23",
+    "vehicle_category": "KEDUTAAN",
+    "speed": 28.2,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.563028",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2783080703589643",
+      "name": "Wahyu Prasetyo",
+      "region": "Diplomatik"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.2,
+      "total_fine": 42.0
+    }
+  },
+  {
+    "ticket_id": "67caa17c-77a3-47fd-a5e2-fd7f0783346c",
+    "license_plate": "F 4 GBR (TRUK-24T) - RUTE: LK",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Mercedes-Benz",
+    "vehicle_model": "Actros MP4",
+    "vehicle_category": "Barang",
+    "speed": 76.6,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.563175",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2034851106872300",
+      "name": "Diana Bambang",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.2,
+      "total_fine": 36.0
+    }
+  },
+  {
+    "ticket_id": "f626de7a-0cd1-4299-9958-8a8125c7b629",
+    "license_plate": "L 27 KX (TRUK-24T) - RUTE: LK",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Volvo",
+    "vehicle_model": "FH Series 3",
+    "vehicle_category": "Barang",
+    "speed": 39.3,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.563199",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "3187155302942636",
+      "name": "Wawan Prasetyo",
+      "region": "Kota Surabaya"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "9f02639b-cded-4c50-8d1c-0e19bb449caa",
+    "license_plate": "BL 180 KF",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Toyota",
+    "vehicle_model": "Avalon Hybrid 2022",
+    "vehicle_category": "Pribadi",
+    "speed": 25.9,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.563249",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "3406205012675442",
+      "name": "Retno Santoso",
+      "region": "Aceh"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.0,
+      "total_fine": 35.0
+    }
+  },
+  {
+    "ticket_id": "a947d229-ae71-471f-a774-258025c6db1e",
+    "license_plate": "F 8818 YTA",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Hyundai",
+    "vehicle_model": "Tucson Hybrid 2022-24",
+    "vehicle_category": "Pribadi",
+    "speed": 77.5,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:00.563267",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1041746703656775",
+      "name": "Retno Hartono",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Expired"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.2,
+      "total_fine": 36.0
+    }
+  },
+  {
+    "ticket_id": "8320bcb8-8402-49c4-8564-58f9d6bdf565",
+    "license_plate": "H 853 GNRL (TRUK-24T) - RUTE: LP",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "MAN",
+    "vehicle_model": "TGX TG1",
+    "vehicle_category": "Barang",
+    "speed": 95,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:03.564048",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2494811609873961",
+      "name": "Wahyu Bambang",
+      "region": "Kota Semarang"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 50,
+      "penalty_multiplier": 1.0,
+      "total_fine": 50.0
+    }
+  },
+  {
+    "ticket_id": "99737744-02e0-4b6b-9278-7fb21f5f8db1",
+    "license_plate": "B 141 K (TRUK-24T) - RUTE: LP",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "MAN",
+    "vehicle_model": "TGX TG2",
+    "vehicle_category": "Barang",
+    "speed": 30.0,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:06.564961",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1007741407724815",
+      "name": "Fitri Wibowo",
+      "region": "DKI Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 20,
+      "penalty_multiplier": 1.0,
+      "total_fine": 20.0
+    }
+  },
+  {
+    "ticket_id": "6fa5177c-2c61-46ed-9834-c9530169ef7f",
+    "license_plate": "KT 8 DHA",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Kia",
+    "vehicle_model": "Niro Hybrid 2018",
+    "vehicle_category": "Pribadi",
+    "speed": 76.8,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:06.565147",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "1346095605981186",
+      "name": "Ahmad Nugroho",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.2,
+      "total_fine": 36.0
+    }
+  },
+  {
+    "ticket_id": "3b6072a9-d93d-4936-a3bc-2b5ee1e88255",
+    "license_plate": "BP 073 VC",
+    "vehicle_type": "roda_dua",
+    "vehicle_make": "BMW",
+    "vehicle_model": "Diavel",
+    "vehicle_category": "Pribadi",
+    "speed": 76.8,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:06.565165",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "0666922702827990",
+      "name": "Nisak Santoso",
+      "region": "Jakarta"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 30,
+      "penalty_multiplier": 1.2,
+      "total_fine": 36.0
+    }
+  },
+  {
+    "ticket_id": "8530eb87-4dd2-4296-98e0-ef613806b396",
+    "license_plate": "L 1 DTN (TRUK-24T) - RUTE: LP",
+    "vehicle_type": "roda_empat",
+    "vehicle_make": "Renault",
+    "vehicle_model": "E-Tech T Electric",
+    "vehicle_category": "Barang",
+    "speed": 20.1,
+    "speed_limit": 75.0,
+    "timestamp": "2026-01-30T12:38:06.565186",
+    "location": "Highway-Sensor-001",
+    "status": "PENDING",
+    "owner": {
+      "id": "2910984901739999",
+      "name": "Rendi Wijaya",
+      "region": "Kota Surabaya"
+    },
+    "registration": {
+      "stnk_status": "Non-Active",
+      "sim_status": "Active"
+    },
+    "fine": {
+      "base_fine": 35,
+      "penalty_multiplier": 1.2,
+      "total_fine": 42.0
     }
   }
 ]

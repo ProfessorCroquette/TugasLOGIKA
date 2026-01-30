@@ -98,7 +98,9 @@ class DataGenerator:
     
     @staticmethod
     def generate_speed(vehicle_type="car"):
-        """Generate random speed based on vehicle type"""
+        """Generate random speed based on vehicle type
+        Includes a small chance of generating very slow or very fast speeds for violation diversity
+        """
         # Adjust mean speed based on vehicle type
         if vehicle_type == "truck":
             mean = 60  # Trucks tend to be slower
@@ -107,12 +109,23 @@ class DataGenerator:
         else:
             mean = Config.SPEED_MEAN
         
-        # Generate speed with normal distribution
-        speed = random.gauss(mean, Config.SPEED_STD_DEV)
+        # 8% chance of generating a distinctly slow vehicle (< 40 km/h) for too-slow violations
+        # 10% chance of generating a distinctly fast vehicle (> 80 km/h) for speeding violations
+        random_val = random.random()
         
-        # Ensure within bounds
-        speed = max(Config.MIN_SPEED, min(speed, Config.MAX_SPEED))
+        if random_val < 0.08:
+            # Generate too-slow violation vehicle (20-39 km/h)
+            speed = random.uniform(20, 39)
+        elif random_val < 0.18:
+            # Generate speeding vehicle (80-130 km/h)
+            speed = random.uniform(80, 130)
+        else:
+            # Generate normal distribution around the mean
+            speed = random.gauss(mean, Config.SPEED_STD_DEV)
         
+        # Ensure within bounds (but allow full range to allow too-slow violations)
+        # For slow violations: allow down to 20 km/h, up to 130 km/h max
+        speed = max(20, min(speed, Config.MAX_SPEED))
         
         return round(speed, 1)
     

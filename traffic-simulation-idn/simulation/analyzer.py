@@ -79,10 +79,12 @@ class SpeedAnalyzer:
     def _process_batch(self, vehicles: List[Vehicle]) -> List[Ticket]:
         """Process a batch of vehicles and issue tickets"""
         tickets = []
+        SPEEDING_TOLERANCE = 0.9  # Allow 75.1-75.9 without penalty
         
         for vehicle in vehicles:
             # Check if violating speed limits (both too fast and too slow)
-            is_speeding = vehicle.speed > Config.SPEED_LIMIT
+            # Tolerance: speeds 75.1-75.9 are NOT flagged as violations (within tolerance)
+            is_speeding = vehicle.speed > (Config.SPEED_LIMIT + SPEEDING_TOLERANCE)
             is_too_slow = vehicle.speed < Config.MIN_SPEED_LIMIT
             
             if is_speeding or is_too_slow:

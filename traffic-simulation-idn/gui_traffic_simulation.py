@@ -276,12 +276,25 @@ class ViolationDetailDialog(QDialog):
         viol_layout.addWidget(QLabel("Kecepatan Terdeteksi:"), 0, 0)
         viol_layout.addWidget(QLabel(f"{self.violation.get('speed', 0):.1f} km/h"), 0, 1)
         
-        viol_layout.addWidget(QLabel("Batas Kecepatan:"), 1, 0)
-        viol_layout.addWidget(QLabel(f"{Config.SPEED_LIMIT} km/h"), 1, 1)
-        
-        viol_layout.addWidget(QLabel("Kelebihan Kecepatan:"), 2, 0)
-        excess = self.violation.get('speed', 0) - Config.SPEED_LIMIT
-        viol_layout.addWidget(QLabel(f"+{excess:.1f} km/h"), 2, 1)
+        # Determine if this is a speeding or too-slow violation and display accordingly
+        detected_speed = float(self.violation.get('speed', 0) or 0)
+        if detected_speed < Config.MIN_SPEED_LIMIT:
+            # Too slow
+            viol_layout.addWidget(QLabel("Batas Minimum:"), 1, 0)
+            viol_layout.addWidget(QLabel(f"{Config.MIN_SPEED_LIMIT} km/h"), 1, 1)
+
+            viol_layout.addWidget(QLabel("Selisih dari Minimum:"), 2, 0)
+            diff = detected_speed - Config.MIN_SPEED_LIMIT
+            # Show negative value (how much below the minimum)
+            viol_layout.addWidget(QLabel(f"{diff:.1f} km/h"), 2, 1)
+        else:
+            # Speeding (over the limit)
+            viol_layout.addWidget(QLabel("Batas Kecepatan:"), 1, 0)
+            viol_layout.addWidget(QLabel(f"{Config.SPEED_LIMIT} km/h"), 1, 1)
+
+            viol_layout.addWidget(QLabel("Kelebihan Kecepatan:"), 2, 0)
+            excess = detected_speed - Config.SPEED_LIMIT
+            viol_layout.addWidget(QLabel(f"+{excess:.1f} km/h"), 2, 1)
         
         viol_layout.addWidget(QLabel("Waktu Terdeteksi:"), 3, 0)
         viol_layout.addWidget(QLabel(self.violation.get('timestamp', '-')), 3, 1)
@@ -580,9 +593,9 @@ class TrafficSimulationGUI(QMainWindow):
         
         # Violations Table
         self.violations_table = QTableWidget()
-        self.violations_table.setColumnCount(6)
+        self.violations_table.setColumnCount(7)
         self.violations_table.setHorizontalHeaderLabels([
-            "Plat Nomor", "Pemilik", "Kecepatan", "Denda (IDR)", "Status STNK", "Detail"
+            "Plat Nomor", "Pemilik", "Jenis Pelanggaran", "Kecepatan", "Denda (IDR)", "Status STNK", "Detail"
         ])
         
         header = self.violations_table.horizontalHeader()
@@ -592,6 +605,7 @@ class TrafficSimulationGUI(QMainWindow):
         header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(6, QHeaderView.ResizeToContents)
         
         right_layout.addWidget(self.violations_table)
         right_panel.setLayout(right_layout)
@@ -695,24 +709,39 @@ class TrafficSimulationGUI(QMainWindow):
             owner_item = QTableWidgetItem(str(owner_name))
             self.violations_table.setItem(row, 1, owner_item)
             
-            speed_item = QTableWidgetItem(f"{violation.get('speed', 0):.1f} km/h")
-            self.violations_table.setItem(row, 2, speed_item)
+            # Determine violation type (Speeding vs Too Slow) and display
+            speed = float(violation.get('speed', 0) or 0)
+            if speed < Config.MIN_SPEED_LIMIT:
+                violation_type = "TERLALU LAMBAT"
+                violation_color = QColor("orange")
+            else:
+                violation_type = "SPEEDING"
+                violation_color = QColor("darkred")
+            
+            type_item = QTableWidgetItem(violation_type)
+            type_item.setForeground(QBrush(violation_color))
+            type_item.setFont(QFont())
+            type_item.font().setBold(True)
+            self.violations_table.setItem(row, 2, type_item)
+            
+            speed_item = QTableWidgetItem(f"{speed:.1f} km/h")
+            self.violations_table.setItem(row, 3, speed_item)
             
             total_fine_usd = violation.get('fine_amount', 0)
             total_fine_idr = total_fine_usd * USD_TO_IDR
             fine_item = QTableWidgetItem(f"Rp {total_fine_idr:,.0f}")
             fine_item.setForeground(QBrush(QColor("darkred")))
-            self.violations_table.setItem(row, 3, fine_item)
+            self.violations_table.setItem(row, 4, fine_item)
             
             stnk_status = violation.get('stnk_status', '-')
             stnk_item = QTableWidgetItem(stnk_status)
             if stnk_status == 'Non-Active':
                 stnk_item.setForeground(QBrush(QColor("red")))
-            self.violations_table.setItem(row, 4, stnk_item)
+            self.violations_table.setItem(row, 5, stnk_item)
             
             detail_btn = QPushButton("Lihat")
             detail_btn.clicked.connect(lambda checked, v=violation: self.show_detail(v))
-            self.violations_table.setCellWidget(row, 5, detail_btn)
+            self.violations_table.setCellWidget(row, 6, detail_btn)
     
     def show_detail(self, violation: Dict):
         """Show detail dialog for a violation"""
