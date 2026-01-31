@@ -12,6 +12,7 @@ import os
 import signal
 from pathlib import Path
 from typing import Dict
+import psutil
 
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
@@ -23,6 +24,7 @@ from PyQt5.QtGui import QFont, QColor, QBrush
 
 from config import Config
 from utils.logger import logger
+from utils.indonesian_plates import IndonesianPlateManager
 
 # Define currency conversion as a module-level variable
 USD_TO_IDR = 15500  # 1 USD = 15,500 IDR
@@ -54,12 +56,24 @@ class SimulationWorker(QThread):
             # Run main.py without duration (continuous until stopped)
             import os
             current_dir = os.path.dirname(os.path.abspath(__file__))
-            self.process = subprocess.Popen(
-                [sys.executable, "main.py"],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                cwd=current_dir
-            )
+            
+            # Create process with proper subprocess handling
+            if os.name == 'nt':  # Windows
+                self.process = subprocess.Popen(
+                    [sys.executable, "main.py"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    cwd=current_dir,
+                    creationflags=subprocess.CREATE_NEW_PROCESS_GROUP  # This helps with killing child processes
+                )
+            else:  # Linux/Mac
+                self.process = subprocess.Popen(
+                    [sys.executable, "main.py"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    cwd=current_dir,
+                    preexec_fn=os.setsid  # Create new process group
+                )
             
             # Monitor the process while emitting stats
             while self.running:
@@ -73,16 +87,16 @@ class SimulationWorker(QThread):
             # Wait for process to finish with longer timeout
             if self.process and self.process.poll() is None:
                 try:
-                    self.process.wait(timeout=30)
+                    self.process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    self.process.terminate()
+                    self.stop()
             
             # Final stats
             stats = self._get_current_stats()
             self.emitter.stats_updated.emit(stats)
             
         except Exception as e:
-            print(f"Simulation error: {e}")
+            logger.error(f"Simulation error: {e}")
         finally:
             self.emitter.simulation_finished.emit()
     
@@ -140,32 +154,57 @@ class SimulationWorker(QThread):
         
         if self.process:
             try:
-                # Try graceful termination first
                 logger.info(f"Terminating subprocess (PID: {self.process.pid})")
                 
-                if os.name == 'nt':  # Windows
-                    # Use taskkill for more reliable Windows termination
-                    import subprocess as sp
-                    sp.Popen(['taskkill', '/PID', str(self.process.pid), '/T', '/F'],
-                            stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                # Kill process and all children using psutil
+                try:
+                    parent = psutil.Process(self.process.pid)
+                    # Get all child processes
+                    children = parent.children(recursive=True)
+                    
+                    # Terminate all children first
+                    for child in children:
+                        try:
+                            if os.name == 'nt':
+                                child.kill()
+                            else:
+                                child.terminate()
+                        except (psutil.NoSuchProcess, psutil.AccessDenied):
+                            pass
+                    
+                    # Then terminate parent
+                    if os.name == 'nt':
+                        parent.kill()
+                    else:
+                        parent.terminate()
+                    
+                    # Wait for process to die
+                    try:
+                        parent.wait(timeout=3)
+                        logger.info(f"Process {self.process.pid} terminated successfully")
+                    except subprocess.TimeoutExpired:
+                        logger.warning(f"Process {self.process.pid} didn't stop, force killing...")
+                        parent.kill()
+                        try:
+                            parent.wait(timeout=2)
+                        except subprocess.TimeoutExpired:
+                            logger.error(f"Could not kill process {self.process.pid}")
+                            
+                except psutil.NoSuchProcess:
+                    logger.info("Process already terminated")
+                except Exception as e:
+                    logger.error(f"Error using psutil: {e}, trying fallback...")
+                    # Fallback method if psutil fails
+                    if os.name == 'nt':
+                        subprocess.Popen(['taskkill', '/PID', str(self.process.pid), '/T', '/F'],
+                                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    else:
+                        self.process.terminate()
                     
                     try:
                         self.process.wait(timeout=2)
-                        logger.info("Process terminated on Windows")
                     except subprocess.TimeoutExpired:
-                        logger.warning("Process didn't stop on Windows")
-                else:  # Linux/Mac
-                    self.process.terminate()
-                    try:
-                        self.process.wait(timeout=3)
-                        logger.info("Process terminated gracefully")
-                    except subprocess.TimeoutExpired:
-                        logger.warning("Process didn't stop gracefully, killing...")
-                        os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
-                        try:
-                            self.process.wait(timeout=2)
-                        except subprocess.TimeoutExpired:
-                            logger.error("Process kill failed")
+                        logger.warning("Fallback termination also timed out")
                             
             except Exception as e:
                 logger.error(f"Error stopping process: {e}")
@@ -198,7 +237,11 @@ class ViolationDetailDialog(QDialog):
         region = self._get_region_from_plate(self.violation.get('license_plate', ''))
         vehicle_layout.addWidget(QLabel(region), 1, 1)
         
-        vehicle_layout.addWidget(QLabel("Tipe Kendaraan:"), 2, 0)
+        vehicle_layout.addWidget(QLabel("Sub-Wilayah:"), 2, 0)
+        sub_region = self._get_sub_region_from_plate(self.violation.get('license_plate', ''))
+        vehicle_layout.addWidget(QLabel(sub_region), 2, 1)
+        
+        vehicle_layout.addWidget(QLabel("Tipe Kendaraan:"), 3, 0)
         vehicle_type = self.violation.get('vehicle_type', '-')
         vehicle_make = self.violation.get('vehicle_make', '').strip()
         vehicle_model = self.violation.get('vehicle_model', '').strip()
@@ -218,10 +261,10 @@ class ViolationDetailDialog(QDialog):
         elif vehicle_make and vehicle_make != 'Unknown':
             vehicle_type_display = f"{vehicle_type_display} - {vehicle_make}"
         
-        vehicle_layout.addWidget(QLabel(vehicle_type_display), 2, 1)
+        vehicle_layout.addWidget(QLabel(vehicle_type_display), 3, 1)
         
-        vehicle_layout.addWidget(QLabel("Kategori Kendaraan:"), 3, 0)
-        vehicle_layout.addWidget(QLabel(vehicle_category), 3, 1)
+        vehicle_layout.addWidget(QLabel("Kategori Kendaraan:"), 4, 0)
+        vehicle_layout.addWidget(QLabel(vehicle_category), 4, 1)
         
         vehicle_group.setLayout(vehicle_layout)
         layout.addWidget(vehicle_group)
@@ -239,10 +282,23 @@ class ViolationDetailDialog(QDialog):
         owner_layout.addWidget(QLabel(str(owner_id)), 1, 1)
         
         owner_region = self.violation.get('owner_region', self.violation.get('owner', {}).get('region', '-'))
-        # Convert region code to region name if needed
-        owner_region_display = self._convert_region_code_to_name(owner_region)
+        # Convert region code to region name if needed (use authoritative PLATE_DATA first)
+        owner_region_display = owner_region
+        try:
+            val = str(owner_region).upper().strip()
+            if val in IndonesianPlateManager.PLATE_DATA:
+                owner_region_display = IndonesianPlateManager.PLATE_DATA[val].get('region_name', owner_region)
+            else:
+                owner_region_display = self._convert_region_code_to_name(owner_region)
+        except Exception:
+            owner_region_display = owner_region
         owner_layout.addWidget(QLabel("Tempat Tinggal:"), 2, 0)
         owner_layout.addWidget(QLabel(str(owner_region_display)), 2, 1)
+        
+        # Add sub-region for owner
+        owner_sub_region = self._get_sub_region_from_code(owner_region)
+        owner_layout.addWidget(QLabel("Sub-Wilayah Tempat Tinggal:"), 3, 0)
+        owner_layout.addWidget(QLabel(owner_sub_region), 3, 1)
         
         owner_group.setLayout(owner_layout)
         layout.addWidget(owner_group)
@@ -355,34 +411,50 @@ class ViolationDetailDialog(QDialog):
     
     def _get_region_from_plate(self, plate: str) -> str:
         """Get region from license plate"""
-        regions = {
-            'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
-            'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
-            'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
-            'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
-            'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
-            'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
-            'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
-            'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
-            'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
-            'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
-        }
-        
+        # First, try authoritative PLATE_DATA mapping from IndonesianPlateManager
         if not plate:
             return 'Tidak Diketahui'
         
         parts = plate.split()
         if parts:
-            code = parts[0]
+            code = parts[0].upper()
+            # Use PLATE_DATA if available
+            try:
+                if code in IndonesianPlateManager.PLATE_DATA:
+                    return IndonesianPlateManager.PLATE_DATA[code].get('region_name', f'Kode: {code}')
+            except Exception:
+                pass
+            
+            # Fallback to legacy static mapping for presentation
+            regions = {
+                'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
+                'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
+                'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
+                'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
+                'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
+                'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
+                'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
+                'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
+                'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
+                'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
+            }
             return regions.get(code, f'Kode: {code}')
-        return 'Tidak Diketahui'
+        return 'Tidak Diketahui' 
     
     def _convert_region_code_to_name(self, value: str) -> str:
         """Convert region code to full region name"""
         if not value or value == '-':
             return value
         
-        # Map of region codes to full names
+        # Try authoritative PLATE_DATA first
+        try:
+            val = str(value).upper().strip()
+            if val in IndonesianPlateManager.PLATE_DATA:
+                return IndonesianPlateManager.PLATE_DATA[val].get('region_name', value)
+        except Exception:
+            pass
+        
+        # Fallback to legacy static mapping for presentation
         regions_map = {
             'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
             'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
@@ -402,8 +474,62 @@ class ViolationDetailDialog(QDialog):
         
         # If it's already a full name or unknown format, return as is
         return value
-
-
+    
+    def _get_sub_region_from_plate(self, plate: str) -> str:
+        """Get sub-region from license plate based on the owner code letters
+        
+        The sub-region is determined by the owner code letters (position [2] in plate).
+        Example: "BL 104 LWG" -> owner code is "LWG", lookup first letter "L" in BL's sub_codes
+        """
+        if not plate:
+            return '-'
+        
+        parts = plate.split()
+        if len(parts) < 3:
+            return '-'
+        
+        plate_code = parts[0].upper()
+        owner_code = parts[2].upper()  # This is the owner letters (position 2)
+        
+        try:
+            if plate_code in IndonesianPlateManager.PLATE_DATA:
+                plate_info = IndonesianPlateManager.PLATE_DATA[plate_code]
+                sub_codes = plate_info.get('sub_codes', {})
+                
+                # Try first letter of owner code
+                if owner_code and owner_code[0] in sub_codes:
+                    return sub_codes[owner_code[0]]
+                
+                # Try full owner code in case it's mapped
+                if owner_code in sub_codes:
+                    return sub_codes[owner_code]
+        except Exception:
+            pass
+        
+        return '-'
+    
+    def _get_sub_region_from_code(self, code: str) -> str:
+        """Get sub-region from a region code (used for owner region)
+        This maps province codes to common sub-regions or returns hyphen if not available"""
+        if not code or code == '-':
+            return '-'
+        
+        code = str(code).upper().strip()
+        
+        try:
+            # Try to find if this code exists in PLATE_DATA
+            if code in IndonesianPlateManager.PLATE_DATA:
+                plate_info = IndonesianPlateManager.PLATE_DATA[code]
+                # Get first available sub-region as representative
+                sub_codes = plate_info.get('sub_codes', {})
+                if sub_codes:
+                    first_sub = next(iter(sub_codes.values()), '-')
+                    return first_sub
+        except Exception:
+            pass
+        
+        return '-'
+    
 class TrafficSimulationGUI(QMainWindow):
     """Main GUI application"""
     
@@ -431,17 +557,42 @@ class TrafficSimulationGUI(QMainWindow):
     
     def cleanup(self):
         """Clean up resources before closing"""
-        # Stop the refresh timer
-        self.refresh_timer.stop()
-        
-        # Stop the simulation if running
-        if self.simulation_worker:
-            self.simulation_worker.stop()
-            # Wait for worker thread to finish
-            if self.simulation_worker.isRunning():
-                self.simulation_worker.wait(5000)  # Wait up to 5 seconds
-        
-        logger.info("Application cleanup complete")
+        try:
+            # Stop the refresh timer
+            self.refresh_timer.stop()
+            
+            # Stop the simulation if running
+            if self.simulation_worker:
+                logger.info("Stopping simulation worker...")
+                self.simulation_worker.stop()
+                
+                # Wait for worker thread to finish with timeout
+                if self.simulation_worker.isRunning():
+                    logger.info("Waiting for worker thread to finish...")
+                    self.simulation_worker.wait(3000)  # Wait 3 seconds
+                    
+                    if self.simulation_worker.isRunning():
+                        logger.warning("Worker thread still running, forcing quit...")
+                        self.simulation_worker.quit()
+                        self.simulation_worker.wait(2000)
+                
+                logger.info("Simulation worker stopped")
+            
+            # Double-check: Kill any stray main.py processes
+            try:
+                for proc in psutil.process_iter(['pid', 'name']):
+                    try:
+                        if 'main.py' in proc.name() or (proc.name() == 'python.exe' and 'main' in ' '.join(proc.cmdline())):
+                            logger.warning(f"Found stray main.py process (PID: {proc.pid}), killing...")
+                            proc.kill()
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        pass
+            except Exception as e:
+                logger.debug(f"Could not check for stray processes: {e}")
+            
+            logger.info("Application cleanup complete")
+        except Exception as e:
+            logger.error(f"Error during cleanup: {e}")
     
     def init_ui(self):
         """Initialize UI"""

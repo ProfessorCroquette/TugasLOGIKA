@@ -1,8 +1,21 @@
 DOCUMENTATION INDEX - QUICK ACCESS GUIDE
 
 Project: Indonesian Traffic Violation Simulation System (Sistem Simulasi Pelanggaran Lalu Lintas Indonesia)
-Documentation Version: January 29, 2026
-Status: Complete and Up-to-Date with Latest Implementation
+Documentation Version: January 31, 2026 (Updated for PP 43/1993 Toll Road Compliance)
+Status: Complete with Toll Road Compliance Updates
+
+
+LATEST UPDATES - January 31, 2026
+
+✅ **PP 43/1993 Toll Road Compliance Implementation**
+- Motorcycles disabled (prohibited on toll roads)
+- Cars (Kendaraan Ringan): 60-100 km/h
+- Trucks (Kendaraan Berat): 60-80 km/h (20 km/h lower)
+- Violation generation increased to 35% for enforcement data
+- Fine tiers updated for toll road speed ranges
+- Penalty multipliers active (STNK & SIM)
+
+See: **docs/CHANGELOG_2026_01_31.md** for detailed changes
 
 
 QUICK START
@@ -11,16 +24,39 @@ QUICK START
 ```bash
 python gui_traffic_simulation.py
 ```
-Real-time dashboard with 5 sensors monitoring traffic violations, live statistics, and violation details.
+Real-time dashboard with 5 sensors monitoring traffic violations on toll roads, live statistics, and violation details.
 
 **CLI Simulation:**
 ```bash
 python main.py
 ```
-Background traffic simulation engine generating vehicles and violations continuously.
+Background traffic simulation engine generating vehicles and violations with PP 43/1993 compliance.
 
 
 PRIMARY DOCUMENTATION
+
+
+CHANGELOG_2026_01_31.md (Latest Updates & Legal Compliance)
+Location: docs/CHANGELOG_2026_01_31.md
+Purpose: Complete changelog for toll road compliance updates
+
+Best For:
+- Understanding January 31 updates
+- Legal basis (PP 43/1993)
+- Speed limit changes (cars vs trucks)
+- Violation generation statistics
+- Fine tier updates
+- Configuration changes
+
+Contains:
+1. Motorcycles disabled (PP 43/1993)
+2. Speed limits - Toll road standards
+3. Violation generation (35% rate)
+4. Fine tier updates
+5. Penalty multiplier system
+6. Testing statistics
+7. Legal compliance checklist
+8. Files modified
 
 
 LOGIC_AND_CODE_EXPLANATION.md (Logic & Implementation Guide)
@@ -61,15 +97,15 @@ Contains:
 2. Project Overview
 3. System Architecture
 4. Core Components (Sensor, Processor, Analyzer)
-5. Vehicle Systems (Cars, Motorcycles, Trucks)
+5. Vehicle Systems (Cars, Trucks - toll road optimized)
 6. Fine Calculation System (Speed violations & multipliers)
 7. GUI Dashboard (Real-time monitoring with 5 sensors)
-8. Configuration & Customization
+8. Configuration & Customization (PP 43/1993)
 9. Data Structures & JSON Formats
 10. Deployment & Operations
 11. Troubleshooting
 12. Development Timeline
-13. Recent Fixes & Updates (GUI Statistics Fixed Jan 29, 2026)
+13. Latest Updates (Jan 31 - Toll Road Compliance)
 
 
 SUPPORTING DOCUMENTATION
@@ -78,18 +114,24 @@ SUPPORTING DOCUMENTATION
 QUICK ACCESS BY TOPIC:
 
 Code & Logic Understanding:
-- docs/LOGIC_AND_CODE_EXPLANATION.md - Logic (Ponens/Tollens), file purposes, code snippets (NEW)
-- docs/API_DOCUMENTATION.md - Code classes and methods (UPDATED Jan 29)
-- docs/ARCHITECTURE.md - System architecture and design (UPDATED Jan 29)
+- docs/LOGIC_AND_CODE_EXPLANATION.md - Logic (Ponens/Tollens), file purposes, code snippets
+- docs/API_DOCUMENTATION.md - Code classes and methods
+- docs/ARCHITECTURE.md - System architecture and design
 
 Getting Started:
-- docs/SETUP_GUIDE.md - Installation and setup (UPDATED Jan 29)
-- docs/USER_MANUAL.md - How to use the system (UPDATED Jan 29)
-- docs/FINAL_SUMMARY.md - Project completion overview (UPDATED Jan 29)
+- docs/SETUP_GUIDE.md - Installation and setup (Updated for toll roads)
+- docs/USER_MANUAL.md - How to use the system
+- docs/FINAL_SUMMARY.md - Project completion overview
+
+Legal & Compliance:
+- docs/CHANGELOG_2026_01_31.md - PP 43/1993 Toll Road Compliance (NEW)
+- docs/INDONESIAN_TOLL_ROAD_COMPLIANCE.md - Speed limits & vehicle classifications
+- docs/TOLL_ROAD_CONFIGURATION_COMPLETE.md - Configuration details
 
 Technical Reference:
 - docs/DATABASE_SCHEMA.md - JSON data structure definitions
 - docs/ULTIMATE_DOCUMENTATION.md - Complete technical reference
+- docs/VIOLATION_GENERATION_UPDATE.md - Violation statistics (NEW)
 
 Configuration & Troubleshooting:
 - docs/SETUP_GUIDE.md - Configuration and troubleshooting

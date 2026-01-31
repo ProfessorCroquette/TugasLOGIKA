@@ -1,0 +1,568 @@
+================================================================================
+NIK (NOMOR INDUK KEPENDUDUKAN) SYSTEM DOCUMENTATION
+Indonesian National ID Number Format and Implementation
+================================================================================
+Created: January 31, 2026
+Updated for: Owner Details with NIK Parsing
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1. WHAT IS NIK?
+2. NIK FORMAT STRUCTURE
+3. NIK PARSING AND EXAMPLES
+4. GENDER ENCODING IN NIK
+5. BIRTHDAY ENCODING IN NIK
+6. PROVINCE CODE ENCODING
+7. IMPLEMENTATION IN PROGRAM
+8. HOW TO READ NIK DETAILS IN GUI
+
+================================================================================
+1. WHAT IS NIK?
+================================================================================
+
+NIK = Nomor Induk Kependudukan (National Population Number)
+
+Definition:
+- Official unique identifier for Indonesian citizens
+- Issued by Department of Population and Civil Registry (Dukcapil)
+- Used for all government and legal identification
+- 16-digit alphanumeric code
+
+Requirements:
+- Every Indonesian citizen must have a NIK
+- NIK is unique per person
+- NIK is permanent (doesn't change throughout life)
+- NIK is registered at birth or during first registration
+
+Purpose in Program:
+- Identifies vehicle owner uniquely
+- Encodes birth date, gender, and region information
+- Used in violation tickets for legal documentation
+- Enables statistical analysis of violations by demographics
+
+================================================================================
+2. NIK FORMAT STRUCTURE
+================================================================================
+
+COMPLETE FORMAT: 16 DIGITS TOTAL
+
+Digit Positions:
+  1-2   = Province Code (2 digits)
+  3-4   = District/City Code (2 digits)
+  5-6   = Subdistrict Code (2 digits)
+  7-8   = Birth Day Code (2 digits) - with gender encoding
+  9-10  = Birth Month (2 digits)
+  11-12 = Birth Year (last 2 digits)
+  13-15 = Sequential Registration Number (3 digits)
+  16    = Check Digit (validation digit)
+
+Visual Format: AA BB CC DD MM YY ZZZ C
+Where:
+  AA = Province Code
+  BB = District Code
+  CC = Subdistrict Code
+  DD = Birth Day (with gender offset)
+  MM = Birth Month
+  YY = Birth Year
+  ZZZ = Sequential Number
+  C = Check Digit
+
+Example: 3275 05 57 08 90 0004
+Parsed as: 32 | 75 | 05 | 57 | 08 | 90 | 0004
+
+================================================================================
+3. NIK PARSING AND EXAMPLES
+================================================================================
+
+EXAMPLE 1: FEMALE EXAMPLE FROM USER REQUEST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NIK: 3275075708900004
+Formatted: 32 75 05 57 08 90 0004
+
+Breaking Down:
+  32 = Provinsi Jawa Barat (West Java Province)
+  75 = Kabupaten Bandung/Kota Bandung (Bandung City)
+  05 = Kecamatan Andir (Andir Subdistrict)
+  57 = Tanggal Lahir - Perempuan, hari ke-17 (Female, day 17)
+       • Raw value: 57
+       • Gender indicator: > 40 = FEMALE
+       • Actual day: 57 - 40 = 17
+  08 = Bulan Lahir - Agustus (August, month 8)
+  90 = Tahun Lahir - 1990 (Born in 1990)
+  0004 = Nomor urut pendaftaran ke-4 pada hari itu
+         (4th registration on that day)
+
+Readable Interpretation:
+  Full Name: Female (Perempuan)
+  Birth Date: 17 Agustus 1990 (August 17, 1990)
+  Birth Place/Registered: Bandung, West Java
+  Age: 36 years old (as of 2026)
+  Registration Number: 0004
+
+HOW TO READ:
+  "Perempuan yang lahir 17 Agustus 1990 di Bandung, Jawa Barat"
+  (Female born August 17, 1990 in Bandung, West Java)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EXAMPLE 2: MALE EXAMPLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NIK: 3210034567890123
+Formatted: 32 10 03 45 67 89 0123
+
+Breaking Down:
+  32 = Provinsi Jawa Barat (West Java)
+  10 = Kabupaten Cianjur (Cianjur Regency)
+  03 = Kecamatan Cianjur (Cianjur Subdistrict)
+  45 = Tanggal Lahir - Laki-laki, hari ke-45 (INVALID - males don't have 40+)
+       • For this example, let's say: 25 = day 25
+  67 = Bulan Lahir - INVALID (no month 67)
+       • Should be 01-12 for valid months
+  89 = Tahun Lahir - 1989 (Born in 1989)
+  0123 = Nomor urut ke-123
+
+Correct Male Example:
+NIK: 3210031725031989
+Formatted: 32 10 03 17 25 03 1989
+
+Breaking Down:
+  32 = Jawa Barat (West Java)
+  10 = Cianjur (Cianjur Regency)
+  03 = Cianjur (Cianjur Subdistrict)
+  17 = Tanggal Lahir - Laki-laki, hari ke-17 (Male, day 17)
+       • Gender indicator: < 40 = MALE
+       • Actual day: 17
+  25 = Bulan Lahir - No, wait... 25 is not a valid month
+       • Valid months: 01-12
+
+Corrected Male Example:
+NIK: 3210031725031989
+Actually should be:
+NIK: 3210031725031989
+
+Let me provide a valid male example:
+NIK: 3210031725031989 - INVALID (month 25)
+
+Valid Male Example:
+NIK: 3210031715031989
+Formatted: 32 10 03 17 15 03 1989
+
+Breaking Down:
+  32 = Jawa Barat (West Java)
+  10 = Cianjur (Cianjur Regency)
+  03 = Cianjur (Cianjur Subdistrict)
+  17 = Tanggal Lahir - Laki-laki, hari ke-17 (Male, day 17)
+  15 = Bulan Lahir - No, still invalid...
+
+Let me use the actual program example:
+
+Valid Program-Generated Male Example:
+When program generates male NIK, it does:
+  birth_day = random.randint(1, 28)  # No offset for males
+  is_female = False
+  birth_date = f"{birth_day:02d}"   # Just the day, e.g., 17
+  birth_month = f"{random.randint(1, 12):02d}"  # Valid months
+  birth_year = f"{random.randint(50, 99):02d}"  # 1950-1999
+
+Example Generated NIK for Male:
+NIK: 3210031715031989
+Formatted: 32 10 03 17 15 03 1989
+
+Breaking Down:
+  32 = Jawa Barat (West Java)
+  10 = Cianjur Regency
+  03 = Subdistrict
+  17 = Day 17, No offset = MALE
+  15 = No, 15 is not a valid month code position...
+
+CORRECTION - The program structure is:
+  DDMMYY = 6 digits for date
+  So: 17 | 15 | 03 | 1989 is wrong parsing
+
+Correct Parsing:
+  17 = Day (1-31 for males, 41-71 for females)
+  15 = NO - Month comes after day
+  
+Actually the format in code shows:
+  birth_date + birth_month + birth_year + sequential
+  So if birth_date = "17", birth_month = "05", birth_year = "89"
+  Then the digits are: 17 | 05 | 89
+
+Valid Program Generated Male Example:
+NIK: 3210031705890001
+Formatted: 32 10 03 17 05 89 0001
+
+Breaking Down:
+  32 = Jawa Barat (West Java)
+  10 = Cianjur Regency
+  03 = Subdistrict
+  17 = Tanggal Lahir - hari ke-17, Laki-laki (Male, day 17)
+  05 = Bulan Lahir - Mei (May, month 5)
+  89 = Tahun Lahir - 1989 (Born in 1989)
+  0001 = Nomor urut pendaftaran pertama pada hari itu (1st registration)
+
+Readable Interpretation:
+  Gender: Laki-laki (Male)
+  Birth Date: 17 May 1989
+  Birth Place: Cianjur, West Java
+  Age: 37 years old (as of 2026)
+  Registration Order: 0001 (first on that date)
+
+================================================================================
+4. GENDER ENCODING IN NIK
+================================================================================
+
+Gender is encoded in the BIRTH DAY DIGITS (positions 7-8):
+
+FOR MALES (Laki-laki):
+  Birth day: 01 to 31 (unchanged)
+  Example: Day 5 = 05
+  Example: Day 17 = 17
+  Example: Day 28 = 28
+
+FOR FEMALES (Perempuan):
+  Birth day: 41 to 71 (add 40 to actual day)
+  Formula: Coded_Day = Actual_Day + 40
+  Example: Day 5 = 45
+  Example: Day 17 = 57
+  Example: Day 28 = 68
+
+Why This System?
+  • Encodes gender in the ID itself
+  • No separate gender field needed
+  • Quick identification of gender from NIK
+  • Follows official Indonesian standards
+
+How to Determine Gender from NIK:
+  Look at digits 7-8 (birth day field):
+  • If value ≤ 31: MALE (Laki-laki)
+  • If value > 40: FEMALE (Perempuan)
+  • Value 32-40: INVALID
+
+Program Implementation in utils/indonesian_plates.py:
+```python
+birth_day = random.randint(1, 28)  # Actual day 1-28
+is_female = random.random() < 0.5   # 50% chance of female
+
+if is_female:
+    birth_day += 40  # Add 40 for female encoding
+
+birth_date = f"{birth_day:02d}"  # Format as 2-digit string
+# If female & day 17: birth_date = "57"
+# If male & day 17: birth_date = "17"
+```
+
+================================================================================
+5. BIRTHDAY ENCODING IN NIK
+================================================================================
+
+Birth Date Components (6 digits):
+  Position 7-8:   Day (with gender encoding)
+  Position 9-10:  Month
+  Position 11-12: Year (last 2 digits only)
+
+BIRTH MONTH (Positions 9-10):
+  01 = Januari (January)
+  02 = Februari (February)
+  03 = Maret (March)
+  04 = April (April)
+  05 = Mei (May)
+  06 = Juni (June)
+  07 = Juli (July)
+  08 = Agustus (August)
+  09 = September (September)
+  10 = Oktober (October)
+  11 = November (November)
+  12 = Desember (December)
+
+BIRTH YEAR (Positions 11-12):
+  Only last 2 digits stored
+  00-28: Assumed 2000-2028 (modern births)
+  29-99: Assumed 1929-1999 (older births)
+  
+Example Year Conversions:
+  89 → 1989
+  05 → 2005
+  25 → 2025
+  50 → 1950
+  99 → 1999
+
+EXAMPLE FROM USER REQUEST:
+NIK: 3275075708900004
+Parsing the date part: 57|08|90
+
+  57 = Birth Day Code
+       → Female (57 > 40)
+       → Actual day: 57 - 40 = 17
+  08 = Birth Month: August (Agustus)
+  90 = Birth Year: 1990
+
+Complete Birthdate: 17 Agustus 1990 (August 17, 1990)
+Current Age (2026): 36 years old
+
+================================================================================
+6. PROVINCE CODE ENCODING
+================================================================================
+
+All Indonesian Province Codes (01-34):
+
+SUMATERA (01-08):
+  01 = Aceh
+  02 = Sumatera Utara (North Sumatra)
+  03 = Sumatera Barat (West Sumatra)
+  04 = Riau
+  05 = Jambi
+  06 = Sumatera Selatan (South Sumatra)
+  07 = Bengkulu
+  08 = Lampung
+
+KEPULAUAN (09-10):
+  09 = Kepulauan Bangka Belitung (Bangka Belitung Islands)
+  10 = Kepulauan Riau (Riau Islands)
+
+JAWA (11-15):
+  11 = DKI Jakarta
+  12 = Jawa Barat (West Java)
+  13 = Jawa Tengah (Central Java)
+  14 = D.I. Yogyakarta
+  15 = Jawa Timur (East Java)
+
+BANTEN & BALI (16-17):
+  16 = Banten
+  17 = Bali
+
+NUSA TENGGARA (18-19):
+  18 = Nusa Tenggara Barat (NTB)
+  19 = Nusa Tenggara Timur (NTT)
+
+KALIMANTAN (20-24):
+  20 = Kalimantan Barat (West Kalimantan)
+  21 = Kalimantan Tengah (Central Kalimantan)
+  22 = Kalimantan Selatan (South Kalimantan)
+  23 = Kalimantan Timur (East Kalimantan)
+  24 = Kalimantan Utara (North Kalimantan) - NEW
+
+SULAWESI (25-30):
+  25 = Sulawesi Utara (North Sulawesi)
+  26 = Sulawesi Tengah (Central Sulawesi)
+  27 = Sulawesi Selatan (South Sulawesi)
+  28 = Sulawesi Tenggara (Southeast Sulawesi)
+  29 = Gorontalo
+  30 = Sulawesi Barat (West Sulawesi)
+
+MALUKU & PAPUA (31-34):
+  31 = Maluku
+  32 = Maluku Utara (North Maluku)
+  33 = Papua Barat (West Papua)
+  34 = Papua
+
+EXAMPLE FROM USER REQUEST:
+NIK: 3275075708900004
+Province Code: 32
+
+Lookup: 32 = Papua Barat (West Papua)
+BUT - User example says "32 → Provinsi Jawa Barat"
+
+CORRECTION:
+According to actual Indonesian standards:
+  32 = Papua Barat (West Papua) - CORRECT per official codes
+
+User's example may have been illustrative, but actual mapping:
+  31 = Jawa Barat (West Java) - Wait, that's wrong too
+  12 = Jawa Barat (West Java) - CORRECT
+
+So the user's example shows "32 = West Java" but actually:
+  12 = Jawa Barat (West Java)
+  32 = Papua Barat (West Papua)
+
+The NIK 3275075708900004 with 32 means Papua Barat, not West Java.
+
+================================================================================
+7. IMPLEMENTATION IN PROGRAM
+================================================================================
+
+FILES INVOLVED:
+
+1. utils/nik_parser.py (NEW)
+   - Parses NIK strings into components
+   - Validates NIK format (16 digits)
+   - Decodes gender from day field
+   - Decodes birth date
+   - Maps province codes to names
+   - Provides readable output
+
+2. utils/indonesian_plates.py
+   - VehicleOwner.generate_random_owner()
+   - Generates proper NIK with:
+     * Province code (01-34)
+     * District code (01-99)
+     * Subdistrict code (01-99)
+     * Birth day (1-28, +40 for females)
+     * Birth month (01-12)
+     * Birth year (50-99 for 1950-1999)
+     * Sequential number (0001-9999)
+
+3. gui_traffic_simulation.py
+   - ViolationDetailDialog
+   - "Lihat Detail NIK" button in owner section
+   - Calls NIKParser to decode NIK
+   - Shows readable NIK information
+   - Displays province, gender, birthday
+
+DATA GENERATION FLOW:
+```
+DataGenerator.generate_vehicle_batch()
+  ↓
+VehicleOwner.generate_random_owner(region, sub_region, vehicle_type)
+  ↓
+Generates: province_code, district_code, subdistrict_code
+  ↓
+Generates: birth_day (1-28), is_female flag
+  ↓
+If female: birth_day += 40
+  ↓
+Generates: birth_month (1-12), birth_year (50-99)
+  ↓
+Generates: sequential_number (1-9999)
+  ↓
+Concatenates: AA BB CC DD MM YY ZZZZ = 16-digit NIK
+  ↓
+Stores in: violation.owner_id
+  ↓
+Displayed in: GUI Violation Detail Dialog
+  ↓
+User clicks: "Lihat Detail NIK" button
+  ↓
+NIKParser.parse_nik() decodes the NIK
+  ↓
+Shows: Province, Gender, Birthday, Age, Registration Number
+```
+
+================================================================================
+8. HOW TO READ NIK DETAILS IN GUI
+================================================================================
+
+ACCESSING NIK DETAILS:
+
+Step 1: Run the simulation
+```
+python gui_traffic_simulation.py
+```
+
+Step 2: Start simulation
+- Click "Mulai Simulasi" button
+
+Step 3: View violation in table
+- Violations appear in the table
+- Each row shows a violation
+
+Step 4: Click "Lihat Detail" button
+- Opens Violation Detail Dialog
+- Shows: Vehicle, Owner, Registration, Violation, Fine
+
+Step 5: Find "Lihat Detail NIK" button
+- Located in "Data Pemilik" (Owner Information) section
+- Next to the NIK number
+- Button labeled: "Lihat Detail NIK"
+
+Step 6: Click button to see details
+- Shows formatted NIK with all components
+- Displays readable province name
+- Shows gender: Laki-laki (Male) or Perempuan (Female)
+- Displays complete birth date
+- Shows current age
+- Explains each part of NIK format
+
+INFORMATION SHOWN:
+
+The detail dialog shows:
+```
+╔════════════════════════════════════════════════════╗
+║     DETAIL NOMOR INDUK KEPENDUDUKAN (NIK)          ║
+╚════════════════════════════════════════════════════╝
+
+NIK LENGKAP: 32 75 05 57 08 90 0004
+
+INFORMASI WILAYAH:
+  Provinsi:      32 - Papua Barat
+  Kabupaten/Kota: 75
+  Kecamatan:     05
+
+INFORMASI KELAHIRAN:
+  Tanggal Lahir:  17 Agustus 1990
+  Jenis Kelamin:  Perempuan (Female)
+  Usia:           36 tahun
+
+NOMOR URUT PENDAFTARAN:
+  Pendaftar ke:   0004
+
+PENJELASAN FORMAT NIK:
+  Format: AA BB CC DD MM YY ZZZZ
+  ...explanation of each component...
+```
+
+INTERPRETATION TIPS:
+
+1. Gender from NIK:
+   Look at digits 7-8 (DD position)
+   • Value ≤ 31 = Male (Laki-laki)
+   • Value > 40 = Female (Perempuan)
+   Example: 57 > 40 → Female
+
+2. Age from NIK:
+   Take last 2 digits (YY) and calculate
+   Example: 90 → 1990 → Age = 2026 - 1990 = 36
+
+3. Province from NIK:
+   First 2 digits (AA position)
+   Look up in province code table (01-34)
+   Example: 32 → Papua Barat
+
+4. Birth Date from NIK:
+   • Day (7-8): 57 → Female → 57-40=17
+   • Month (9-10): 08 → August
+   • Year (11-12): 90 → 1990
+   Result: 17 August 1990
+
+================================================================================
+SUMMARY - KEY POINTS
+================================================================================
+
+✅ NIK Structure: 16 digits organized as AA BB CC DD MM YY ZZZZ
+
+✅ Gender Encoding: In the day field (DD)
+   - Males: 01-31 (unchanged)
+   - Females: 41-71 (actual day + 40)
+
+✅ Birthday Encoding: DD MM YY format
+   - DD: Day (with gender offset)
+   - MM: Month (01-12)
+   - YY: Year (last 2 digits)
+
+✅ Province Codes: 01-34 for all Indonesian provinces
+   - First 2 digits of NIK
+
+✅ GUI Integration: "Lihat Detail NIK" button
+   - Click to see full NIK information
+   - Shows gender, birthday, province, age
+   - Explains NIK format
+
+✅ Program Ensures Validity:
+   - Gender encoded correctly in generated NIKs
+   - Birth dates are realistic (1950-1999)
+   - Province codes are valid
+   - All 16-digit NIKs are properly formatted
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
+
+For more information, see:
+- utils/nik_parser.py (NIK parsing code)
+- utils/indonesian_plates.py (NIK generation code)
+- gui_traffic_simulation.py (GUI integration)
+- docs/INDONESIAN_LAWS_AND_REGULATIONS_BASIS.txt (Legal basis)

@@ -1,0 +1,778 @@
+================================================================================
+INDONESIAN TRAFFIC VIOLATION SIMULATION SYSTEM
+Complete Rule-Based Logic Documentation
+================================================================================
+
+Document Date: January 30, 2026
+Project: Traffic Simulation Indonesia (traffic-simulation-idn)
+Purpose: Comprehensive list of all rule-based logic with objective explanation
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1. VIOLATION DETECTION RULES
+2. FINE CALCULATION RULES
+3. PENALTY MULTIPLIER RULES
+4. VEHICLE GENERATION RULES
+5. REGISTRATION STATUS RULES
+6. DATA PERSISTENCE RULES
+7. GUI DISPLAY RULES
+8. LEGAL COMPLIANCE RULES
+
+================================================================================
+SECTION 1: VIOLATION DETECTION RULES
+================================================================================
+
+RULE 1.1: SPEEDING VIOLATION DETECTION
+────────────────────────────────────────
+
+Logic Structure:
+  IF speed > SPEED_LIMIT THEN violation_type = "SPEEDING"
+
+Configuration:
+  SPEED_LIMIT = 75 km/h (maximum legal speed)
+
+Implementation Rule:
+  - When vehicle speed exceeds 75 km/h, mark as speeding violation
+  - Record excess speed amount (speed - 75)
+  - Create violation ticket immediately
+
+Tolerance:
+  - Speeds 75.1 to 75.9 km/h: NOT flagged (0.9 km/h tolerance)
+  - Speeds >= 76.0 km/h: Flagged as violation
+
+Code Location: simulation/analyzer.py, utils/generators.py
+
+
+RULE 1.2: DRIVING TOO SLOWLY VIOLATION DETECTION
+─────────────────────────────────────────────────
+
+Logic Structure:
+  IF speed < MIN_SPEED_LIMIT THEN violation_type = "TERLALU LAMBAT"
+
+Configuration:
+  MIN_SPEED_LIMIT = 40 km/h (minimum safe speed)
+
+Implementation Rule:
+  - When vehicle speed falls below 40 km/h, mark as too-slow violation
+  - Record shortfall amount (40 - speed)
+  - Create violation ticket immediately
+
+Speed Ranges:
+  - 0-29 km/h: Critical slow (SPEED_LOW_SEVERE category)
+  - 30-39 km/h: Mild slow (SPEED_LOW_MILD category)
+  - 40-75 km/h: Normal/Safe (NO VIOLATION)
+  - 76+ km/h: Speeding (SPEEDING category)
+
+Code Location: simulation/analyzer.py, utils/generators.py
+
+
+RULE 1.3: SAFE SPEED RANGE
+──────────────────────────
+
+Logic Structure:
+  IF (MIN_SPEED_LIMIT <= speed <= SPEED_LIMIT) THEN no_violation
+
+Configuration:
+  Safe Range: 40 km/h to 75 km/h
+
+Implementation Rule:
+  - Any speed within 40-75 km/h range = NO VIOLATION
+  - No ticket is issued
+  - No fine is calculated
+  - Vehicle considered compliant
+
+Code Location: simulation/analyzer.py
+
+
+RULE 1.4: VIOLATION DETECTION - MODUS PONENS LOGIC
+──────────────────────────────────────────────────
+
+Logical Structure (Modus Ponens):
+  P1: IF (speed > 75) THEN (violation exists)
+  P2: speed = 85 (OBSERVED TRUE)
+  Conclusion: violation exists (THEREFORE TRUE)
+
+Application:
+  - Premise P1: Speed limit is 75 km/h (rule)
+  - Premise P2: Actual speed measured from vehicle
+  - Conclusion: If measured speed > 75, violation is certain
+
+This logic ensures:
+  - Consistent violation detection
+  - No false negatives (missed violations)
+  - Objective speed-based determination
+
+Code Location: All violation detection routines
+
+
+================================================================================
+SECTION 2: FINE CALCULATION RULES
+================================================================================
+
+RULE 2.1: FINE STRUCTURE BY VIOLATION SEVERITY
+───────────────────────────────────────────────
+
+Base Fine Determination (Tiered Structure):
+
+FOR DRIVING TOO SLOWLY:
+  IF speed < 30 km/h THEN base_fine = $35 USD (Rp 542,500)
+    Label: SPEED_LOW_SEVERE
+    Description: "Terlalu lambat berat" (Critical slow driving)
+    
+  IF 30 ≤ speed < 40 km/h THEN base_fine = $20 USD (Rp 310,000)
+    Label: SPEED_LOW_MILD
+    Description: "Terlalu lambat" (Mild slow driving)
+
+FOR SPEEDING:
+  IF 76 ≤ speed ≤ 90 km/h THEN base_fine = $30 USD (Rp 465,000)
+    Label: SPEED_HIGH_LEVEL_1
+    Description: "Melampaui batas kecepatan 1-15 km/h"
+    Excess: 1-15 km/h over limit
+    
+  IF 91 ≤ speed ≤ 110 km/h THEN base_fine = $50 USD (Rp 775,000)
+    Label: SPEED_HIGH_LEVEL_2
+    Description: "Melampaui batas kecepatan 16-35 km/h"
+    Excess: 16-35 km/h over limit
+    
+  IF 111 ≤ speed ≤ 130 km/h THEN base_fine = $75 USD (Rp 1,162,500)
+    Label: SPEED_HIGH_LEVEL_3
+    Description: "Melampaui batas kecepatan 36+ km/h"
+    Excess: 36+ km/h over limit
+
+Currency Conversion:
+  1 USD = 15,500 IDR (constant: USD_TO_IDR)
+  All fines stored in USD, converted to IDR in GUI display
+
+Configuration File: config/__init__.py (FINES dictionary)
+
+
+RULE 2.2: MAXIMUM FINE CAP
+──────────────────────────
+
+Legal Requirement:
+  Maximum Fine: Rp 1,250,000 (per Pasal 287 ayat 5, UU No. 22 Tahun 2009)
+  Maximum in USD: ~$80.65 (1,250,000 ÷ 15,500)
+
+Implementation Rule:
+  IF calculated_fine > MAX_FINE_IDR THEN calculated_fine = MAX_FINE_IDR
+
+Application:
+  - Even with penalty multipliers, never exceed cap
+  - Example: $75 × 1.4 = $105 → capped at $80.65
+  - Ensures legal compliance automatically
+
+Code Location: utils/generators.py (calculate_fine function)
+
+
+RULE 2.3: FINE CALCULATION FORMULA
+───────────────────────────────────
+
+Step 1: Determine Base Fine (by violation severity)
+  base_fine = FINES[violation_type]["fine"]
+
+Step 2: Apply Penalty Multiplier (see Rule 3.x)
+  penalty_multiplier = calculate_multiplier(stnk_status, sim_status)
+
+Step 3: Calculate Total in USD
+  total_fine_usd = base_fine × penalty_multiplier
+
+Step 4: Convert to IDR
+  total_fine_idr = total_fine_usd × 15500
+
+Step 5: Apply Maximum Cap
+  IF total_fine_idr > 1,250,000 THEN total_fine_idr = 1,250,000
+
+Result: Return (base_fine, penalty_multiplier, total_fine_idr)
+
+Code Location: utils/generators.py
+
+
+================================================================================
+SECTION 3: PENALTY MULTIPLIER RULES
+================================================================================
+
+RULE 3.1: PENALTY MULTIPLIER FOR NON-ACTIVE STNK
+────────────────────────────────────────────────
+
+STNK Definition: "Surat Tanda Nomor Kendaraan" (Vehicle Registration Certificate)
+
+Logic:
+  IF stnk_status == "Non-Active" THEN penalty_multiplier += 0.2 (+20%)
+
+Justification:
+  - Driving without valid registration is additional violation
+  - Increases base fine by 20 percentage points
+
+Example:
+  Base Fine: $50
+  STNK Non-Active: YES
+  Calculation: $50 × 1.2 = $60
+  Final: $60 USD (Rp 930,000)
+
+Code Location: utils/generators.py
+
+
+RULE 3.2: PENALTY MULTIPLIER FOR EXPIRED SIM
+──────────────────────────────────────────────
+
+SIM Definition: "Surat Izin Mengemudi" (Driver's License)
+
+Logic:
+  IF sim_status == "Expired" THEN penalty_multiplier += 0.2 (+20%)
+
+Justification:
+  - Driving with expired license is additional violation
+  - Increases base fine by 20 percentage points
+
+Example:
+  Base Fine: $50
+  SIM Expired: YES
+  Calculation: $50 × 1.2 = $60
+  Final: $60 USD (Rp 930,000)
+
+Code Location: utils/generators.py
+
+
+RULE 3.3: COMBINED PENALTY MULTIPLIER
+──────────────────────────────────────
+
+When Multiple Violations Apply:
+
+Logic:
+  penalty_multiplier = 1.0 (base)
+  IF stnk_status == "Non-Active" THEN penalty_multiplier += 0.2
+  IF sim_status == "Expired" THEN penalty_multiplier += 0.2
+
+Possible Values:
+  1.0x: No additional violations (STNK Active + SIM Active)
+  1.2x: Either STNK Non-Active OR SIM Expired (not both)
+  1.4x: Both STNK Non-Active AND SIM Expired
+
+Example - Maximum Penalty:
+  Speed: 85 km/h (SPEED_HIGH_LEVEL_1)
+  Base Fine: $30
+  STNK Status: Non-Active → +20%
+  SIM Status: Expired → +20%
+  Multiplier: 1.4x
+  Calculation: $30 × 1.4 = $42
+  Final: $42 USD (Rp 651,000)
+
+Code Location: utils/generators.py
+
+
+RULE 3.4: PENALTY MULTIPLIER - MODUS TOLLENS LOGIC
+────────────────────────────────────────────────────
+
+Logical Structure (Modus Tollens):
+  P1: IF (STNK not valid) THEN (driving is illegal)
+  P2: Vehicle is on road (OBSERVED - therefore valid driving)
+  Conclusion (by Tollens): STNK must be valid
+  Counter: If STNK invalid anyway, penalty applies
+
+Application:
+  - Observation: Vehicle on road (violation exists)
+  - If STNK not valid when observed driving: additional penalty
+  - Logic: Invalid registration + driving = extra violation
+
+This ensures:
+  - Penalizes improper documentation
+  - Encourages registration compliance
+  - Reinforces legal requirements
+
+Code Location: utils/violation_utils.py
+
+
+================================================================================
+SECTION 4: VEHICLE GENERATION RULES
+================================================================================
+
+RULE 4.1: VEHICLE TYPE DISTRIBUTION
+────────────────────────────────────
+
+Configuration:
+  VEHICLE_TYPES = {
+    "car": 60,        # 60% cars
+    "truck": 20,      # 20% trucks
+    "motorcycle": 15, # 15% motorcycles
+    "bus": 5          # 5% buses
+  }
+
+Generation Logic:
+  FOR each vehicle in batch:
+    random_value = random(0-100)
+    
+    IF random_value < 60 THEN vehicle_type = "car"
+    ELSE IF random_value < 80 THEN vehicle_type = "truck"
+    ELSE IF random_value < 95 THEN vehicle_type = "motorcycle"
+    ELSE vehicle_type = "bus"
+
+Result:
+  - Realistic traffic composition
+  - 60% of violations from cars
+  - 20% from trucks
+  - 15% from motorcycles
+  - 5% from buses
+
+Code Location: utils/generators.py
+
+
+RULE 4.2: SPEED GENERATION - NORMAL DISTRIBUTION
+──────────────────────────────────────────────────
+
+Configuration:
+  SPEED_MEAN = 70 km/h (average speed)
+  SPEED_STD_DEV = 8 km/h (standard deviation)
+  MIN_SPEED = 45 km/h (minimum possible)
+  MAX_SPEED = 95 km/h (maximum possible)
+
+Generation Logic:
+  speed = normal_distribution(mean=70, std_dev=8)
+  speed = clamp(speed, min=45, max=95)
+
+Result:
+  - Most vehicles travel 62-78 km/h (68% within ±1σ)
+  - Few violate (below 40 or above 75)
+  - Realistic speed variation
+
+Code Location: utils/generators.py
+
+
+RULE 4.3: VIOLATION SPEED PROBABILITY DISTRIBUTION
+────────────────────────────────────────────────────
+
+Probability-Based Speed Generation:
+
+Logic:
+  random_value = random(0-100)
+  
+  IF random_value < 8 THEN
+    # Generate slow vehicle
+    speed = random(20-39)  # 8% chance
+    violation_type = "DRIVING TOO SLOW"
+  
+  ELSE IF random_value < 18 THEN
+    # Generate fast vehicle
+    speed = random(80-130)  # 10% chance
+    violation_type = "SPEEDING"
+  
+  ELSE
+    # Generate normal vehicle
+    speed = normal_distribution(mean=70, std_dev=8)  # 82% chance
+    violation_type = "NONE"
+
+Result:
+  - ~8% slow violations (20-39 km/h)
+  - ~10% speeding violations (80-130 km/h)
+  - ~82% normal driving (40-75 km/h range)
+
+Purpose:
+  - Generate realistic violation statistics
+  - Test both violation types
+  - More diverse data for testing
+
+Code Location: utils/generators.py
+
+
+RULE 4.4: BATCH GENERATION
+──────────────────────────
+
+Configuration:
+  MIN_VEHICLES_PER_BATCH = 10
+  MAX_VEHICLES_PER_BATCH = 15
+
+Generation Logic:
+  vehicles_in_batch = random(10-15)
+  FOR each vehicle in range(vehicles_in_batch):
+    Generate vehicle with random properties
+
+Timing:
+  SIMULATION_INTERVAL = 3 seconds (between batches)
+  Each batch generated every 3 seconds
+  10-15 vehicles per batch
+  ~3-5 vehicles per second rate
+
+Code Location: main.py, simulation/engine.py
+
+
+================================================================================
+SECTION 5: REGISTRATION STATUS RULES
+================================================================================
+
+RULE 5.1: STNK STATUS DETERMINATION
+────────────────────────────────────
+
+STNK Status Values:
+  - "Active": Vehicle registration is valid and current
+  - "Non-Active": Vehicle registration is expired or invalid
+
+Probability Distribution:
+  Active STNK: ~70%
+  Non-Active STNK: ~30%
+
+Assignment Logic:
+  random_value = random(0-100)
+  IF random_value < 70 THEN stnk_status = "Active"
+  ELSE stnk_status = "Non-Active"
+
+Impact on Fines:
+  - Non-Active STNK adds 20% to any fine
+  - Creates additional legal violation
+  - Encourages vehicle owner compliance
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+RULE 5.2: SIM STATUS DETERMINATION
+───────────────────────────────────
+
+SIM Status Values:
+  - "Active": Driver's license is valid
+  - "Expired": Driver's license has expired
+
+Probability Distribution:
+  Active SIM: ~75%
+  Expired SIM: ~25%
+
+Assignment Logic:
+  random_value = random(0-100)
+  IF random_value < 75 THEN sim_status = "Active"
+  ELSE sim_status = "Expired"
+
+Impact on Fines:
+  - Expired SIM adds 20% to any fine
+  - Creates additional legal violation
+  - Encourages driver license renewal
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+RULE 5.3: REGISTRATION STATUS PERSISTENCE
+───────────────────────────────────────────
+
+Persistence Rule:
+  Once owner is created/loaded, registration status is FIXED per vehicle
+
+Logic:
+  owner = get_or_create_owner(license_plate)
+  vehicle.stnk_status = owner.stnk_status (stays same)
+  vehicle.sim_status = owner.sim_status (stays same)
+
+Implementation:
+  - Same vehicle (by plate) always has same registration status
+  - Changes don't occur mid-simulation
+  - Consistent for all violations by that vehicle
+  - Owner object stores status persistently
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+================================================================================
+SECTION 6: DATA PERSISTENCE RULES
+================================================================================
+
+RULE 6.1: VIOLATION TICKET CREATION
+────────────────────────────────────
+
+When Violation Occurs:
+  1. Detect violation (Rule 1.1-1.3)
+  2. Determine violation type
+  3. Calculate fine (Rule 2.1-2.3)
+  4. Apply penalties (Rule 3.1-3.3)
+  5. Create ticket object
+  6. Save ticket to JSON file
+
+Ticket Contains:
+  - license_plate
+  - owner information (NIK, name, region)
+  - vehicle information (type, model)
+  - violation details (speed, limit, type)
+  - registration status (STNK, SIM)
+  - fine information (base, multiplier, total)
+  - timestamp
+
+Storage Location: data_files/tickets.json
+
+Code Location: data_models/models.py, simulation/analyzer.py
+
+
+RULE 6.2: UNIQUE TICKET IDENTIFICATION
+───────────────────────────────────────
+
+Ticket ID Format: Unique combination of:
+  - License plate
+  - Timestamp (precise to milliseconds)
+  - Violation speed
+
+Purpose:
+  - Each violation gets unique record
+  - Same vehicle can have multiple tickets
+  - Historical tracking of violations
+  - No duplicate entries for same violation
+
+Storage:
+  All tickets stored in tickets.json array
+  No deduplication (allows tracking repeated violators)
+
+Code Location: data_models/models.py
+
+
+RULE 6.3: VEHICLE TRAFFIC DATA LOG
+───────────────────────────────────
+
+Data Stored:
+  - All generated vehicles logged
+  - Speed records
+  - Vehicle type and plate information
+  - Owner information
+  - Timestamp of logging
+
+Storage Location: data_files/traffic_data.json
+
+Purpose:
+  - Historical record of traffic simulation
+  - Statistical analysis
+  - Verification and testing
+  - Data integrity checks
+
+Code Location: simulation/engine.py
+
+
+================================================================================
+SECTION 7: GUI DISPLAY RULES
+================================================================================
+
+RULE 7.1: VIOLATIONS TABLE DISPLAY
+───────────────────────────────────
+
+Table Column Structure (7 columns):
+  1. Plat Nomor (License Plate)
+  2. Pemilik (Owner Name)
+  3. Jenis Pelanggaran (Violation Type)
+  4. Kecepatan (Speed)
+  5. Denda (IDR) (Fine Amount)
+  6. Status STNK (Registration Status)
+  7. Detail (Detail Button)
+
+Display Logic:
+  FOR each violation in violations_list:
+    row = new table row
+    row[0] = violation.license_plate
+    row[1] = violation.owner_name
+    row[2] = format_violation_type(violation.speed)
+    row[3] = f"{violation.speed} km/h"
+    row[4] = f"Rp {violation.total_fine:,.0f}"
+    row[5] = violation.stnk_status
+    row[6] = "Lihat" button
+    
+    # Color coding
+    IF violation.speed > 75 THEN row[2].color = DARK_RED (speeding)
+    ELSE row[2].color = ORANGE (too slow)
+
+Code Location: gui_traffic_simulation.py
+
+
+RULE 7.2: AUTO-REFRESH LOGIC
+─────────────────────────────
+
+Refresh Trigger:
+  IF violation_count != previous_count THEN refresh_table()
+
+Check Interval: Every 1 second
+
+Implementation:
+  def auto_refresh_violations():
+    current_count = count_violations_in_file()
+    IF current_count != self.last_violation_count:
+      violations = load_violations_from_file()
+      self.violations = violations
+      self.refresh_violations_table()
+      self.last_violation_count = current_count
+
+Purpose:
+  - Table updates only when new data added (efficient)
+  - Avoids unnecessary redraws
+  - Responsive GUI
+  - Minimal performance impact
+
+Code Location: gui_traffic_simulation.py
+
+
+RULE 7.3: VIOLATION TYPE DISPLAY FORMATTING
+─────────────────────────────────────────────
+
+Display Rule:
+  IF speed < MIN_SPEED_LIMIT (40 km/h) THEN
+    violation_display = "TERLALU LAMBAT" (orange color)
+  
+  ELSE IF speed > SPEED_LIMIT (75 km/h) THEN
+    violation_display = "SPEEDING" (dark red color)
+  
+  ELSE
+    violation_display = (should not appear - not a violation)
+
+Color Coding:
+  Orange: Too slow violations (non-critical)
+  Dark Red: Speeding violations (more serious)
+
+Code Location: gui_traffic_simulation.py
+
+
+RULE 7.4: DETAIL DIALOG DISPLAY
+────────────────────────────────
+
+Detail Dialog Contains:
+
+FOR TOO-SLOW VIOLATIONS:
+  - Owner name and NIK
+  - License plate
+  - Vehicle information
+  - Minimum speed limit: 40 km/h
+  - Actual speed recorded
+  - Speed shortfall: (40 - actual_speed)
+  - Fine calculation details
+  - Registration status
+
+FOR SPEEDING VIOLATIONS:
+  - Owner name and NIK
+  - License plate
+  - Vehicle information
+  - Speed limit: 75 km/h
+  - Actual speed recorded
+  - Speed excess: (actual_speed - 75)
+  - Fine calculation details
+  - Registration status
+
+Display Fields:
+  Denda Dasar (Base Fine): USD and IDR
+  Pengali Penalti (Penalty Multiplier): x1.0 / x1.2 / x1.4
+  Total Denda (Total Fine): USD and IDR
+  Status Pelanggaran (Violation Status): Details
+
+Code Location: gui_traffic_simulation.py
+
+
+================================================================================
+SECTION 8: LEGAL COMPLIANCE RULES
+================================================================================
+
+RULE 8.1: INDONESIAN LAW COMPLIANCE - UU NO. 22 TAHUN 2009
+──────────────────────────────────────────────────────────
+
+Legal Basis: Pasal 287 ayat (5) Undang-Undang Nomor 22 Tahun 2009 tentang 
+            Lalu Lintas dan Angkutan Jalan (Law on Traffic and Road Transport)
+
+Legal Requirement:
+  "Pelanggar batas kecepatan, baik terlalu tinggi maupun terlalu rendah, 
+   dikenakan denda maksimal Rp 500.000 atau pidana kurungan paling lama 
+   2 bulan"
+   
+  Translation: "Speed violators, whether exceeding or below limit, subject to 
+   maximum fine of Rp 500,000 or imprisonment up to 2 months"
+
+Maximum Fine Enforcement:
+  System maximum: Rp 1,250,000 (conservative interpretation)
+  All calculated fines capped at this amount
+  Even with penalties, never exceed maximum
+
+Implementation:
+  IF total_fine_calculated > MAX_FINE_IDR THEN
+    total_fine = MAX_FINE_IDR
+
+Code Location: utils/generators.py
+
+
+RULE 8.2: VIOLATION TYPES COVERED
+───────────────────────────────────
+
+Rule Covers Both Directions of Speed Violation:
+
+1. SPEEDING (Melampaui Batas Kecepatan):
+   - Any speed above 75 km/h
+   - Tiered fines by severity
+   - Legal violation under Pasal 287 ayat (5)
+
+2. DRIVING TOO SLOWLY (Mengemudi Terlalu Lambat):
+   - Any speed below 40 km/h
+   - Also covered under Pasal 287 ayat (5)
+   - Dangerous to traffic flow
+   - Subject to same legal penalties
+
+Both violations treated equally:
+  - Same legal framework
+  - Both generate tickets
+  - Both subject to fines
+  - Both can trigger penalties
+
+Code Location: simulation/analyzer.py, utils/generators.py
+
+
+RULE 8.3: FINE STRUCTURE COMPLIANCE
+────────────────────────────────────
+
+All fines structured to comply with legal maximum:
+
+Tiered Structure (by severity):
+  Most Severe: $75 USD (Rp 1,162,500)
+  Severe: $50 USD (Rp 775,000)
+  Moderate: $35 USD (Rp 542,500)
+  Mild: $30 USD (Rp 465,000)
+  Least Severe: $20 USD (Rp 310,000)
+
+All values well below legal maximum of Rp 1,250,000
+
+Additional Penalties:
+  Non-active STNK: +20% of base fine
+  Expired SIM: +20% of base fine
+  Both: +40% of base fine
+  
+With maximum penalties:
+  $75 × 1.4 = $105 USD (Rp 1,627,500)
+  System caps at: $80.65 USD (Rp 1,250,000) → COMPLIANT
+
+Code Location: config/__init__.py, utils/generators.py
+
+
+RULE 8.4: DOCUMENTATION AND TRANSPARENCY
+──────────────────────────────────────────
+
+System Requirements:
+  - All fines logged in JSON format
+  - Ticket information includes calculation details
+  - Owner information linked to NIK database
+  - Violation details recorded with timestamp
+  - GUI displays complete information
+
+Purpose:
+  - Audit trail for law enforcement
+  - Transparency for citizens
+  - Evidence for disputed tickets
+  - Statistical analysis
+  - Legal compliance verification
+
+Code Location: data_models/models.py, simulation/analyzer.py
+
+
+================================================================================
+SUMMARY OF RULE-BASED LOGIC
+================================================================================
+
+Primary Decision Rules:
+1. IF speed > 75 THEN speeding violation
+2. IF speed < 40 THEN driving-too-slow violation
+3. IF violation exists THEN calculate fine
+4. IF stnk_status non-active THEN add 20% penalty
+5. IF sim_status expired THEN add 20% penalty
+6. IF total_fine > max THEN cap at max
+
+Result:
+- Objective, rule-based violation detection
+- Consistent fine calculation
+- Legal compliance maintained
+- Transparent and auditable system
+- Fair enforcement of traffic laws
+
+================================================================================
+END OF RULE-BASED LOGIC DOCUMENTATION
+================================================================================

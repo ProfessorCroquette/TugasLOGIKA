@@ -1,8 +1,8 @@
-FINAL PROJECT SUMMARY - January 29, 2026
+FINAL PROJECT SUMMARY - January 31, 2026
 
 Project: Indonesian Traffic Violation Simulation System (Sistem Simulasi Pelanggaran Lalu Lintas Indonesia)
-Status: FULLY FUNCTIONAL AND UP-TO-DATE
-Last Update: January 29, 2026
+Status: FULLY FUNCTIONAL WITH PP 43/1993 TOLL ROAD COMPLIANCE
+Last Update: January 31, 2026
 
 ================================================================================
 CURRENT SYSTEM STATUS
@@ -12,32 +12,69 @@ CURRENT SYSTEM STATUS
   - Real-time violation monitoring with 5 parallel sensors
   - Live statistics with auto-refresh every 500ms
   - Violations table with detail dialogs
-  - Status: WORKING with recent fixes (Jan 29, 2026)
+  - Status: WORKING with PP 43/1993 compliance updates
 
 ✓ Simulation Engine - OPERATIONAL
   - Background traffic simulation via main.py
-  - Generates vehicles continuously
-  - Detects speed violations
+  - Generates vehicles continuously (cars & trucks only)
+  - Detects speed violations with 35% generation rate
   - Multi-threaded processing with queue system
 
 ✓ JSON File Storage - OPERATIONAL
-  - data_files/tickets.json - All violations
-  - data_files/traffic_data.json - All vehicles
+  - data_files/tickets.json - All violations with STNK/SIM multipliers
+  - data_files/traffic_data.json - All vehicles (cars & trucks)
   - data_files/worker_status.json - Sensor status
   - Auto-cleanup of old log files
 
 ✓ Documentation - CURRENT AND COMPLETE
-  - 11 documentation files in docs/ folder
-  - All updated January 29, 2026
-  - Covers all functionality
-  - Includes code examples and API reference
+  - 15+ documentation files in docs/ folder
+  - All updated January 31, 2026
+  - Includes PP 43/1993 legal basis
+  - Covers all functionality with toll road compliance
 
 ================================================================================
-RECENT FIXES (January 29, 2026)
+LATEST UPDATES (January 31, 2026) - PP 43/1993 TOLL ROAD COMPLIANCE
 ================================================================================
 
-Three Critical GUI Issues Fixed:
+**Legal Basis**: Peraturan Pemerintah No. 43 Tahun 1993 - Toll Road Standards
 
+1. **Motorcycles DISABLED**
+   - Prohibited on toll roads per PP 43/1993
+   - Vehicle distribution: Cars 75%, Trucks 25%
+   - Previous: Cars 60%, Trucks 20%, Motorcycles 15%, Bus 5%
+
+2. **Speed Limits - Toll Road Standards**
+   - Cars (Kendaraan Ringan): 60-100 km/h
+   - Trucks (Kendaraan Berat): 60-80 km/h (20 km/h lower)
+   - Updated all speed generation logic
+   - Fine tiers adjusted for new ranges
+
+3. **Violation Generation Increased**
+   - Too slow: 15% (below 60 km/h)
+   - Speeding: 20% (above limit)
+   - Total violation rate: 35% (was 18%)
+   - Enables realistic enforcement data
+
+4. **Fine Tier Updates**
+   - Adjusted for toll road speed ranges
+   - SPEED_LOW_MILD: 50-59 km/h ($20)
+   - SPEED_LOW_SEVERE: 0-49 km/h ($35)
+   - SPEED_HIGH_LEVEL_1: 101-110 km/h ($30)
+   - SPEED_HIGH_LEVEL_2: 111-120 km/h ($50)
+   - SPEED_HIGH_LEVEL_3: 121+ km/h ($75)
+
+5. **Penalty Multipliers - ACTIVE**
+   - Base fine capped at Rp 500,000
+   - Non-Active STNK: 1.2x multiplier
+   - Expired SIM: 1.2x multiplier
+   - Combined: 1.4x multiplier
+   - Multiplier applied after cap (can exceed Rp 700k)
+
+================================================================================
+RECENT FIXES (January 29-31, 2026)
+================================================================================
+
+**January 29 Fixes**:
 1. Total Pelanggaran & Denda Reset on Stop
    - Problem: Data cleared when simulation stopped
    - Fix: Only reset internal counters, preserve violation data
@@ -46,9 +83,7 @@ Three Critical GUI Issues Fixed:
 2. Kendaraan Diproses (Vehicle Counter) Not Updating
    - Problem: Conditional check prevented counter updates
    - Fix: Always update counter without condition check
-   - Result: Vehicle count refreshes correctly every 500ms
-
-3. Rata-rata Kecepatan & Kecepatan Maksimal Not Working
+   - Result: Vehicle count refreshes correctly every 500ms3. Rata-rata Kecepatan & Kecepatan Maksimal Not Working
    - Problem: Inconsistent data source and field names
    - Fix: Use violations data consistently, fix field mapping
    - Result: Speed statistics calculate correctly

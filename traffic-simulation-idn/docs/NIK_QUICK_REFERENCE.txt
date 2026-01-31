@@ -1,0 +1,163 @@
+================================================================================
+QUICK REFERENCE - NIK DETAILS FEATURE
+================================================================================
+
+WHAT IS NIK?
+  Nomor Induk Kependudukan = National ID Number (16 digits)
+  Contains: Province, Birth Date, Gender, Registration order
+
+HOW TO USE IN GUI:
+  1. Start simulation (python gui_traffic_simulation.py)
+  2. Click "Mulai Simulasi"
+  3. Click "Lihat Detail" on any violation
+  4. Look for "Lihat Detail NIK" button in "Data Pemilik" section
+  5. Click button to see full NIK information
+
+NIK FORMAT: AA BB CC DD MM YY ZZZZ (16 digits)
+
+Position  | Name              | Example | Meaning
+━━━━━━━━━|━━━━━━━━━━━━━━━━━━|━━━━━━━━━|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1-2 (AA)  | Province Code     | 32      | Maluku Utara (North Maluku)
+3-4 (BB)  | District Code     | 75      | Specific district
+5-6 (CC)  | Subdistrict Code  | 07      | Specific subdistrict
+7-8 (DD)  | Birth Day + Gender| 57      | Female, born day 17 (57-40)
+9-10(MM)  | Birth Month       | 08      | Agustus (August)
+11-12(YY) | Birth Year        | 90      | 1990
+13-16(ZZZ)| Registration No.  | 0004    | 4th registered that day
+
+GENDER FROM NIK:
+  Look at positions 7-8:
+  • 01-31 = Male (Laki-laki)
+  • 41-71 = Female (Perempuan), subtract 40 to get actual day
+
+EXAMPLE PARSING:
+  NIK: 3275075708900004
+  Format: 32 75 07 57 08 90 0004
+  
+  32 = Maluku Utara (Prov)
+  75 = District
+  07 = Subdistrict
+  57 = Female (57>40), day 17 (57-40)
+  08 = August (Bulan ke-8)
+  90 = 1990 (Year)
+  0004 = 4th registration
+
+  Result: Female born 17 August 1990 in North Maluku
+  Age: 36 years old
+
+PROVINCE CODES (01-34):
+  01=Aceh, 02=N.Sumatra, 03=W.Sumatra, 04=Riau, 05=Jambi
+  06=S.Sumatra, 07=Bengkulu, 08=Lampung, 09=BangkaBelitung, 10=RiauIsles
+  11=Jakarta, 12=W.Java, 13=C.Java, 14=Yogyakarta, 15=E.Java
+  16=Banten, 17=Bali, 18=NTB, 19=NTT, 20=W.Kalimantan
+  21=C.Kalimantan, 22=S.Kalimantan, 23=E.Kalimantan, 24=N.Kalimantan
+  25=N.Sulawesi, 26=C.Sulawesi, 27=S.Sulawesi, 28=SE.Sulawesi
+  29=Gorontalo, 30=W.Sulawesi, 31=Maluku, 32=N.Maluku
+  33=W.Papua, 34=Papua
+
+MONTH CODES:
+  01=Januari, 02=Februari, 03=Maret, 04=April, 05=Mei, 06=Juni
+  07=Juli, 08=Agustus, 09=September, 10=Oktober, 11=November, 12=Desember
+
+YEAR CONVERSION:
+  Last 2 digits → Full year
+  00-28 → 2000-2028 (modern births)
+  29-99 → 1929-1999 (older births)
+
+COMMON PATTERNS:
+  • If position 7-8 > 40: Person is Female
+  • If position 7-8 ≤ 31: Person is Male
+  • If month (pos 9-10) > 12: Invalid month (data error)
+  • If day (pos 7-8) > 31 and < 41: Invalid day (data error)
+
+WHAT THE DIALOG SHOWS:
+  ✓ Formatted NIK with spacing
+  ✓ Province code and name
+  ✓ District and subdistrict codes
+  ✓ Complete birth date (DD-MM-YYYY)
+  ✓ Gender (Laki-laki or Perempuan)
+  ✓ Current age in years
+  ✓ Registration order number
+  ✓ Explanation of each NIK component
+
+================================================================================
+QUICK TEST:
+================================================================================
+
+User's Example NIK:
+  3275075708900004
+
+Manual Parse:
+  32 → Maluku Utara
+  75 → District 75
+  07 → Subdistrict 07
+  57 → Day 17 (57-40), Female
+  08 → August
+  90 → 1990
+  0004 → 4th registered
+
+Result:
+  Female born 17 August 1990 in North Maluku
+  Age: 36 years old
+
+Expected Dialog Output:
+  NIK LENGKAP: 32 75 07 57 08 90 0004
+  
+  Provinsi: 32 - Maluku Utara
+  Kabupaten/Kota: 75
+  Kecamatan: 07
+  
+  Tanggal Lahir: 17 Agustus 1990
+  Jenis Kelamin: Perempuan (Female)
+  Usia: 36 tahun
+  
+  Pendaftar ke: 0004
+
+================================================================================
+TIPS & TRICKS:
+================================================================================
+
+1. Identify Age Immediately:
+   Look at year (positions 11-12)
+   2026 - birth_year = current age
+
+2. Know Gender Before Opening Dialog:
+   Check if positions 7-8 > 40 (Female) or ≤ 31 (Male)
+
+3. Find Province Quickly:
+   First 2 digits = province code
+   Look up in province list
+
+4. Check Data Validity:
+   Month should be 01-12
+   Day should be 01-31 (males) or 41-71 (females)
+   If outside ranges → Data error
+
+5. Understand Birth Location:
+   First 6 digits (AA BB CC) = where person was registered
+   Not necessarily current location
+   Used for government identification
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+Problem: Button not appearing
+  Solution: Restart GUI application
+
+Problem: "Detail NIK" dialog shows "Format Invalid"
+  Cause: NIK is not exactly 16 digits
+  Solution: Check the actual NIK stored in system
+
+Problem: Month shows as "Invalid Month"
+  Cause: Data generation error (should not happen)
+  Check: Month field should be 01-12 only
+
+Problem: Age calculation wrong
+  Cause: Year field might be misinterpreted
+  Check: If year < 30, it's 2000-2028; if > 30, it's 1900-1999
+
+================================================================================
+For Full Documentation: docs/NIK_SYSTEM_READABLE_FORMAT.txt
+For Implementation Details: docs/NIK_OWNER_DETAILS_IMPLEMENTATION_COMPLETE.txt
+================================================================================

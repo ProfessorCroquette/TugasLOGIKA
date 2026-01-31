@@ -1,0 +1,895 @@
+================================================================================
+NIK (NOMOR INDUK KEPENDUDUKAN) SYSTEM DOCUMENTATION
+Indonesian National ID Number System
+================================================================================
+
+Document Date: January 30, 2026
+Project: Traffic Simulation Indonesia
+Purpose: Complete NIK system explanation, rules, and compliance
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1. NIK OVERVIEW AND DEFINITION
+2. NIK FORMAT AND STRUCTURE
+3. NIK GENERATION RULES
+4. NIK VALIDATION RULES
+5. NIK WILAYAH (REGION) MAPPING
+6. NIK DATA PERSISTENCE
+7. NIK INTEGRATION WITH VEHICLE SYSTEM
+8. NIK DATABASE AND OWNER TRACKING
+9. LEGAL AND COMPLIANCE ASPECTS
+
+================================================================================
+SECTION 1: NIK OVERVIEW AND DEFINITION
+================================================================================
+
+NIK Definition:
+  "Nomor Induk Kependudukan"
+  Translation: "Population Identification Number"
+  Official Name: "National Identification Number"
+
+Purpose:
+  - Unique identifier for Indonesian citizens
+  - Issued by Population Registration Office (Dinas Kependudukan)
+  - Used for all government identification
+  - Vehicle ownership registration
+  - Traffic violation tracking
+
+Scope in System:
+  - Each vehicle owner has unique NIK
+  - NIK links to owner profile
+  - NIK stored with every violation ticket
+  - Used for owner identification in GUI
+  - Database index for tracking repeat offenders
+
+Government Authority: Badan Pusat Statistik (BPS) - Central Bureau of Statistics
+
+
+SECTION 2: NIK FORMAT AND STRUCTURE
+================================================================================
+
+Standard NIK Format: 16 Digits Total
+
+Structure Breakdown:
+  AABBCCDDEEEEEFF
+
+Where:
+  - AA: Province code (01-34)
+  - BB: District/City code (01-99)
+  - CC: Sub-district code (01-99)
+  - DD: Birth date (01-31)
+  - EE: Birth month (01-12)
+  - EE: Birth year - last 2 digits (00-99)
+  - F: Gender code (1-4)
+
+Component Details:
+
+1. PROVINCE CODE (AA) - Positions 1-2:
+   Valid Range: 01-34
+   Example: 08 = Jakarta
+   Mapped to region codes used in license plates
+   
+2. DISTRICT/CITY CODE (BB) - Positions 3-4:
+   Valid Range: 01-99
+   Varies by province
+   Example: 01 = Capital city district
+   
+3. SUB-DISTRICT CODE (CC) - Positions 5-6:
+   Valid Range: 01-99
+   Identifies neighborhood/village level
+   
+4. BIRTH DATE (DD) - Positions 7-8:
+   Valid Range: 01-31
+   Day of birth
+   Example: 15 = born on 15th
+   
+5. BIRTH MONTH (EE) - Positions 9-10:
+   Valid Range: 01-12
+   Month of birth (standard calendar)
+   Example: 06 = June
+   
+6. BIRTH YEAR (EE) - Positions 11-12:
+   Valid Range: 00-99
+   Last 2 digits of birth year
+   Example: 85 = 1985 or 2085 (context-dependent)
+   Rule: If ≤ current_year then 19xx, else 20xx
+   
+7. GENDER CODE (F) - Position 13:
+   Odd numbers: Male (1, 3)
+   Even numbers: Female (2, 4)
+   Additional digit (4) indicates re-issued/updated ID
+
+8. REGISTRATION CODE (FF) - Positions 14-16:
+   Valid Range: 001-999
+   Sequential registration in sub-district
+   
+9. CHECK DIGIT (F) - Position 16:
+   Optional additional identifier
+   Used in some provinces
+
+Complete Example:
+  0857519332844595
+  
+  Breakdown:
+  08: Jakarta (Province code)
+  75: District code
+  19: Sub-district code
+  33: Birth date (33rd - invalid! Special cases handled)
+  28: Birth month (28 - invalid! Special handling)
+  44: Birth year (1944)
+  5: Gender code (Male)
+  95: Registration sequence
+
+System Handling:
+  - System validates structure
+  - Accepts realistic NIK formats
+  - Flags invalid dates/codes
+  - Uses NIK for owner identification
+
+
+================================================================================
+SECTION 3: NIK GENERATION RULES
+================================================================================
+
+RULE 3.1: NIK GENERATION ALGORITHM
+───────────────────────────────────
+
+When: Vehicle owner created, NIK not already registered
+
+Generation Process:
+
+Step 1: Generate Province Code
+  province_code = random(01-34)
+  Map province_code to region name
+  Example: 08 → Jakarta
+
+Step 2: Generate District Code
+  district_code = random(01-99)
+  Selected based on province
+
+Step 3: Generate Sub-district Code
+  subdistrict_code = random(01-99)
+
+Step 4: Generate Birth Date
+  birth_date = random(01-31)
+  Validate: 1-31 range
+
+Step 5: Generate Birth Month
+  birth_month = random(01-12)
+  Validate: 1-12 range
+
+Step 6: Generate Birth Year
+  birth_year_suffix = random(00-99)
+  Full year = 1900 + birth_year_suffix (or 2000+ for recent years)
+
+Step 7: Generate Gender Code
+  gender = random([1, 2, 3, 4])
+  Odd (1,3) = Male, Even (2,4) = Female
+
+Step 8: Generate Registration Sequence
+  sequence = random(001-999)
+
+Combine All Parts:
+  NIK = AA + BB + CC + DD + EE + EE + F + FFF
+  Result: 16-digit unique number
+
+Validation After Generation:
+  - All components within valid ranges
+  - Date is realistic (not 32nd of month)
+  - Province code maps to known region
+  - No duplicates within same session
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+RULE 3.2: NIK UNIQUENESS ENFORCEMENT
+─────────────────────────────────────
+
+Uniqueness Requirement:
+  No two vehicle owners have same NIK within simulation
+
+Implementation:
+  1. When generating NIK:
+     generated_nik = generate_nik()
+     
+  2. Check against existing:
+     IF generated_nik in existing_niks THEN
+       retry_with_new_nik()
+     ELSE
+       accept_nik()
+  
+  3. Store in tracking set:
+     existing_niks.add(generated_nik)
+
+Data Structure:
+  Session-wide NIK registry (in-memory set)
+  Prevents duplicate generation
+
+Fallback:
+  If 1000 attempts produce duplicates (unlikely):
+  Use alternative generation method or raise error
+
+Code Location: data_models/models.py
+
+
+RULE 3.3: NIK LINKAGE TO LICENSE PLATE
+───────────────────────────────────────
+
+Relationship:
+  One license plate → One NIK owner
+  One NIK → Can have multiple license plates
+
+Logic:
+  FOR each generated vehicle:
+    license_plate = generate_license_plate()
+    owner = get_or_create_owner(license_plate, vehicle_class)
+    owner.owner_id = owner.nik
+    owner.license_plate = license_plate
+
+Data Flow:
+  Plate Generated → Query owner database
+  ↓
+  Owner exists? → Use existing NIK
+  Owner not exists? → Generate new NIK
+  ↓
+  Link NIK to plate
+  ↓
+  Store in owner database
+
+Purpose:
+  - Track who owns each vehicle
+  - Identify repeat violators
+  - Link violations to specific NIK
+  - Create owner history
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+================================================================================
+SECTION 4: NIK VALIDATION RULES
+================================================================================
+
+RULE 4.1: NIK FORMAT VALIDATION
+───────────────────────────────
+
+Validation Checks:
+
+Check 1: Length
+  IF len(nik) != 16 THEN invalid
+  
+Check 2: All Numeric
+  IF not all_characters_are_digits THEN invalid
+  
+Check 3: Valid Ranges
+  Positions 1-2 (Province): 01-34
+  Positions 3-4 (District): 01-99
+  Positions 5-6 (Sub-district): 01-99
+  Positions 7-8 (Birth date): 01-31
+  Positions 9-10 (Birth month): 01-12
+  Positions 11-12 (Birth year): 00-99
+  Position 13 (Gender): 1-4
+  Positions 14-16 (Sequence): 000-999
+
+Validation Result:
+  IF all checks pass THEN NIK_VALID = TRUE
+  ELSE NIK_VALID = FALSE
+
+Code Location: utils/indonesian_plates.py
+
+
+RULE 4.2: BIRTH DATE VALIDATION
+────────────────────────────────
+
+Special Rules:
+
+Day Validation:
+  Valid range: 01-31
+  
+  IF day = 31 AND month ∈ [2,4,6,9,11] THEN reject
+    (February, April, June, September, November have max 30 days)
+  
+  IF day = 30 AND month = 2 THEN reject
+    (February has max 28/29 days)
+  
+  IF day = 29 AND month = 2 AND year_not_leap THEN reject
+
+Month Validation:
+  Valid range: 01-12
+  
+  IF month < 01 OR month > 12 THEN reject
+
+Year Validation:
+  Valid range: 00-99
+  
+  Interpreted as: 19xx if xx ≥ current_year_suffix
+                  20xx if xx < current_year_suffix
+  
+  Example (current year 2026):
+    00-26 → 2000-2026
+    27-99 → 1927-1999
+
+Reasonable Age Check:
+  IF person_age < 16 THEN may be invalid (too young to drive)
+  IF person_age > 120 THEN may be invalid (unrealistic)
+
+Handling:
+  - System accepts realistic dates
+  - Flags impossible dates
+  - Some data uses placeholder dates (not registration-specific)
+
+Code Location: utils/generators.py
+
+
+RULE 4.3: PROVINCE CODE VALIDATION
+───────────────────────────────────
+
+Valid Province Codes: 01-34
+
+Mapping to Indonesian Provinces:
+
+Province Code: Description: Region Code:
+01            Aceh                    BL
+02            Sumatera Utara          BB
+03            Sumatera Barat          BM
+04            Riau                    R
+05            Kepulauan Riau          KR
+06            Jambi                   J
+07            Sumatera Selatan        SS
+08            Kepulauan Bangka Belitung KB
+09            Bengkulu                B
+10            Lampung                 L
+11            DKI Jakarta             B
+12            Jawa Barat              D, F
+13            Jawa Tengah             H, G
+14            Jawa Timur              L
+15            Kalimantan Barat        K
+16            Kalimantan Tengah       KT
+17            Kalimantan Selatan      KS
+18            Kalimantan Timur        KI
+19            Sulawesi Utara          K
+20            Sulawesi Tengah         K
+21            Sulawesi Selatan        M
+22            Sulawesi Tenggara       K
+23            Gorontalo               K
+24            Maluku                  M
+25            Maluku Utara            K
+26            Papua                   P
+27            Papua Barat             P
+28            Nusa Tenggara Timur     NTT
+29            Nusa Tenggara Barat     NTB
+30            Bali                    DK
+31            Yogyakarta              AB
+32            Jawa Tengah (alternate) S
+33            Sulawesi Tengah (alt)   T
+34            Sulawesi Tenggara (alt) Y
+
+Validation:
+  IF province_code < 01 OR province_code > 34 THEN invalid
+  ELSE map to region name
+
+Code Location: utils/generators.py, config/__init__.py
+
+
+================================================================================
+SECTION 5: NIK WILAYAH (REGION) MAPPING
+================================================================================
+
+RULE 5.1: NIK TO WILAYAH MAPPING
+─────────────────────────────────
+
+Purpose:
+  Extract geographic region (wilayah) from NIK
+  Match NIK province code to license plate region codes
+  Display owner's residence region in GUI
+
+Mapping Process:
+
+Step 1: Extract Province Code
+  province_code = nik[0:2]  # First 2 digits
+  Example: NIK 0857519332844595 → code 08
+
+Step 2: Look Up Province
+  province_name = province_map[province_code]
+  Example: 08 → "DKI Jakarta"
+
+Step 3: Match to Region Code
+  region_code = find_region_code(province_code)
+  Example: DKI Jakarta → "B"
+
+Step 4: Get Full Region Name
+  full_region = region_database[region_code]
+  Example: "B" → "DKI Jakarta"
+
+Result:
+  NIK → Province → Region Name
+  Example: 0857519332844595 → 08 → DKI Jakarta
+
+Code Location: utils/generators.py, utils/indonesian_plates.py
+
+
+RULE 5.2: REGION CODE DATABASE
+───────────────────────────────
+
+Region Code Mapping (Indonesian Provinces):
+
+Code    Region Name                Full Name
+────────────────────────────────────────────────
+B       Jakarta                    DKI Jakarta
+D       Bandung                    Kota Bandung
+F       Bogor                      Kota Bogor
+G       Cirebon                    Kota Cirebon
+H       Semarang                   Kota Semarang
+L       Surabaya                   Kota Surabaya
+M       Malang                     Kota Malang
+DK      Denpasar                   Kota Denpasar
+BL      Banda Aceh                 Kota Banda Aceh
+BB      Medan                      Kota Medan
+BM      Padang                     Kota Padang
+AB      Yogyakarta                 Kota Yogyakarta
+K       Karawang                   Karawang
+R       Pekanbaru                  Kota Pekanbaru
+SS      Palembang                  Kota Palembang
+J       Jambi                      Kota Jambi
+P       Pontianak                  Kota Pontianak
+S       Solo                       Kota Solo
+T       Tabanan                    Kabupaten Tabanan
+Y       Ambon                      Kota Ambon
+(Additional regional codes maintained in database)
+
+Database Location: config/__init__.py, utils/indonesian_plates.py
+
+
+RULE 5.3: OWNER REGION DISPLAY
+───────────────────────────────
+
+Display Rule:
+  When owner is shown in GUI, display region from NIK mapping
+
+Logic:
+  owner_region = extract_region_from_nik(owner.nik)
+  display_field = f"{owner_name} ({owner_region})"
+
+Example:
+  Owner: Wawan Hermansyah
+  NIK: 0857519332844595
+  Region extracted: DKI Jakarta (from code 08)
+  Display: "Wawan Hermansyah (DKI Jakarta)"
+
+Update Mechanism:
+  - When owner loaded, region computed from NIK
+  - Region cached in owner object
+  - Updated if owner record changes
+  - Persisted in JSON storage
+
+Code Location: gui_traffic_simulation.py, data_models/models.py
+
+
+================================================================================
+SECTION 6: NIK DATA PERSISTENCE
+================================================================================
+
+RULE 6.1: NIK STORAGE IN OWNER DATABASE
+────────────────────────────────────────
+
+Storage Format:
+  Owner records stored in vehicles_database.json
+  Each owner object contains NIK field
+
+JSON Structure:
+  {
+    "nik": "0857519332844595",
+    "name": "Wawan Hermansyah",
+    "region": "DKI Jakarta",
+    "stnk_status": "Non-Active",
+    "sim_status": "Active",
+    "license_plates": ["B 5244 GRA", ...]
+  }
+
+Storage Location: vehicles_database.json (in data_files directory)
+
+Persistence Mechanism:
+  1. NIK generated/loaded
+  2. Stored in owner object
+  3. Owner serialized to JSON
+  4. JSON written to file
+  5. On next run, loaded from JSON
+  6. Same NIK = same owner identity
+
+Caching:
+  - Load all owners into memory at startup
+  - In-memory lookups for performance
+  - Periodic sync to disk
+  - Session uniqueness maintained
+
+Code Location: data_models/models.py, data_models/storage.py
+
+
+RULE 6.2: NIK DUPLICATE PREVENTION
+───────────────────────────────────
+
+Mechanism:
+  During generation, check if NIK already exists
+
+Logic:
+  FOR generating new owner:
+    REPEAT:
+      new_nik = generate_nik()
+      IF new_nik in loaded_owners THEN
+        continue (retry)
+      ELSE
+        accept new_nik
+        break
+    UNTIL (max attempts reached OR valid nik found)
+
+Implementation:
+  existing_niks = set()
+  FOR each owner in loaded_owners:
+    existing_niks.add(owner.nik)
+  
+  WHILE generating new owner:
+    candidate_nik = generate_nik()
+    IF candidate_nik NOT IN existing_niks:
+      owner.nik = candidate_nik
+      existing_niks.add(candidate_nik)
+      break
+
+Result:
+  No duplicate NIKs within same session
+  Each owner uniquely identified
+
+Code Location: data_models/models.py
+
+
+RULE 6.3: NIK LINKAGE TO VIOLATIONS
+────────────────────────────────────
+
+When Violation Created:
+  1. Vehicle detected with violation
+  2. Query owner by license plate
+  3. Retrieve owner's NIK
+  4. Store NIK in violation ticket
+  5. Save ticket to tickets.json
+
+Ticket Structure:
+  {
+    "license_plate": "B 5244 GRA",
+    "owner": {
+      "id": "0857519332844595",      # NIK
+      "name": "Wawan Hermansyah",
+      "region": "DKI Jakarta"
+    },
+    "violation": {
+      "speed": 95,
+      "type": "SPEEDING",
+      ...
+    },
+    ...
+  }
+
+Linkage Benefits:
+  - Identify repeat violators
+  - Track violations by person (not just vehicle)
+  - Generate owner statistics
+  - Legal accountability by NIK
+  - Historical violation record
+
+Code Location: data_models/models.py, simulation/analyzer.py
+
+
+================================================================================
+SECTION 7: NIK INTEGRATION WITH VEHICLE SYSTEM
+================================================================================
+
+RULE 7.1: VEHICLE-OWNER-NIK RELATIONSHIP
+──────────────────────────────────────────
+
+Relationship Model:
+  
+  Vehicle --owns--> License Plate
+  License Plate --owned-by--> Owner
+  Owner --identified-by--> NIK
+
+One-to-One Mapping:
+  One License Plate = One Owner (at any time)
+  One Owner = One NIK (unique)
+  One NIK ≠ One License Plate (owner can have multiple vehicles)
+
+Data Flow:
+  1. Generate license plate
+  2. Look up owner by plate
+     - If owner exists: use their NIK
+     - If owner doesn't exist: generate new NIK
+  3. Create vehicle object with:
+     - license_plate
+     - owner_id (NIK)
+     - owner_name
+     - owner_region
+  4. Store vehicle
+
+Code Location: utils/generators.py
+
+
+RULE 7.2: MULTIPLE VEHICLES BY SAME OWNER
+───────────────────────────────────────────
+
+Scenario:
+  One person (NIK) owns multiple vehicles (plates)
+
+Implementation:
+  owner.license_plates = [plate1, plate2, plate3, ...]
+  
+  FOR each plate owned by owner:
+    vehicle = Vehicle(
+      license_plate = plate,
+      owner_id = owner.nik,  # Same NIK
+      owner_name = owner.name,
+      owner_region = owner.region,
+      ...
+    )
+
+Lookup:
+  GIVEN: license plate "B 5244 GRA"
+  FIND: owner by plate
+  GET: owner.nik = "0857519332844595"
+  
+  RESULT: All vehicles with same NIK are same owner
+
+Violation Tracking:
+  All violations by same NIK linked to same person
+  Enables tracking repeat violators
+  Even if using different vehicles
+
+Code Location: utils/generators.py, data_models/models.py
+
+
+================================================================================
+SECTION 8: NIK DATABASE AND OWNER TRACKING
+================================================================================
+
+RULE 8.1: OWNER DATABASE STRUCTURE
+───────────────────────────────────
+
+Database Format: JSON (vehicles_database.json)
+
+Structure:
+  {
+    "owners": [
+      {
+        "nik": "0857519332844595",
+        "name": "Wawan Hermansyah",
+        "region": "DKI Jakarta",
+        "stnk_status": "Non-Active",
+        "sim_status": "Active",
+        "license_plates": ["B 5244 GRA", "B 5250 L"],
+        "created_date": "2026-01-30T10:15:00",
+        "violation_count": 3
+      },
+      ...
+    ]
+  }
+
+Key Fields:
+  - nik: 16-digit national ID (unique)
+  - name: Owner's full name
+  - region: Extracted from NIK province code
+  - stnk_status: Vehicle registration status
+  - sim_status: Driver license status
+  - license_plates: All plates owned by this person
+  - violation_count: Total violations (for statistics)
+
+Access Pattern:
+  LOOKUP by NIK: Direct access to owner profile
+  LOOKUP by Plate: Query which NIK owns plate
+  MODIFY: Update owner status or violations
+  INSERT: Add new owner
+
+Code Location: data_models/models.py, data_models/storage.py
+
+
+RULE 8.2: VIOLATION TRACKING BY NIK
+────────────────────────────────────
+
+Violation Association:
+  Each violation ticket includes owner's NIK
+  Enables tracking violations by person
+
+Tracking Process:
+  1. Violation occurs
+  2. Retrieve vehicle owner's NIK
+  3. Store NIK in violation record
+  4. Increment owner's violation_count
+  5. Save to violations database
+
+Analysis:
+  SELECT all violations WHERE owner_id = nik
+  RESULT: All violations by this person
+  ACROSS: All their vehicles
+
+Example Query:
+  FOR each violation in violations_database:
+    IF violation.owner_id == "0857519332844595":
+      Record this violation for Wawan Hermansyah
+
+Result:
+  Wawan Hermansyah:
+    - Total violations: 5
+    - Total fines: Rp 3,500,000
+    - Violation types: 3 speeding, 2 slow driving
+    - Vehicles involved: 2 different plates
+
+Code Location: utils/violation_utils.py
+
+
+RULE 8.3: OWNER STATISTICS AND REPORTING
+──────────────────────────────────────────
+
+Statistics Available:
+
+By Owner (NIK):
+  - Total violations count
+  - Total fines amount (IDR)
+  - Violation types breakdown
+  - Vehicles involved
+  - Date range of violations
+  - Average fine per violation
+
+By Region (from NIK extraction):
+  - Violations per region
+  - Regional fine totals
+  - Regional distribution
+
+By Vehicle (via NIK):
+  - Violations per vehicle
+  - Owner history
+  - Vehicle status
+
+Reporting:
+  Generate reports by:
+  - Owner NIK
+  - Region
+  - Time period
+  - Violation type
+  - Fine range
+
+Code Location: utils/violation_utils.py, scripts/
+
+
+================================================================================
+SECTION 9: LEGAL AND COMPLIANCE ASPECTS
+================================================================================
+
+RULE 9.1: NIK AND VEHICLE REGISTRATION LAW
+───────────────────────────────────────────
+
+Legal Framework:
+  - NIK is issued by Dinas Kependudukan (Population Office)
+  - Required for vehicle registration (STNK)
+  - Vehicle owner must have valid NIK
+  - NIK appears on all vehicle documents
+
+Indonesian Law References:
+  - Undang-Undang Nomor 23 Tahun 2006 tentang Administrasi Kependudukan
+    (Law on Population Administration)
+  - Peraturan Pemerintah Nomor 37 Tahun 2007
+    (Government Regulation on Population Data)
+
+System Compliance:
+  ✓ NIK format follows Indonesian standard
+  ✓ 16-digit structure matches official format
+  ✓ NIK linked to vehicle registration
+  ✓ Owner identity verified by NIK
+  ✓ Legal documentation compatible
+
+Code Location: All components
+
+
+RULE 9.2: NIK PRIVACY AND DATA PROTECTION
+───────────────────────────────────────────
+
+Privacy Considerations:
+  - NIK is Personally Identifiable Information (PII)
+  - Should be protected and secured
+  - Access limited to authorized persons
+  - Stored in encrypted format (recommended)
+
+Data Protection:
+  - Database access controlled
+  - Export/sharing restricted
+  - Audit trail for access
+  - Compliance with data protection laws
+
+In This System:
+  - NIK stored in simulation database
+  - Not transmitted externally (local only)
+  - Used for identification and statistics
+  - No external sharing in current implementation
+
+Recommendations:
+  - For production systems: add encryption
+  - For production systems: add access control
+  - For production systems: add audit logging
+
+Code Location: data_models/storage.py
+
+
+RULE 9.3: NIK FOR TRAFFIC ENFORCEMENT
+───────────────────────────────────────
+
+Enforcement Application:
+  - NIK identifies violator
+  - Links violation to person (not just vehicle)
+  - Enables tracking repeat offenders
+  - Supports legal prosecution
+  - Enables fine payment tracking
+
+Legal Use:
+  - Issue citations by NIK
+  - Calculate penalties by violation history
+  - Generate enforcement statistics
+  - Court proceedings evidence
+  - License suspension records
+
+System Implementation:
+  ✓ Violations stored with NIK
+  ✓ Owner history tracked
+  ✓ Statistics available
+  ✓ Reportable by NIK
+  ✓ Legal documentation support
+
+Code Location: simulation/analyzer.py, utils/violation_utils.py
+
+
+================================================================================
+SUMMARY - NIK SYSTEM OVERVIEW
+================================================================================
+
+Key Points:
+
+1. NIK Structure:
+   - 16 digits total
+   - Encodes: province, district, birth date, gender, sequence
+   - Unique per person
+   - Linked to geographic region
+
+2. NIK Generation:
+   - Randomly generated within valid ranges
+   - Format: AABBCCDDEEEEEFF
+   - Validated for structure and date validity
+   - Mapped to Indonesian regions
+   - Uniqueness enforced within session
+
+3. NIK Integration:
+   - Linked to vehicle license plates
+   - Linked to violations
+   - Enables owner identification
+   - Supports repeat violator tracking
+
+4. Data Persistence:
+   - Stored in vehicles_database.json
+   - Persisted across sessions
+   - Linked to owner profile
+   - Associated with all violations
+
+5. Legal Compliance:
+   - Follows Indonesian NIK standard
+   - Links to vehicle registration requirements
+   - Supports law enforcement
+   - Enables legal procedures
+
+6. Privacy/Security:
+   - Personally identifiable information
+   - Should be protected in production
+   - Currently local-only in this system
+
+The NIK system provides the foundation for:
+  - Vehicle owner identification
+  - Violation tracking
+  - Legal enforcement
+  - Statistical analysis
+  - Compliance verification
+
+================================================================================
+END OF NIK SYSTEM DOCUMENTATION
+================================================================================

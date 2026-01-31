@@ -98,34 +98,51 @@ class DataGenerator:
     
     @staticmethod
     def generate_speed(vehicle_type="car"):
-        """Generate random speed based on vehicle type
-        Includes a small chance of generating very slow or very fast speeds for violation diversity
+        """Generate random speed based on vehicle type (Toll Road - PP 43/1993)
+        Kendaraan Ringan (Cars): 60-100 km/h (violations: <60 or >100)
+        Kendaraan Berat (Trucks/Buses): 60-80 km/h (violations: <60 or >80, but allow 10-20km over)
+        Increased violation generation for realistic enforcement data
         """
         # Adjust mean speed based on vehicle type
         if vehicle_type == "truck":
-            mean = 60  # Trucks tend to be slower
-        elif vehicle_type == "motorcycle":
-            mean = 72  # Motorcycles tend to be faster but capped at 75
+            mean = 70  # Trucks on toll: mean 70, max 80 km/h
+            truck_max = 100  # Allow speeding 10-20km over limit for testing
         else:
-            mean = Config.SPEED_MEAN
+            mean = 85  # Cars on toll: mean 85, max 100 km/h
+            truck_max = 120  # Allow extended speeding range for cars
         
-        # 8% chance of generating a distinctly slow vehicle (< 40 km/h) for too-slow violations
-        # 10% chance of generating a distinctly fast vehicle (> 80 km/h) for speeding violations
+        # Increased violation generation chances (more violations for enforcement data)
+        # 15% chance of slow violation (below 60 km minimum)
+        # 20% chance of speeding violation (above limit + 10-20km buffer)
+        # 65% chance of normal/legal speeds
         random_val = random.random()
         
-        if random_val < 0.08:
-            # Generate too-slow violation vehicle (20-39 km/h)
-            speed = random.uniform(20, 39)
-        elif random_val < 0.18:
-            # Generate speeding vehicle (80-130 km/h)
-            speed = random.uniform(80, 130)
+        if random_val < 0.15:
+            # Generate too-slow violation vehicle (below 60 km minimum)
+            if vehicle_type == "truck":
+                speed = random.uniform(20, 59)  # Below truck minimum of 60
+            else:
+                speed = random.uniform(20, 59)  # Below car minimum of 60
+                
+        elif random_val < 0.35:
+            # Generate speeding violation (above limit with 10-20km tolerance/differentiation)
+            if vehicle_type == "truck":
+                # Trucks: 80 km limit, allow 10-20 km over = 90-100 km violation
+                speed = random.uniform(85, 100)  # 5-20 km over truck limit
+            else:
+                # Cars: 100 km limit, allow 10-20 km over = 110-120 km violation
+                speed = random.uniform(105, 120)  # 5-20 km over car limit
         else:
-            # Generate normal distribution around the mean
+            # Generate normal distribution around the mean (legal speeds)
             speed = random.gauss(mean, Config.SPEED_STD_DEV)
         
-        # Ensure within bounds (but allow full range to allow too-slow violations)
-        # For slow violations: allow down to 20 km/h, up to 130 km/h max
-        speed = max(20, min(speed, Config.MAX_SPEED))
+        # Enforce vehicle-specific speed limits with violation allowance
+        if vehicle_type == "truck":
+            # Truck speed: 60-80 km/h legal, up to 100 km/h for violations
+            speed = max(20, min(speed, truck_max))
+        else:
+            # Car speed: 60-100 km/h legal, up to 120 km/h for violations
+            speed = max(20, min(speed, truck_max))
         
         return round(speed, 1)
     
@@ -146,19 +163,15 @@ class DataGenerator:
         plate_gen = get_plate_generator()
         
         for i in range(num_vehicles):
-            # Select vehicle type by probability
+            # Select vehicle type by probability - MOTORCYCLES DISABLED (PP 43/1993)
             rand = random.random()
             
-            if rand < 0.50:
-                # PRIBADI (50%) - Private cars and motorcycles
-                is_motorcycle = random.random() < 0.15  # 15% motorcycles within pribadi
-                
-                if is_motorcycle:
-                    vehicle_info = DataGenerator.generate_motorcycle_from_db()
-                    vehicle_class = 'roda_dua'
-                else:
-                    vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
-                    vehicle_class = 'roda_empat'
+            if rand < 0.75:
+                # PRIBADI (75%) - Private cars ONLY (motorcycles disabled)
+                # No motorcycles on toll roads per PP 43/1993
+                vehicle_info = DataGenerator.generate_vehicle_from_cars_db()
+                vehicle_class = 'roda_empat'
+                is_motorcycle = False  # DISABLED
                 
                 vehicle_category = VehicleCategory.PRIBADI.value
                 plate_color = 'BLACK'
@@ -312,21 +325,22 @@ class DataGenerator:
                 base_fine = Config.FINES["SPEED_HIGH_LEVEL_3"]["fine"]
                 violation_reason = Config.FINES["SPEED_HIGH_LEVEL_3"]["description"]
         
-        # Calculate penalty multiplier
-        # +20% for each condition that applies
+        # Calculate penalty multiplier (additive, not multiplicative)
+        # Base multiplier starts at 1.0 (no penalty)
         penalty_multiplier = 1.0
         
-        # Each expired/non-active status adds 20%
+        # Add 20% for each condition
         if stnk_status == 'Non-Active':
             penalty_multiplier += 0.2  # +20% for non-active STNK
         if sim_status == 'Expired':
             penalty_multiplier += 0.2  # +20% for expired SIM
         
-        # Calculate total fine
-        total_fine = base_fine * penalty_multiplier
+        # Cap base fine at maximum (before applying multiplier)
+        if base_fine > Config.MAX_FINE_USD:
+            base_fine = Config.MAX_FINE_USD
         
-        # Ensure total fine does not exceed legal maximum
-        if total_fine > Config.MAX_FINE_USD:
-            total_fine = Config.MAX_FINE_USD
+        # Calculate total fine: base (capped) × multiplier
+        # Total fine can exceed max if multiplier is applied
+        total_fine = base_fine * penalty_multiplier
         
         return base_fine, penalty_multiplier, total_fine

@@ -1,0 +1,322 @@
+================================================================================
+                    INDONESIAN PLATE-KTP SYNC QUICK REFERENCE
+================================================================================
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                 SINKRONISASI PLAT NOMOR DENGAN KTP                        ║
+║          (License Plate Synchronization with National ID Card)            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+RULE:
+  Plat nomor kendaraan HARUS sesuai dengan domisili KTP pemilik
+  License plate MUST match owner's ID card domicile
+
+EXAMPLE:
+  Plate: B 1234 AA (Jakarta)
+  KTP Must Start With: 31 (31xxxxxx - DKI Jakarta)
+  
+  Plate: L 5678 BC (Surabaya)
+  KTP Must Start With: 35 (35xxxxxx - Jawa Timur)
+
+================================================================================
+QUICK LOOKUP TABLE
+================================================================================
+
+JAVA REGION (Pulau Jawa):
+  ┌──────┬────────────────────┬──────────────┐
+  │ Plat │ Provinsi           │ Kode KTP     │
+  ├──────┼────────────────────┼──────────────┤
+  │  B   │ DKI Jakarta        │ 31xxxxxx     │
+  │  E   │ Jawa Barat         │ 32xxxxxx     │
+  │  D   │ Jawa Barat         │ 32xxxxxx     │
+  │  F   │ Jawa Barat         │ 32xxxxxx     │
+  │  G   │ Jawa Barat         │ 32xxxxxx     │
+  │  H   │ Jawa Tengah        │ 33xxxxxx     │
+  │  K   │ Jawa Tengah        │ 33xxxxxx     │
+  │  N   │ Jawa Tengah        │ 33xxxxxx     │
+  │  AB  │ DI Yogyakarta      │ 34xxxxxx     │
+  │  AA  │ DI Yogyakarta      │ 34xxxxxx     │
+  │  L   │ Jawa Timur         │ 35xxxxxx     │
+  │  M   │ Jawa Timur         │ 35xxxxxx     │
+  │  A   │ Jawa Timur         │ 35xxxxxx     │
+  │  AE  │ Banten             │ 36xxxxxx     │
+  │  T   │ Banten             │ 36xxxxxx     │
+  └──────┴────────────────────┴──────────────┘
+
+EASTERN REGION (Wilayah Timur):
+  ┌──────┬────────────────────────┬──────────────┐
+  │ Plat │ Provinsi               │ Kode KTP     │
+  ├──────┼────────────────────────┼──────────────┤
+  │  P   │ Bali                   │ 51xxxxxx     │
+  │  W   │ Nusa Tenggara Barat    │ 52xxxxxx     │
+  │  E   │ Nusa Tenggara Timur    │ 53xxxxxx     │
+  └──────┴────────────────────────┴──────────────┘
+
+KALIMANTAN REGION:
+  ┌──────┬────────────────────────┬──────────────┐
+  │ Plat │ Provinsi               │ Kode KTP     │
+  ├──────┼────────────────────────┼──────────────┤
+  │  KB  │ Kalimantan Barat       │ 61xxxxxx     │
+  │  KH  │ Kalimantan Tengah      │ 62xxxxxx     │
+  │  K   │ Kalimantan Selatan     │ 63xxxxxx     │
+  │  KT  │ Kalimantan Timur       │ 64xxxxxx     │
+  │  KU  │ Kalimantan Utara       │ 65xxxxxx     │
+  └──────┴────────────────────────┴──────────────┘
+
+SULAWESI REGION:
+  ┌──────┬────────────────────────┬──────────────┐
+  │ Plat │ Provinsi               │ Kode KTP     │
+  ├──────┼────────────────────────┼──────────────┤
+  │  R   │ Sulawesi Utara         │ 71xxxxxx     │
+  │  NS  │ Sulawesi Tengah        │ 72xxxxxx     │
+  │  S   │ Sulawesi Selatan       │ 73xxxxxx     │
+  │  DB  │ Sulawesi Tenggara      │ 74xxxxxx     │
+  │  DMD │ Gorontalo              │ 75xxxxxx     │
+  │  DL  │ Sulawesi Barat         │ 76xxxxxx     │
+  └──────┴────────────────────────┴──────────────┘
+
+EASTERN ARCHIPELAGO (Timur):
+  ┌──────┬────────────────────────┬──────────────┐
+  │ Plat │ Provinsi               │ Kode KTP     │
+  ├──────┼────────────────────────┼──────────────┤
+  │  DK  │ Maluku                 │ 81xxxxxx     │
+  │  DM  │ Maluku Utara           │ 82xxxxxx     │
+  │  PB  │ Papua Barat            │ 91xxxxxx     │
+  │  PA  │ Papua                  │ 94xxxxxx     │
+  └──────┴────────────────────────┴──────────────┘
+
+================================================================================
+COMMON EXAMPLES
+================================================================================
+
+✅ VALID (Synchronized) EXAMPLES:
+
+  1. Plat: B 1234 AA
+     KTP: 3171005708900004
+     Status: SINKRON ✓
+     Reason: Plat B (Jakarta, 31) dan KTP 31 (Jakarta) cocok
+
+  2. Plat: L 5678 BK
+     KTP: 3575065708900004
+     Status: SINKRON ✓
+     Reason: Plat L (Jawa Timur, 35) dan KTP 35 (Jawa Timur) cocok
+
+  3. Plat: E 9012 CD
+     KTP: 3275075708900004
+     Status: SINKRON ✓
+     Reason: Plat E (Jawa Barat, 32) dan KTP 32 (Jawa Barat) cocok
+
+  4. Plat: H 3456 EF
+     KTP: 3375085708900004
+     Status: SINKRON ✓
+     Reason: Plat H (Jawa Tengah, 33) dan KTP 33 (Jawa Tengah) cocok
+
+
+❌ INVALID (Not Synchronized) EXAMPLES:
+
+  1. Plat: B 1234 AA
+     KTP: 3275075708900004
+     Status: TIDAK SINKRON ✗
+     Reason: Plat B (Jakarta, 31) tapi KTP 32 (Jawa Barat) - ILEGAL
+     Interpretation: Kemungkinan kendaraan curian atau KTP pinjam
+
+  2. Plat: L 5678 BK
+     KTP: 3171005708900004
+     Status: TIDAK SINKRON ✗
+     Reason: Plat L (Jawa Timur, 35) tapi KTP 31 (Jakarta) - ILEGAL
+     Interpretation: Plat tidak sesuai dengan domisili KTP
+
+  3. Plat: E 9012 CD
+     KTP: 3171005708900004
+     Status: TIDAK SINKRON ✗
+     Reason: Plat E (Jawa Barat, 32) tapi KTP 31 (Jakarta) - ILEGAL
+     Interpretation: Registrasi tidak sah
+
+================================================================================
+WHY IT MATTERS
+================================================================================
+
+REGULATORY REASON:
+  Hukum Indonesia mewajibkan STNK sesuai dengan KTP pemilik
+  This is required by Indonesian law
+
+PRACTICAL IMPLICATIONS:
+  1. PEMBELIAN KENDARAAN BARU
+     - Dealer akan menolak penjualan jika domisili berbeda
+     - Harus ada mutasi (transfer) dulu
+     - Atau menggunakan KTP dari wilayah tersebut
+
+  2. PAJAK KENDARAAN (Vehicle Tax)
+     - Pajak dikumpulkan berdasarkan wilayah plat
+     - Plat B (Jakarta) → Pajak Jakarta
+     - Plat L (Surabaya) → Pajak Jawa Timur
+
+  3. PERATURAN LALULINTAS
+     - Beberapa daerah punya peraturan khusus berdasarkan plat
+     - Contoh: Ganjil-Genap Jakarta berlaku untuk plat B
+     - Larangan angkutan barang untuk truk dengan plat tertentu
+
+  4. KEAMANAN & IDENTIFIKASI
+     - Mempercepat identifikasi pemilik kendaraan
+     - Membantu polisi dalam investigasi
+     - Mencegah kendaraan curian
+
+================================================================================
+SOLUTIONS FOR MISMATCH
+================================================================================
+
+JIKA PLAT DAN KTP TIDAK SINKRON, ADA 2 SOLUSI:
+
+SOLUSI 1: MUTASI PLAT (Transfer Plate)
+  Proses:
+    1. Datang ke kantor SAMSAT (Sistem Administrasi Manunggal Satu Atap)
+    2. Bawa STNK, KTP, dan berkas pendukung
+    3. Bayar biaya administrasi (~Rp 500-1.000 ribu)
+    4. Tunggu 1-3 hari kerja
+    5. Terima plat baru sesuai domisili KTP
+  
+  Keuntungan:
+    ✓ Solusi permanen dan legal
+    ✓ Plat resmi dari pemerintah
+    ✓ Pajak bisa diurus dengan lancar
+  
+  Kekurangan:
+    ✗ Butuh waktu dan biaya
+    ✗ Harus buka pajak baru
+
+
+SOLUSI 2: GANTI KTP (Temporary)
+  Cara:
+    1. Pindahkan domisili KTP ke wilayah tempat mobil terdaftar
+    2. Butuh surat pindah dari lurah/camat
+    3. Urus KTP baru di daerah tujuan
+  
+  Keuntungan:
+    ✓ Relatif cepat
+    ✓ Tidak perlu mutasi plat
+  
+  Kekurangan:
+    ✗ Mengubah domisili resmi
+    ✗ Berdampak pada layanan publik lainnya
+    ✗ Bisa dianggap fraud jika tidak sungguh-sungguh pindah
+
+================================================================================
+HOW TO CHECK SYNCHRONIZATION
+================================================================================
+
+MANUALLY:
+
+1. Lihat plat nomor kendaraan: B 1234 AA
+   → Ambil huruf pertama: B
+
+2. Lihat KTP pemilik: 3171005708900004
+   → Ambil 2 digit pertama: 31
+
+3. Cocokkan dengan tabel:
+   B → 31 (DKI Jakarta)
+   KTP → 31 (DKI Jakarta)
+   
+4. Hasil:
+   B = 31, KTP 31 = 31 → SINKRON ✓
+
+
+MENGGUNAKAN SISTEM:
+
+1. Buka dialog detail pelanggaran
+2. Lihat bagian "Status Sinkronisasi Plat-KTP"
+3. Status akan menunjukkan:
+   - ✓ SINKRON (Hijau) - Plat sesuai KTP
+   - ✗ TIDAK SINKRON (Merah) - Plat berbeda dengan KTP
+4. Baca penjelasan untuk lebih detail
+
+================================================================================
+PROVINCE CODE MEANING
+================================================================================
+
+Digit pertama kode KTP menunjukkan provinsi:
+
+  11-19: Sumatera
+  21:    Kepulauan Riau
+  31:    DKI Jakarta
+  32:    Jawa Barat
+  33:    Jawa Tengah
+  34:    DI Yogyakarta
+  35:    Jawa Timur
+  36:    Banten
+  51:    Bali
+  52-53: Nusa Tenggara
+  61-65: Kalimantan
+  71-76: Sulawesi
+  81-82: Maluku
+  91, 94: Papua
+
+================================================================================
+ADDITIONAL INFORMATION
+================================================================================
+
+Format Plat Kendaraan Indonesia:
+  [HURUF] [NOMOR] [HURUF BELAKANG]
+  B       1234    AA
+
+  B = Prefiks wilayah (Province)
+  1234 = Nomor urut (Sequential number)
+  AA = Akhiran 2 huruf (Suffix)
+
+Format Nomor Identitas Kendaraan (NIK):
+  [2 digit Provinsi] [2 digit Kabupaten] [2 digit Kecamatan] [6 digit Lainnya] [4 digit Nomor Urut]
+  31                 71                  00                  570890           0004
+  
+  31 = DKI Jakarta (Provinsi)
+  71 = Jakarta Pusat (Kabupaten/Kota)
+
+STNK = Surat Tanda Nomor Kendaraan (Vehicle Registration Certificate)
+BPKB = Bukti Pemilikan Kendaraan Bermotor (Proof of Ownership)
+KTP = Kartu Tanda Penduduk (National ID Card)
+SAMSAT = Sistem Administrasi Manunggal Satu Atap (One-Stop Administrative System)
+
+================================================================================
+COMMON QUESTIONS
+================================================================================
+
+Q: Bisakah punya plat Jakarta (B) tapi KTP Bandung (32)?
+A: TIDAK. Itu ilegal dan akan ditindak. Harus di-mutasi dulu.
+
+Q: Bagaimana jika baru membeli mobil dari daerah lain?
+A: Dealer akan mengurus mutasi plat otomatis sesuai KTP Anda.
+   Tidak perlu repot mengurus sendiri.
+
+Q: Berapa lama proses mutasi plat?
+A: Biasanya 1-3 hari kerja di SAMSAT.
+   Ada biaya administrasi (~Rp 500-1.000 ribu).
+
+Q: Apakah plat lama masih berlaku?
+A: Tidak. Harus ganti plat baru sesuai wilayah baru.
+   Plat lama tidak boleh digunakan.
+
+Q: Apa akibatnya jika ketahuan menggunakan plat ilegal?
+A: Denda minimal Rp 1-3 juta dan/atau kurungan 1-3 bulan.
+   Kendaraan bisa disita.
+
+Q: Bisakah meminjam KTP orang lain?
+A: Itu ilegal! Bisa dianggap fraud dan akan ditindak hukum.
+
+Q: Jika mutasi, apakah pajak kendaraan reset?
+A: Ya. Tahun pajak baru dimulai sesuai wilayah baru.
+   Perlu urus pajak baru di SAMSAT.
+
+================================================================================
+VERIFICATION CHECKLIST
+================================================================================
+
+Sebelum membeli atau menggunakan kendaraan, periksa:
+
+  □ Plat nomor sudah jelas
+  □ Literatur pertama plat (B, E, L, dll) diketahui
+  □ Lihat KTP pemilik
+  □ Ambil 2 digit pertama KTP
+  □ Cocokkan dengan tabel sinkronisasi
+  □ Jika cocok → SINKRON ✓
+  □ Jika tidak cocok → ILEGAL ✗
+  □ Jika ilegal, minta seller untuk mutasi plat
+
+================================================================================
