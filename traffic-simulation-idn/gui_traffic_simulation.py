@@ -295,8 +295,16 @@ class ViolationDetailDialog(QDialog):
         owner_layout.addWidget(QLabel("Tempat Tinggal:"), 2, 0)
         owner_layout.addWidget(QLabel(str(owner_region_display)), 2, 1)
         
-        # Add sub-region for owner
-        owner_sub_region = self._get_sub_region_from_code(owner_region)
+        # Add sub-region for owner - extract from plate's parsed information
+        owner_sub_region = '-'
+        try:
+            plate_str = self.violation.get('plate', self.violation.get('license_plate', ''))
+            if plate_str:
+                plate_info = IndonesianPlateManager.parse_plate(plate_str)
+                if plate_info and 'sub_region' in plate_info:
+                    owner_sub_region = plate_info['sub_region']
+        except Exception:
+            pass
         owner_layout.addWidget(QLabel("Sub-Wilayah Tempat Tinggal:"), 3, 0)
         owner_layout.addWidget(QLabel(owner_sub_region), 3, 1)
         
@@ -365,7 +373,7 @@ class ViolationDetailDialog(QDialog):
         base_fine_usd = self.violation.get('fine_amount', 0)
         base_fine_idr = base_fine_usd * USD_TO_IDR
         multiplier = self.violation.get('penalty_multiplier', 1.0)
-        total_fine_usd = self.violation.get('fine_amount', 0)
+        total_fine_usd = base_fine_usd * multiplier
         total_fine_idr = total_fine_usd * USD_TO_IDR
         
         fine_layout.addWidget(QLabel("Denda Dasar:"), 0, 0)
@@ -427,16 +435,24 @@ class ViolationDetailDialog(QDialog):
             
             # Fallback to legacy static mapping for presentation
             regions = {
-                'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
-                'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
-                'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
-                'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
-                'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
-                'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
-                'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
-                'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
-                'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
-                'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
+                'A': 'Banten', 'AA': 'Jawa Tengah (Keresidenan Kedu)', 'AB': 'Daerah Istimewa Yogyakarta',
+                'AD': 'Jawa Tengah (Keresidenan Surakarta)', 'AE': 'Jawa Timur (Madiun)', 'AG': 'Jawa Timur (Kediri)',
+                'B': 'DKI Jakarta', 'BA': 'Sumatera Barat', 'BB': 'Sumatera Utara Barat (Tapanuli)',
+                'BD': 'Bengkulu', 'BE': 'Lampung', 'BG': 'Sumatera Selatan', 'BH': 'Jambi',
+                'BK': 'Sumatera Utara Timur (Pesisir Timur Sumatra)', 'BL': 'Aceh', 'BM': 'Riau', 'BN': 'Kepulauan Bangka Belitung',
+                'BP': 'Kepulauan Riau', 'D': 'Jawa Barat (Priangan Tengah)', 'DA': 'Kalimantan Selatan', 'DB': 'Sulawesi Utara (Daratan)',
+                'DC': 'Sulawesi Barat', 'DD': 'Sulawesi Selatan (Makassar)', 'DE': 'Maluku', 'DG': 'Maluku Utara',
+                'DH': 'NTT (Timor)', 'DK': 'Bali', 'DL': 'Sulawesi Utara (Kepulauan)', 'DM': 'Gorontalo',
+                'DN': 'Sulawesi Tengah', 'DP': 'Sulawesi Selatan (Utara)', 'DR': 'NTB (Lombok)', 'DT': 'Sulawesi Tenggara',
+                'DW': 'Sulawesi Selatan (Bone, Wajo)', 'E': 'Jawa Barat (Keresidenan Cirebon)', 'EA': 'NTB (Sumbawa)',
+                'EB': 'NTT (Flores)', 'ED': 'NTT (Sumba)', 'F': 'Jawa Barat (Keresidenan Bogor dan Priangan Barat)',
+                'G': 'Jawa Tengah (Keresidenan Pekalongan)', 'H': 'Jawa Tengah (Keresidenan Semarang)', 'K': 'Jawa Tengah (Keresidenan Pati dan Grobogan)',
+                'KB': 'Kalimantan Barat', 'KH': 'Kalimantan Tengah', 'KT': 'Kalimantan Timur', 'KU': 'Kalimantan Utara',
+                'L': 'Jawa Timur (Kota Surabaya)', 'M': 'Jawa Timur (Madura)', 'N': 'Jawa Timur (Pasuruan-Malang)', 'P': 'Jawa Timur (Besuki)',
+                'PA': 'Papua', 'PB': 'Papua Barat', 'PG': 'Papua Pegunungan', 'PS': 'Papua Selatan', 'PT': 'Papua Tengah', 'PY': 'Papua Barat Daya',
+                'R': 'Jawa Tengah (Keresidenan Banyumas)', 'S': 'Jawa Timur (Bojonegoro, Mojokerto, Lamongan, Jombang)', 
+                'T': 'Jawa Barat (Keresidenan Karawang)', 'W': 'Jawa Timur (Surabaya)', 'Z': 'Jawa Barat (Priangan Timur dan Kabupaten Sumedang)',
+                'CC': 'Diplomatik', 'CD': 'Diplomatik', 'RI': 'Pemerintah Indonesia'
             }
             return regions.get(code, f'Kode: {code}')
         return 'Tidak Diketahui' 
@@ -454,18 +470,26 @@ class ViolationDetailDialog(QDialog):
         except Exception:
             pass
         
-        # Fallback to legacy static mapping for presentation
+        # Fallback to legacy static mapping for presentation - using PLATE_DATA values
         regions_map = {
-            'B': 'Jakarta (DKI)', 'D': 'Bandung (Jawa Barat)', 'H': 'Semarang (Jawa Tengah)',
-            'AB': 'Yogyakarta', 'L': 'Surabaya (Jawa Timur)', 'N': 'Madura',
-            'AA': 'Medan (Sumatera Utara)', 'BK': 'Aceh', 'BA': 'Palembang (Sumatera Selatan)',
-            'BL': 'Bengkulu', 'BP': 'Lampung', 'KB': 'Bandar Lampung',
-            'AG': 'Pekanbaru (Riau)', 'AM': 'Jambi', 'AE': 'Pontianak (Kalimantan Barat)',
-            'AH': 'Banjarmasin (Kalimantan Selatan)', 'DK': 'Denpasar (Bali)',
-            'DL': 'Mataram (NTB)', 'EA': 'Kupang (NTT)', 'EB': 'Manado (Sulawesi Utara)',
-            'ED': 'Gorontalo', 'EE': 'Palu (Sulawesi Tengah)', 'DR': 'Makassar (Sulawesi Selatan)',
-            'DM': 'Kendari (Sulawesi Tenggara)', 'DS': 'Ternate (Maluku Utara)',
-            'DB': 'Ambon (Maluku)', 'PA': 'Jayapura (Papua)', 'PB': 'Manokwari (Papua Barat)'
+            'A': 'Banten', 'AA': 'Jawa Tengah (Keresidenan Kedu)', 'AB': 'Daerah Istimewa Yogyakarta',
+            'AD': 'Jawa Tengah (Keresidenan Surakarta)', 'AE': 'Jawa Timur (Madiun)', 'AG': 'Jawa Timur (Kediri)',
+            'B': 'DKI Jakarta', 'BA': 'Sumatera Barat', 'BB': 'Sumatera Utara Barat (Tapanuli)',
+            'BD': 'Bengkulu', 'BE': 'Lampung', 'BG': 'Sumatera Selatan', 'BH': 'Jambi',
+            'BK': 'Sumatera Utara Timur (Pesisir Timur Sumatra)', 'BL': 'Aceh', 'BM': 'Riau', 'BN': 'Kepulauan Bangka Belitung',
+            'BP': 'Kepulauan Riau', 'D': 'Jawa Barat (Priangan Tengah)', 'DA': 'Kalimantan Selatan', 'DB': 'Sulawesi Utara (Daratan)',
+            'DC': 'Sulawesi Barat', 'DD': 'Sulawesi Selatan (Makassar)', 'DE': 'Maluku', 'DG': 'Maluku Utara',
+            'DH': 'NTT (Timor)', 'DK': 'Bali', 'DL': 'Sulawesi Utara (Kepulauan)', 'DM': 'Gorontalo',
+            'DN': 'Sulawesi Tengah', 'DP': 'Sulawesi Selatan (Utara)', 'DR': 'NTB (Lombok)', 'DT': 'Sulawesi Tenggara',
+            'DW': 'Sulawesi Selatan (Bone, Wajo)', 'E': 'Jawa Barat (Keresidenan Cirebon)', 'EA': 'NTB (Sumbawa)',
+            'EB': 'NTT (Flores)', 'ED': 'NTT (Sumba)', 'F': 'Jawa Barat (Keresidenan Bogor dan Priangan Barat)',
+            'G': 'Jawa Tengah (Keresidenan Pekalongan)', 'H': 'Jawa Tengah (Keresidenan Semarang)', 'K': 'Jawa Tengah (Keresidenan Pati dan Grobogan)',
+            'KB': 'Kalimantan Barat', 'KH': 'Kalimantan Tengah', 'KT': 'Kalimantan Timur', 'KU': 'Kalimantan Utara',
+            'L': 'Jawa Timur (Kota Surabaya)', 'M': 'Jawa Timur (Madura)', 'N': 'Jawa Timur (Pasuruan-Malang)', 'P': 'Jawa Timur (Besuki)',
+            'PA': 'Papua', 'PB': 'Papua Barat', 'PG': 'Papua Pegunungan', 'PS': 'Papua Selatan', 'PT': 'Papua Tengah', 'PY': 'Papua Barat Daya',
+            'R': 'Jawa Tengah (Keresidenan Banyumas)', 'S': 'Jawa Timur (Bojonegoro, Mojokerto, Lamongan, Jombang)', 
+            'T': 'Jawa Barat (Keresidenan Karawang)', 'W': 'Jawa Timur (Surabaya)', 'Z': 'Jawa Barat (Priangan Timur dan Kabupaten Sumedang)',
+            'CC': 'Diplomatik', 'CD': 'Diplomatik', 'RI': 'Pemerintah Indonesia'
         }
         
         # If value looks like a region code, convert it
@@ -834,6 +858,12 @@ class TrafficSimulationGUI(QMainWindow):
             # Convert region code to region name for export
             region_value = violation['owner'].get('region', '-')
             flattened['owner_region'] = self._convert_region_code_to_name(region_value)
+        else:
+            # Handle flat structure where owner_region is already a plate code
+            if 'owner_region' in flattened:
+                # owner_region is already the plate code from Vehicle object
+                # Keep it as-is (don't convert to name)
+                pass
         
         # Flatten registration data
         if 'registration' in violation and isinstance(violation['registration'], dict):

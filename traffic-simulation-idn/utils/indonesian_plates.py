@@ -125,7 +125,7 @@ class IndonesianPlateManager:
         },
         'BP': {
             'region_name': 'Kepulauan Riau',
-            'province_code': '15',
+            'province_code': '21',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Tanjung Pinang', 'P': 'Kota Tanjung Pinang', 'T': 'Kota Tanjung Pinang',
@@ -139,7 +139,7 @@ class IndonesianPlateManager:
         },
         'BH': {
             'region_name': 'Jambi',
-            'province_code': '16',
+            'province_code': '15',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Jambi', 'H': 'Kota Jambi', 'M': 'Kota Jambi', 'N': 'Kota Jambi',
@@ -153,7 +153,7 @@ class IndonesianPlateManager:
         },
         'BG': {
             'region_name': 'Sumatera Selatan',
-            'province_code': '17',
+            'province_code': '16',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Palembang', 'I': 'Kota Palembang', 'M': 'Kota Palembang',
@@ -168,7 +168,7 @@ class IndonesianPlateManager:
         },
         'BD': {
             'region_name': 'Bengkulu',
-            'province_code': '18',
+            'province_code': '17',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Bengkulu', 'C': 'Kota Bengkulu', 'E': 'Kota Bengkulu', 'I': 'Kota Bengkulu',
@@ -180,7 +180,7 @@ class IndonesianPlateManager:
         },
         'BE': {
             'region_name': 'Lampung',
-            'province_code': '19',
+            'province_code': '18',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Bandar Lampung', 'B': 'Kota Bandar Lampung', 'C': 'Kota Bandar Lampung',
@@ -194,7 +194,7 @@ class IndonesianPlateManager:
         },
         'BN': {
             'region_name': 'Kepulauan Bangka Belitung',
-            'province_code': '20',
+            'province_code': '19',
             'area': 'Sumatra Bagian Selatan',
             'sub_codes': {
                 'A': 'Kota Pangkal Pinang', 'P': 'Kota Pangkal Pinang', 'B': 'Bangka', 'Q': 'Bangka',
@@ -219,7 +219,7 @@ class IndonesianPlateManager:
             }
         },
         'B': {
-            'region_name': 'DKI Jakarta, Jawa Barat, Banten (Polda Metro Jaya)',
+            'region_name': 'DKI Jakarta',
             'province_code': '31',
             'area': 'Jawa Bagian Barat',
             'sub_codes': {
@@ -595,12 +595,12 @@ class IndonesianPlateManager:
             'area': 'Kalimantan',
             'sub_codes': {
                 'A': 'Kota Pontianak', 'H': 'Kota Pontianak', 'O': 'Kota Pontianak',
-                'Q': 'Kota Pontianak', 'S': 'Kota Pontianak', 'W': 'Kota Pontianak',
-                'B': 'Mempawah', 'C': 'Kota Singkawang', 'Y': 'Kota Singkawang',
-                'D': 'Sanggau', 'U': 'Sanggau', 'E': 'Sintang', 'F': 'Kapuas Hulu',
-                'G': 'Ketapang', 'J': 'Melawi', 'K': 'Bengkayang', 'L': 'Landak',
-                'M': 'Kubu Raya', 'N': 'Kubu Raya', 'P': 'Sambas', 'T': 'Sambas',
-                'V': 'Sekadau', 'Z': 'Kayong Utara'
+                'Q': 'Kota Pontianak', 'W': 'Kota Pontianak',
+                'B': 'Kabupaten Pontianak', 'C': 'Kota Singkawang', 'Y': 'Kota Singkawang',
+                'D': 'Kabupaten Sanggau', 'U': 'Kabupaten Sanggau', 'E': 'Kabupaten Sintang', 'F': 'Kabupaten Kapuas Hulu',
+                'G': 'Kabupaten Ketapang', 'J': 'Kabupaten Melawi', 'K': 'Kabupaten Bengkayang', 'L': 'Kabupaten Landak',
+                'M': 'Kabupaten Kubu Raya', 'N': 'Kabupaten Kubu Raya', 'P': 'Kabupaten Sambas', 'T': 'Kabupaten Sambas',
+                'V': 'Kabupaten Sekadau', 'Z': 'Kabupaten Kayong Utara', 'S': 'Kabupaten Sintang'
             }
         },
         'KH': {
@@ -840,6 +840,14 @@ class IndonesianPlateManager:
                 'V': 'Intan Jaya', 'Y': 'Puncak'
             }
         },
+        'CC': {
+            'region_name': 'Diplomatik',
+            'province_code': '31',
+            'area': 'Diplomatik',
+            'sub_codes': {
+                'A': 'Diplomatik', 'B': 'Diplomatik'
+            }
+        },
         'PY': {
             'region_name': 'Papua Barat Daya',
             'province_code': '91',
@@ -853,41 +861,72 @@ class IndonesianPlateManager:
     
     # Mapping of plate codes to Indonesian province codes for KTP synchronization
     # This ensures that generated vehicles have matching plate and KTP province codes
+    # Generated from PLATE_DATA to ensure consistency
     PLATE_CODE_TO_PROVINCE = {
-        'B': '31',    # DKI Jakarta
-        'D': '32',    # Jawa Barat (Bandung)
-        'E': '32',    # Jawa Barat
-        'F': '32',    # Jawa Barat
-        'G': '32',    # Jawa Barat
-        'H': '33',    # Jawa Tengah (Semarang)
-        'K': '33',    # Jawa Tengah
-        'N': '33',    # Jawa Tengah
-        'AB': '34',   # DI Yogyakarta
-        'AA': '34',   # DI Yogyakarta
-        'L': '35',    # Jawa Timur (Surabaya)
-        'M': '35',    # Jawa Timur
-        'A': '35',    # Jawa Timur
-        'AE': '36',   # Banten
-        'T': '36',    # Banten
+        'A': '36',    # Banten
+        'AA': '33',   # Jawa Tengah (Keresidenan Kedu)
+        'AB': '34',   # Daerah Istimewa Yogyakarta
+        'AD': '33',   # Jawa Tengah (Keresidenan Surakarta)
+        'AE': '35',   # Jawa Timur (Madiun)
+        'AG': '35',   # Jawa Timur (Kediri)
+        'B': '31',    # DKI Jakarta, Jawa Barat, Banten (Polda Metro Jaya)
+        'BA': '13',   # Sumatera Barat
+        'BB': '12',   # Sumatera Utara Barat (Tapanuli)
+        'BD': '17',   # Bengkulu
+        'BE': '18',   # Lampung
+        'BG': '16',   # Sumatera Selatan
+        'BH': '15',   # Jambi
+        'BK': '12',   # Sumatera Utara Timur (Pesisir Timur Sumatra)
         'BL': '11',   # Aceh
-        'BB': '12',   # Sumatera Utara
+        'BM': '14',   # Riau
+        'BN': '19',   # Kepulauan Bangka Belitung
+        'BP': '21',   # Kepulauan Riau
+        'D': '32',    # Jawa Barat (Priangan Tengah)
+        'DA': '63',   # Kalimantan Selatan
+        'DB': '71',   # Sulawesi Utara (Daratan)
+        'DC': '76',   # Sulawesi Barat
+        'DD': '73',   # Sulawesi Selatan (Makassar)
+        'DE': '81',   # Maluku
+        'DG': '82',   # Maluku Utara
+        'DH': '53',   # NTT (Timor)
         'DK': '51',   # Bali
-        'P': '51',    # Bali
-        'W': '52',    # Nusa Tenggara Barat
+        'DL': '71',   # Sulawesi Utara (Kepulauan)
+        'DM': '75',   # Gorontalo
+        'DN': '72',   # Sulawesi Tengah
+        'DP': '73',   # Sulawesi Selatan (Utara)
+        'DR': '52',   # NTB (Lombok)
+        'DT': '74',   # Sulawesi Tenggara
+        'DW': '73',   # Sulawesi Selatan (Bone, Wajo)
+        'E': '32',    # Jawa Barat (Keresidenan Cirebon)
+        'EA': '52',   # NTB (Sumbawa)
+        'EB': '53',   # NTT (Flores)
+        'ED': '53',   # NTT (Sumba)
+        'F': '32',    # Jawa Barat (Keresidenan Bogor dan Priangan Barat)
+        'G': '33',    # Jawa Tengah (Keresidenan Pekalongan)
+        'H': '33',    # Jawa Tengah (Keresidenan Semarang)
+        'K': '33',    # Jawa Tengah (Keresidenan Pati dan Grobogan)
         'KB': '61',   # Kalimantan Barat
         'KH': '62',   # Kalimantan Tengah
         'KT': '64',   # Kalimantan Timur
         'KU': '65',   # Kalimantan Utara
-        'R': '71',    # Sulawesi Utara
-        'NS': '72',   # Sulawesi Tengah
-        'S': '73',    # Sulawesi Selatan
-        'DB': '74',   # Sulawesi Tenggara
-        'DMD': '75',  # Gorontalo
-        'DL': '76',   # Sulawesi Barat
-        'DK': '81',   # Maluku
-        'DM': '82',   # Maluku Utara
-        'PB': '91',   # Papua Barat
+        'L': '35',    # Jawa Timur (Kota Surabaya)
+        'M': '35',    # Jawa Timur (Madura)
+        'N': '35',    # Jawa Timur (Pasuruan-Malang)
+        'P': '35',    # Jawa Timur (Besuki)
         'PA': '94',   # Papua
+        'PB': '91',   # Papua Barat
+        'PG': '92',   # Papua Pegunungan
+        'PS': '93',   # Papua Selatan
+        'PT': '94',   # Papua Tengah
+        'PY': '91',   # Papua Barat Daya
+        'R': '33',    # Jawa Tengah (Keresidenan Banyumas)
+        'S': '35',    # Jawa Timur (Bojonegoro, Mojokerto, Lamongan, Jombang)
+        'T': '32',    # Jawa Barat (Keresidenan Karawang)
+        'W': '35',    # Jawa Timur (Surabaya)
+        'Z': '32',    # Jawa Barat (Priangan Timur dan Kabupaten Sumedang)
+        'CC': '31',   # Diplomatik (special vehicle)
+        'CD': '31',   # Diplomatik (special vehicle)
+        'RI': '31',   # Pemerintah Indonesia (special vehicle)
     }
     
     @classmethod
@@ -1002,13 +1041,23 @@ class IndonesianPlateManager:
             if len(parts) == 3:
                 number = parts[1]
                 letters = parts[2]
+                
+                # Extract sub-region from first letter of letters (maps to sub_codes)
+                first_letter = letters[0] if letters else None
+                sub_region = region_name  # Default fallback
+                
+                # Try to get sub-region name from PLATE_DATA sub_codes using first letter
+                if first_letter and 'sub_codes' in region_data and first_letter in region_data['sub_codes']:
+                    sub_region = region_data['sub_codes'][first_letter]
+                
                 return {
                     'plate': plate,
                     'region_code': region_code,
                     'number': number,
                     'letters': letters,
+                    'first_letter': first_letter,
                     'region_name': region_name,
-                    'sub_region': region_name,
+                    'sub_region': sub_region,
                     'area': region_data.get('area', 'Unknown'),
                     'is_valid': True,
                     'format': 'new'
@@ -1335,19 +1384,39 @@ class VehicleOwner:
             # Fallback to random if CSV not available
             return f"{random.randint(1, 99):02d}", f"{random.randint(1, 99):02d}"
         
-        # Look up district code from region name
+        # Look up district code from region name or sub_region
         region_upper = region.upper()
         district_code = None
         
-        # Search for matching district in admin data
-        for name, code in admin_data.items():
-            # Match district level codes (format: XX.YY)
-            if '.' in code and code.count('.') == 1:
-                if region_upper in name or region.upper() in name:
-                    district_code = code
-                    break
+        # First, try to find district using sub_region (which is more specific)
+        if sub_region:
+            sub_region_upper = sub_region.upper()
+            # Search for district level codes using sub_region
+            for name, code in admin_data.items():
+                # Match district level codes (format: XX.YY)
+                if '.' in code and code.count('.') == 1:
+                    if sub_region_upper in name:
+                        district_code = code
+                        break
+            
+            # If not found, try partial match with sub_region
+            if not district_code:
+                for name, code in admin_data.items():
+                    if '.' in code and code.count('.') == 1:
+                        if any(word in name for word in sub_region_upper.split()):
+                            district_code = code
+                            break
         
-        # If not found, try partial match
+        # Fallback: Search for matching district using region name
+        if not district_code:
+            for name, code in admin_data.items():
+                # Match district level codes (format: XX.YY)
+                if '.' in code and code.count('.') == 1:
+                    if region_upper in name or region.upper() in name:
+                        district_code = code
+                        break
+        
+        # If still not found, try partial match with region
         if not district_code:
             for name, code in admin_data.items():
                 if '.' in code and code.count('.') == 1:
@@ -1449,6 +1518,54 @@ class VehicleOwner:
         return VehicleOwner(owner_id, name, region, sub_region, stnk_status, sim_status, vehicle_type)
     
     @staticmethod
+    def generate_independent_nik(region: str, sub_region: str, vehicle_type: str = 'roda_dua') -> 'VehicleOwner':
+        """
+        Generate owner with completely independent NIK NOT based on plate region.
+        Used for special vehicle categories: PEMERINTAH (Government) and KEDUTAAN (Diplomatic)
+        
+        Args:
+            region: Region name (e.g., 'Pemerintah Indonesia', 'Diplomatik')
+            sub_region: Sub-region name
+            vehicle_type: 'roda_dua' or 'roda_empat'
+        
+        Returns:
+            VehicleOwner with valid independent NIK (not tied to any plate region)
+        """
+        # Generate completely random province code (01-34) - NOT from plate
+        province_code = f"{random.randint(1, 34):02d}"
+        
+        # Generate random administrative codes (not extracted from CSV)
+        district_code = f"{random.randint(1, 99):02d}"
+        subdistrict_code = f"{random.randint(1, 99):02d}"
+        
+        # Randomize birth data
+        birth_day = random.randint(1, 28)
+        is_female = random.random() < 0.5
+        if is_female:
+            birth_day += 40
+        birth_date = f"{birth_day:02d}"
+        
+        birth_month = f"{random.randint(1, 12):02d}"
+        birth_year = f"{random.randint(50, 99):02d}"
+        
+        # Randomize sequential number
+        sequential_number = f"{random.randint(1, 9999):04d}"
+        
+        # Construct NIK: [province][district][subdistrict][birth_date][birth_month][birth_year][sequential]
+        owner_id = f"{province_code}{district_code}{subdistrict_code}{birth_date}{birth_month}{birth_year}{sequential_number}"
+        
+        # Generate name
+        first_name = random.choice(VehicleOwner.INDONESIAN_FIRST_NAMES)
+        last_name = random.choice(VehicleOwner.INDONESIAN_LAST_NAMES)
+        name = f"{first_name} {last_name}"
+        
+        # Randomize document status
+        stnk_status = random.random() < 0.7
+        sim_status = random.random() < 0.8
+        
+        return VehicleOwner(owner_id, name, region, sub_region, stnk_status, sim_status, vehicle_type)
+    
+    @staticmethod
     def _generate_stnk_expiry(is_active: bool) -> datetime:
         if is_active:
             days = random.randint(30, 365*5)
@@ -1522,13 +1639,18 @@ class OwnerDatabase:
         """Get owner by plate number"""
         return self.owners.get(plate)
     
-    def get_or_create_owner(self, plate: str, vehicle_type: str = 'roda_dua') -> VehicleOwner:
+    def get_or_create_owner(self, plate: str, vehicle_type: str = 'roda_dua', vehicle_category: str = None) -> VehicleOwner:
         """Get existing owner or create a new one with KTP-Plate synchronization
         
         Extracts region information from plate number to generate owner from correct region.
         Uses CSV administrative codes to generate proper NIK aligned with plate region.
         Handles both old and new plate formats.
         Handles special cases: Government (RI) and Diplomatic (CD/CC) plates.
+        
+        Args:
+            plate: License plate string
+            vehicle_type: 'roda_dua' or 'roda_empat'
+            vehicle_category: Optional - 'PEMERINTAH' or 'KEDUTAAN' for independent NIK generation
         """
         if plate in self.owners:
             return self.owners[plate]
@@ -1539,6 +1661,26 @@ class OwnerDatabase:
         
         # Parse plate to get region information
         plate_info = IndonesianPlateManager.parse_plate(plate)
+        
+        # Handle special vehicle categories: Government (PEMERINTAH) and Diplomatic (KEDUTAAN)
+        # These use independent NIK generation that doesn't depend on plate region
+        if vehicle_category in ('PEMERINTAH', 'KEDUTAAN'):
+            if vehicle_category == 'PEMERINTAH':
+                region = 'Pemerintah Indonesia'
+                sub_region = 'Pemerintah Indonesia'
+            else:  # KEDUTAAN
+                region = 'Diplomatik'
+                sub_region = 'Diplomatik'
+            
+            # Generate completely independent NIK for special vehicles
+            # NOT based on plate region codes
+            owner = VehicleOwner.generate_independent_nik(
+                region, 
+                sub_region, 
+                vehicle_type
+            )
+            self.owners[plate] = owner
+            return owner
         
         # Handle special plates: Government (RI) and Diplomatic (CD/CC)
         if plate_code in ('RI', 'CD', 'CC'):
@@ -1569,27 +1711,26 @@ class OwnerDatabase:
         # Get the required province code from plate for KTP synchronization
         required_province_code = IndonesianPlateManager.get_province_code_from_plate_code(plate_code)
         
-        # Get sub_region from PLATE_DATA for proper CSV matching (not from parsed plate which has descriptions)
+        # Get sub_region from parsed plate (which now correctly extracts it from plate letters)
         sub_region = None
-        if plate_code in IndonesianPlateManager.PLATE_DATA:
+        if plate_info and 'sub_region' in plate_info:
+            # Use the parsed plate's sub_region which correctly maps letter to city
+            sub_region = plate_info['sub_region']
+            region = plate_info['region_name']
+        elif plate_code in IndonesianPlateManager.PLATE_DATA:
+            # Fallback: get region from PLATE_DATA
             plate_data = IndonesianPlateManager.PLATE_DATA[plate_code]
-            # Use the plate_data region_name, not the complex parsed description
             region = plate_data['region_name']
-            
-            # Pick a random sub_region from sub_codes for proper CSV matching
+            # Pick a random sub_region from sub_codes if no parsed sub_region available
             if plate_data.get('sub_codes'):
                 sub_region = random.choice(list(plate_data['sub_codes'].values()))
             else:
                 sub_region = region
         else:
-            # Fallback: use parsed plate info
-            if plate_info:
-                region = plate_info['region_name']
-                sub_region = plate_info['sub_region']
-            else:
-                region = 'Jakarta'
-                sub_region = 'Jakarta'
-                required_province_code = '31'
+            # Final fallback
+            region = 'Jakarta'
+            sub_region = 'Jakarta'
+            required_province_code = '31'
         
         # Create new owner with synchronized province code from plate
         # IMPORTANT: Pass sub_region to get_or_create_owner to use CSV administrative codes

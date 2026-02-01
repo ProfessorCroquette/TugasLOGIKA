@@ -262,7 +262,12 @@ class DataGenerator:
             vehicle_type = vehicle_info['type']
             
             # Get or create owner for this vehicle
-            owner = owner_db.get_or_create_owner(license_plate, vehicle_class)
+            # Pass vehicle_category so PEMERINTAH and KEDUTAAN vehicles get independent NIK generation
+            owner = owner_db.get_or_create_owner(license_plate, vehicle_class, vehicle_category=vehicle_category)
+            
+            # Use owner's actual region (from PLATE_DATA) to ensure consistency
+            # This ensures the owner_region matches the plate's identified region
+            owner_region = owner.region
             
             vehicle = Vehicle(
                 vehicle_id=f"{vehicle_info['make'][:3].upper()}{i+1:04d}",
@@ -272,7 +277,7 @@ class DataGenerator:
                 timestamp=datetime.now(),
                 owner_id=owner.owner_id,
                 owner_name=owner.name,
-                owner_region=owner.region,
+                owner_region=owner_region,  # Use owner's region from PLATE_DATA
                 stnk_status='Active' if owner.stnk_status else 'Non-Active',
                 sim_status='Active' if owner.sim_status else 'Expired',
                 vehicle_make=vehicle_info.get('make', ''),
