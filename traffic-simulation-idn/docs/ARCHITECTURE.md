@@ -1,5 +1,7 @@
 # System Architecture
 
+Last Updated: February 4, 2026 02:30 AM
+
 ## Overview
 
 Traffic Simulation Indonesia uses a multi-threaded architecture with JSON-based data storage:
@@ -67,7 +69,7 @@ Traffic Simulation Indonesia uses a multi-threaded architecture with JSON-based 
 ├──────────────────────────────────────────────────────────┤
 │ utils/generators.py - DataGenerator class               │
 │   - Generates vehicles with random attributes           │
-│   - 50% Pribadi, 40% Barang/Truk, 5% Pemerintah, 5% K │
+│   - 75% Pribadi, 15% Barang/Truk, 5% Pemerintah, 5% K  │
 │   - Creates owner data with NIK                         │
 │                                                          │
 │ utils/indonesian_plates.py - PlateGenerator             │

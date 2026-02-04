@@ -2,7 +2,7 @@ INDONESIAN TRAFFIC VIOLATION SIMULATION SYSTEM
 ULTIMATE COMPREHENSIVE DOCUMENTATION
 
 Project Timeline: January 22, 2026 - Current
-Last Updated: January 29, 2026
+Last Updated: February 4, 2026 02:30 AM
 Documentation Cycle: Daily updates 10 PM - 5 AM
 
 ================================================================================
@@ -32,7 +32,7 @@ Objective: Create a comprehensive traffic violation simulation system compliant
            with Indonesian law (Pasal 287 ayat 5 UU No. 22/2009)
 
 Current Status: Complete and Fully Operational
-Last Major Update: January 29, 2026
+Last Major Update: February 4, 2026 02:30 AM
 
 Key Features:
 - Real-time violation monitoring with Qt5 GUI
@@ -65,8 +65,8 @@ This system simulates realistic Indonesian traffic violations to:
 
 Requirement: Vehicle Distribution
 Status: Complete
-- 50% Pribadi (Private vehicles - BLACK plates)
-- 40% Barang/Truk (Commercial vehicles - YELLOW plates)
+- 75% Pribadi (Private vehicles - BLACK plates)
+- 15% Barang/Truk (Commercial vehicles - YELLOW plates)
 - 5% Pemerintah (Government vehicles - RED plates)
 - 5% Kedutaan (Diplomatic vehicles - WHITE plates)
 
@@ -104,12 +104,12 @@ Status: Complete
 
 2.3 Supported Violation Types
 
-1. Speeding: Speed > 75 km/h
-   - Base fine: $50 USD (equivalent IDR)
+1. Speeding: Speed > 100 km/h (cars) or > 80 km/h (trucks)
+   - Base fine: $30-75 USD (tiered by severity)
    - Penalty multipliers apply
    
-2. Slow Driving: Speed < 40 km/h
-   - Base fine: $25 USD
+2. Slow Driving: Speed < 60 km/h
+   - Base fine: $20-35 USD (tiered by severity)
    - Penalty multipliers apply
 
 3. No STNK (Vehicle Registration):
@@ -350,8 +350,8 @@ Operations:
 Purpose: Detect violations and calculate fines
 
 Violation Rules:
-1. Speeding: speed > 75 km/h
-2. Slow Driving: speed < 40 km/h
+1. Speeding: speed > 100 km/h (cars) or > 80 km/h (trucks)
+2. Slow Driving: speed < 60 km/h
 3. Document Issues:
    - STNK non-active
    - SIM expired
@@ -371,17 +371,17 @@ total_fine_capped = min(total_fine_idr, MAX_FINE)
 5.1 Vehicle Types
 
 1. Pribadi (Private)
-   - Percentage: 50%
+   - Percentage: 75%
    - Plate Color: BLACK with white/silver text
    - Plate Format: [Region] [1-4 digits] [1-3 letters]
    - Examples:
      * B 1234 ABC (Jakarta)
      * D 567 XY (Bandung)
      * AB 89 PQR (Yogyakarta)
-   - Models: Cars and motorcycles from model.csv
+   - Models: Cars from CARS.md database (motorcycles disabled per PP 43/1993)
    
 2. Barang/Truk (Commercial)
-   - Percentage: 40%
+   - Percentage: 15%
    - Plate Color: YELLOW with black text
    - Plate Format: [Region] [1-4 digits] [Type][Letters] (TRUK-Class) - RUTE: XX
    - Weight Classes: 8T, 16T, 24T
@@ -450,7 +450,7 @@ Region Codes:
 
 5.3 Owner Region Database
 
-Latest Update: January 29, 2026
+Latest Update: February 4, 2026 02:30 AM
 
 All 30+ Indonesian regions mapped:
 
@@ -502,8 +502,8 @@ Government & Diplomatic:
 
 Step 1: Determine vehicle type
 - Random 0-100
-- 0-49: Pribadi (50%)
-- 50-89: Barang/Truk (40%)
+- 0-74: Pribadi (75%)
+- 75-89: Barang/Truk (15%)
 - 90-94: Pemerintah (5%)
 - 95-99: Kedutaan (5%)
 
@@ -533,8 +533,8 @@ Step 5: Create Vehicle object
 6.1 Base Fines (USD)
 
 Violation Type          Base Fine
-Speeding (>75 km/h)     $50
-Slow Driving (<40 km/h) $25
+Speeding (>100 km/h for cars, >80 for trucks)     $30-75
+Slow Driving (<60 km/h) $20-35
 No STNK                 $100
 No SIM                  $100
 
@@ -581,26 +581,26 @@ violation['base_fine'] = base_fine_usd
 
 6.4 Fine Examples
 
-Example 1: Speeding with valid documents
-- Violation: Speeding (95 km/h)
-- Base fine: $50
+Example 1: Minor Speeding with valid documents
+- Violation: Speeding 105 km/h (5 km/h over limit)
+- Base fine: $30
 - Multiplier: 1.0x (both active)
-- USD fine: $50 * 1.0 = $50
-- IDR fine: $50 * 15500 = Rp 775,000
+- USD fine: $30 * 1.0 = $30
+- IDR fine: $30 * 15500 = Rp 465,000
 
-Example 2: Speeding with expired documents
-- Violation: Speeding (90 km/h)
-- Base fine: $50
+Example 2: Severe Speeding with expired documents
+- Violation: Speeding 130 km/h (30 km/h over limit)
+- Base fine: $75
 - Multiplier: 1.4x (both expired)
-- USD fine: $50 * 1.4 = $70
-- IDR fine: $70 * 15500 = Rp 1,085,000
+- USD fine: $75 * 1.4 = $105
+- IDR fine: $105 * 15500 = Rp 1,627,500
 
 Example 3: Slow driving with one expired
-- Violation: Slow driving (35 km/h)
-- Base fine: $25
+- Violation: Slow driving (50 km/h - below 60 minimum)
+- Base fine: $20
 - Multiplier: 1.2x (one expired)
-- USD fine: $25 * 1.2 = $30
-- IDR fine: $30 * 15500 = Rp 465,000
+- USD fine: $20 * 1.2 = $24
+- IDR fine: $24 * 15500 = Rp 372,000
 
 ================================================================================
 7. GUI DASHBOARD
@@ -795,7 +795,9 @@ MAX_VEHICLES_PER_BATCH = 100
 
 SPEED_LIMIT = 75
 - Speed limit for detecting speeding
-- Default: 75 km/h
+  * 100 km/h for cars (normal vehicles)
+  * 80 km/h for trucks (commercial vehicles)
+  * 60 km/h minimum speed on toll roads
 - Range: 40-150 km/h
 
 MIN_SPEED_LIMIT = 40

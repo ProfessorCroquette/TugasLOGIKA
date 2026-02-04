@@ -1,7 +1,7 @@
 # Logic and Code Explanation
 
 **Document:** Complete Logic, File Purpose, and Critical Code Analysis  
-**Date:** January 29, 2026  
+**Date:** February 4, 2026 02:30 AM  
 **Project:** Indonesian Traffic Violation Simulation System  
 
 ---
@@ -26,8 +26,8 @@
 
 ```
 P1: If (vehicle_speed > speed_limit) then (vehicle_violates_speed_law)
-P2: vehicle_speed = 85 km/h AND speed_limit = 75 km/h
-P3: 85 > 75 is TRUE
+P2: vehicle_speed = 85 km/h AND speed_limit = 100 km/h
+P3: 85 > 100 is FALSE
 Conclusion: vehicle_violates_speed_law is TRUE → Issue violation ticket
 ```
 
@@ -58,13 +58,13 @@ def detect_violation(vehicle):
 
 **Logical Chain:**
 ```
-IF speed > 75 THEN violation
+IF speed > 100 THEN violation (for cars)
     ↓
-speed = 85 (TRUE)
+speed = 85 (FALSE)
     ↓
-violation = TRUE
+violation = FALSE
     ↓
-CREATE TICKET
+NO TICKET
 ```
 
 ---

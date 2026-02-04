@@ -1,6 +1,6 @@
 CHANGELOG
 Project: Indonesian Traffic Violation Simulation System
-Last Updated: February 1, 2026
+Last Updated: February 4, 2026 02:30 AM
 
 ================================================================================
 SUMMARY OF CHANGES: January 27, 2026 - February 1, 2026
@@ -114,9 +114,9 @@ New Files Created:
 
 Testing Results (500 vehicles):
 - Total generated: 643 vehicles
-- Regular (PRIBADI/BARANG/TRUK): 570 (88%)
-- Government (PEMERINTAH): 35 (5%)
-- Diplomatic (KEDUTAAN): 38 (5%)
+- Regular (PRIBADI/BARANG/TRUK): 600 (93%) [75% + 15% + 3%]
+- Government (PEMERINTAH): 32 (5%)
+- Diplomatic (KEDUTAAN): 31 (5%)
 
 Government Vehicles:
 - Province codes: 24 unique provinces (randomly distributed)
