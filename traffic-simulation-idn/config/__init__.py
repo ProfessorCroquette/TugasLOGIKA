@@ -41,15 +41,15 @@ class Config:
     # Fines are tiered based on severity of violation
     FINES = {
         "SPEED_LOW_MILD": {"min": 50, "max": 59, "fine": 20, "description": "Terlalu lambat (terlalu rendah dari batas minimum)"},  # Rp 310,000
-        "SPEED_LOW_SEVERE": {"min": 0, "max": 49, "fine": 35, "description": "Terlalu lambat berat (sangat di bawah batas minimum)"},  # Rp 542,500
-        "SPEED_HIGH_LEVEL_1": {"min": 101, "max": 110, "fine": 30, "description": "Melampaui batas kecepatan 1-10 km/h (cars)"},  # Rp 465,000
-        "SPEED_HIGH_LEVEL_2": {"min": 111, "max": 120, "fine": 50, "description": "Melampaui batas kecepatan 11-20 km/h (cars)"},  # Rp 775,000
-        "SPEED_HIGH_LEVEL_3": {"min": 121, "max": 150, "fine": 75, "description": "Melampaui batas kecepatan 21+ km/h (cars)"}  # Rp 1,162,500 (near max)
+        "SPEED_LOW_SEVERE": {"min": 0, "max": 49, "fine": 32, "description": "Terlalu lambat berat (sangat di bawah batas minimum)"},  # Rp 500,000
+        "SPEED_HIGH_LEVEL_1": {"min": 101, "max": 110, "fine": 21, "description": "Melampaui batas kecepatan 1-10 km/h (cars)"},  # Rp 320,000
+        "SPEED_HIGH_LEVEL_2": {"min": 111, "max": 120, "fine": 32, "description": "Melampaui batas kecepatan 11-20 km/h (cars)"},  # Rp 497,000
+        "SPEED_HIGH_LEVEL_3": {"min": 121, "max": 150, "fine": 32, "description": "Melampaui batas kecepatan 21+ km/h (cars)"}  # Rp 500,000 (maximum)
     }
     
     # Maximum fine per law
     MAX_FINE_IDR = 500000  # Rp 500,000 - maximum penalty
-    MAX_FINE_USD = MAX_FINE_IDR / USD_TO_IDR  # ~USD 32.26
+    MAX_FINE_USD = MAX_FINE_IDR  / USD_TO_IDR  # ~USD 32.26
     
     # Output directories
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

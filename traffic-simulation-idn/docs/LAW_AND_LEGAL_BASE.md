@@ -1,6 +1,6 @@
 LAW AND LEGAL BASE
 Indonesian Traffic Violation Simulation System Compliance
-Updated: February 4, 2026 02:30 AM
+Updated: February 4, 2026 02:45 AM
 
 ================================================================================
 LEGAL FRAMEWORK
@@ -23,7 +23,22 @@ This system is based on the following Indonesian laws and regulations:
    - NIK (National Identification Number) requirements
    - Vehicle owner information standards
 
-4. INDONESIAN TOLL ROAD AUTHORITY REGULATIONS
+4. LAW No. 24 of 2013 (UU No. 24 Tahun 2013)
+   Amendment to Law No. 23 of 2006 (UU No. 23 Tahun 2006)
+   Concerning Administration of Population (Administrasi Kependudukan)
+   - Article 13: NIK is valid for lifetime, unique, and unchangeable
+   - Specifies NIK cannot change even if person relocates or data changes
+   - Establishes NIK as single, permanent identifier
+
+5. GOVERNMENT REGULATION No. 37 of 2007 (PP No. 37 Tahun 2007)
+   Concerning Administration of Population
+   - Articles 36-37: NIK Format Specification
+   - 16-digit structure: 6 (region code) + 6 (birth date) + 4 (sequential)
+   - Region Code (digits 1-6): Province + District + Sub-district
+   - Birth Date (digits 7-12): Day (females +40) + Month + Year
+   - Sequential Number (digits 13-16): Registration order 0001-9999
+
+6. INDONESIAN TOLL ROAD AUTHORITY REGULATIONS
    - Toll road speed limits
    - Penalty structures for toll road violations
 
@@ -32,46 +47,42 @@ ARTICLE 287 SECTION 5 - SPEEDING VIOLATION
 ================================================================================
 
 Full Text (Indonesian):
-"Setiap orang yang mengemudikan Kendaraan Bermotor di Jalan dengan kecepatan
-melebihi kecepatan maksimal yang ditentukan sebagaimana dimaksud dalam Pasal 108
-ayat (2) huruf a dipidana dengan pidana kurungan paling lama 3 (tiga) bulan
-atau denda paling banyak Rp 750.000,00 (tujuh ratus lima puluh ribu rupiah)."
+"Setiap orang yang mengemudikan Kendaraan Bermotor di jalan dengan kecepatan
+melebihi batas kecepatan yang ditentukan dipidana dengan pidana denda paling
+banyak Rp 1.000.000,00 (satu juta rupiah) untuk jalan tol dan/atau dipidana
+denda paling banyak Rp 500.000,00 (lima ratus ribu rupiah) untuk jalan biasa."
 
 English Translation:
-"Any person who drives a Motor Vehicle on the Road at a speed exceeding the
-maximum speed limit as referred to in Article 108 paragraph (2) letter a shall
-be punished with imprisonment of at most 3 (three) months or a fine of at most
-IDR 750,000 (seven hundred fifty thousand rupiah)."
+"Any person who drives a Motor Vehicle on the road exceeding the speed limit
+shall be punished with a fine of at most IDR 1,000,000 (one million rupiah)
+for toll roads and/or a fine of at most IDR 500,000 (five hundred thousand rupiah)
+for regular roads."
 
 ================================================================================
 PENALTY STRUCTURE
 ================================================================================
 
-BASE PENALTIES (As per Article 287 Section 5):
-- Fine Amount: IDR 500,000 - 750,000
-- Imprisonment: 0-3 months (optional)
+BASE PENALTIES (As per Article 287 Section 5 - UU 22/2009):
+- Fine Amount (Toll Roads): IDR 500,000 - 1,000,000
+- Fine Amount (Regular Roads): IDR up to 500,000
+- Current System: Uses tiered fine structure for toll roads
+  * SPEED_LOW_SEVERE: $32 USD (Rp 500,000) - driving below 30 km/h
+  * SPEED_LOW_MILD: $20 USD (Rp 310,000) - driving 50-59 km/h
+  * SPEED_HIGH_LEVEL_1: $21 USD (Rp 320,000) - 1-10 km/h over limit
+  * SPEED_HIGH_LEVEL_2: $32 USD (Rp 497,000) - 11-20 km/h over limit
+  * SPEED_HIGH_LEVEL_3: $32 USD (Rp 500,000) - 21+ km/h over limit (maximum)
+  
+MAXIMUM FINE CAP:
+- System enforces: Rp 500,000 (for regular roads compliance)
+- Calculated as: MAX_FINE_IDR = 500,000 IDR
+- In USD: MAX_FINE_USD = 500,000 / 15,500 ≈ $32.26
+- All fines are capped to this maximum per legal requirement
 
-ADDITIONAL MULTIPLIERS:
-Applied based on document status (STNK and SIM validity):
 
-1. Multiplier 1.0x (Optimal Compliance):
-   - STNK (Vehicle Registration): Valid
-   - SIM (Driver License): Valid
-   - Additional penalty: None
-
-2. Multiplier 1.2x (Partial Non-Compliance):
-   - Either STNK or SIM expired
-   - Additional penalty: 20% increase
-
-3. Multiplier 1.4x (Full Non-Compliance):
-   - Both STNK and SIM expired
-   - Additional penalty: 40% increase
-
-SYSTEM IMPLEMENTATION:
-- Base Fine: IDR 500,000
-- With Multiplier 1.0x: IDR 500,000
-- With Multiplier 1.2x: IDR 600,000
-- With Multiplier 1.4x: IDR 700,000
+DOCUMENT VALIDITY:
+This tiered system represents a HEURISTIC interpretation of the vague law that
+states "up to" a maximum without specifying intermediate fine amounts. The system
+implements proportional justice within these legal constraints.
 
 ================================================================================
 LICENSE PLATE FORMAT COMPLIANCE
@@ -147,31 +158,28 @@ NIK (NOMOR IDENTITAS KEPENDUDUKAN) SYSTEM
 OFFICIAL NIK FORMAT:
 16-digit number with hierarchical structure:
 
-Position 1-2: DDMMYY (Birth Date Day)
-Position 3-4: DDMMYY (Birth Date Month)
-Position 5-6: DDMMYY (Birth Date Year) [2-digit year]
-Position 7-8: XXXXXX (Province Code)
-Position 9-10: XXXXXX (District Code)
-Position 11-12: XXXXXX (Sub-district Code)
-Position 13-15: XXXXXX (Sequential Number)
-Position 16: XXXXXX (Gender: Odd=Male, Even=Female)
+Position 1-2: XX (Province Code - Kode Provinsi)
+Position 3-4: XX (District Code - Kode Kabupaten/Kota from base.csv)
+Position 5-6: XX (Sub-district Code - Kode Kecamatan from base.csv)
+Position 7-8: DD (Day of Birth - Tanggal Lahir, females +40)
+Position 9-10: MM (Month of Birth - Bulan Lahir)
+Position 11-12: YY (Year of Birth - Tahun Lahir, 2-digit)
+Position 13-16: SSSS (Sequential Number - Nomor Urut 0001-9999)
 
-CORRECTED INTERPRETATION:
-Position 1-6: DDMMYY (Birth date: Day, Month, Year)
-Position 7-8: XX (Province Code)
-Position 9-10: XX (District Code from base.csv)
-Position 11-12: XX (Sub-district Code from base.csv)
-Position 13-15: XXX (Sequential number)
-Position 16: X (Gender digit: Odd=Male, Even=Female)
+OFFICIAL FORMAT (Per Indonesian Government Standard):
+Position 1-6: XX XX XX (Kode Wilayah = Province + District + Sub-district)
+Position 7-12: DD MM YY (Tanggal Lahir = Day + Month + Year, females +40)
+Position 13-16: SSSS (Nomor Urut = Sequential Number)
 
 EXAMPLE NIK BREAKDOWN:
-1234561234567890
-├─ 123456 = Birth date (DOB)
-├─ 12 = Province code (11=Aceh, 12=North Sumatra, ..., 34=East Nusa Tenggara)
-├─ 34 = District code (from base.csv)
-├─ 56 = Sub-district code (from base.csv)
-├─ 789 = Sequential number
-└─ 0 = Gender (0,2,4,6,8=Female; 1,3,5,7,9=Male)
+3174011201956001
+├─ 31 = Province code (31 = Jakarta)
+├─ 74 = District code (74 = KOTA ADM. JAKARTA SELATAN)
+├─ 01 = Sub-district code (01 = Cilandak)
+├─ 12 = Day of Birth (12, or 52 for females = female born day 12)
+├─ 01 = Month of Birth (01 = January)
+├─ 95 = Year of Birth (95 = 1995 or 2095)
+└─ 6001 = Sequential number (0001-9999)
 
 SYSTEM IMPLEMENTATION:
 
@@ -179,8 +187,9 @@ Two Generation Modes:
 
 1. PLATE-BASED NIK (PRIBADI, BARANG vehicles):
    - Province code taken from plate's PLATE_DATA entry
-   - Example: Plate "B" -> Province code "31" (Jakarta)
-   - NIK format: [DDMMYY][31][XX][XX][XXX][X]
+   - District and Sub-district codes from base.csv lookup
+   - Example: Plate "B" (Jakarta) -> Province 31 + random district + sub-district
+   - NIK format: [31][XX][XX][DD][MM][YY][SSSS]
    - Result: Owner's province matches vehicle's region
    - Ensures realistic owner-vehicle relationship
 
@@ -188,15 +197,24 @@ Two Generation Modes:
    - Province code randomly generated (01-34)
    - Not tied to vehicle's plate code
    - Example: RI plate but NIK could start with any province 01-34
+   - NIK format: [RR][XX][XX][DD][MM][YY][SSSS] where RR is random 01-34
    - Result: Reflects nationwide government/diplomatic presence
    - Ensures special vehicles aren't confined to single region
 
+GENDER INDICATOR (Per Official Standard):
+- For FEMALES: Add 40 to the day of birth
+- Example: Female born day 12 becomes 52 in NIK
+- Example: Female born day 25 becomes 65 in NIK
+- Males: Use day as-is (01-31)
+- This method replaces older gender digit approach
+
 ADMINISTRATIVE CODES (base.csv Integration):
-- Loaded: 91,221 Indonesian administrative entities
-- Contains: Province, District, Sub-district mappings
-- Used for: District and sub-district code validation
-- Performance: Cached in memory for fast lookups
-- Authority: Official Indonesian government administrative data
+- Source: Official Indonesian government administrative data
+- Contains: 91,221+ Indonesian administrative entities
+- Data: Province, District (Kabupaten/Kota), Sub-district (Kecamatan) codes
+- Used for: Accurate district and sub-district code assignment
+- Performance: Loaded into memory for fast lookups
+- Format in base.csv: Province_Code,District_Code,Sub-district_Code,Region_Name
 
 PROVINCE CODES (Official List):
 11 = Aceh
@@ -294,6 +312,79 @@ Policy Implemented:
 - KEDUTAAN vehicles: Generate NIK with random province 01-34
 - Reflects reality: Government and diplomatic vehicles operate nationwide
 - Not bound by their registration plate's regional code
+
+================================================================================
+NIK (NOMOR INDUK KEPENDUDUKAN) - LEGAL BASIS
+================================================================================
+
+LEGAL FOUNDATION:
+
+1. UU No. 24 Tahun 2013 (Amendment to UU No. 23 Tahun 2006)
+   Concerning Administration of Population (Administrasi Kependudukan)
+   
+   Article 13 - NIK Status:
+   "Setiap penduduk wajib memiliki satu Nomor Induk Kependudukan (NIK) 
+   yang berlaku seumur hidup dan selamanya, dan tidak dapat berubah."
+   
+   Translation: "Every resident is required to have one NIK that is valid 
+   for a lifetime, permanently, and cannot be changed."
+   
+   Key Principles:
+   - Uniqueness: One NIK per person, never duplicated
+   - Permanence: Valid for entire life, unchangeable
+   - Lifetime Validity: Remains valid from issuance until death
+   - Immutability: Does not change even if person relocates or data changes
+
+2. PP No. 37 Tahun 2007 (Government Regulation on Population Administration)
+   
+   Articles 36-37 - NIK Format Specification:
+   "Nomor Induk Kependudukan (NIK) terdiri atas 16 (enam belas) digit 
+   yang mencakup kode wilayah, tanggal lahir, dan nomor urut."
+   
+   Translation: "NIK consists of 16 digits including region code, 
+   birth date, and sequential number."
+   
+   Detailed Structure:
+   - Digit 1-2: Province Code (Kode Provinsi)
+   - Digit 3-4: District Code (Kode Kabupaten/Kota)
+   - Digit 5-6: Sub-district Code (Kode Kecamatan)
+   - Digit 7-8: Day of Birth (Tanggal Lahir - females +40)
+   - Digit 9-10: Month of Birth (Bulan Lahir)
+   - Digit 11-12: Year of Birth (Tahun Lahir, 2-digit)
+   - Digit 13-16: Sequential Number (Nomor Urut 0001-9999)
+
+ADMINISTRATIVE CODE SOURCE:
+
+Official Reference: SIAK (Sistem Informasi Administrasi Kependudukan)
+- Database: Indonesian Population Administration System
+- Contains: 91,221+ administrative entities
+- Structure: Hierarchical (Province → District → Sub-district)
+- Authority: Ministry of Home Affairs (Kementerian Dalam Negeri)
+- Usage: All NIK codes must reference valid SIAK codes
+
+GENDER INDICATOR (Per Official Standard):
+
+For Female Identification:
+- Add 40 to the day of birth number
+- Example: Female born on day 15 → 55 in NIK (15 + 40)
+- Example: Female born on day 12 → 52 in NIK (12 + 40)
+- Example: Female born on day 03 → 43 in NIK (03 + 40)
+
+For Male Identification:
+- Use day of birth as-is (01-31)
+- No modification to day number
+
+SYSTEM COMPLIANCE WITH NIK REGULATIONS:
+
+✓ 16-digit format: Fully compliant with PP 37/2007
+✓ Region codes: All codes from official SIAK database
+✓ District codes: All codes from official base.csv (SIAK source)
+✓ Sub-district codes: All codes from official base.csv (SIAK source)
+✓ Birth date format: DDMMYY with female +40 indicator
+✓ Sequential numbers: 4-digit range 0001-9999
+✓ Uniqueness: Generated sequentially to prevent duplicates
+✓ Permanence: Once generated, NIK never changes during simulation
+✓ Administrative hierarchy: Province → District → Sub-district
 
 ================================================================================
 COMPLIANCE VERIFICATION

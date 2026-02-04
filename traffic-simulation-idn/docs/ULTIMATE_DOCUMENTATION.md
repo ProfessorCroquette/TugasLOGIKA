@@ -2,7 +2,7 @@ INDONESIAN TRAFFIC VIOLATION SIMULATION SYSTEM
 ULTIMATE COMPREHENSIVE DOCUMENTATION
 
 Project Timeline: January 22, 2026 - Current
-Last Updated: February 4, 2026 02:30 AM
+Last Updated: February 4, 2026 02:45 AM
 Documentation Cycle: Daily updates 10 PM - 5 AM
 
 ================================================================================
@@ -45,7 +45,7 @@ Key Features:
 
 System Capacity:
 - Handles up to 100 violations per batch
-- 2-100 vehicles generated every 5 seconds
+- 10-15 vehicles generated every 3 seconds
 - Supports 30+ Indonesian regions
 - Real-time GUI refresh at 500ms intervals
 
@@ -64,11 +64,11 @@ This system simulates realistic Indonesian traffic violations to:
 2.2 Key Requirements Met
 
 Requirement: Vehicle Distribution
-Status: Complete
-- 75% Pribadi (Private vehicles - BLACK plates)
-- 15% Barang/Truk (Commercial vehicles - YELLOW plates)
-- 5% Pemerintah (Government vehicles - RED plates)
-- 5% Kedutaan (Diplomatic vehicles - WHITE plates)
+Status: Complete (Updated Feb 4, 2026)
+- 75% Car (Private vehicles - BLACK plates) - PP 43/1993 Compliant
+- 25% Truck (Commercial vehicles - YELLOW plates) - PP 43/1993 Compliant
+- 0% Motorcycles (DISABLED - Not allowed on toll roads per PP 43/1993)
+- 0% Buses (DISABLED - Follow truck speed limits per PP 43/1993)
 
 Requirement: License Plate Formats
 Status: Complete
@@ -80,10 +80,11 @@ Status: Complete
 Requirement: NIK System
 Status: Complete
 - Indonesian NIK format: 16 digits with region encoding
-- First 6 digits: Region of birth
-- Digits 7-12: Date of birth (DDMMYY)
-- Digits 13-15: Sequence
-- Digits 16: Gender (odd=male, even=female)
+- Positions 1-6: Region of birth (Province + District + Subdistrict)
+- Positions 7-8: Day of birth (01-31, or +40 for females)
+- Positions 9-10: Month of birth (01-12)
+- Positions 11-12: Year of birth (last 2 digits, YY format)
+- Positions 13-16: Sequential number (birth sequence)
 
 Requirement: Owner Region Database
 Status: Complete - Latest Fix (Jan 29)
@@ -105,11 +106,11 @@ Status: Complete
 2.3 Supported Violation Types
 
 1. Speeding: Speed > 100 km/h (cars) or > 80 km/h (trucks)
-   - Base fine: $30-75 USD (tiered by severity)
+   - Base fine: $21-32 USD (tiered by severity)
    - Penalty multipliers apply
    
 2. Slow Driving: Speed < 60 km/h
-   - Base fine: $20-35 USD (tiered by severity)
+   - Base fine: $20-32 USD (tiered by severity)
    - Penalty multipliers apply
 
 3. No STNK (Vehicle Registration):
@@ -146,10 +147,10 @@ Presentation Layer (GUI Dashboard)
 3.2 Data Flow
 
 1. TrafficSensor generates vehicle batches
-   - 2-100 random vehicles per batch
-   - Random speeds (30-150 km/h)
+   - 10-15 random vehicles per batch (PP 43/1993 compliant: 75% cars, 25% trucks)
+   - Random speeds (60-120 km/h)
    - Random owner data (NIK, name, document status)
-   - Every 5 seconds
+   - Every 3 seconds
 
 2. QueuedCarProcessor manages queue
    - Maintains queue of vehicles
@@ -308,10 +309,11 @@ d) ViolationDetailDialog (QDialog)
 Purpose: Generate realistic vehicle batches
 
 Features:
-- Generates 2-100 vehicles per batch
-- Random speeds (30-150 km/h)
+- Generates 10-15 vehicles per batch (PP 43/1993 compliant)
+- Random speeds (60-120 km/h)
 - Random owner NIK generation
-- Batch interval: 5 seconds
+- Batch interval: 3 seconds
+- Vehicle distribution: 75% cars, 25% trucks (motorcycles/buses disabled)
 
 Output:
 ```python
@@ -368,46 +370,37 @@ total_fine_capped = min(total_fine_idr, MAX_FINE)
 5. VEHICLE SYSTEMS
 ================================================================================
 
-5.1 Vehicle Types
+5.1 Vehicle Types (PP 43/1993 Toll Road Compliant)
 
-1. Pribadi (Private)
+1. Car (Private vehicles)
    - Percentage: 75%
    - Plate Color: BLACK with white/silver text
    - Plate Format: [Region] [1-4 digits] [1-3 letters]
+   - Speed Limit: 100 km/h maximum
    - Examples:
      * B 1234 ABC (Jakarta)
      * D 567 XY (Bandung)
      * AB 89 PQR (Yogyakarta)
-   - Models: Cars from CARS.md database (motorcycles disabled per PP 43/1993)
+   - Models: Cars from CARS.md database
    
-2. Barang/Truk (Commercial)
-   - Percentage: 15%
+2. Truck (Commercial vehicles)
+   - Percentage: 25%
    - Plate Color: YELLOW with black text
-   - Plate Format: [Region] [1-4 digits] [Type][Letters] (TRUK-Class) - RUTE: XX
+   - Plate Format: [Region] [1-4 digits] [1-3 letters]
+   - Speed Limit: 80 km/h maximum
    - Weight Classes: 8T, 16T, 24T
-   - Route Types: DK (Local), LK (Regional), LP (Inter-provincial), LN (National)
    - Examples:
-     * H 1606 GBAW (TRUK-8T) - RUTE: LP
-     * D 2500 A (TRUK-16T) - RUTE: LN
-     * B 5000 XYZ (TRUK-24T) - RUTE: DK
+     * H 1606 GB
+     * D 2500 A
+     * B 5000 XY
 
-3. Pemerintah (Government)
-   - Percentage: 5%
-   - Plate Color: RED with white text
-   - Plate Format: RI [Agency] [1-4 digits]
-   - Agencies:
-     * 1 = Kepolisian (Police)
-     * 2 = Tentara Nasional Indonesia - Darat (TNI-AD)
-     * 3 = Tentara Nasional Indonesia - Laut (TNI-AL)
-     * 4 = Tentara Nasional Indonesia - Udara (TNI-AU)
-     * 5 = Istana Negara (Presidential Palace)
-     * 6 = Dewan Perwakilan Rakyat (Parliament)
-   - Examples:
-     * RI 1 1234 (Police)
-     * RI 2 5678 (Army)
-     * RI 5 999 (Presidential)
+3. Motorcycles
+   - Percentage: 0%
+   - Status: DISABLED - Not allowed on toll roads per PP 43/1993
 
-4. Kedutaan (Diplomatic)
+4. Buses  
+   - Percentage: 0%
+   - Status: DISABLED - Follow truck speed limits per PP 43/1993
    - Percentage: 5%
    - Plate Color: WHITE with black text
    - Plate Format: [CD/CC] [Country Code] [1-4 digits]
@@ -498,14 +491,13 @@ Government & Diplomatic:
 - RI: Pemerintah Indonesia
 - CD/CC: Diplomatik
 
-5.4 Vehicle Generation Process
+5.4 Vehicle Generation Process (PP 43/1993 Compliant)
 
 Step 1: Determine vehicle type
 - Random 0-100
-- 0-74: Pribadi (75%)
-- 75-89: Barang/Truk (15%)
-- 90-94: Pemerintah (5%)
-- 95-99: Kedutaan (5%)
+- 0-74: Car (75%) - Toll road compliant
+- 75-99: Truck (25%) - Toll road compliant
+- Motorcycles and Buses: DISABLED (not allowed on toll roads)
 
 Step 2: Generate license plate
 - Call plate_generator with vehicle type
@@ -533,8 +525,8 @@ Step 5: Create Vehicle object
 6.1 Base Fines (USD)
 
 Violation Type          Base Fine
-Speeding (>100 km/h for cars, >80 for trucks)     $30-75
-Slow Driving (<60 km/h) $20-35
+Speeding (>100 km/h for cars, >80 for trucks)     $21-32
+Slow Driving (<60 km/h) $20-32
 No STNK                 $100
 No SIM                  $100
 
@@ -571,36 +563,40 @@ USD_TO_IDR = 15500  # Configuration value
 fine_idr = fine_usd * USD_TO_IDR
 
 Step 5: Apply maximum fine cap
-MAX_FINE_IDR = 1250000  # Configuration value
+MAX_FINE_IDR = 500000  # Rp 500,000 maximum (regular road limit from Article 287 Sec 5)
 final_fine = min(fine_idr, MAX_FINE_IDR)
 
 Step 6: Store result
 violation['fine_amount'] = final_fine
-violation['penalty_multiplier'] = multiplier
+violation['fine_level'] = fine_level  # SPEED_LOW_SEVERE, SPEED_HIGH_LEVEL_1, etc.
 violation['base_fine'] = base_fine_usd
 
-6.4 Fine Examples
+6.4 Fine Examples (PP 43/1993 Toll Road)
 
-Example 1: Minor Speeding with valid documents
-- Violation: Speeding 105 km/h (5 km/h over limit)
-- Base fine: $30
-- Multiplier: 1.0x (both active)
-- USD fine: $30 * 1.0 = $30
-- IDR fine: $30 * 15500 = Rp 465,000
+Example 1: Minor Speeding with car
+- Violation: Speeding 105 km/h (5 km/h over 100 km/h limit)
+- Fine Level: SPEED_HIGH_LEVEL_1
+- Base fine: $21 (101-110 km/h range)
+- IDR fine: $21 * 15500 = Rp 320,000
+- After cap: min(465,000, 500,000) = Rp 465,000
 
-Example 2: Severe Speeding with expired documents
-- Violation: Speeding 130 km/h (30 km/h over limit)
-- Base fine: $75
-- Multiplier: 1.4x (both expired)
-- USD fine: $75 * 1.4 = $105
-- IDR fine: $105 * 15500 = Rp 1,627,500
+Example 2: Severe Speeding with truck  
+- Violation: Speeding 95 km/h on truck (15 km/h over 80 km/h truck limit)
+- Fine Level: SPEED_HIGH_LEVEL_2
+- Base fine: $32 (111-120 km/h equivalent for truck)
+- IDR fine: $32 * 15500 = Rp 497,000
 
-Example 3: Slow driving with one expired
+Example 3: Slow driving below minimum
 - Violation: Slow driving (50 km/h - below 60 minimum)
-- Base fine: $20
-- Multiplier: 1.2x (one expired)
-- USD fine: $20 * 1.2 = $24
-- IDR fine: $24 * 15500 = Rp 372,000
+- Fine Level: SPEED_LOW_MILD
+- Base fine: $20 (50-59 km/h range)
+- IDR fine: $20 * 15500 = Rp 310,000
+
+Example 4: Severely too slow
+- Violation: Slow driving (45 km/h - severely below 60 minimum)
+- Fine Level: SPEED_LOW_SEVERE  
+- Base fine: $32 (0-49 km/h range)
+- IDR fine: $32 * 15500 = Rp 500,000
 
 ================================================================================
 7. GUI DASHBOARD
@@ -778,14 +774,14 @@ Columns exported:
 
 Key Settings:
 
-SIMULATION_INTERVAL = 5
+SIMULATION_INTERVAL = 3
 - Time between vehicle batches (seconds)
-- Default: 5 seconds
+- Default: 3 seconds
 - Range: 1-60 seconds
 
-MIN_VEHICLES_PER_BATCH = 2
+MIN_VEHICLES_PER_BATCH = 10
 - Minimum vehicles per batch
-- Default: 2 vehicles
+- Default: 10 vehicles
 - Range: 1-100
 
 MAX_VEHICLES_PER_BATCH = 100
@@ -797,38 +793,36 @@ SPEED_LIMIT = 75
 - Speed limit for detecting speeding
   * 100 km/h for cars (normal vehicles)
   * 80 km/h for trucks (commercial vehicles)
-  * 60 km/h minimum speed on toll roads
-- Range: 40-150 km/h
+  * 60 km/h minimum speed 5
+- Maximum vehicles per batch
+- Default: 15 vehicles
+- Range: 2-100
 
-MIN_SPEED_LIMIT = 40
-- Minimum safe speed threshold
-- Default: 40 km/h
-- Range: 20-100 km/h
+SPEED_LIMIT = 100
+- Speed limit for cars on toll roads
+- Default: 100 km/h (cars), 80 km/h (trucks)
+- Per PP 43/1993 Toll Road Standards
+- Related: TRUCK_SPEED_LIMIT = 80 km/h
+- Related: MIN_SPEED_LIMIT = 60 km/h minimum
 
-USD_TO_IDR = 15500
-- Exchange rate for currency conversion
-- Default: 15500
-- Range: 10000-20000
-
-MAX_FINE_IDR = 1250000
-- Maximum fine amount in IDR
-- Default: 1,250,000
+MIN_SPEED_LIMIT = 60
+- Minimum safe speed threshold (both car and truck)
+- Default: 60 km/h
+- Range: 4 1,250,000
 - Range: 100000-5000000
 
-8.2 Fine Configuration: config/api_config.py
+8.2 Fine Configuration: Speed-Based Fines (PP 43/1993)
 
-Base fine amounts in USD:
+Base fine amounts in USD (tiered by speed violation level):
 
-SPEEDING_FINE = 50.0
-SLOW_DRIVING_FINE = 25.0
-NO_STNK_FINE = 100.0
-NO_SIM_FINE = 100.0
+SPEED_LOW_MILD (50-59 km/h): $20
+SPEED_LOW_SEVERE (0-49 km/h): $32
+SPEED_HIGH_LEVEL_1 (101-110 km/h): $21
+SPEED_HIGH_LEVEL_2 (111-120 km/h): $32
+SPEED_HIGH_LEVEL_3 (121+ km/h): $32
 
-Multiplier rules in config/api_config.py:
-
-MULTIPLIER_1_0 = 1.0  # Both valid
-MULTIPLIER_1_2 = 1.2  # One expired
-MULTIPLIER_1_4 = 1.4  # Both expired
+Note: Fine levels are determined by speed violation severity per PP 43/1993 Toll Road Standards.
+No multipliers are applied - fines are fixed by speed range.
 
 8.3 Database Configuration
 

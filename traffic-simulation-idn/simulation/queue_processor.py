@@ -205,7 +205,7 @@ class QueuedCarProcessor:
             vehicle.ticket_issued = True
             
             # Calculate fine
-            base_fine, penalty_multiplier, total_fine = DataGenerator.calculate_fine(
+            base_fine, penalty_multiplier, total_fine, violation_reason = DataGenerator.calculate_fine(
                 vehicle.speed,
                 stnk_status=vehicle.stnk_status,
                 sim_status=vehicle.sim_status
@@ -226,6 +226,7 @@ class QueuedCarProcessor:
                 vehicle_type=vehicle.vehicle_type,
                 speed=vehicle.speed,
                 fine_amount=total_fine,
+                violation_reason=violation_reason,
                 timestamp=vehicle.timestamp,
                 owner_id=vehicle.owner_id,
                 owner_name=vehicle.owner_name,

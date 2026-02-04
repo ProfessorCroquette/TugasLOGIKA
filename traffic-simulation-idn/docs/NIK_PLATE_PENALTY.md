@@ -7,21 +7,23 @@ February 4, 2026 02:30 AM
 ================================================================================
 
 OFFICIAL FORMAT: 16 Digits
-Position 1-6:   DDMMYY (Birth Date)
-Position 7-8:   XX (Province Code)
-Position 9-10:  XX (District Code)
-Position 11-12: XX (Sub-district Code)
-Position 13-15: XXX (Sequential Number)
-Position 16:    X (Gender: Odd=Male, Even=Female)
+Position 1-2:   XX (Province Code - Kode Provinsi)
+Position 3-4:   XX (District Code - Kode Kabupaten/Kota)
+Position 5-6:   XX (Sub-district Code - Kode Kecamatan)
+Position 7-8:   DD (Day of Birth - Tanggal Lahir, females +40)
+Position 9-10:  MM (Month of Birth - Bulan Lahir)
+Position 11-12: YY (Year of Birth - Tahun Lahir, 2-digit)
+Position 13-16: SSSS (Sequential Number - Nomor Urut 0001-9999)
 
 EXAMPLE NIK BREAKDOWN:
-1234561234567890
-├─ 123456 = Birth date (Dec 31, 1956)
-├─ 12 = Prov code (North Sumatra)
-├─ 34 = District code (from base.csv)
-├─ 56 = Sub-district code (from base.csv)
-├─ 789 = Sequential number
-└─ 0 = Female (even digit)
+3174011201956001
+├─ 31 = Province Code (Jakarta)
+├─ 74 = District Code (KOTA ADM. JAKARTA SELATAN)
+├─ 01 = Sub-district Code (Cilandak)
+├─ 12 = Day of Birth (12, or 52 for females = female born day 12)
+├─ 01 = Month of Birth (01 = January)
+├─ 95 = Year of Birth (95 = 1995 or 2095)
+└─ 6001 = Sequential Number (0001-9999, here 6001)
 
 PROVINCE CODES (Official Indonesian List):
 11=Aceh, 12=North Sumatra, 13=West Sumatra, 14=Riau, 15=Jambi, 16=Sumatera Selatan,
@@ -51,29 +53,32 @@ IMPLEMENTATION (utils/indonesian_plates.py):
 ```python
 class VehicleOwner:
     @staticmethod
-    def generate_independent_nik():
-        """Generate NIK independent of plate region"""
-        province = str(randint(1, 34)).zfill(2)  # Random 01-34
-        district = str(randint(1, 99)).zfill(2)
-        subdistrict = str(randint(1, 99)).zfill(2)
-        birth_date = generate_birth_date()  # DDMMYY format
-        sequential = str(randint(0, 999)).zfill(3)
-        gender = randint(0, 9)  # 0-9, odd=M, even=F
+    def generate_nik_from_plate(plate_region_code: str, sub_region: str = None) -> str:
+        """Generate NIK dari plate region
         
-        return f"{birth_date}{province}{district}{subdistrict}{sequential}{gender}"
-    
-    @staticmethod
-    def get_or_create_owner(region, sub_region, vehicle_category):
-        """Create owner with appropriate NIK generation mode"""
-        if vehicle_category in ('PEMERINTAH', 'KEDUTAAN'):
-            # Special vehicles: Independent NIK
-            nik = VehicleOwner.generate_independent_nik()
-        else:
-            # Regular vehicles: Plate-based NIK
-            province = get_province_from_plate(region)
-            nik = create_plate_based_nik(province, district, subdistrict)
+        Format: Province(2) + District(2) + Sub-district(2) + Day(2) + Month(2) + Year(2) + Sequential(4)
+        Example: "31" + "74" + "01" + "12" + "01" + "95" + "6001" = 3174011201956001
         
-        return create_owner_with_nik(nik)
+        For females: Day is increased by 40 (e.g., day 12 becomes 52)
+        """
+        province_code = get_province_code_from_plate(plate_region_code)
+        city_code = get_city_code_from_region(sub_region)  # From base.csv
+        district_code = get_district_code_from_region(sub_region)  # From base.csv
+        
+        # Birth date
+        day = random.randint(1, 28)
+        is_female = random.random() < 0.5
+        if is_female:
+            day += 40  # Female indicator: add 40 to day
+        month = random.randint(1, 12)
+        year = random.randint(50, 99)  # 2-digit year
+        
+        # Sequential
+        seq = random.randint(1, 9999)
+        
+        # Format: Province(2) + City(2) + District(2) + Day(2) + Month(2) + Year(2) + Seq(4)
+        nik = f"{province_code}{city_code}{district_code}{day:02d}{month:02d}{year:02d}{seq:04d}"
+        return nik  # Example: "3174011201956001"
 ```
 
 TESTING RESULTS (Phase 3 - 643 vehicles):
@@ -349,6 +354,10 @@ Province in NIK unrelated to RI government code
 
 Core Files:
 - utils/indonesian_plates.py: PLATE_DATA + VehicleOwner + NIK generation
+  * generate_nik_from_plate(): Generates NIK in official format
+  * Format: Province(2) + District(2) + Sub-district(2) + BirthDay(2) + Month(2) + Year(2) + Sequential(4)
+  * Females: Day + 40 (e.g., day 12 becomes 52)
+  * Source: Province from PLATE_DATA, District/Sub-district from base.csv
 - utils/violation_utils.py: Fine calculation engine
 - utils/generators.py: Vehicle and owner generation
 - simulation/analyzer.py: Violation detection

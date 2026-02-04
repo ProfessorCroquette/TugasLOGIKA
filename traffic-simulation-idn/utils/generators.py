@@ -149,8 +149,8 @@ class DataGenerator:
     @staticmethod
     def generate_vehicle_batch():
         """Generate a batch of random vehicles with probability distribution:
-        50% Pribadi (cars/motorcycles) - Private plate (BLACK)
-        40% Barang/Truk/Angkutan Umum (commercial) - Truck plate (YELLOW)
+        75% Pribadi (cars/motorcycles) - Private plate (BLACK)
+        15% Barang/Truk/Angkutan Umum (commercial) - Truck plate (YELLOW)
         5% Pemerintah (government) - Government plate (RED)
         5% Kedutaan (diplomatic) - Diplomatic plate (WHITE)
         """
@@ -348,4 +348,4 @@ class DataGenerator:
         # Total fine can exceed max if multiplier is applied
         total_fine = base_fine * penalty_multiplier
         
-        return base_fine, penalty_multiplier, total_fine
+        return base_fine, penalty_multiplier, total_fine, violation_reason

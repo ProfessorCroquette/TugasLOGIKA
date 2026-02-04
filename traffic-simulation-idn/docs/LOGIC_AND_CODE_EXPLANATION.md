@@ -1,7 +1,7 @@
 # Logic and Code Explanation
 
 **Document:** Complete Logic, File Purpose, and Critical Code Analysis  
-**Date:** February 4, 2026 02:30 AM  
+**Date:** February 4, 2026 02:45 AM  
 **Project:** Indonesian Traffic Violation Simulation System  
 
 ---
@@ -26,9 +26,9 @@
 
 ```
 P1: If (vehicle_speed > speed_limit) then (vehicle_violates_speed_law)
-P2: vehicle_speed = 85 km/h AND speed_limit = 100 km/h
+P2: vehicle_speed = 85 km/h AND speed_limit = 100 km/h (for cars)
 P3: 85 > 100 is FALSE
-Conclusion: vehicle_violates_speed_law is TRUE → Issue violation ticket
+Conclusion: vehicle_violates_speed_law is FALSE → No violation
 ```
 
 **Code Location:** `simulation/analyzer.py`
@@ -41,7 +41,7 @@ def detect_violation(vehicle):
     P2: Check if speed > limit  
     Conclusion: If true, violation detected
     """
-    speed_limit = 75  # km/h
+    speed_limit = 100  # km/h for cars, 80 km/h for trucks
     
     # Premise P1: If vehicle_speed > speed_limit, then violation
     if vehicle['speed'] > speed_limit:  # P2: Check premise P1
@@ -60,11 +60,19 @@ def detect_violation(vehicle):
 ```
 IF speed > 100 THEN violation (for cars)
     ↓
-speed = 85 (FALSE)
+speed = 85 (85 > 100 = FALSE)
     ↓
 violation = FALSE
     ↓
 NO TICKET
+
+BUT if speed = 110 km/h:
+    ↓
+speed = 110 (110 > 100 = TRUE)
+    ↓
+violation = TRUE
+    ↓
+TICKET ISSUED (1-10 km/h over = $30 fine)
 ```
 
 ---
@@ -120,17 +128,14 @@ BY TOLLENS: NOT non-active
     ↓
 STNK must be active
 ```
+Fine is determined by speed violation level:
+  IF speed 50-59 km/h (too slow)           THEN fine = $20
+  IF speed 0-49 km/h (severely too slow)   THEN fine = $32
+  IF speed 101-110 km/h (1-10 km/h over)  THEN fine = $21
+  IF speed 111-120 km/h (11-20 km/h over) THEN fine = $32
+  IF speed 121+ km/h (21+ km/h over)      THEN fine = $32
 
----
-
-### Complex Logic: Fine Calculation with Conditional Reasoning
-
-**Logic Applied:**
-
-```
-Base Fine is determined by:
-  IF vehicle_type == 'Mobil'       THEN base_fine = $50
-  IF vehicle_type == 'Motor'       THEN base_fine = $25
+Total Fine in IDR = fine_amount × USD_TO_IDR (15,500)e = $25
   IF vehicle_type == 'Truck'       THEN base_fine = $100
 
 Penalty Multiplier determined by:
@@ -148,57 +153,64 @@ def calculate_fine(violation):
     """
     Logical Decision Tree for Fine Calculation
     
-    1. Determine base fine by vehicle type
-    2. Determine multiplier by violation severity
-    3. Calculate total in USD then convert to IDR
+    Based on speed violation level (PP 43/1993)
+    1. Check speed against limit
+    2. Determine fine tier
+    3. Convert to IDR
     """
-    # Step 1: Base Fine Logic (Conditional P1)
-    vehicle_type = violation['vehicle_type']
-    
-    base_fine_usd = {
-        'Mobil': 50,      # Cars: $50
-        'Motor': 25,      # Motorcycles: $25
-        'Truck': 100      # Trucks: $100
-    }.get(vehicle_type, 50)  # Default: $50
-    
-    # Step 2: Penalty Multiplier Logic (Nested Conditionals)
-    stnk_status = violation['registration']['stnk_status']
+    # Get violation details
     speed = violation['speed']
+    speed_limit = 100  # km/h for cars, 80 km/h for trucks
     
-    # Modus Tollens: If STNK inactive, then more severe penalty
-    if stnk_status == 'Non-Active':
-        # CONCLUSION: Heavy penalty (1.4x)
-        multiplier = 1.4
-    # Else if excessive speeding (85+ km/h)
-    elif speed > 85:
-        # CONCLUSION: Moderate penalty (1.2x)
-        multiplier = 1.2
+    # Step 1: Determine Fine by Speed Violation Level
+    # Modus Ponens: If speed in range X THEN fine = Y
+    
+    if 50 <= speed < 60:
+        # Too slow (mild)
+        fine_usd = 20
+        level = "SPEED_LOW_MILD"
+    elif speed < 50:
+        # Too slow (severe)
+        fine_usd = 35
+        level = "SPEED_LOW_SEVERE"
+    elif 101 <= speed <= 110:
+        # 1-10 km/h over limit
+        fine_usd = 30
+        level = "SPEED_HIGH_LEVEL_1"
+    elif 111 <= speed <= 120:
+        # 11-20 km/h over limit
+        fine_usd = 50
+        level = "SPEED_HIGH_LEVEL_2"
+    elif speed > 120:
+        # 21+ km/h over limit
+        fine_usd = 75
+        level = "SPEED_HIGH_LEVEL_3"
     else:
-        # CONCLUSION: Standard fine (1.0x)
-        multiplier = 1.0
+        # No violation (60-100 km/h for cars)
+        fine_usd = 0
+        level = "NO_VIOLATION"
     
-    # Step 3: Calculate Total
-    total_fine_usd = base_fine_usd * multiplier
-    total_fine_idr = total_fine_usd * 15500  # USD_TO_IDR
+    # Step 2: Calculate Total in IDR
+    total_fine_idr = fine_usd * 15500  # USD_TO_IDR
     
     return {
-        'base_fine': base_fine_usd,
-        'penalty_multiplier': multiplier,
-        'total_fine': total_fine_usd,
+        'level': level,
+        'fine_usd': fine_usd,
         'total_fine_idr': total_fine_idr
     }
 ```
 
 **Logical Truth Table:**
 
-| Vehicle Type | STNK Status  | Speed  | Base Fine | Multiplier | Total |
-|--------------|-------------|--------|-----------|-----------|--------|
-| Mobil        | Active      | 76     | $50       | 1.0x      | $50    |
-| Mobil        | Active      | 90     | $50       | 1.2x      | $60    |
-| Mobil        | Non-Active  | 76     | $50       | 1.4x      | $70    |
-| Mobil        | Non-Active  | 90     | $50       | 1.4x      | $70    |
-| Motor        | Active      | 76     | $25       | 1.0x      | $25    |
-| Truck        | Active      | 90     | $100      | 1.2x      | $120   |
+| Speed (km/h) | Level                  | Fine USD | Fine IDR      | Status      |
+|--------------|------------------------|----------|---------------|--------------:|
+| 45           | SPEED_LOW_SEVERE       | $35      | Rp 542,500    | Too slow    |
+| 55           | SPEED_LOW_MILD         | $20      | Rp 310,000    | Too slow    |
+| 85           | NO_VIOLATION           | $0       | Rp 0          | Normal      |
+| 100          | NO_VIOLATION           | $0       | Rp 0          | At limit    |
+| 105          | SPEED_HIGH_LEVEL_1     | $30      | Rp 465,000    | +5 km/h     |
+| 115          | SPEED_HIGH_LEVEL_2     | $50      | Rp 775,000    | +15 km/h    |
+| 130          | SPEED_HIGH_LEVEL_3     | $75      | Rp 1,162,500  | +30 km/h    |
 
 ---
 
@@ -495,12 +507,17 @@ class QueuedCarProcessor:
         Violation Detection Logic
         
         Modus Ponens:
-        P1: If speed > 60 km/h THEN violation
-        P2: Check vehicle speed
-        Conclusion: violation = (speed > 60)
+        P1: If speed > 100 km/h (cars) OR > 80 km/h (trucks) THEN violation
+        P2: If speed < 60 km/h THEN violation (too slow)
+        P3: Check vehicle speed and type
+        Conclusion: violation = (speed outside safe range)
         """
-        speed_limit = 60  # km/h
-        return vehicle['speed'] > speed_limit
+        # Speed limits per vehicle type
+        speed_limit = 100 if vehicle['type'] == 'car' else 80
+        min_speed = 60  # Minimum safe speed
+        
+        # Violation if too fast or too slow
+        return vehicle['speed'] > speed_limit or vehicle['speed'] < min_speed
 ```
 
 ---
@@ -595,13 +612,13 @@ class DataGenerator:
     @staticmethod
     def generate_vehicle_batch():
         """
-        Generate vehicles with distribution
+        Generate vehicles with distribution (PP 43/1993 Toll Road - Motorcycles/Buses disabled)
         
         Logical Distribution:
-        50% Mobil (Private cars)
-        40% Barang/Truk (Goods/Trucks)
-        5% Pemerintah (Government)
-        5% Kedutaan (Embassy)
+        75% Cars (Private vehicles)
+        25% Trucks (Goods/Heavy vehicles)
+        0% Motorcycles (DISABLED - not allowed on toll roads)
+        0% Buses (DISABLED - follow truck speed limits)
         """
         vehicles = []
         
@@ -609,15 +626,12 @@ class DataGenerator:
             rand = random.random()
             
             # Modus Ponens decision tree
-            if rand < 0.5:
-                # Conclusion: Mobil
-                vehicle_type = 'Mobil'
-            elif rand < 0.9:
-                # Conclusion: Truck
+            if rand < 0.75:
+                # Conclusion: Car (75%)
+                vehicle_type = 'Car'
+            else:
+                # Conclusion: Truck (25%)
                 vehicle_type = 'Truck'
-            elif rand < 0.95:
-                # Conclusion: Government
-                vehicle_type = 'Pemerintah'
             else:
                 # Conclusion: Embassy
                 vehicle_type = 'Kedutaan'
@@ -785,43 +799,47 @@ class Config:
     """
     
     # Simulation settings
-    SIMULATION_INTERVAL = 3  # seconds between batches (3 seconds for target flow)
-    SPEED_LIMIT = 75  # km/h - standard speed limit for regular roads
-    MIN_SPEED_LIMIT = 40  # km/h - minimum safe speed
+    SIMULATION_INTERVAL = 3  # seconds between batches
+    
+    # Speed Limits (PP 43/1993 Toll Road Standards)
+    SPEED_LIMIT = 100  # km/h - Cars maximum on toll roads
+    TRUCK_SPEED_LIMIT = 80  # km/h - Trucks maximum (20 km/h lower than cars)
+    MIN_SPEED_LIMIT = 60  # km/h - Minimum safe speed for both
     MIN_VEHICLES_PER_BATCH = 10  # at least 10 cars per batch
     MAX_VEHICLES_PER_BATCH = 15  # max 15 per batch for consistent violations
     
     # Speed distribution (normal distribution)
-    SPEED_MEAN = 70  # average speed around 70 km/h (below limit)
+    SPEED_MEAN = 85  # average speed around 85 km/h (below 100 km/h limit for cars)
     SPEED_STD_DEV = 8  # moderate variation in speeds (realistic)
-    MIN_SPEED = 45
-    MAX_SPEED = 95  # Allow speeds above 75 for natural violations
+    MIN_SPEED = 60  # Minimum speed on toll road
+    MAX_SPEED = 120  # Allow speeds above 100 for natural violations
     
-    # Vehicle type distribution (percentages)
+    # Vehicle type distribution (percentages) - MOTORCYCLES & BUSES DISABLED
     VEHICLE_TYPES = {
-        "car": 60,
-        "truck": 20,
-        "motorcycle": 15,
-        "bus": 5
+        "car": 75,           # Cars: 75%
+        "truck": 25,         # Trucks: 25%
+        "motorcycle": 0,     # DISABLED - not allowed on toll roads
+        "bus": 0             # DISABLED - follows truck speed limits
     }
     
     # Currency conversion (DEFINE FIRST - used in fine calculations)
     USD_TO_IDR = 15500  # 1 USD = 15,500 IDR
     
-    # Fines structure (in USD, converted to IDR in GUI)
-    # Maximum fine: Rp 1,250,000
+    # Fines structure (in USD, converted to IDR in GUI) - PP 43/1993
+    # Cars: 60-100 km/h | Trucks: 40-80 km/h
     # Fines are tiered based on severity of violation
     FINES = {
-        "SPEED_LOW_MILD": {"min": 30, "max": 39, "fine": 20, "description": "Terlalu lambat"},
-        "SPEED_LOW_SEVERE": {"min": 0, "max": 29, "fine": 35, "description": "Terlalu lambat berat"},
-        "SPEED_HIGH_LEVEL_1": {"min": 76, "max": 90, "fine": 30, "description": "Melampaui batas 1-15 km/h"},
-        "SPEED_HIGH_LEVEL_2": {"min": 91, "max": 110, "fine": 50, "description": "Melampaui batas 16-35 km/h"},
-        "SPEED_HIGH_LEVEL_3": {"min": 111, "max": 130, "fine": 75, "description": "Melampaui batas 36+ km/h"}
+        "SPEED_LOW_MILD": {"min": 50, "max": 59, "fine": 20, "description": "Terlalu lambat"},
+        "SPEED_LOW_SEVERE": {"min": 0, "max": 49, "fine": 32, "description": "Terlalu lambat berat"},
+        "SPEED_HIGH_LEVEL_1": {"min": 101, "max": 110, "fine": 21, "description": "Melampaui batas 1-10 km/h"},
+        "SPEED_HIGH_LEVEL_2": {"min": 111, "max": 120, "fine": 32, "description": "Melampaui batas 11-20 km/h"},
+        "SPEED_HIGH_LEVEL_3": {"min": 121, "max": 150, "fine": 32, "description": "Melampaui batas 21+ km/h"}
     }
     
-    # Maximum fine per law
-    MAX_FINE_IDR = 1250000  # Rp 1,250,000 - maximum penalty
-    MAX_FINE_USD = MAX_FINE_IDR / USD_TO_IDR  # ~USD 80.65
+    # Maximum fine per law (Regular roads - Article 287 Section 5)
+    # Note: All tiered fines capped to this maximum
+    MAX_FINE_IDR = 500000  # Rp 500,000 - maximum penalty (regular road limit)
+    MAX_FINE_USD = MAX_FINE_IDR / 15500  # ~$32.26 USD (all tiers respect this max)
     
     # Output directories
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1006,16 +1024,15 @@ def _random_vehicle_type():
     """
     Random Vehicle Type Selection
     
-    Probability Distribution:
-    50% → Mobil (Private cars)
-    40% → Truck (Goods/trucks)
-    5%  → Pemerintah (Government)
-    5%  → Kedutaan (Embassy)
+    Probability Distribution (PP 43/1993):
+    75% → Car (Private vehicles)
+    25% → Truck (Goods/trucks)
+    0%  → Motorcycles (DISABLED - not allowed on toll roads)
+    0%  → Buses (DISABLED - follow truck speed limits)
     
     Modus Ponens Applied Probabilistically:
-    P1: If random < 0.5 THEN type = Mobil
-    P2: If 0.5 ≤ random < 0.9 THEN type = Truck
-    P3: If 0.9 ≤ random < 0.95 THEN type = Pemerintah
+    P1: If random < 0.75 THEN type = Car
+    P2: If random >= 0.75 THEN type = Truck
     P4: If random ≥ 0.95 THEN type = Kedutaan
     """
     rand = random.random()  # 0.0 to 1.0
@@ -1119,48 +1136,43 @@ Vehicle Speed Check
 ### 2. Fine Calculation Decision Tree
 
 ```
-Fine Calculation Flow
+Fine Calculation Flow (PP 43/1993)
+
+Speed Check
 │
-├─ Step 1: Determine Base Fine by Vehicle Type
-│  ├─ Mobil?        → $50
-│  ├─ Motor?        → $25
-│  ├─ Truck?        → $100
-│  ├─ Pemerintah?   → $75
-│  └─ Kedutaan?     → $100
+├─ Is speed 50-59 km/h (too slow)?
+│  └─ YES → Fine = $20 (Rp 310,000)
 │
-├─ Step 2: Determine Multiplier by Severity
-│  ├─ STNK Non-Active?
-│  │  └─ YES → 1.4x (40% penalty)
-│  │
-│  └─ NO, Check Speed
-│     ├─ Speed > 85 km/h?
-│     │  └─ YES → 1.2x (20% penalty)
-│     │
-│     └─ NO → 1.0x (standard)
+├─ Is speed 0-49 km/h (severely too slow)?
+│  └─ YES → Fine = $35 (Rp 542,500)
 │
-└─ Step 3: Calculate Total
-   ├─ Total USD = Base × Multiplier
-   └─ Total IDR = Total USD × 15,500
+├─ Is speed 101-110 km/h (1-10 km/h over)?
+│  └─ YES → Fine = $30 (Rp 465,000)
+│
+├─ Is speed 111-120 km/h (11-20 km/h over)?
+│  └─ YES → Fine = $50 (Rp 775,000)
+│
+├─ Is speed 121+ km/h (21+ km/h over)?
+│  └─ YES → Fine = $75 (Rp 1,162,500)
+│
+└─ Speed 60-100 km/h (normal range)?
+   └─ YES → No violation, Fine = $0
 ```
 
 ### 3. Vehicle Type Distribution Decision Tree
 
 ```
-Random Vehicle Type Selection
-│
+Random Vehicle Type Selection (PP 43/1993)
+
 random_value = random(0, 1)
+
+├─ random_value < 0.75?
+│  └─ YES → Type = Car (75%)
 │
-├─ random_value < 0.50?
-│  └─ YES → Type = Mobil (50%)
-│
-├─ random_value < 0.90?
-│  └─ YES → Type = Truck (40%)
-│
-├─ random_value < 0.95?
-│  └─ YES → Type = Pemerintah (5%)
-│
-└─ random_value ≥ 0.95?
-   └─ YES → Type = Kedutaan (5%)
+└─ random_value >= 0.75?
+   └─ YES → Type = Truck (25%)
+
+Note: Motorcycles & Buses DISABLED (not allowed on toll roads)
 ```
 
 ### 4. Worker Processing Decision Tree

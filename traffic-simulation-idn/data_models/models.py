@@ -44,6 +44,7 @@ class Ticket:
     speed: float = 0.0
     speed_limit: float = 75.0
     fine_amount: float = 0.0
+    violation_reason: str = ""  # e.g., "SPEED_HIGH_LEVEL_2", "SPEED_LOW_MILD"
     timestamp: datetime = field(default_factory=datetime.now)
     location: str = "Highway-Sensor-001"
     status: str = "PENDING"

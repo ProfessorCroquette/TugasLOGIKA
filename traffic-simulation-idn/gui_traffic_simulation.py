@@ -375,11 +375,22 @@ class ViolationDetailDialog(QDialog):
         multiplier = self.violation.get('penalty_multiplier', 1.0)
         total_fine_usd = base_fine_usd * multiplier
         total_fine_idr = total_fine_usd * USD_TO_IDR
+        violation_reason = self.violation.get('violation_reason', '')
         
-        fine_layout.addWidget(QLabel("Denda Dasar:"), 0, 0)
-        fine_layout.addWidget(QLabel(f"${base_fine_usd:.2f} / Rp {base_fine_idr:,.0f}"), 0, 1)
+        # Add violation tier/reason if available
+        if violation_reason:
+            fine_layout.addWidget(QLabel("Kategori Pelanggaran:"), 0, 0)
+            reason_label = QLabel(violation_reason)
+            reason_label.setStyleSheet("color: darkblue; font-weight: bold;")
+            fine_layout.addWidget(reason_label, 0, 1)
+            row_offset = 1
+        else:
+            row_offset = 0
         
-        fine_layout.addWidget(QLabel("Pengali Penalti:"), 1, 0)
+        fine_layout.addWidget(QLabel("Denda Dasar:"), row_offset, 0)
+        fine_layout.addWidget(QLabel(f"${base_fine_usd:.2f} / Rp {base_fine_idr:,.0f}"), row_offset, 1)
+        
+        fine_layout.addWidget(QLabel("Pengali Penalti:"), row_offset + 1, 0)
         multiplier_label = QLabel(f"{multiplier}x")
         if multiplier > 1.0:
             multiplier_label.setStyleSheet("color: red; font-weight: bold;")
@@ -396,16 +407,16 @@ class ViolationDetailDialog(QDialog):
                 # Calculate base (1.0) and additions
                 reason_text = " | ".join(reason)
                 detail_text = multiplier_label.text() + f" ({reason_text})"
-                fine_layout.addWidget(QLabel(detail_text), 1, 1)
+                fine_layout.addWidget(QLabel(detail_text), row_offset + 1, 1)
             else:
-                fine_layout.addWidget(multiplier_label, 1, 1)
+                fine_layout.addWidget(multiplier_label, row_offset + 1, 1)
         else:
-            fine_layout.addWidget(multiplier_label, 1, 1)
+            fine_layout.addWidget(multiplier_label, row_offset + 1, 1)
         
-        fine_layout.addWidget(QLabel("Total Denda:"), 2, 0)
+        fine_layout.addWidget(QLabel("Total Denda:"), row_offset + 2, 0)
         total_label = QLabel(f"${total_fine_usd:.2f} / Rp {total_fine_idr:,.0f}")
         total_label.setStyleSheet("color: darkred; font-weight: bold; font-size: 12pt;")
-        fine_layout.addWidget(total_label, 2, 1)
+        fine_layout.addWidget(total_label, row_offset + 2, 1)
         
         fine_group.setLayout(fine_layout)
         layout.addWidget(fine_group)
@@ -903,6 +914,12 @@ class TrafficSimulationGUI(QMainWindow):
             type_item.setForeground(QBrush(violation_color))
             type_item.setFont(QFont())
             type_item.font().setBold(True)
+            
+            # Add tooltip with violation tier/reason
+            violation_reason = violation.get('violation_reason', '')
+            if violation_reason:
+                type_item.setToolTip(f"Kategori: {violation_reason}")
+            
             self.violations_table.setItem(row, 2, type_item)
             
             speed_item = QTableWidgetItem(f"{speed:.1f} km/h")
